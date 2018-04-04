@@ -45,13 +45,6 @@ module.exports = (() => {
             }
             rtn.push(new HtmlWebpackPlugin(cfg));
         });
-        rtn.push(new HtmlWebpackPlugin({
-            template:`./static/PDFShow/generic/web/viewer.html`,
-            filename:`viewer.html`,
-            favicon:`${srcDir}/img/favicon.ico`,
-            inject: 'body',
-            chunks:[]
-        }));
         return rtn;
     };
 
@@ -77,7 +70,6 @@ module.exports = (() => {
         plugins:[
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.DefinePlugin({
-                __LOCAL__: env === 'local',
                 __DEV__: env === 'dev',
                 __PROD__: env === 'pro'
             }),

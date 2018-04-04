@@ -85,7 +85,6 @@ module.exports = (() => {
             new webpack.HotModuleReplacementPlugin(),
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.DefinePlugin({
-                __LOCAL__: env === 'local',
                 __DEV__: env === 'dev',
                 __PROD__: env === 'pro'
             }),

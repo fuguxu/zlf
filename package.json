@@ -4,24 +4,22 @@
   "description": "租立方",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=local webpack-dev-server --host 0.0.0.0 --config webpack.dev.config.js --progress --colors --inline",
-    "dev": "cross-env NODE_ENV=dev webpack --config webpack.pro.config.js --progress --colors",
+    "start": "cross-env NODE_ENV=dev webpack-dev-server --host 0.0.0.0 --config webpack.dev.config.js --progress --colors --inline",
     "prod": "cross-env NODE_ENV=pro webpack --config webpack.pro.config.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:fuguxu/zlf.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
-    "element-ui": "^1.4.10",
+    "element-ui": "^2.3.2",
     "underscore": "^1.8.3",
     "vue": "^2.4.4",
-    "vue-i18n": "^5.0.3",
     "vue-router": "^2.7.0"
   },
   "devDependencies": {
