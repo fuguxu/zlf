@@ -9,9 +9,7 @@ const nodeModulesPath = path.resolve(__dirname,'node_modules');
 const srcDir = path.resolve(process.cwd(),'src');
 const libDir = path.resolve(srcDir, 'js/lib');
 const glob = require('glob');
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 /**考虑多页面应用，多个入口文件**/
 const _entries = {};
@@ -43,13 +41,6 @@ module.exports = (() => {
             }
             rtn.push(new HtmlWebpackPlugin(cfg));
         });
-        rtn.push(new HtmlWebpackPlugin({
-            template:`./static/PDFShow/generic/web/viewer_dev.html`,
-            filename:`viewer.html`,
-            favicon:`${srcDir}/img/favicon.ico`,
-            inject: 'body',
-            chunks:[]
-        }));
         return rtn;
     };
 
@@ -72,6 +63,7 @@ module.exports = (() => {
             chunkFilename:'[id].js'
         },
         devServer:{
+            contentBase: path.join(__dirname, 'dist'),
             hot:true,
             inline:true,
             publicPath:'',
@@ -81,6 +73,17 @@ module.exports = (() => {
             disableHostCheck: true
         },
         devtool: '#eval-source-map',
+        optimization: {//webpack4.0打包相同代码配置
+            splitChunks: {
+              cacheGroups: {
+                commons: {
+                  chunks: 'initial',
+                  minChunks: 2,
+                  name: 'vendor'
+                }
+              }
+            }
+          },
         plugins:[
             new webpack.HotModuleReplacementPlugin(),
             new webpack.optimize.ModuleConcatenationPlugin(),
@@ -95,16 +98,11 @@ module.exports = (() => {
                     ]
                 }
             }),
-            new CommonsChunkPlugin({
-                names: ['common', 'vendor'],
-                minChunks: 2,
-            }),
             new ExtractTextPlugin({
                 filename: 'css/[name].css',
                 allChunks: true
             }),
             new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),
-            // new BundleAnalyzerPlugin({ openAnalyzer: false,analyzerPort: 9999, }),
             new OpenBrowserPlugin({url:'http://localhost:8888/main.html'})
         ].concat(htmlPlugins()),
         module:{

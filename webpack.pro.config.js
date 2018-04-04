@@ -9,7 +9,6 @@ const nodeModulesPath = path.resolve(__dirname,'node_modules');
 const srcDir = path.resolve(process.cwd(),'src');
 const libDir = path.resolve(srcDir, 'js/lib');
 const glob = require('glob');
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -67,15 +66,22 @@ module.exports = (() => {
             chunkFilename:'js/[hash:8].[id].min.js'
         },
         devtool: '#source-map',
+        optimization: {//webpack4.0打包相同代码配置
+            splitChunks: {
+              cacheGroups: {
+                commons: {
+                  chunks: 'initial',
+                  minChunks: 2,
+                  name: 'common'
+                }
+              }
+            }
+          },
         plugins:[
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.DefinePlugin({
                 __DEV__: env === 'dev',
                 __PROD__: env === 'pro'
-            }),
-            new CommonsChunkPlugin({
-                names: ['common', 'vendor'],
-                minChunks: 2,
             }),
             new UglifyJsPlugin({
                 uglifyOptions: {

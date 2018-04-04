@@ -1,6 +1,6 @@
 <template>
     <div class="header_bar">
-        
+       
     </div>
 </template>
 <style lang="scss" scoped>

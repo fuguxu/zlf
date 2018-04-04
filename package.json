@@ -4,8 +4,8 @@
   "description": "租立方",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev webpack-dev-server --host 0.0.0.0 --config webpack.dev.config.js --progress --colors --inline",
-    "prod": "cross-env NODE_ENV=pro webpack --config webpack.pro.config.js --progress --colors",
+    "start": "cross-env NODE_ENV=dev  webpack-dev-server --mode development --host 0.0.0.0 --config webpack.dev.config.js --progress --colors --inline",
+    "prod": "cross-env NODE_ENV=pro webpack --mode production --config webpack.pro.config.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -39,7 +39,7 @@
     "file-loader": "^0.11.2",
     "glob": "^7.1.2",
     "html-loader": "^0.5.1",
-    "html-webpack-plugin": "^2.30.1",
+    "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.5.3",
     "open-browser-webpack-plugin": "^0.0.5",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
@@ -50,8 +50,8 @@
     "vue-loader": "^13.0.5",
     "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.10.0",
-    "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-dev-server": "^2.8.2"
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
   }
 }

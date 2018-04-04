@@ -1,6 +1,7 @@
 
 import VueRouter from 'vue-router';
 import APP from '../App/main.vue';
+import m from '../mainContainer/main.vue';
 
 Vue.use(VueRouter);
 
@@ -8,8 +9,14 @@ Vue.use(VueRouter);
 const routesMap = [
     {
         path: '/',
-        redirect:'/a',
+        redirect:'/a/m',
         component:APP,
+        children:[
+            {
+                path: '/a/m',
+                component:m,
+            }
+        ]
     }
 ];
 
