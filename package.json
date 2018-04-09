@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=dev  webpack-dev-server --mode development --host 0.0.0.0 --config webpack.dev.config.js --progress --colors --inline",
+    "dev": "cross-env NODE_ENV=dev webpack --mode production --config webpack.pro.config.js --progress --colors",
     "prod": "cross-env NODE_ENV=pro webpack --mode production --config webpack.pro.config.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +20,7 @@
     "axios": "^0.16.2",
     "element-ui": "^2.3.2",
     "underscore": "^1.8.3",
-    "vue": "^2.4.4",
+    "vue": "^2.5.16",
     "vue-router": "^2.7.0"
   },
   "devDependencies": {
@@ -36,7 +37,7 @@
     "css-loader": "^0.28.7",
     "es6-promise": "^4.1.1",
     "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^0.11.2",
+    "file-loader": "^1.1.11",
     "glob": "^7.1.2",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^3.2.0",
@@ -46,8 +47,9 @@
     "postcss-loader": "^2.0.6",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^0.5.9",
-    "vue-loader": "^13.0.5",
+    "vue-loader": "^14.2.2",
     "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^4.4.1",

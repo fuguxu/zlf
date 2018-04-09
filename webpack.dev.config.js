@@ -74,10 +74,13 @@ module.exports = (() => {
         },
         devtool: '#eval-source-map',
         optimization: {//webpack4.0打包相同代码配置
+            runtimeChunk: {
+                name: 'manifest'
+            },
             splitChunks: {
               cacheGroups: {
                 commons: {
-                  chunks: 'initial',
+                  chunks: 'all',
                   minChunks: 2,
                   name: 'vendor'
                 }

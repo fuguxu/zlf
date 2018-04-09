@@ -10,7 +10,7 @@ const srcDir = path.resolve(process.cwd(),'src');
 const libDir = path.resolve(srcDir, 'js/lib');
 const glob = require('glob');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -67,10 +67,14 @@ module.exports = (() => {
         },
         devtool: '#source-map',
         optimization: {//webpack4.0打包相同代码配置
+            // minimize: true,//压缩js
+            runtimeChunk: {
+                name: 'manifest'
+            },
             splitChunks: {
               cacheGroups: {
                 commons: {
-                  chunks: 'initial',
+                  chunks: 'all',
                   minChunks: 2,
                   name: 'common'
                 }
@@ -83,13 +87,8 @@ module.exports = (() => {
                 __DEV__: env === 'dev',
                 __PROD__: env === 'pro'
             }),
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    compress:{warnings: false,},
-                    mangle: { except: ['$super','Vue', '$', 'exports', 'require']},
-                },
+            new UglifyJsPlugin({//生产环境可以不用 本身自带
                 sourceMap: true,
-                parallel: true
             }),
             new ExtractTextPlugin({
                 filename: 'css/[hash:8].[name].min.css',
