@@ -1,5 +1,5 @@
 <template>
-    <div class="app-laws beauty-scroll-bar">
+    <div class="app-zlf beauty-scroll-bar">
         <header-bar></header-bar>
         <div class="main-container">
             <router-view></router-view>
@@ -8,7 +8,7 @@
     </div>
 </template>
 <style lang="scss" scoped>
-    .app-laws{
+    .app-zlf{
         width: 100%;
         height: 100%;
     }
