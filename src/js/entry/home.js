@@ -1,7 +1,7 @@
 
 import El from '../lib/el/main.js';
 import App from '../App/main.vue';
-import router from '../main/Route/main.js';
+import router from '../home/Route/main.js';
 import es6Promise from 'es6-promise';
 
 import '../../css/base';

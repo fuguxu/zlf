@@ -1,5 +1,5 @@
 <template>
-    <div class="app-zlf beauty-scroll-bar">
+    <div class="app-zlf">
         <router-view></router-view>
     </div>
 </template>
