@@ -80,18 +80,19 @@ const routesMap = [
                 path: '/business',
                 name:'商务合作',
                 component:businessPage,
-                // children:[
-                //     {
-                //         path:'/business/serviceFee',
-                //         name:'供应商进驻',
-                //         component:newsList,
-                //     },
-                //     {
-                //         path:'/business/mediaCooperation',
-                //         name:'媒体合作',
-                //         component:newsDetail,
-                //     }
-                // ]
+                showChildren:true,
+                dropMenu:[
+                    {
+                        path:'',
+                        name:'供应商进驻',
+                        // component:newsList,
+                    },
+                    {
+                        path:'',
+                        name:'媒体合作',
+                        // component:newsDetail,
+                    }
+                ]
             },
             {
                 path: '/about',

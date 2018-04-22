@@ -7,14 +7,18 @@
            <div class="router_container">
                <router-link v-for="(item,index) in menus" :key="index" :to="{path:item.path}">
                    <span>{{item.name}}</span>
-                   <div v-if="item.showChildren" class="drop_menus">
-                       <div class="drop_li">
-                            <router-link tag="li" v-for="(it,i) in item.children" :key="i" :to="{path:it.path}">
+                   <div v-if="item.showChildren" class="drop_menus" :class="{'drop_menu_out':item.dropMenu}">
+                       <ul class="drop_li">
+                            <router-link tag="li" v-for="(it,i) in (item.children||item.dropMenu)" :key="i" :to="{path:it.path}">
                                 {{it.name}}
                             </router-link>
-                        </div>
+                        </ul>
                    </div>
                 </router-link>    
+           </div>
+           <div class="login_sign">
+               <a class="login" href="">登陆</a>
+               <a class="sign" href="">注册</a>
            </div>
        </div>
     </div>
@@ -34,10 +38,11 @@
     .header_bar{
         height: 51px;
         width:100%;
-        background-color: rgba(13, 13, 13, 0.8);
+        background-color: rgba(13, 13, 13, 0.92);
         position: fixed;
         top:0;
         left:0;
+        z-index:10000;
     }
     .header_container{
         width:1200px;
@@ -50,6 +55,22 @@
         img{
             width:57px;
             height:51px;
+        }
+    }
+    .login_sign{
+        line-height: 50px;
+        color:#fff;
+        flex:1;
+        text-align: right;
+        .sign{
+            margin-left:70px;
+            margin-right:95px;
+        }
+        a{
+            font-size: 14px;
+            &:hover{
+                color: rgba(255, 255, 255, 0.75);
+            }
         }
     }
     .router_container{
@@ -76,8 +97,11 @@
                 }
                .drop_menus {
                    height:140px;
-                   .drop_li{ top:0px;
-                        box-shadow: 0px 0px 10px #333;
+                   &.drop_menu_out{
+                       height:80px;
+                   }
+                   .drop_li{ 
+                        top:0px;
                         transition:all 0.4s;
                     }
                 }
