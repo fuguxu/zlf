@@ -75,12 +75,12 @@ module.exports = (() => {
         devtool: '#eval-source-map',
         optimization: {//webpack4.0打包相同代码配置
             splitChunks: {
-              cacheGroups: {
-                commons: {
-                  chunks: 'all',
-                  minChunks: 2,
-                  name: 'vendor'
-                }
+                cacheGroups: {
+                    commons: {
+                        chunks: 'all',
+                        minChunks: 2,
+                        name: 'vendor',
+                    },
               }
             }
           },
@@ -103,7 +103,7 @@ module.exports = (() => {
                 allChunks: true
             }),
             new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),
-            new OpenBrowserPlugin({url:'http://localhost:8888/main.html'})
+            new OpenBrowserPlugin({url:'http://localhost:8888/home.html'})
         ].concat(htmlPlugins()),
         module:{
             rules:[

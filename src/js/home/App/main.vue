@@ -16,7 +16,6 @@
         margin-top:51px;
         width:100%;
         min-height:600px;
-        background:#fff;
     }
 </style>
 <script>
