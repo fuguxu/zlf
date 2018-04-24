@@ -47,7 +47,7 @@ export default {
             padding-bottom: 80px;
             text-align: center;
             font-size: 33px;
-            font-weight: bold;
+            font-weight: 650;
         }
         .home_service_couple_pic{
             background:#eee;

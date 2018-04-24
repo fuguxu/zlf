@@ -8,6 +8,7 @@
         <homeServiceCouple></homeServiceCouple>
         <homeCity></homeCity>
         <homeBrand></homeBrand>
+        <homeKnow></homeKnow>
       </div>
   </div>
 </template>
@@ -19,6 +20,7 @@ import homeRentFlow from '../Components/homeRentFlow'
 import homeServiceCouple from '../Components/homeServiceCouple'
 import homeCity from '../Components/homeCity'
 import homeBrand from '../Components/homeBrand'
+import homeKnow from '../Components/homeKnow'
 export default {
    data(){
      return {
@@ -40,7 +42,8 @@ export default {
       homeRentFlow,
       homeServiceCouple,
       homeCity,
-      homeBrand
+      homeBrand,
+      homeKnow
     }
 }
 </script>

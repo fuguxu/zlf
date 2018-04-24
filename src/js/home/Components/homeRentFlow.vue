@@ -39,7 +39,7 @@ export default {
             padding-bottom: 40px;
             text-align: center;
             font-size: 33px;
-            font-weight: bold;
+            font-weight: 650;
         }
         .home_rent_flow_pic{
             height:530px;

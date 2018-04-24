@@ -1,11 +1,16 @@
 <template>
-    <div class="home_rent">
+    <div class="home_know">
         <div class="title">
-            租赁物品类
+            上千供应商  解你所需
         </div>
-        <div class="home_rent_pic">
-            <div class="home_rent_pic_list">
-                <img src="../../../img/u37.jpg" alt="">
+        <div class="home_know_pic">
+            <div class="home_know_pic_list">
+                <div>
+                    <img src="../../../img/u90.jpg" alt="">
+                </div>
+                <div>
+                    <img src="../../../img/u84.jpg" alt="">
+                </div>
             </div>
         </div>
     </div>
@@ -33,27 +38,27 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .home_rent{
+    .home_know{
         .title{
-            padding-top:120px;
-            padding-bottom: 50px;
+            padding-top:200px;
+            padding-bottom: 80px;
             text-align: center;
             font-size: 33px;
             font-weight: 650;
         }
-        .home_rent_pic{
-            height:500px;
+        .home_know_pic{
             background:#eee;
+            padding-bottom: 180px;
         }
-        .home_rent_pic_list,.title{
+        .home_know_pic_list,.title{
             width:1200px;
             margin:0 auto;
         }
-        .home_rent_pic_list{
+        .home_know_pic_list{
             height:100%; 
             text-align: center;
             img{
-                height:500px;
+                width:650px;
             }         
         }
     }
