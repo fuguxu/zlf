@@ -39,7 +39,8 @@ export default {
         renderStyle(item){
           let imgSrc = require(`../../../img/home_banner${item}.jpg`);
           return {
-            background:`url(${imgSrc}) no-repeat center`
+            background:`url(${imgSrc}) no-repeat center`,
+            'background-size': 'cover',
           }
         },
         renderBannerClass(item){
@@ -67,7 +68,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .banner{
-    margin:0 auto;
+    width:100%;
     height:550px;
     position: relative;
     .banner_button_list{
