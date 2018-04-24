@@ -65,7 +65,7 @@ export default {
             padding-bottom: 60px;
             text-align: center;
             font-size: 33px;
-            font-weight: 650;
+            font-weight: 600;
         }
         .home_brand_pic{
             background:#eee;

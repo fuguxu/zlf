@@ -44,7 +44,7 @@ export default {
             padding-bottom: 80px;
             text-align: center;
             font-size: 33px;
-            font-weight: 650;
+            font-weight: 600;
         }
         .home_know_pic{
             background:#eee;
