@@ -41,7 +41,6 @@ export default {
             padding-bottom: 40px;
             text-align: center;
             font-size: 33px;
-            font-weight: 600;
         }
         .content{
             font-size:18px;

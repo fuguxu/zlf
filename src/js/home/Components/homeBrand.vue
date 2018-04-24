@@ -65,7 +65,6 @@ export default {
             padding-bottom: 60px;
             text-align: center;
             font-size: 33px;
-            font-weight: 600;
         }
         .home_brand_pic{
             background:#eee;
@@ -109,19 +108,16 @@ export default {
             }
             .text1{
                 font-size:28px;
-                font-weight: 650;
             }
         }
         .pic_gif1{
             justify-content: space-around;
             .text2{
                 font-size:24px;
-                font-weight: 500;
                 line-height: 75px;
             }
             .text3{
                 font-size:18px;
-                font-weight: 500;
                 line-height:34px;
             }
             

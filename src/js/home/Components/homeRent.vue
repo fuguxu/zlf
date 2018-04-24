@@ -39,7 +39,6 @@ export default {
             padding-bottom: 50px;
             text-align: center;
             font-size: 33px;
-            font-weight: 600;
         }
         .home_rent_pic{
             height:500px;
