@@ -6,10 +6,10 @@
             全部服务对象
           </div>
           <div class="case_list">
-              <div class="item" v-for="(item,index) in dataList" :key="index">
+              <div class="item" @click="clickItem(item)" v-for="(item,index) in dataList" :key="index">
                   <img :src="item.url" alt="">
                   <div class="item_dec">
-                      <div class="name">{{item.name}}</div>
+                      <div class="name">{{item.name.replace(/\s/g,'')}}</div>
                       <div class="desc">{{item.desc}}</div>
                       <div class="line"></div>
                       <div class="room_info">
@@ -33,12 +33,43 @@
   </div>
 </template>
 <script>
-import dataList from './coorperationData';
+import filterCoorperation from './coorperationData';
 export default {
   data(){
       return{
-          dataList:dataList
+          dataList:[],
+          dataType:[
+            {
+              value:'',
+              label:'全部服务对象'
+            },
+            {
+              value:'hotel',
+              label:'酒店'
+            },
+            {
+              value:'apartment',
+              label:'公寓'
+            },
+            {
+              value:'company',
+              label:'办公场所'
+            },
+          ]
       }
+  },
+  methods:{
+    clickItem(item){
+      this.$router.push({
+        path:'/coorperation/detail',
+        query:{
+          id:item.order
+        }
+      })
+    }
+  },
+  mounted(){
+    this.dataList=filterCoorperation();
   }
 }
 </script>
@@ -69,7 +100,11 @@ export default {
           margin-bottom: 50px;
           font-size: 0px;
           cursor: pointer;
-          box-shadow: 0 0 10px #eee;
+          box-shadow: 0 0 5px rgba(215, 215, 215, 0.6);
+          border-radius: 7px;
+          &:hover,&:hover img{
+            box-shadow: 0 0 10px rgba(255,192,46, 0.3);
+          }
           img{
             width:350px;
             height:231px;

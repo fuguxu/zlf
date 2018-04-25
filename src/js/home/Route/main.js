@@ -61,7 +61,7 @@ const routesMap = [
             {
                 path: '/news',
                 name:'新闻资讯',
-                component:servicePage,
+                component:newsPage,
                 redirect:'/news/list',
                 children:[
                     {

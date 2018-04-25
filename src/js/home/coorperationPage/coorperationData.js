@@ -1,7 +1,7 @@
-export default [
+ const coorperationData=[
     {
         order:1,
-        name:'三亚屋奇酒店',
+        name:'三 亚 屋 奇 酒 店',
         belong:'hotel',
         desc:'旅游度假公寓式酒店',
         rentNumber:'330万+',
@@ -13,7 +13,17 @@ export default [
         keyWord:'生活主题、公寓式酒店、有温度、家',
         area:'海南三亚',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:2,
@@ -29,7 +39,17 @@ export default [
         keyWord:'新中式、禅意、轻奢、智能、环保',
         area:'广东广州',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:3,
@@ -45,7 +65,17 @@ export default [
         keyWord:'新中式、禅意、轻奢、智能、环保',
         area:'广东佛山',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:4,
@@ -61,7 +91,17 @@ export default [
         keyWord:'舒适、轻奢、有温度、家',
         area:'湖南长沙',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:5,
@@ -77,11 +117,21 @@ export default [
         keyWord:'高端、商务、温度、居家、智能、环保',
         area:'广东深圳',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:6,
-        name:'华里-里寓公寓',
+        name:'华 里 - 里 寓 公 寓',
         belong:'apartment',
         desc:'商务型酒店式公寓',
         rentNumber:'110万+',
@@ -93,11 +143,21 @@ export default [
         keyWord:'新中式、禅意',
         area:'广东深圳',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:7,
-        name:'上海雀域',
+        name:'上 海 雀 域',
         belong:'apartment',
         desc:'长短租公寓',
         rentNumber:'190万+',
@@ -109,11 +169,21 @@ export default [
         keyWord:'现代、轻奢、设计感、后现代',
         area:'上海',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:8,
-        name:'上海寓居',
+        name:'上 海 寓 居',
         belong:'apartment',
         desc:'长短租公寓',
         rentNumber:'150万+',
@@ -125,7 +195,17 @@ export default [
         keyWord:'现代简约',
         area:'上海',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:9,
@@ -141,11 +221,21 @@ export default [
         keyWord:'现代简约、商务、高级灰',
         area:'湖南长沙',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:10,
-        name:'广州YOU+公寓',
+        name:'广 州 YOU+ 公 寓',
         belong:'apartment',
         desc:'长租公寓',
         rentNumber:'300万+',
@@ -157,7 +247,17 @@ export default [
         keyWord:'简约、现代、工业风',
         area:'广东广州',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:11,
@@ -173,7 +273,17 @@ export default [
         keyWord:'融合、包容、注重人文交流、自然',
         area:'广东深圳',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:12,
@@ -189,7 +299,17 @@ export default [
         keyWord:'传统、实用、稳重',
         area:'广东韶关',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:13,
@@ -205,7 +325,17 @@ export default [
         keyWord:'时尚、实用、高档',
         area:'广东深圳',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     },
     {
         order:14,
@@ -221,6 +351,27 @@ export default [
         keyWord:'时尚、实用、高档',
         area:'香港荃湾区',
         url:require('../../../img/u319.png'),
-        children:[]
+        children:[
+            {
+                url:require('../../../img/p8.jpg'),
+            },
+            {
+                url:require('../../../img/p10.jpg'),
+            },
+            {
+                url:require('../../../img/p13.jpg'),
+            }
+        ]
     }
 ]
+
+export default function filterCoorperation(key,value){
+    if(key&&value){
+      return  coorperationData.filter((item=>{
+            return item[key]==value;
+        }))
+    }else{
+        return coorperationData
+    }
+}
+
