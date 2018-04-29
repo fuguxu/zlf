@@ -20,6 +20,7 @@ import aboutUs from '../aboutPage/aboutUs.vue';
 import teamHonor from '../aboutPage/teamHonor.vue';
 import questionAnswer from '../aboutPage/qs.vue';
 import contact from '../aboutPage/contact.vue';
+import joinUs from '../aboutPage/joinUs.vue';
 
 Vue.use(VueRouter);
 
@@ -120,6 +121,12 @@ const routesMap = [
                         path:'/about/contact',
                         name:'联系我们',
                         component:contact,
+                    },
+                    {
+                        path:'/about/join',
+                        name:'加入我们',
+                        component:joinUs,
+                        hide:true
                     }
                 ]
             },

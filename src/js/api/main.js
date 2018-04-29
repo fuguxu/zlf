@@ -20,5 +20,5 @@ const base_axios_options = {
 const customer_base = `${zlf_base_prefix}/api-zlf`;
 const customerAxios = axios.create(Object.assign({}, { baseURL: `${customer_base}`}, base_axios_options));
 export const customerModule={
-    getNewsList:params => { return customerAxios.get('/getArtical', {params:params}).then(res => res.data); },
+    getNewsList:params => { return customerAxios.get('/article/getByPage', {params:params}).then(res => res.data); },
 }

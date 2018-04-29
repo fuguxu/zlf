@@ -11,8 +11,14 @@ export default {
   },
   methods:{
     getNews(){
-      customerModule.getNewsList({});
+      customerModule.getNewsList({
+        pageNo:1,
+        pageSize:10
+      });
     }
+  },
+  mounted(){
+    this.getNews();
   }
 }
 </script>

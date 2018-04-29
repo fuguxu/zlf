@@ -5,11 +5,12 @@
                <img src="../../../img/logo.png" alt="">
            </div>
            <div class="router_container">
-               <router-link v-for="(item,index) in menus" :key="index" :to="{path:item.path}">
+               <router-link v-for="(item,index) in menus" :key="index" :class="{hoverClass:item.hoverClass}" 
+               :to="{path:item.path}" @mouseenter.native="mouseEnter(item)" @mouseleave.native="mouseLeave(item)">
                    <span>{{item.name}}</span>
                    <div v-if="item.showChildren" class="drop_menus" :class="{'drop_menu_out':item.dropMenu}">
                        <ul class="drop_li">
-                            <router-link tag="li" v-for="(it,i) in (item.children||item.dropMenu)" :key="i" :to="{path:it.path}">
+                            <router-link tag="li"  v-if="!it.hide" v-for="(it,i) in (item.children||item.dropMenu)" :key="i" :to="{path:it.path}">
                                 {{it.name}}
                             </router-link>
                         </ul>
@@ -27,10 +28,28 @@
     export default{
         data(){
             return{
-                menus:this.$router.options.routes[0].children,
+                menus:[],
+                flag:false
+            }
+        },
+        methods:{
+            mouseEnter(item){
+                item.hoverClass=true;
+                
+            },
+            mouseLeave(item){
+                
+                item.hoverClass=false;
+               
             }
         },
         mounted(){
+            this.menus=this.$router.options.routes[0].children.map((item)=>{
+                return {
+                    ...item,
+                    hoverClass:false
+                }
+            })
         }
     }
 </script>
@@ -91,7 +110,9 @@
             }
             &:hover{
                 border-bottom: 2px solid #fff;
-                .drop_menus{
+            }
+            &.hoverClass{
+                 .drop_menus{
                     box-shadow: 0px 0px 15px #333;
                     transition-delay:0.4s;
                 }
@@ -128,6 +149,9 @@
                         }
                     }
                 }
+            }
+            .drop_menu_out .drop_li{
+                top:-80px;
             }
         }
     }
