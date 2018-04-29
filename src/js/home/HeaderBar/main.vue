@@ -70,7 +70,7 @@
         display: flex;
     }
     .logo_container{
-        margin-left:40px;
+        margin-left:67.5px;
         img{
             width:57px;
             height:51px;
@@ -98,7 +98,7 @@
         line-height: 50px;
         font-size:14px;
         a{
-            margin-left:75px;
+            margin-left:76px;
             font-size:14px;
             display: inline-block;
             height:50px;

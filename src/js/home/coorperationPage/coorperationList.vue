@@ -3,7 +3,7 @@
       <div class="banner"></div>
       <div class="case_list_box">
           <div class="title">
-            全部服务对象
+            <span @click="changeType(item)" v-for="(item,index) in dataType" :key="index" :class="{current:item.value==active}">{{item.label}}</span>
           </div>
           <div class="case_list">
               <div class="item" @click="clickItem(item)" v-for="(item,index) in dataList" :key="index">
@@ -55,7 +55,8 @@ export default {
               value:'company',
               label:'办公场所'
             },
-          ]
+          ],
+          active:''
       }
   },
   methods:{
@@ -66,6 +67,10 @@ export default {
           id:item.order
         }
       })
+    },
+    changeType(item){
+      this.active=item.value;
+      this.dataList=filterCoorperation('belong',item.value);
     }
   },
   mounted(){
@@ -83,11 +88,24 @@ export default {
       width: 1200px;
       margin:0 auto;
       .title{
-        line-height: 120px;
-        font-size: 16px;
-        color: #6B6B6B;
-        padding-left:20px;
+        line-height: 46px;
+        font-size: 14px;
+        color: #434343;
+        margin: 60px 32px 12px 40px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #eee;
         box-sizing: border-box;
+        span{
+          cursor: pointer;
+          margin-left: 60px;
+          &:first-child{
+            margin-left:30px;
+          }
+        }
+        span:hover,.current{
+          color: rgb(255, 192, 46);
+        }
       }
       .case_list{
         width:100%;
@@ -96,8 +114,8 @@ export default {
         .item{
           width:350px;
           height:440px;
-          margin-left:50px;
-          margin-bottom: 50px;
+          margin-left:40px;
+          margin-bottom: 40px;
           font-size: 0px;
           cursor: pointer;
           box-shadow: 0 0 5px rgba(215, 215, 215, 0.6);
@@ -106,6 +124,8 @@ export default {
             box-shadow: 0 0 10px rgba(255,192,46, 0.3);
           }
           img{
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
             width:350px;
             height:231px;
           }

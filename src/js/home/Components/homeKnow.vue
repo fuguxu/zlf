@@ -6,10 +6,10 @@
         <div class="home_know_pic">
             <div class="home_know_pic_list">
                 <div>
-                    <img src="../../../img/u90.jpg" alt="">
+                    <img class="img1" src="../../../img/u315.png" alt="">
                 </div>
                 <div>
-                    <img src="../../../img/u84.jpg" alt="">
+                    <img class="img2" src="../../../img/u317.png" alt="">
                 </div>
             </div>
         </div>
@@ -25,11 +25,6 @@ export default {
   methods:{
       scroll(event){
           var scrollTop=event.target.scrollTop;
-          var clientHeight=event.target.clientHeight;
-          var scrollHeight=event.target.scrollHeight;
-          if(scrollTop>=180){
-              this.showPic=true;
-          }
       }
   },
   mounted(){
@@ -46,7 +41,7 @@ export default {
             font-size: 33px;
         }
         .home_know_pic{
-            background:#eee;
+            // background:#eee;
             padding-bottom: 180px;
         }
         .home_know_pic_list,.title{
@@ -56,8 +51,13 @@ export default {
         .home_know_pic_list{
             height:100%; 
             text-align: center;
-            img{
-                width:650px;
+            .img1{
+                width:700px;
+                height:292px;
+            }
+            .img2{
+                width:700px;
+                height:350px;
             }         
         }
     }

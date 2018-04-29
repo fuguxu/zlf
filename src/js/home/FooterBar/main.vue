@@ -9,7 +9,7 @@
                    <div class="links_left">
                        <ul>
                            <li class="title">租赁服务咨询热线</li>
-                           <li style="font-size:14px;line-height:30px;margin-top:5px;margin-bottom:10px;" class="item">440-880-4604</li>
+                           <li style="font-size:14px;line-height:30px;margin-top:6px;margin-bottom:10px;" class="item">440-880-4604</li>
                            <li class="item">专业租赁咨询</li>
                            <li class="item">成熟解决方案</li>
                            <li class="item">全方位产品解读</li>
@@ -82,8 +82,9 @@ export default {
         width:1200px;
         height:100%;
         margin:0 auto;
-        padding:20px 0;
-        padding-left:55px;
+        padding-top: 25px;
+        padding-left: 50px;
+        padding-bottom: 15px;
         box-sizing: border-box;
         display: flex;
         .icon_box{
@@ -116,11 +117,11 @@ export default {
                     flex: 1;
                     display: flex;
                     .title{
-                        padding-bottom: 12px;
+                        padding-bottom: 10px;
                        a{cursor: text};
                     }
                     .link_right_ul{
-                        margin-left:114px;
+                        margin-left:129px;
                         &:first-child{
                             margin-left:95px;
                         }
@@ -135,7 +136,8 @@ export default {
                     }
                 }
                 .item{
-                    line-height: 26px;
+                    line-height: 20px;
+                    margin-bottom: 6px;
                     &:hover{
                         color: rgba(255, 255, 255, 0.88);
                     }

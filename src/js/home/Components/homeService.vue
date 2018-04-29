@@ -3,20 +3,20 @@
         <div class="title">
             互联网家居整体租赁解决方案服务商
         </div>
-        <div class="home_service_pic">
+        <div class="home_service_pic" ref="color">
             <div class="home_service_pic_list">
                 <div class="pic" :class="{pic1:showPic}">
-                    <img class="pic_img" src="../../../img/u15.png" alt="">
+                    <img class="pic_img" src="../../../img/u16.png" alt="">
                     <div class="pic_title">灵活的金融产品</div>
                     <div class="pic_dec">以租代售、售后返租、售后回购</div>
                 </div>
                 <div class="pic" :class="{pic2:showPic}">
-                    <img class="pic_img" src="../../../img/u15.png" alt="">
+                    <img class="pic_img" src="../../../img/u23.png" alt="">
                     <div class="pic_title">集团总授信</div>
                     <div class="pic_dec">以租代售、售后返租、售后回购</div>
                 </div>
                 <div class="pic" :class="{pic3:showPic}">
-                    <img class="pic_img" src="../../../img/u15.png" alt="">
+                    <img class="pic_img" src="../../../img/u30.png" alt="">
                     <div class="pic_title">项目报备制</div>
                     <div class="pic_dec">以租代售、售后返租、售后回购</div>
                 </div>
@@ -39,6 +39,16 @@ export default {
           if(scrollTop>=180){
               this.showPic=true;
           }
+          if(scrollTop<800){
+              this.$refs.color.style.background='';
+          }else if(scrollTop==800){
+              this.$refs.color.style.background='rgba(81,81,81,0.1)';
+          }else if(scrollTop>800&&scrollTop<1120){
+              var opc= (0.4-0.1)/320*(scrollTop-800)
+              this.$refs.color.style.background=`rgba(81,81,81,${opc})`;
+          }else if(scrollTop>=1120){
+              this.$refs.color.style.background='rgba(81,81,81,0.4)';
+          }
       }
   },
   mounted(){
@@ -56,7 +66,6 @@ export default {
         }
         .home_service_pic{
             height:320px;
-            background:#eee;
         }
         .home_service_pic_list,.title{
             width:1200px;
@@ -74,7 +83,7 @@ export default {
                 top:100%;
                 transition:all 1.5s;
                 text-align: center;
-                color:#292B2C;
+                color:rgba(41,43,44,0.9);
                 .pic_title{
                     font-size:20px;
                     padding:30px 20px;
