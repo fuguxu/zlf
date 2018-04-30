@@ -50,6 +50,10 @@ html,body{ width:100%;height:100%;background:rgb(250, 250, 250);}
 }
 /* 清除ie下输入框自带清除图标 */
 input::-ms-clear { display: none; }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 .app_wrap{
     width: 1120px;
     margin: 0 auto;

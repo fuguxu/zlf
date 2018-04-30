@@ -3,13 +3,17 @@
         <div class="item"  v-for="(item,index) in banners" :key="index" 
                 :class="renderBannerClass(item)"  :style="renderStyle(item)">
         </div>
-        <div class="banner_button_list">
-            <div class="banner_button" v-for="(item,index) in banners" :key="index" 
-                :class="{'current_button':buttonIndex==item}" @click="slideChange(item)"></div>
+        <div class="content_box">
+            <div class="banner_button_list">
+                <div class="banner_button" v-for="(item,index) in banners" :key="index" 
+                    :class="{'current_button':buttonIndex==item}" @click="slideChange(item)"></div>
+            </div>
+            <login></login>
         </div>
     </div>
 </template>
 <script>
+import login  from  './login.vue';
 export default {
    data(){
      return {
@@ -62,7 +66,8 @@ export default {
           this.startChange();
         }
     },
-    computed:{
+    components:{
+      login
     }
 }
 </script>
@@ -71,9 +76,17 @@ export default {
     width:100%;
     height:550px;
     position: relative;
+    .content_box{
+      width:1200px;
+      margin:0 auto;
+      height:100%;
+      position: absolute;
+      left:50%;
+      margin-left:-600px;
+    }
     .banner_button_list{
       position: absolute;
-      left:477px;
+      left:377px;
       top:436px;
       width:69px;
       height:21px;
