@@ -8,7 +8,7 @@
                 <div class="banner_button" v-for="(item,index) in banners" :key="index" 
                     :class="{'current_button':buttonIndex==item}" @click="slideChange(item)"></div>
             </div>
-            <login></login>
+            <login @stopBannerSlide="stopBannerSlide"></login>
         </div>
     </div>
 </template>
@@ -56,14 +56,20 @@ export default {
             ...bannberObj
           }
         },
+        clearChange(index){
+            clearInterval(this.setIntervalTime);
+            clearTimeout(this.timeOut);
+            this.bannerIndex=index;
+            setTimeout(()=>{
+              this.buttonIndex=index;
+            },1000)
+        },
         slideChange(item){//点击切换
-          clearInterval(this.setIntervalTime);
-          clearTimeout(this.timeOut);
-          this.bannerIndex=item;
-          setTimeout(()=>{
-            this.buttonIndex=item;
-          },1000)
+          this.clearChange(item);
           this.startChange();
+        },
+        stopBannerSlide(index){//切换登录框时 背景图片不轮播
+          this.clearChange(index);
         }
     },
     components:{

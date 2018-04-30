@@ -3,6 +3,7 @@
         <header-bar></header-bar>
         <div class="main-container">
             <router-view></router-view>
+            <qqWexiBackTop></qqWexiBackTop>
         </div>
         <footer-bar></footer-bar>
     </div>
@@ -21,6 +22,7 @@
 <script>
     import HeaderBar from '../HeaderBar/main.vue';
     import FooterBar from '../FooterBar/main.vue';
+    import qqWexiBackTop from '../../components/qqWexiBackTop.vue';
     export default{
         data(){
             return{
@@ -29,6 +31,7 @@
         components:{
             'header-bar':HeaderBar,
             'footer-bar':FooterBar,
+            qqWexiBackTop
         }
     }
 </script>

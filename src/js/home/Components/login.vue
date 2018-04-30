@@ -55,6 +55,7 @@ export default {
     methods:{
         changeRole(role){
             this.role=role;
+            this.$emit('stopBannerSlide',role);
         },
         submit(){
             if(!this.userName&&!this.password){

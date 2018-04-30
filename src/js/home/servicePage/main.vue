@@ -1,6 +1,8 @@
 <template>
   <div class="service_container">
-      <img src="../../../img/u2694.jpg" alt="">
+      <img class="item item1" src="../../../img/u136.png" alt="">
+      <img class="item item2" src="../../../img/u138.png" alt="">
+      <img class="item item3" src="../../../img/u140.png" alt="">
   </div>
 </template>
 <script>
@@ -21,10 +23,18 @@ export default {
       align-items: center;
       text-align: center;
       padding-top:105px;
-      padding-bottom: 40px;
-      img{
+      padding-bottom: 70px;
+      .item{
         width:600px;
-        height:674px;
+        &.item1{
+          height:550px;
+        }
+        &.item2{
+          height:400px;
+        }
+        &.item3{
+          height:300px;
+        }
       }
     }
 </style>
