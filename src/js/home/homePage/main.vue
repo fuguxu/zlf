@@ -44,7 +44,7 @@ export default {
       homeCity,
       homeBrand,
       homeKnow
-    }
+    },
 }
 </script>
 <style lang="scss" scoped>

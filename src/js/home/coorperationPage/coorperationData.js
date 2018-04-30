@@ -12,7 +12,7 @@
         type:'酒店',
         keyWord:'生活主题、公寓式酒店、有温度、家',
         area:'海南三亚',
-        url:require('../../../img/sanwuqiwu/首图.jpg'),
+        url:require('../../../img/sanwuqiwu/sanwuqiwu.jpg'),
         children:[
             {
                 url:require('../../../img/sanwuqiwu/1.jpg'),
@@ -44,7 +44,7 @@
         type:'酒店',
         keyWord:'新中式、禅意、轻奢、智能、环保',
         area:'广东广州',
-        url:require('../../../img/guangzhouhuaxuanli/首图.jpg'),
+        url:require('../../../img/guangzhouhuaxuanli/guangzhouhuaxuanli.jpg'),
         children:[
             {
                 url:require('../../../img/guangzhouhuaxuanli/1.jpg'),
@@ -76,7 +76,7 @@
         type:'酒店',
         keyWord:'新中式、禅意、轻奢、智能、环保',
         area:'广东佛山',
-        url:require('../../../img/shundehuaxuanli/首图.jpg'),
+        url:require('../../../img/shundehuaxuanli/shundehuaxuanli.jpg'),
         children:[
             {
                 url:require('../../../img/shundehuaxuanli/1.jpg'),
@@ -108,7 +108,7 @@
         type:'公寓',
         keyWord:'舒适、轻奢、有温度、家',
         area:'湖南长沙',
-        url:require('../../../img/ruisibao/首图.jpg'),
+        url:require('../../../img/ruisibao/ruisibao.jpg'),
         children:[
             {
                 url:require('../../../img/ruisibao/1.jpg'),
@@ -140,7 +140,7 @@
         type:'公寓',
         keyWord:'高端、商务、温度、居家、智能、环保',
         area:'广东深圳',
-        url:require('../../../img/xizhixing/首图.jpg'),
+        url:require('../../../img/xizhixing/xizhixing.jpg'),
         children:[
             {
                 url:require('../../../img/xizhixing/1.jpg'),
@@ -172,7 +172,7 @@
         type:'公寓',
         keyWord:'新中式、禅意',
         area:'广东深圳',
-        url:require('../../../img/hualiliyu/首图.jpg'),
+        url:require('../../../img/hualiliyu/hualiliyu.jpg'),
         children:[
             {
                 url:require('../../../img/hualiliyu/1.jpg'),
@@ -204,7 +204,7 @@
         type:'公寓',
         keyWord:'现代、轻奢、设计感、后现代',
         area:'上海',
-        url:require('../../../img/shanghaiqueyu/首图.jpg'),
+        url:require('../../../img/shanghaiqueyu/shanghaiqueyu.jpg'),
         children:[
             {
                 url:require('../../../img/shanghaiqueyu/1.jpg'),
@@ -236,7 +236,7 @@
         type:'公寓',
         keyWord:'现代简约',
         area:'上海',
-        url:require('../../../img/shanghaiyuju/首图.jpg'),
+        url:require('../../../img/shanghaiyuju/shanghaiyuju.jpg'),
         children:[
             {
                 url:require('../../../img/shanghaiyuju/1.jpg'),
@@ -268,7 +268,7 @@
         type:'公寓',
         keyWord:'现代简约、商务、高级灰',
         area:'湖南长沙',
-        url:require('../../../img/bubugao/首图.jpg'),
+        url:require('../../../img/bubugao/bubugao.jpg'),
         children:[
             {
                 url:require('../../../img/bubugao/1.jpg'),
@@ -300,7 +300,7 @@
         type:'公寓',
         keyWord:'简约、现代、工业风',
         area:'广东广州',
-        url:require('../../../img/guangzhouyou/首图.jpg'),
+        url:require('../../../img/guangzhouyou/guangzhouyou.jpg'),
         children:[
             {
                 url:require('../../../img/guangzhouyou/1.jpg'),
@@ -332,7 +332,7 @@
         type:'公寓',
         keyWord:'融合、包容、注重人文交流、自然',
         area:'广东深圳',
-        url:require('../../../img/xinpaigongyu/首图.jpeg'),
+        url:require('../../../img/xinpaigongyu/xinpaigongyu.jpeg'),
         children:[
             {
                 url:require('../../../img/xinpaigongyu/1.jpeg'),
@@ -364,7 +364,7 @@
         type:'办公场所',
         keyWord:'传统、实用、稳重',
         area:'广东韶关',
-        url:require('../../../img/ehuadianli/首图.jpg'),
+        url:require('../../../img/ehuadianli/ehuadianli.jpg'),
         children:[
             {
                 url:require('../../../img/ehuadianli/1.jpg'),
@@ -396,7 +396,7 @@
         type:'办公场所',
         keyWord:'时尚、实用、高档',
         area:'广东深圳',
-        url:require('../../../img/lvjing/首图.jpg'),
+        url:require('../../../img/lvjing/lvjing.jpg'),
         children:[
             {
                 url:require('../../../img/lvjing/1.jpg'),
@@ -428,7 +428,7 @@
         type:'办公场所',
         keyWord:'时尚、实用、高档',
         area:'香港荃湾区',
-        url:require('../../../img/jiwu/首图.jpg'),
+        url:require('../../../img/jiwu/jiwu.jpg'),
         children:[
             {
                 url:require('../../../img/jiwu/1.jpg'),

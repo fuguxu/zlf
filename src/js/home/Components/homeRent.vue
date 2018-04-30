@@ -46,20 +46,26 @@ export default {
           var scrollTop=event.target.scrollTop;
           var start=1348;
           var end =1848;
-          if(scrollTop<start){
-              this.$refs.color.style.background='';
-          }else if(scrollTop==start){
-              this.$refs.color.style.background='rgba(81,81,81,0.1)';
-          }else if(scrollTop>start&&scrollTop<end){
-              var opc= (0.4-0.1)/(end-start)*(scrollTop-start)
-              this.$refs.color.style.background=`rgba(81,81,81,${opc})`;
-          }else if(scrollTop>=end){
-              this.$refs.color.style.background='rgba(81,81,81,0.4)';
+          var el=this.$refs.color;
+          if(el){
+            if(scrollTop<start){
+                this.$refs.color.style.background='';
+            }else if(scrollTop==start){
+                this.$refs.color.style.background='rgba(81,81,81,0.1)';
+            }else if(scrollTop>start&&scrollTop<end){
+                var opc= (0.4-0.1)/(end-start)*(scrollTop-start)
+                this.$refs.color.style.background=`rgba(81,81,81,${opc})`;
+            }else if(scrollTop>=end){
+                this.$refs.color.style.background='rgba(81,81,81,0.4)';
+            }
           }
       }
   },
   mounted(){
       AppUtil.addEventListener(this.$root.$el,'scroll',this.scroll);
+  },
+  beforeDestroy (){
+      this.$root.$el.onscroll=null;
   }
 }
 </script>

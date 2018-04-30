@@ -138,12 +138,19 @@ const routesMap = [
 const router = new VueRouter({
     mode: 'hash',
     base: __dirname,
-    routes: routesMap
+    routes: routesMap,
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }
 });
 
 router.beforeEach((to, from, next) => {
     //前端校验登录
     next()
 });
-
+router.afterEach(router => {
+    if (document.getElementById('app')){
+        document.getElementById('app').scrollTop = 0;
+    } 
+});
 export default router;
