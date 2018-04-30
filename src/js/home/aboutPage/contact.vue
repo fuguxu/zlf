@@ -38,14 +38,16 @@
               </div>
               <div class="map_box">
                   <div id="zlfMap">
-
+                  </div>
+                  <div class="seeWholeMap">
+                        <img src="../../../img/u4564.png" alt="">
+                        <span>查看完整地图</span>
                   </div>
               </div>
           </div>
       </div>
   </div>
 </template>
-<script type="text/javascript" src='http://api.map.baidu.com/api?v=2.0&ak=cUAEBMmM1FY4tplq45Q1ANZrdnNB5WAG&callback=init'></script>
 <script>
 import banner from '../Components/aboutBanner.vue';
 export default {
@@ -57,13 +59,14 @@ export default {
   mounted(){
       var map = new BMap.Map("zlfMap",{enableMapClick:true});
       // 初始化地图,设置中心点坐标和地图级别
-      map.centerAndZoom(new BMap.Point(116.4035,39.915), 11);
-      // 添加地图类型控件
-      map.addControl(new BMap.MapTypeControl());  
-      // 设置地图显示的城市 此项是必须设置的
-      map.setCurrentCity("杭州");    
+      map.centerAndZoom(new BMap.Point(113.924226,22.501588), 20);
       // 开启鼠标滚轮缩放      
       map.enableScrollWheelZoom(true);
+
+      map.addControl(new BMap.NavigationControl({
+         anchor: BMAP_ANCHOR_TOP_RIGHT,
+         type:BMAP_NAVIGATION_CONTROL_SMALL
+      }));
   },
   components:{
       banner
@@ -144,12 +147,39 @@ export default {
       .map_box{
         width:1010px;
         height:550px;
+        margin:0 auto;
+        padding-bottom: 70px;
+        margin-bottom: 50px;
+        position: relative;
         #zlfMap{
           width:100%;
           height:100%;
         }
       }
+      .seeWholeMap{
+          position: absolute;
+         bottom: 70px;
+          text-align: center;
+            font-size: 18px;
+            color: #FFFFFF;
+          width:100%;
+          line-height:38px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background:rgba(0,0,0,0.5);
+          img{
+              margin-right:9px;
+              width:23px;
+              height:23px;
+          }
+      }
     }
 } 
+</style>
+<style>
+  .anchorBL {  
+    display:none  
+  }
 </style>
 

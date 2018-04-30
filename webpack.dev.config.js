@@ -62,6 +62,9 @@ module.exports = (() => {
             filename:'[name].js',
             chunkFilename:'[id].js'
         },
+        externals: {
+            "BMap": "BMap" 
+        }, 
         devServer:{
             contentBase: path.join(__dirname, 'dist'),
             hot:true,

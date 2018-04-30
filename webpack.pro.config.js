@@ -65,6 +65,9 @@ module.exports = (() => {
             filename:'js/[hash:8].[name].min.js',
             chunkFilename:'js/[hash:8].[id].min.js'
         },
+        externals: {
+            "BMap": "BMap" 
+        }, 
         devtool: '#source-map',
         optimization: {//webpack4.0打包相同代码配置
             // minimize: true,//压缩js

@@ -18,29 +18,29 @@
                    </div>
                    <div class="link_right">
                        <ul class="link_right_ul">
-                           <li class="title"><a href="">商业合作</a></li>
+                           <li class="title"><a href="javascript:;">商业合作</a></li>
                            <li class="item"><a href="">供应链进驻</a></li>
                            <li class="item"><a href="">媒体合作</a></li>
                        </ul>
                        <ul class="link_right_ul">
-                           <li class="title"><a href="">服务支持</a></li>
+                           <li class="title"><a href="javascript:;">服务支持</a></li>
                            <li class="item"><a href="">支付把控</a></li>
                            <li class="item"><a href="">运输安装</a></li>
                            <li class="item"><a href="">售后服务</a></li>
                        </ul>
                        <ul class="link_right_ul">
-                           <li class="title"><a href="">帮助中心</a></li>
-                           <li class="item"><a href="">常见问题</a></li>
-                           <li class="item"><a href="">联系我们</a></li>
+                           <li class="title"><a href="javascript:;">帮助中心</a></li>
+                           <li class="item"><a href="#/about/qs">常见问题</a></li>
+                           <li class="item"><a href="#/about/contact">联系我们</a></li>
                            <li class="item"><a href="">建议&反馈</a></li>
                        </ul>
                        <ul class="link_right_ul">
-                           <li class="title"><a href="">关于租立方</a></li>
-                           <li class="item"><a href="">品牌精神</a></li>
-                           <li class="item"><a href="">团队荣耀</a></li>
-                           <li class="item"><a href="">联系地址</a></li>
+                           <li class="title"><a href="javascript:;">关于租立方</a></li>
+                           <li class="item"><a href="#/about/us">品牌精神</a></li>
+                           <li class="item"><a href="#/about/team">团队荣耀</a></li>
+                           <li class="item"><a href="#/about/contact">联系地址</a></li>
                            <li class="join_item">
-                               <a class="item" href="">加入我们</a>
+                               <a class="item" href="#/about/join">加入我们</a>
                                <a class="join_us">我们正在招聘!</a>
                             </li>
                        </ul>

@@ -101,7 +101,7 @@ export default {
         padding-left:10px;
         color: rgba(0, 0, 0, 0.698);
         cursor: pointer;
-        border-bottom: 1px solid rgb(183,183,183);
+        border-bottom: 1px solid rgba(188,188,188,0.7);
         &:hover{
           background: rgb(183,183,183);
           color:#fff;
@@ -124,7 +124,7 @@ export default {
         cursor: pointer;
         padding-top: 21px;
         padding-bottom: 11px;
-        border-bottom: 1px solid rgb(183,183,183);
+        border-bottom: 1px solid rgba(188,188,188,0.7);
         .question_text{
           color: rgba(0, 0, 0, 0.85);
         }
