@@ -26,7 +26,7 @@ export default {
   },
   methods:{
       scroll(event){
-          var scrollTop=event.target.scrollTop;
+          var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
           var start=2926;
           var end =2926+864;
           var el=this.$refs.color;
@@ -63,7 +63,7 @@ export default {
       }
   },
   mounted(){
-      AppUtil.addEventListener(this.$root.$el,'scroll',this.scroll);
+      AppUtil.addEventListener(window,'scroll',this.scroll);
   }
 }
 </script>

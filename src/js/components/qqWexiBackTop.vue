@@ -32,7 +32,7 @@ export default {
     },
     methods:{
         scroll(event){
-          this.scrollTop=event.target.scrollTop;
+          this.scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
           if(this.scrollTop>=600){
               this.showBackTop=true;
           }else{
@@ -46,19 +46,18 @@ export default {
            this.showErWeiMa=false;
        },
        toTop(){
-           var el=this.$root.$el;
            var st= setInterval(()=>{
                this.scrollTop=9/10*this.scrollTop;
                if(this.scrollTop<=5){
                    this.scrollTop=0;
                    clearInterval(st);
                }
-               el.scrollTop=this.scrollTop;
+               document.documentElement.scrollTop=document.body.scrollTop=this.scrollTop;
            },10)
        }
     },
     mounted(){
-        AppUtil.addEventListener(this.$root.$el,'scroll',this.scroll);
+        AppUtil.addEventListener(window,'scroll',this.scroll);
     }
 }
 </script>
@@ -66,10 +65,10 @@ export default {
     .tips_container{
         position: fixed;
         width:70px;
-        right: 17px;
+        right: 0px;
         top:245px;
         background: #fff;
-        box-shadow: 0 0 5px #222;
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.35);
         text-align: center;
         font-size: 12px;
         color: rgba(0, 0, 0, 0.6);
@@ -98,6 +97,11 @@ export default {
             height:0px;
             overflow: hidden;
             transition: all 1s;
+            box-shadow: 
+              0px 0px 0px 0px transparent, /*左边阴影*/
+              0 0px 0px 0px transparent, /*顶部阴影*/
+              1px 7px 7px 0px rgba(0,0,0,0.35), /*底部阴影*/
+              0px 0 0px 0px transparent; /*右边阴影*/
             &.show{
                 height:93px;
             }
@@ -109,6 +113,7 @@ export default {
             top:-93px;
             background: #fff;
             transition: top 1s;
+            
             &.show{
                 top:0;
             }

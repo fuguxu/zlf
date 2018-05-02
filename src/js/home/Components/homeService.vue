@@ -33,7 +33,7 @@ export default {
   },
   methods:{
       scroll(event){
-          var scrollTop=event.target.scrollTop;
+          var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
           var clientHeight=event.target.clientHeight;
           var scrollHeight=event.target.scrollHeight;
           if(scrollTop>=180){
@@ -58,7 +58,7 @@ export default {
       }
   },
   mounted(){
-      AppUtil.addEventListener(this.$root.$el,'scroll',this.scroll);
+      AppUtil.addEventListener(window,'scroll',this.scroll);
   }
 }
 </script>

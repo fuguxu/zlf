@@ -43,7 +43,7 @@ export default {
   },
   methods:{
       scroll(event){
-          var scrollTop=event.target.scrollTop;
+          var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
           if(scrollTop>=4800){
               this.showPic1=true;
           }
@@ -69,7 +69,7 @@ export default {
       }
   },
   mounted(){
-      AppUtil.addEventListener(this.$root.$el,'scroll',this.scroll);
+      AppUtil.addEventListener(window,'scroll',this.scroll);
   }
 }
 </script>
