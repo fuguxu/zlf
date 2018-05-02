@@ -47,14 +47,14 @@ export default {
        },
        toTop(){
            var el=this.$root.$el;
-         var st= setInterval(()=>{
-               this.scrollTop-=20;
-               if(this.scrollTop<=2){
+           var st= setInterval(()=>{
+               this.scrollTop=9/10*this.scrollTop;
+               if(this.scrollTop<=5){
                    this.scrollTop=0;
                    clearInterval(st);
                }
                el.scrollTop=this.scrollTop;
-           },1)
+           },10)
        }
     },
     mounted(){
