@@ -3,7 +3,7 @@
         <header-bar></header-bar>
         <div class="main-container">
             <router-view></router-view>
-            <qqWexiBackTop></qqWexiBackTop>
+            <qqWexiBackTop v-if="!$route.meta.hideBackTop"></qqWexiBackTop>
         </div>
         <footer-bar></footer-bar>
     </div>
@@ -27,6 +27,8 @@
         data(){
             return{
             }
+        },
+        mounted(){
         },
         components:{
             'header-bar':HeaderBar,

@@ -6,7 +6,7 @@
            </div>
            <div class="router_container">
                <router-link v-for="(item,index) in menus" :key="index" :class="{hoverClass:item.hoverClass}" 
-               :to="{path:item.path}" @mouseenter.native="mouseEnter(item)" @mouseleave.native="mouseLeave(item)">
+               :to="{path:item.path}">
                    <span>{{item.name}}</span>
                    <div v-if="item.showChildren" class="drop_menus" :class="{'drop_menu_out':item.dropMenu}">
                        <ul class="drop_li">
@@ -29,26 +29,13 @@
         data(){
             return{
                 menus:[],
-                flag:false
             }
         },
         methods:{
-            mouseEnter(item){
-                item.hoverClass=true;
-                
-            },
-            mouseLeave(item){
-                
-                item.hoverClass=false;
-               
-            }
         },
         mounted(){
-            this.menus=this.$router.options.routes[0].children.map((item)=>{
-                return {
-                    ...item,
-                    hoverClass:false
-                }
+            this.menus=this.$router.options.routes[0].children.filter((item)=>{
+                return !item.hidden
             })
         }
     }
@@ -111,7 +98,7 @@
             &:hover{
                 border-bottom: 2px solid #fff;
             }
-            &.hoverClass{
+            &:hover{
                  .drop_menus{
                     box-shadow: 0px 0px 15px #333;
                     transition-delay:0.4s;

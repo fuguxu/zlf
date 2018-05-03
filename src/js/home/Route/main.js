@@ -130,6 +130,32 @@ const routesMap = [
                     }
                 ]
             },
+            {
+                path: '/sign',
+                name:'注册',
+                hidden:true,
+                hideBackTop:true,
+                // component:newsPage,
+                redirect:'/sign/client',
+                children:[
+                    {
+                        path:'/sign/client',
+                        name:'客户开通新账号',
+                        meta:{
+                            hideBackTop:true,
+                        },
+                        // component:newsList,
+                    },
+                    {
+                        path:'/sign/supplier',
+                        name:'供应商进驻平台',
+                        meta:{
+                            hideBackTop:true,
+                        },
+                        // component:newsDetail,
+                    }
+                ]
+            },
         ]
     }
 ];
@@ -139,9 +165,6 @@ const router = new VueRouter({
     mode: 'hash',
     base: __dirname,
     routes: routesMap,
-    scrollBehavior (to, from, savedPosition) {
-        return { x: 0, y: 0 }
-    }
 });
 
 router.beforeEach((to, from, next) => {
