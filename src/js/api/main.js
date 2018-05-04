@@ -6,7 +6,7 @@ var TIME_OUT=50000;
 var zlf_base_prefix
 
 if(__DEV__){
-    zlf_base_prefix = 'http://ming849358679.imwork.net';
+    zlf_base_prefix = 'http://ming849358679.imwork.net:12625';
 }else if(__PROD__){
     
 }
@@ -20,5 +20,8 @@ const base_axios_options = {
 const customer_base = `${zlf_base_prefix}/api-zlf`;
 const customerAxios = axios.create(Object.assign({}, { baseURL: `${customer_base}`}, base_axios_options));
 export const customerModule={
+    //新闻列表
     getNewsList:params => { return customerAxios.get('/article/getByPage', {params:params}).then(res => res.data); },
+    //新闻详情
+    getNewsDetail:params => { return customerAxios.get('/article/getArticleDetail', {params:params}).then(res => res.data); },
 }
