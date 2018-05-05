@@ -19,7 +19,7 @@
            </div>
            <div class="login_sign">
                <a class="login" href="">登陆</a>
-               <a class="sign" href="">注册</a>
+               <a class="sign" href="#/sign">注册</a>
            </div>
        </div>
     </div>

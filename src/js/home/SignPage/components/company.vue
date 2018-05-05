@@ -1,0 +1,169 @@
+<template>
+    <div class="company_container">
+        <div class="company">您要为哪家公司开通账号？</div>
+        <div class="input_box city_box" :class="{active:activeCity}">
+            <div class="label">城&nbsp;&nbsp;&nbsp;&nbsp;市</div>
+            <el-input class="input" v-model="cityName" @focus="foucsCity" @blur="blurCity" placeholder="请选择公司所在城市，如：深圳">
+                <i slot="suffix" @click="visible=true" class="icon el-icon-menu"></i>
+            </el-input>
+            <div class="error_message" v-if="cityNameErrorMessage">
+                <i class="icon el-icon-remove"></i>
+                <span>{{cityNameErrorMessage}}</span>
+            </div>
+        </div>
+        <div class="input_box" :class="{active:activeCompany}">
+            <div class="label">公司名称</div>
+            <el-input class="input" v-model="companyName" @focus="activeCompany=true" @blur="blurCompany" placeholder="请于贵公司营业执照注册名保持一致">
+                <i slot="suffix" class="iconfont icon-close" @click="companyName=''" v-if="companyName"></i>
+            </el-input>
+            <div class="error_message" v-if="companyErrorMessage">
+                <i class="icon el-icon-remove"></i>
+                <span>{{companyErrorMessage}}</span>
+            </div>
+        </div>
+        <div class="next_step">
+            <span class="next_text" @click="nextStep">下一步</span>
+        </div>
+        <city :visible.sync="visible" @updateCity="updateCity"></city>
+    </div>
+</template>
+<script>
+import city from './city';
+export default {
+    data(){
+        return {
+            activeCity:false,
+            activeCompany:false,
+            visible:false,
+            cityName:'',
+            companyName:'',
+            companyErrorMessage:'',
+            cityNameErrorMessage:'',
+        }
+    },
+    methods:{
+        foucsCity(){
+            this.activeCity=true;
+            this.visible=true;
+        },
+        blurCity(){
+            this.activeCity=false;
+            this.valiteCity();
+        },
+        blurCompany(){
+            this.activeCompany=false;
+            this.valiteCompany();
+        },
+        updateCity(cityName){
+            this.cityName=cityName;
+            this.valiteCity();
+        },
+        valiteCity(){
+            if(!this.cityName){
+                this.cityNameErrorMessage='请选择城市！';
+                return false
+            }else{
+                this.cityNameErrorMessage='';
+                return true;
+            }
+        },
+        valiteCompany(){
+            if(!this.companyName){
+                this.companyErrorMessage='请输入公司名！';
+                return false;
+            }else if(this.companyName.length>=1&&this.companyName.length<14){
+                this.companyErrorMessage='公司名称不能少于14个字符！';
+                return false;
+            }else{
+                this.companyErrorMessage='';
+                return true;
+            }
+            
+        },
+        nextStep(){
+            this.valiteCity();
+            this.valiteCompany();
+            if(this.valiteCity()&&this.valiteCompany()){
+                this.$emit('updateStep','signForm');
+            }
+        }
+    },
+    components:{
+        city
+    }
+}
+</script>
+<style lang="scss" scoped>
+    .company_container{
+        padding-left:350px;
+        .company{
+            line-height: 28px;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.92);
+            padding:48px 0 28px;;
+        }
+        .city_box{
+            margin-bottom: 33px;
+        }
+        .input_box{
+            display: flex;
+            width:470px;
+            height: 40px;
+            align-items: center;
+            border-radius: 5px;
+            .label{
+                font-size: 16px;
+                color: #515151;
+                width:86px;
+                line-height: 36px;
+                text-align: center;
+                border-right: 1px solid #dbd8d3;
+            }
+            .input{
+                flex: 1;
+                font-size: 15px;
+                .icon{
+                    width:40px;
+                    height:40px;
+                    line-height: 40px;
+                    cursor: pointer;
+                    background: #edebe9;
+                    font-size:20px;
+                    color:#86837e;
+                }
+                /deep/ .el-input__suffix{
+                    right:0; 
+                }
+                .icon-close{
+                    line-height: 40px;
+                    margin-right:10px;
+                }
+            }
+            .error_message{
+                position: absolute;
+                left:86px;
+                font-size: 13px;
+                color: #FF6C72;
+                top:100%;
+                line-height: 24px;
+            }
+        }
+        .next_step{
+            width:470px;
+            text-align: center;
+            padding:40px 0 60px;
+            .next_text{
+                cursor: pointer;
+                display: inline-block;
+                line-height: 40px;
+                width:128px;
+                background: rgb(255,152,41);
+                font-size: 18px;
+                color: rgba(255, 255, 255, 0.92);
+                &:hover{
+                    background: rgb(255,166,76);
+                }
+            }
+        }
+    }
+</style>

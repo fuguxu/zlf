@@ -40,7 +40,7 @@ export const ABCCity=[
     },
     {
         name:'阿克苏'
-    },,
+    },
     {
         name:'阿拉尔'
     },
@@ -193,7 +193,7 @@ export const ABCCity=[
     },
     {
         name:'重庆'
-    },
+    }
 ]
 
 export const DEFGCity=[
@@ -513,7 +513,8 @@ export const JKCity=[
        name:'克拉玛依'
     },
     {
-       name:'克孜勒苏柯尔克孜'
+       name:'克孜勒苏柯尔克孜',
+       longClass:true
     },
     {
        name:'昆明'
@@ -1065,7 +1066,8 @@ export const YZCity=[
         name:'扬州'
     },
     {
-        name:'洋浦经济开发区'
+        name:'洋浦经济开发区',
+        longClass:true
     },
     {
         name:'阳江'

@@ -22,6 +22,10 @@ import questionAnswer from '../aboutPage/qs.vue';
 import contact from '../aboutPage/contact.vue';
 import joinUs from '../aboutPage/joinUs.vue';
 
+import sign from '../SignPage/main.vue';
+import client from '../SignPage/client.vue';
+import supplier from '../SignPage/supplier.vue';
+
 Vue.use(VueRouter);
 
 /**路由表**/
@@ -135,7 +139,7 @@ const routesMap = [
                 name:'注册',
                 hidden:true,
                 hideBackTop:true,
-                // component:newsPage,
+                component:sign,
                 redirect:'/sign/client',
                 children:[
                     {
@@ -144,7 +148,7 @@ const routesMap = [
                         meta:{
                             hideBackTop:true,
                         },
-                        // component:newsList,
+                        component:client,
                     },
                     {
                         path:'/sign/supplier',
@@ -152,7 +156,7 @@ const routesMap = [
                         meta:{
                             hideBackTop:true,
                         },
-                        // component:newsDetail,
+                        component:supplier,
                     }
                 ]
             },

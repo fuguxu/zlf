@@ -163,7 +163,7 @@ export default {
                     border: none;
                     padding-left:7px;
                     font-size: 14px;
-                    color: rgb(153, 153, 153);
+                    color: rgb(0, 0, 0);
                 }
                 .icon-close{
                     font-size: 20px;
