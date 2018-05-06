@@ -1,11 +1,13 @@
 <template>
     <div>
-        <components @updateStep="updateStep" :is="step"></components>
+        <components @updateStep="updateStep" :is="step" stepComponent="contactInfo"></components>
     </div>
 </template>
 <script>
 import company from './components/company';
 import signForm from './components/signForm';
+import contactInfo from './components/contactInfo';
+import startUse from './components/startUse';
 export default {
     data(){
         return {
@@ -16,15 +18,24 @@ export default {
         updateStep(step){
             if(step=='signForm'){
                 this.step=signForm;
+            }else if(step=='contactInfo'){
+                this.step=contactInfo;
             }
         }
     },
     mounted(){
-        this.step=company;
+        if(this.$route.query.cp=='startUse'){
+            this.step=startUse;
+        }else{
+            this.step=company;
+        }
+        
     },
     components:{
         company,
-        signForm
+        signForm,
+        contactInfo,
+        startUse
     }
 }
 </script>

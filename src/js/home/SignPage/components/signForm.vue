@@ -52,14 +52,21 @@
                 </div>
             </div>
             <div class="sign_button">
-                <div class="button">立即注册</div>
+                <div class="button" @click="submitSign">立即注册</div>
             </div>
         </div>
+        <stepDialog :visible.sync="visible" @nextStep="nextStep" :stepComponent="stepComponent"></stepDialog>
     </div>
 </template>
 <script>
 import stepBar from './stepBar';
+import stepDialog from './stepDialog';
 export default {
+    props:{
+        stepComponent:{
+
+        }
+    },
   data(){
       return {
           memberName:'',
@@ -82,8 +89,9 @@ export default {
 
           passWord2:'',
           activepassWord2:false,
-          passWordErrorMessage2:''
+          passWordErrorMessage2:'',
 
+          visible:false
       }
   },
   methods:{
@@ -166,10 +174,17 @@ export default {
               this.passWordErrorMessage2="";
               return true;
           }
+      },
+      submitSign(){//点击注册
+         this.visible=true;
+      },
+      nextStep(){//到完善联系人信息一步
+        this.$emit('updateStep',this.stepComponent);
       }
   },
   components:{
-      stepBar
+      stepBar,
+      stepDialog
   }
 }
 </script>

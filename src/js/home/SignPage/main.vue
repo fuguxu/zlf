@@ -2,8 +2,8 @@
     <div style="padding-top:85px;">
         <div class="sign_container">
             <div class="sign_role">
-                <a class="client" :class="{active:active==1}" @click="changeSign(1)" href="#/sign/client">客户开通新账号</a>
-                <a class="supplior" :class="{active:active==2}" @click="changeSign(2)" href="#/sign/supplier">供应商进驻平台</a>
+                <a class="client" :class="{active:$route.path=='/sign/client'}"  href="home.html#/sign/client">客户开通新账号</a>
+                <a class="supplior" :class="{active:$route.path=='/sign/supplier'}" href="home.html#/sign/supplier">供应商进驻平台</a>
             </div>
             <router-view></router-view>
         </div>
@@ -17,9 +17,8 @@ export default {
         }
     },
     methods:{
-        changeSign(active){
-            this.active=active;
-        }
+    },
+    mounted(){
     }
 }
 </script>

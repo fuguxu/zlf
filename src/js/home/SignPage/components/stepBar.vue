@@ -1,6 +1,6 @@
 <template>
     <div class="step_bar">
-        <div class="step" :class="{currentStep:step==item.step}" v-for="(item,index) in stepData" :key="index">
+        <div class="step" :class="{currentStep:step>=item.step}" v-for="(item,index) in stepData" :key="index">
             <div class="circle">{{item.step}}</div>
             <div class="text">{{item.text}}</div>
             <div class="line" v-if="index!=stepData.length-1"></div>

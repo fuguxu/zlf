@@ -1,5 +1,5 @@
 <template>
-    <div class="app-zlf scroll-bar">
+    <div class="app-zlf">
         <header-bar></header-bar>
         <div class="main-container">
             <router-view></router-view>
@@ -13,9 +13,8 @@
         height: 100%;
     }
     .main-container{
-        width:1120px;
         min-height:600px;
-        margin:30px auto;
+        margin-top:51px;
         background:#fff;
     }
 </style>
