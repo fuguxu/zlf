@@ -1,6 +1,6 @@
 <template>
     <div class="contact_info">
-        <stepBar :step="2"></stepBar>
+        <stepBar :step="2" :role="role"></stepBar>
         <div class="form">
             <div class="input_box" :class="{active:activeContactName}">
                 <div class="label">联系人</div>
@@ -56,6 +56,11 @@
 <script>
 import stepBar from './stepBar';
 export default {
+    props:{
+        role:{
+
+        }
+    },
     data(){
         return {
             sexOption:[
@@ -125,8 +130,14 @@ export default {
                 return true
             }
         },
-        updateStep(){
-            window.location.href="main.html#/sign/client?cp=startUse";
+        updateStep(){//注册到此处 需要判断是什么角色注册的
+            localStorage.setItem('role',this.role);
+            if(this.role=='client'){
+                window.location.href="main.html#/sign/client?cp=startUse";
+            }else if(this.role=='supplier'){
+                window.location.href="main.html#/sign/supplier?cp=startUse";
+            }
+            
         }
     },
     components:{

@@ -1,12 +1,45 @@
 <template>
-    <div>供应商注册</div>
+    <div>
+        <components role="supplier" @updateStep="updateStep" :is="step" stepComponent="contactInfo"></components>
+    </div>
 </template>
 <script>
+import company from './components/company';
+import signForm from './components/signForm';
+import contactInfo from './components/contactInfo';
+import kindSupplier from './components/kindSupplier';
+import supplierStartUse from './components/supplierStartUse';
 export default {
     data(){
         return {
-            
+            step:''
         }
+    },
+    methods:{
+        updateStep(step){
+            if(step=='signForm'){
+                this.step=signForm;
+            }else if(step=='kindSupplier'){
+                this.step=kindSupplier;
+            }else if(step=='contactInfo'){
+                this.step=contactInfo;
+            }
+        }
+    },
+    mounted(){
+        if(this.$route.query.cp=='startUse'){
+            this.step=supplierStartUse;
+        }else{
+            this.step=company;
+        }
+        
+    },
+    components:{
+        company,
+        signForm,
+        contactInfo,
+        kindSupplier,
+        supplierStartUse
     }
 }
 </script>

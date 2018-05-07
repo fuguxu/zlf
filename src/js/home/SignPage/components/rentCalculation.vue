@@ -55,7 +55,28 @@
                 </div>
                 <div class="footer">
                     <span class="button">跳过</span>
-                    <span class="button">计算</span>
+                    <span class="button" @click="calcuate">计算</span>
+                </div>
+            </div>
+        </div>
+        <div class="dialog rent_result" v-if="visibleResult" @click.stop="cancelResult">
+            <div class="result_container" @click.stop="1+1">
+                <div class="result_content" :class="{showClass:showResult}">
+                    <div class="title before">按照银行现行标准，租赁前期费用如下：</div>
+                    <div class="item">
+                        保证金：<span class="number">00.00</span>元
+                    </div>
+                    <div class="item">
+                        融资服务费：<span class="number">00.00</span>元
+                    </div>
+                    <div class="title">《融资租赁合同》签署后，您须缴付租金，按月份预付：</div>
+                    <div class="item">
+                        每月租金：<span class="number">00.00</span>元
+                    </div>
+                    <div class="footer">
+                        <span class="button">再算一次</span>
+                        <span class="button">下一步</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,12 +86,15 @@
 export default {
     props:{
         visible:{
-            default:false
+            default:false,
+            
         }
     },
     data(){
         return {
             showClass:false,
+            visibleResult:false,
+            showResult:false,
 
             rentPrice:'',
             activeRentPrice:false,
@@ -90,6 +114,10 @@ export default {
         cancel(){
             this.$emit('update:visible',false);
         },
+        cancelResult(){
+            this.visibleResult=false;
+            this.showResult=false;
+        },
         blurRentPrice(){
             this.activeRentPrice=false;
             if(!this.rentPrice||(+this.rentPrice+'')=='NaN'){
@@ -99,6 +127,33 @@ export default {
                 this.rentPriceErrorMessage='';
                 return true;
             }
+        },
+        blurRentRate(){
+            if(!this.rentRate){
+                this.rentRateErrorMessage='请选择年化率！';
+                return false;
+            }else{
+                this.rentRateErrorMessage='';
+                return true;
+            }
+        },
+        blurRentTime(){
+            if(!this.rentTime){
+                this.rentTimeErrorMessage='请选择您的租赁周期！';
+                return false;
+            }else{
+                this.rentTimeErrorMessage='';
+                return true;
+            }
+        },
+        calcuate(){
+            this.blurRentPrice();
+            this.blurRentRate();
+            this.blurRentTime();
+            this.visibleResult=true;
+            setTimeout(()=>{
+                this.showResult=true;
+            },10)
         }
     },
     mounted(){
@@ -195,24 +250,74 @@ export default {
             font-size: 13px;
             color: rgba(41, 43, 44, 0.6);
         }
-
-        .footer{
-            padding-bottom: 50px;
-            padding-top: 10px;
-            .button{
-                display: inline-block;
-                width:84px;
-                line-height: 36px;
-                font-size: 16px;
+    }
+    .footer{
+        padding-bottom: 50px;
+        padding-top: 10px;
+        .button{
+            display: inline-block;
+            width:84px;
+            line-height: 36px;
+            font-size: 16px;
+            color: #F29F33;
+            border: 1px solid #F29F33;
+            border-radius: 5px;
+            cursor: pointer;
+            margin:0 20px;
+            &:hover{
+                color:#fff;
+                background: #ffaa50;
+            }
+        }
+    }
+    .result_container{
+        width:500px;
+        height: 280px;
+        position: absolute;
+        top:50%;
+        left:50%;
+        margin-left:-250px;
+        margin-top:-140px;
+        overflow: hidden;
+    }
+    .result_content{
+        background: url('../../../../img/u1293.png') 292px 10px no-repeat #fff;
+        background-size: 100px;
+        border-radius: 10px;
+        width:500px;
+        height: 280px;
+        position: absolute;
+        left:0px;
+        top:-280px;
+        text-align: left;
+        box-sizing: border-box;
+        &.showClass{
+            top:0px;
+            transition: all 0.5s;
+        }
+        .title{
+            font-size: 16px;
+            color: rgb(41, 43, 44);
+            padding: 20px 20px 10px;
+            &.before{
+                padding-left:27px;
+            }
+        }
+        .item{
+            font-size: 14px;
+            color: rgba(41, 43, 44, 0.8);
+            padding-left: 27px;
+            .number{
                 color: #F29F33;
-                border: 1px solid #F29F33;
-                border-radius: 5px;
-                cursor: pointer;
-                margin:0 20px;
-                &:hover{
-                    color:#fff;
-                    background: #ffaa50;
-                }
+                font-size:16px;
+            }
+        }
+        .footer{
+            padding-bottom: 20px;
+            padding-top: 40px;
+            text-align: center;
+            .button{
+                width:100px;
             }
         }
     }

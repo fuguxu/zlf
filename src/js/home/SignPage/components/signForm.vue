@@ -1,6 +1,6 @@
 <template>
     <div class="sign_form_container">
-        <stepBar :step="1"></stepBar>
+        <stepBar :step="1" :role="role"></stepBar>
         <div class="form">
             <div class="input_box" :class="{active:activeMember}">
                 <div class="label">会员名</div>
@@ -55,7 +55,7 @@
                 <div class="button" @click="submitSign">立即注册</div>
             </div>
         </div>
-        <stepDialog :visible.sync="visible" @nextStep="nextStep" :stepComponent="stepComponent"></stepDialog>
+        <stepDialog :role="role" :visible.sync="visible" @nextStep="nextStep" :stepComponent="stepComponent"></stepDialog>
     </div>
 </template>
 <script>
@@ -64,6 +64,9 @@ import stepDialog from './stepDialog';
 export default {
     props:{
         stepComponent:{
+
+        },
+        role:{
 
         }
     },
@@ -179,7 +182,12 @@ export default {
          this.visible=true;
       },
       nextStep(){//到完善联系人信息一步
-        this.$emit('updateStep',this.stepComponent);
+        if(this.role=='client'){
+            this.$emit('updateStep',this.stepComponent);
+        }else if(this.role=='supplier'){//供应商还有一个选择供应商类型的一步 再到联系人信息一步
+            this.$emit('updateStep','kindSupplier');
+        }
+        
       }
   },
   components:{

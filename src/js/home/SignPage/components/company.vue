@@ -1,7 +1,7 @@
 <template>
     <div class="company_container">
         <div class="company">您要为哪家公司开通账号？</div>
-        <div class="input_box city_box" :class="{active:activeCity}">
+        <div class="input_box city_box" :class="{active:activeCity}" v-if="role=='client'">
             <div class="label">城&nbsp;&nbsp;&nbsp;&nbsp;市</div>
             <el-input class="input" v-model="cityName" @focus="foucsCity" @blur="blurCity" placeholder="请选择公司所在城市，如：深圳">
                 <i slot="suffix" @click="visible=true" class="icon el-icon-menu"></i>
@@ -21,6 +21,16 @@
                 <span>{{companyErrorMessage}}</span>
             </div>
         </div>
+        <div class="input_box code_box" :class="{active:activeInviteCode}" v-if="role=='supplier'">
+            <div class="label">邀请码</div>
+            <el-input class="input" v-model="inviteCode" @focus="activeInviteCode=true" @blur="blurInviteCode" placeholder="如果您有进驻邀请码，请务必输入">
+                <i slot="suffix" class="iconfont icon-close" @click="inviteCode=''" v-if="inviteCode"></i>
+            </el-input>
+            <div class="error_message" v-if="inviteCodeErrorMessage">
+                <i class="icon el-icon-remove"></i>
+                <span>{{inviteCodeErrorMessage}}</span>
+            </div>
+        </div>
         <div class="next_step">
             <span class="next_text" @click="nextStep">下一步</span>
         </div>
@@ -30,14 +40,22 @@
 <script>
 import city from './city';
 export default {
+    props:{
+        role:{
+            type:String
+        }
+    },
     data(){
         return {
             activeCity:false,
             activeCompany:false,
+            activeInviteCode:false,
             visible:false,
             cityName:'',
+            inviteCode:'',
             companyName:'',
             companyErrorMessage:'',
+            inviteCodeErrorMessage:'',
             cityNameErrorMessage:'',
         }
     },
@@ -53,6 +71,9 @@ export default {
         blurCompany(){
             this.activeCompany=false;
             this.valiteCompany();
+        },
+        blurInviteCode(){
+            this.activeInviteCode=false;
         },
         updateCity(cityName){
             this.cityName=cityName;
@@ -81,11 +102,14 @@ export default {
             
         },
         nextStep(){
-            this.valiteCity();
-            this.valiteCompany();
-            if(this.valiteCity()&&this.valiteCompany()){
-                this.$emit('updateStep','signForm');
+           let c= this.valiteCompany()
+            if(this.role=='client'){
+              let valiteCity= this.valiteCity();
+                c&&valiteCity&&this.$emit('updateStep','signForm');
+            }else if(this.role=='supplier'){
+                c&&this.$emit('updateStep','signForm');
             }
+            
         }
     },
     components:{
@@ -104,6 +128,9 @@ export default {
         }
         .city_box{
             margin-bottom: 33px;
+        }
+        .code_box{
+            margin-top:33px;
         }
         .input_box{
             display: flex;

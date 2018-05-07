@@ -1,6 +1,6 @@
 <template>
     <div>
-        <components @updateStep="updateStep" :is="step" stepComponent="contactInfo"></components>
+        <components role="client" @updateStep="updateStep" :is="step" stepComponent="contactInfo"></components>
     </div>
 </template>
 <script>

@@ -280,6 +280,9 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
 .el-input__inner::placeholde{
     color: rgb(153, 153, 153);
 }
+.el-select-dropdown{
+    border-radius: 5px;
+}
 .el-select-dropdown__item.selected,.el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
     color: rgb(242, 159, 51);
 }

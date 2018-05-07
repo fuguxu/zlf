@@ -6,7 +6,7 @@
             </div>
             <div class="content">
                 <div class="title">您还差两步就可以使用账号了</div>
-                <div class="step1">Step1 完善联系人信息</div>
+                <div class="step1">Step1 {{role=='client'?'完善联系人信息':'完善企业信息'}}</div>
                 <div class="step2">Step2 上传营业执照</div>
             </div>
             <div class="footer">
@@ -22,6 +22,9 @@ export default {
           default:false
       },
       stepComponent:{
+
+      },
+      role:{
 
       }
   },

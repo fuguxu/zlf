@@ -4,37 +4,27 @@
         <div class="img_box">
             <img src="../../../../img/u1340.png" alt="">
         </div>
-        <p class="tip_success">深圳市中租借科技有限公司，您已成功注册！</p>
-        <p class="tip_rent">是否开始<span class="rent_text">租赁测算体验？</span></p>
-        <div class="button_box">
-            <span class="button">跳过</span>
-            <span class="button" @click="startRent">开始测算</span>
+        <p class="tip_success">深圳市金凤凰家具集团，您已成功注册！</p>
+        <p class="tip_success">通过营业执照审核，开始使用账号！</p>
         </div>
-        <rentCalculation v-if="visible" :visible.sync="visible"></rentCalculation>
     </div>
 </template>
 <script>
 import stepBar from './stepBar';
-import rentCalculation from './rentCalculation';
 export default {
-    props:{
+     props:{
         role:{
 
         }
     },
     data(){
         return {
-            visible:false
         }
     },
     methods:{
-        startRent(){
-            this.visible=true;
-        }
     },
     components:{
         stepBar,
-        rentCalculation
     }
 }
 </script>

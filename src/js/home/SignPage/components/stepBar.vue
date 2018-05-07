@@ -12,6 +12,9 @@ export default {
     props:{
         step:{
             default:1
+        },
+        role:{
+
         }
     },
     data(){
@@ -27,7 +30,7 @@ export default {
                 },
                 {
                     step:3,
-                    text:'开始使用'
+                    text:this.role=='client'?'开始使用':'上传营业执照'
                 }
             ]
         }
