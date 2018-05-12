@@ -1,13 +1,17 @@
 <template>
     <div class="supplier_type">
         <span class="label">供应商类型</span>
-        <div class="select_box">
+        <div class="select_box" :class="{active:activeBox}">
             <el-select class="el-input-box" @change="changeType" v-model="value" placeholder="请选择">
                 <el-option v-for="item in options" :key="item.name" :label="item.name" :value="item.name">
                 </el-option>
             </el-select>
+            <div class="error_message" v-if="errorMessage">
+                <i class="icon el-icon-remove"></i>
+                <span>{{errorMessage}}</span>
+            </div>
             <div class="item_box" >
-                <div v-for="(item,index) in options" :key="index" v-if="item.children.length>0"  :class="{show:value==item.name}" class="item" v-left>
+                <div v-for="(item,index) in options" :key="index" v-if="item.children.length>0"  :class="{show:showSelect==item.name}" class="item" v-left>
                     <span class="label_sub">请进一步选择：</span>
                     <el-checkbox-group v-model="item.checkList">
                         <el-checkbox v-for="(it,i) in item.children" :label="it.name" :key="i"></el-checkbox>
@@ -118,14 +122,31 @@ export default {
                     children:[]
                 }
             ],
-            value:''
+            value:'',
+            showSelect:'',
+            activeBox:false,
+            errorMessage:''
         }
     },
     methods:{
-        changeType(){
+        changeType(value){
             setTimeout(()=> {
-
-            }, 500);
+                this.showSelect=value;
+            }, 300);
+            if(AppUtil.findWhere(this.options,'name',value).children.length>0){
+                this.activeBox=true
+            }else{
+                this.activeBox=false
+            }
+        },
+        valiate(){
+            if(!this.value){
+                this.errorMessage='请选择供应商类型！';
+                return false;
+            }else{
+                this.errorMessage='';
+                return true;
+            }
         }
     },
     mounted(){
@@ -146,6 +167,11 @@ export default {
     .select_box{
         display: inline-block;
         position: relative;
+        transition-delay: 300;
+        transition: all 0.3s;
+        &.active{
+            margin-bottom:20px;
+        }
         .item_box{
             position:absolute;
             width: 655px;

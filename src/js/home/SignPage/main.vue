@@ -1,5 +1,5 @@
 <template>
-    <div style="padding-top:85px;">
+    <div style="padding-top:85px;background:#fafafa;">
         <div class="sign_container">
             <div class="sign_role">
                 <a class="client" :class="{active:$route.path=='/sign/client'}"  href="home.html#/sign/client">客户开通新账号</a>

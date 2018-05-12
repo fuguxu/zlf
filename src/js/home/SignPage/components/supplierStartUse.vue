@@ -6,11 +6,12 @@
         </div>
         <p class="tip_success">深圳市金凤凰家具集团，您已成功注册！</p>
         <p class="tip_success">通过营业执照审核，开始使用账号！</p>
-        </div>
+        <uploadLicence></uploadLicence>
     </div>
 </template>
 <script>
 import stepBar from './stepBar';
+import uploadLicence from '../../../components/uploadLicence';
 export default {
      props:{
         role:{
@@ -25,12 +26,14 @@ export default {
     },
     components:{
         stepBar,
+        uploadLicence
     }
 }
 </script>
 <style lang="scss" scoped>
     .start_use_container{
         text-align: center;
+        padding-bottom:20px;
     }
     .img_box{
         font-size: 0px;

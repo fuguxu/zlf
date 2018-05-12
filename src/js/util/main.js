@@ -14,3 +14,12 @@ s.transferTimeToString=function(time,format='-',hAndM=false){
     let hourAndMinute=hAndM?' '+dateTime.toTimeString().slice(0,5):'';
     return y+format+m+format+d+hourAndMinute;
 }
+
+s.findWhere=function(list,key,value){
+    for(var v of list){
+        if(v[key]==value){
+            return v
+        }
+    }
+    return false
+}

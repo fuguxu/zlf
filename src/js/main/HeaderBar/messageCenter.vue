@@ -1,7 +1,8 @@
 <template>
     <div class="message_center">
         <img class="message_icon" src="../../../img/u1405.png" alt="">
-        <span class="message_text">消息</span>
+        <!-- <span class="message_text">消息</span> -->
+        <router-link class="message_text" to="/message">消息</router-link>
         <span class="number">7</span>
     </div>
 </template>
@@ -27,7 +28,8 @@ export default {
         }
         .message_text{
             margin:0 5px;
-            &:hover{
+            font-size:14px;
+            &:hover,&.router-link-active{
                 color:rgba(255, 255,255, 0.75);
             }
         }

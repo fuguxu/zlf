@@ -2,7 +2,8 @@
     <div class="kind_supplier">
         <stepBar :step="2" :role="role"></stepBar>
         <div class="kind_content">
-            <supplierType></supplierType>
+            <supplierType ref="type"></supplierType>
+            <bussinessProvince ref="province"></bussinessProvince>
             <div class="footer">
                 <span class="button" @click="nextStep">下一步</span>
             </div>
@@ -12,6 +13,7 @@
 <script>
 import stepBar from './stepBar';
 import supplierType from '../../../components/supplierType';
+import bussinessProvince from '../../../components/bussinessProvince';
 export default {
     props:{
         stepComponent:{
@@ -28,12 +30,15 @@ export default {
     },
     methods:{
         nextStep(){
-            this.$emit('updateStep',this.stepComponent);
+           let type= this.$refs.type.valiate();
+           let province= this.$refs.province.valiate();
+            type&&province&&this.$emit('updateStep',this.stepComponent);
         }
     },
     components:{
         stepBar,
-        supplierType
+        supplierType,
+        bussinessProvince
     }
     
 }
@@ -49,10 +54,27 @@ export default {
         }
         /deep/ .el-input__inner{
             width:122px;
+            cursor: pointer;
+        }
+        /deep/ .error_message{
+            position: absolute;
+            left: 100%;
+            width:500%;
+            top:0px;
+            line-height: 40px;
+            .icon{
+                margin:0 5px 0 20px;
+            }
+        }
+        .supplier_type{
+            margin-top:50px;
+        }
+        .bussiness_province{
+            margin-top:40px;
         }
     }
     .footer{
-        padding-top:50px;
+        padding:50px 0px 100px;
     }
     .button{
         cursor: pointer;

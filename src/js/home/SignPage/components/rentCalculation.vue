@@ -5,7 +5,7 @@
                 <div class="head">
                     <div class="title">租赁测算体验，了解我的租赁方案</div>
                     <div class="tip">（以下测算结果仅供参考）</div>
-                    <img class="close" src="../../../../img/u1284.png" alt="">
+                    <img @click="cancel" class="close" src="../../../../img/u1284.png" alt="">
                 </div>
                 <div class="form_item">
                     <div class="label">您的租赁预算总金额<span class="sub">（单位：元）</span></div>               
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <span class="button">跳过</span>
+                    <span @click="nextStep" class="button">跳过</span>
                     <span class="button" @click="calcuate">计算</span>
                 </div>
             </div>
@@ -74,8 +74,8 @@
                         每月租金：<span class="number">00.00</span>元
                     </div>
                     <div class="footer">
-                        <span class="button">再算一次</span>
-                        <span class="button">下一步</span>
+                        <span @click="cancelResult" class="button">再算一次</span>
+                        <span @click="nextStep" class="button">下一步</span>
                     </div>
                 </div>
             </div>
@@ -113,6 +113,9 @@ export default {
     methods:{
         cancel(){
             this.$emit('update:visible',false);
+        },
+        nextStep(){
+            this.$router.push('/licence')
         },
         cancelResult(){
             this.visibleResult=false;

@@ -16,12 +16,12 @@
 export default {
     data(){
         return {
-            value4:true,
+            value4:false,
         }
     },
     computed:{
         activeText(){
-            return this.value4?'产能不足，推荐已关闭':'产能充足，推荐已开启'
+            return !this.value4?'产能不足，推荐已关闭':'产能充足，推荐已开启'
         }
     }
 }

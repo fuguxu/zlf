@@ -7,7 +7,7 @@
         <p class="tip_success">深圳市中租借科技有限公司，您已成功注册！</p>
         <p class="tip_rent">是否开始<span class="rent_text">租赁测算体验？</span></p>
         <div class="button_box">
-            <span class="button">跳过</span>
+            <span @click="nextStep" class="button">跳过</span>
             <span class="button" @click="startRent">开始测算</span>
         </div>
         <rentCalculation v-if="visible" :visible.sync="visible"></rentCalculation>
@@ -30,6 +30,9 @@ export default {
     methods:{
         startRent(){
             this.visible=true;
+        },
+        nextStep(){
+            this.$router.push('/licence')
         }
     },
     components:{
