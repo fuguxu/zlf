@@ -1,10 +1,10 @@
 <template>
     <div class="supplier_right">
         <a class="text" href="">交易中心</a>
-        <a class="recommend text" href="">推荐值</a>
+        <router-link to="/recommend" class="recommend text">推荐值</router-link>
         <el-switch
             style="display: block"
-            v-model="value4"
+            v-model="switchValue"
             active-color="#fff"
             inactive-color="#fff"
             :active-text="activeText"
@@ -16,12 +16,21 @@
 export default {
     data(){
         return {
-            value4:false,
+            switchValue:'',
         }
+    },
+    mounted(){
+        this.switchValue=false;
     },
     computed:{
         activeText(){
-            return !this.value4?'产能不足，推荐已关闭':'产能充足，推荐已开启'
+            return this.switchValue?'产能充足，推荐已开启':'产能不足，推荐已关闭'
+        }
+    },
+    watch:{
+        switchValue(n,o){
+            Bus.$emit('recommendSwitch',n);
+            localStorage.setItem('recommendSwitch',n);
         }
     }
 }
@@ -35,7 +44,7 @@ export default {
         justify-content: flex-end;
         .text{
             font-size: 14px;
-            &:hover{
+            &:hover,&.router-link-active{
                 color: rgba(255, 255,255, 0.75);
             }
         }

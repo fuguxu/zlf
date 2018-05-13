@@ -8,7 +8,7 @@
                         <input ref="fileInput" @change="changeFile" id="fileId" :multiple="multiple" type="file" />
                     </form>
                 </label>
-                <img  v-else class="preview" :src="imgUrl" alt="">
+                <img @click="previewImg"  v-else class="preview" :src="imgUrl" alt="">
                 <div class="tip_text">{{tipText}}</div>
                 <div @click="emitHandleRemove" class="close_icon" v-if="hasFile">×</div>
                 <div class="error_message" v-if="tipMessage">
@@ -93,6 +93,9 @@ export default {
       emitHandleRemove(){//删除
             this.fileList=[];
       },
+      previewImg(){//预览图片
+          window.open(this.imgUrl);
+      }
     }, 
   mounted(){
     

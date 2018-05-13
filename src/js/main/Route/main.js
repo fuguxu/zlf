@@ -9,6 +9,13 @@ import supplier from '../../home/SignPage/supplier.vue';
 import clientLicence from '../clientLicence/main.vue';
 import submited from '../submited/main.vue';
 
+import recommend from '../recommend/main.vue';
+
+import accountCenter from '../AccountCenter/main.vue';
+import accountInformation from '../AccountCenter/accountInformation.vue';
+import contactPerson from '../AccountCenter/contactPerson.vue';
+import email from '../AccountCenter/bindEmail.vue';
+
 import message from '../Message/main.vue';
 import messageAll from '../Message/messageAll.vue';
 import messageUnread from '../Message/messageUnread.vue';
@@ -34,6 +41,11 @@ const routesMap = [
                 path:'/submited',
                 name:'提交成功',
                 component:submited
+            },
+            {
+                path:'/recommend',
+                name:'推荐值',
+                component:recommend
             },
             {
                 path: '/sign',
@@ -112,6 +124,28 @@ const routesMap = [
                                 component:messageDetail
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                path:'/account',
+                name:'账号中心',
+                component:accountCenter,
+                children:[
+                    {
+                        name:'账号资料',
+                        path:'/account/information',
+                        component:accountInformation
+                    },
+                    {
+                        name:'联系人信息',
+                        path:'/account/contact',
+                        component:contactPerson
+                    },
+                    {
+                        name:'重新绑定邮箱',
+                        path:'/account/email',
+                        component:email
                     }
                 ]
             }

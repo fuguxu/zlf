@@ -1,0 +1,66 @@
+.form_item {
+        display: flex;
+        font-size:14px;
+        .label{
+            width:86px;
+            color: #292B2C;
+            &.label_input{
+                line-height: 30px;
+            }
+        }
+        .item_content{
+            color: rgba(41, 43, 44, 0.8);
+            margin-bottom: 22px;
+            /deep/ .el-input__inner{
+                height: 30px !important;
+                line-height: 30px;
+                border: 1px solid #dbd8d3;
+                &:focus{
+                    box-shadow: 0 0 5px #d7d7d7;
+                }
+            }
+            /deep/ .el-input.is-disabled{
+                .el-input__inner{
+                    height: 30px !important;
+                    background: #fff;
+                    cursor: inherit;
+                    color: rgba(41, 43, 44, 0.8);
+                    border:none;
+                    padding-left:0px;
+                }
+                .el-input__suffix{
+                    display: none;
+                }
+            } 
+            .el-input{
+                width:350px;
+            }
+            .address{
+               span{margin-right: 10px;} 
+            }
+        }
+        .button{
+            width:70px;
+            height: 30px;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            color: #fff;
+            line-height:30px;
+            text-align: center;
+            border-radius: 5px;
+            background: #ed9f34;
+            &:hover{
+                background: #f1b255;
+            }
+            &.cancel{
+                background: #7f7f80;
+                &:hover{
+                    background: #949696;
+                }
+            }
+            &.sure{
+                margin-left:15px;
+            }
+        }
+}

@@ -2,7 +2,7 @@
     <div class="message_detail">
         <div class="title">
             <span>{{title}}</span>
-            <span @click="goBack" class="back"><i class="el-icon-arrow-left">返回</i></span>
+            <span @click="goBack" class="back"><i class="el-icon-arrow-left"></i>返回</span>
         </div>
         <div class="content">
             <div class="content_title">
@@ -51,10 +51,14 @@ export default {
             padding-left:35px;
             .back{
                 cursor: pointer;
-               color: rgba(107, 107, 107, 0.898);
+               color: rgb(81, 81, 81);
                font-size:14px;
+               font-weight: 700;
                &:hover{
                    color:#000;
+               }
+               .el-icon-arrow-left{
+                    font-weight: 700;
                }
             }
         }
