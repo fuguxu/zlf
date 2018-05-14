@@ -1,6 +1,9 @@
 <template>
     <div class="accountInfo">
-        <slot name="company"></slot>
+        <div class="form_item" v-if="role=='supplier'">
+            <div class="label">公司名称</div>
+            <div class="item_content">{{form.company}}</div>
+        </div>
         <div class="form_item">
             <div class="label">会员名</div>
             <div class="item_content">{{form.vipName}}</div>
@@ -9,7 +12,24 @@
             <div class="label">用户名</div>
             <div class="item_content">{{form.userName}}</div>
         </div>
-        <slot name="supplierInfo"></slot>
+        <div class="supplierInfo" v-if="role=='supplier'">
+            <div class="form_item" v-if="!isEdit">
+                <div class="label">供应商类型</div>
+                <div class="item_content">{{form.supplierType}}</div>
+            </div>
+            <supplierType v-if="isEdit"></supplierType>
+            <div class="form_item ">
+                <div class="label label_input">员工数<span class="sub">（人）</span></div>
+                <div class="item_content">
+                    <el-input class="el-input-person" :disabled="!isEdit" v-model="form.personNumber" placeholder="请输入阿拉伯数字"></el-input>
+                </div>
+            </div>
+            <div class="form_item" v-if="!isEdit">
+                <div class="label">业务覆盖范围</div>
+                <div class="item_content">{{form.provicence}}</div>
+            </div>
+            <bussinessProvince v-if="isEdit"></bussinessProvince>
+        </div>
         <div class="form_item">
             <div class="label">邮箱</div>
             <div class="item_content">{{form.email}}</div>
@@ -52,10 +72,21 @@
 </template>
 <script>
 import provicen from '../../../../../static/provicen';
+import supplierType from '../../../components/supplierType';
+import bussinessProvince from '../../../components/bussinessProvince';
 export default {
+    props:{
+        role:{
+            
+        }
+    },
     data(){
         return {
             form:{
+                company:'深圳市金凤凰家具集团',
+                supplierType:'#活动板木家具  #固装家具  #家电  #空调',
+                provicence:'#广东省  #广西  #西藏  #新疆',
+                personNumber:'200',
                 vipName:'新派公寓',
                 userName:'13710353878',
                 email:'354480928@163.com',
@@ -90,12 +121,49 @@ export default {
     mounted(){
         this.changProvicen(this.form.provicen);
         this.initData();
+    },
+    components:{
+        supplierType,
+        bussinessProvince
     }
 }
 </script>
 <style lang="scss" scoped>
     .accountInfo{
         padding:40px 0px ;
+        .supplier_type,.bussiness_province{
+            margin-bottom: 22px;
+            font-size:0px;
+          /deep/ .label{
+               width: 90px;
+                color: #292B2C;
+                font-size:14px;
+                display: inline-block;
+           }
+           /deep/ .el-input__inner{
+               height:30px;
+               line-height: 30px;
+               font-size:13px;
+               cursor: pointer;
+           }
+           /deep/ .select_box{
+               width:122px;
+               cursor: pointer;
+           }
+       }
+      .bussiness_province /deep/ .el-input__icon{
+          line-height: 30px;
+      }
     }
     @import '../../../../css/formItem.scss';
+   .item_content .el-input-person.el-input{
+       width:122px;
+       /deep/ .el-input__inner{
+           padding:0px;
+       }
+   }
+   .sub{
+       font-size: 12px;
+        color: rgba(41, 43, 44, 0.70);
+   }
 </style>

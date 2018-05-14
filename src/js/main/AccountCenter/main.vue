@@ -1,7 +1,7 @@
 <template>
     <div class="account_container">
         <div class="account_content">
-            <div class="account_left">
+            <div class="account_left" :class="{high:role=='supplier'}">
                 <div class="account_icon">
                     <img class="icon" src="../../../img/u1973.png" alt="">
                     <div class="title">金凤凰家具</div>
@@ -42,7 +42,35 @@ export default {
                     path:'/account/email',
                     icon:require('../../../img/u7673.png')
                 }
-            ]
+            ],
+            supplier:[
+                {
+                    name:'公司信息',
+                    path:'/account/company',
+                    icon:require('../../../img/u7422.png')
+                },
+                {
+                    name:'推荐详情',
+                    path:'/account/recommend',
+                    icon:require('../../../img/u3692.png')
+                },
+                {
+                    name:'重新绑定邮箱',
+                    path:'/account/email',
+                    icon:require('../../../img/u7673.png')
+                },
+                {
+                    name:'资料管理',
+                    path:'/account/management',
+                    icon:require('../../../img/u3697.png')
+                },
+                {
+                    name:'邀请码',
+                    path:'/account/code',
+                    icon:require('../../../img/u3703.png')
+                }
+            ],
+            role:''
         }
     },
     methods:{
@@ -51,8 +79,10 @@ export default {
         }
     },
     mounted(){
-        this.muens=this.clientMuen;
-        this.changeAccount(this.muens[0]);
+        this.role=localStorage.getItem('role');
+        this.muens=this.role=='client'?this.clientMuen:this.supplier;
+        this.changeAccount(AppUtil.findWhere(this.muens,'path',this.$route.path));
+        
     }
 }
 </script>
@@ -72,6 +102,9 @@ export default {
             color: #292B2C;
             font-size:14px;
             margin-right: 15px;
+            &.high{
+                height:440px;
+            }
             .account_icon{
                 width:170px;
                 height: 166px;

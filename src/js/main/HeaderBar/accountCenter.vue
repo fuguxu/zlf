@@ -4,7 +4,7 @@
         <div class="center_box">
             <div class="center">
                 <img class="user_icon" src="../../../img/u1388.png" alt="">
-                <a class="account_text" href="">账号中心</a>
+                <a class="account_text" :href="renderHref()">账号中心</a>
                 <span class="line"></span>
                 <a class="account_text" href="javascript:;">退出</a>
             </div>
@@ -16,6 +16,11 @@ export default {
     data(){
         return {
 
+        }
+    },
+    methods:{
+        renderHref(){
+          return  localStorage.getItem('role')=='client'?'#/account/information':'#/account/company'
         }
     }
 }

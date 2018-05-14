@@ -15,6 +15,10 @@ import accountCenter from '../AccountCenter/main.vue';
 import accountInformation from '../AccountCenter/accountInformation.vue';
 import contactPerson from '../AccountCenter/contactPerson.vue';
 import email from '../AccountCenter/bindEmail.vue';
+import company from '../AccountCenter/company.vue';
+import recommendDetail from '../AccountCenter/recommendDetail.vue';
+import management from '../AccountCenter/management.vue';
+import inviteCode from '../AccountCenter/inviteCode.vue';
 
 import message from '../Message/main.vue';
 import messageAll from '../Message/messageAll.vue';
@@ -146,7 +150,27 @@ const routesMap = [
                         name:'重新绑定邮箱',
                         path:'/account/email',
                         component:email
-                    }
+                    },
+                    {
+                        name:'公司信息',
+                        path:'/account/company',
+                        component:company
+                    },
+                    {
+                        name:'推荐详情',
+                        path:'/account/recommend',
+                        component:recommendDetail
+                    },
+                    {
+                        name:'资料管理',
+                        path:'/account/management',
+                        component:management
+                    },
+                    {
+                        name:'邀请码',
+                        path:'/account/code',
+                        component:inviteCode
+                    },
                 ]
             }
         ]
