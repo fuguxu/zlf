@@ -101,7 +101,7 @@ module.exports = (() => {
             new CleanWebpackPlugin(['dist']),
             new CopyWebpackPlugin([{
                 from: __dirname + '/static',
-                to:__dirname + '/dist'
+                to:__dirname + '/dist/static'
             }])
         ].concat(htmlPlugins()),
         module:{

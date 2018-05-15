@@ -1,12 +1,18 @@
 <template>
-    <div>推荐详情</div>
+    <div>
+        <uploadProduct></uploadProduct>
+    </div>
 </template>
 <script>
+import uploadProduct from '../../components/uploadProduct';
 export default {
     data(){
         return {
             
         }
+    },
+    components:{
+        uploadProduct
     }
 }
 </script>
