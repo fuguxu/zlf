@@ -14,7 +14,7 @@
                 </ul>
             </div>
             <div class="account_right">
-                <div class="title">{{title}}</div>
+                <div v-if="title" class="title">{{title}}</div>
                 <router-view></router-view>
             </div>
         </div>
@@ -52,6 +52,7 @@ export default {
                 {
                     name:'推荐详情',
                     path:'/account/recommend',
+                    hideTitle:true,
                     icon:require('../../../img/u3692.png')
                 },
                 {
@@ -75,7 +76,7 @@ export default {
     },
     methods:{
         changeAccount(item){
-            this.title=item.name;
+            this.title=item.hideTitle?'':item.name;
         }
     },
     mounted(){
