@@ -8,9 +8,9 @@
             </div>
             <div class="file_container">
                 <div class="local_img">上传电脑本地图片</div>
-                <label v-if="isEdit" for="fileId" class="label-file">
+                <label v-if="isEdit" :for="id" class="label-file">
                     <form ref="form">
-                        <input ref="fileInput" @change="changeFile" id="fileId" :multiple="multiple" type="file" />
+                        <input ref="fileInput" @change="changeFile" :id="id" :multiple="multiple" type="file" />
                     </form>
                 </label>
                 <div class="error_message" v-if="tipMessage">
@@ -32,6 +32,9 @@ export default {
         },
         isEdit:{
             default:true
+        },
+        id:{
+
         }      
     },
   data(){

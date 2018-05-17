@@ -28,7 +28,30 @@
                 </div>
             </div>
             <div class="upload_box">
-                <uploadProduct></uploadProduct>
+                <uploadProduct id="equipment"></uploadProduct>
+            </div>
+        </div>
+        <div class="product_info item_info">
+            <div class="title_item">产品介绍</div>
+            <div class="content_container" v-for="(item,index) in productList" :key="index">
+                <div class="content">
+                    <div class="sub_title">产品{{numbers[index]}}</div>
+                    <div class="desc_box sub_desc_box">
+                        <el-input v-model="item.productName"  :placeholder="`请输入产品${numbers[index]}名称`" >
+                        </el-input>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="sub_title">简单描述</div>
+                    <div class="desc_box">
+                        <el-input class="equipment_textarea" v-model="item.simbleDesc" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍产品${numbers[index]}，包括特点、优势...`" >
+                        </el-input>
+                        <div class="rest_numbers">还可输入<span :class="{'rest_ten':item.maxLength-item.simbleDesc.length<=10}">{{item.maxLength-item.simbleDesc.length}}</span>字</div>
+                    </div>
+                </div>
+                <div class="upload_box">
+                    <uploadProduct :id="'product'+index"></uploadProduct>
+                </div>
             </div>
         </div>
     </div>
@@ -41,8 +64,19 @@ export default {
             companyInfo:'创始人兼CEO 罗森柏告诉36氪，距离上次报道，公司的进展主要包括以下几个方面：第一，商业模式更加清晰：互联网+供应链+金融。 在金融方面，“租立方”正在申请融资租赁和商业保理的牌照。罗森柏表示，融资租赁其实对实体经济的帮助很大可以为中小企业配置办公固定资产起到杠杆的作用。但是融资租赁之前只针对大型的设备，“租立方”现在已经开始做相关的交易结构设计，想要将其下沉到家具行业，降低中小企业快速扩张中一次性购置家具。',
             companyNumber:200,
             equipmentInfo:'紧落实中。虽然获得一些其他城市同行的加盟意向，但罗森柏表示，每个区域对产品的需求不同。',
-            equipmentNumber:50
+            equipmentNumber:50,
+            productList:[],
+            product:{
+                productName:'',
+                simbleDesc:'',
+                maxLength:50
+            },
+            numbers:['一','二','三','四','五']
         }
+    },
+    mounted(){
+        this.productList.push({...this.product});
+        this.productList.push({...this.product});
     },
     components:{
         uploadProduct
@@ -116,6 +150,7 @@ export default {
                     border: 1px solid rgba(201,201,201,0.2);
                     border-radius: 5px;
                     padding-right: 10px;
+                    background: #fff;
                     .rest_numbers{
                         color:rgba(54, 54, 54, 0.698039215686274);
                         font-size:14px;
@@ -130,6 +165,35 @@ export default {
             .upload_box{
                 padding-left:11px;
                 padding-top:50px;
+            }
+        }
+        .product_info{
+            .content_container{
+                width:932px;
+                background: #fafafa;
+                border-radius: 10px;
+                margin-top:20px;
+                padding-bottom:20px;
+                box-sizing: border-box;
+                .sub_title{
+                    width:92px;
+                    text-align: right;
+                    box-sizing: border-box;
+                }
+               /deep/ .el-input__inner{
+                    height: 30px !important;
+                    line-height: 30px;
+                    border: 1px solid #dbd8d3;
+                    width:186px;
+                    &:focus{
+                        box-shadow: 0 0 5px #d7d7d7;
+                    }
+                 }
+                 .sub_desc_box{
+                     border:none;
+                     width:auto;
+                     padding:0px;
+                 }
             }
         }
         .el-textarea /deep/ .el-textarea__inner{
