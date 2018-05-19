@@ -60,12 +60,33 @@
                 <div class="content">4008804604</div>
             </div>
         </div>
-        <div class="item bigcustorm">
+        <div class="item progress">
             <div class="item_title">
                 <div class="line"></div>
                 <span>交易进展</span>
             </div>
-           
+            <ul class="progress_content">                                                                                                                                                                                               
+                <li>
+                    <span>1. 您与客户取得了联系。</span>
+                    <span>2018/04/24 10:11</span>
+                </li>
+                <li>
+                    <span>2. 当前沟通基本顺利。</span>
+                    <span>2018/04/25 09:07</span>
+                </li>
+                <li>
+                    <span>3. 双方已针对报价达成初步共识。</span>
+                    <span>2018/04/26 12:39</span>
+                </li>
+                <li>
+                    <span>4. 您与该客户达成最终报价。</span>
+                    <span>2018/04/28 15:56</span>
+                </li>
+                <li>
+                    <span>5. 很遗憾，您的产品不符合客户需求。</span>
+                    <span>2018/04/28 15:56</span>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -80,7 +101,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .trade_progress{
-        padding:0px 21px 37px 21px;
+        padding:0px 21px;
         .item{
             padding:40px 0px;
            &:not(:last-child){
@@ -109,6 +130,21 @@ export default {
                     box-sizing: border-box;
                     padding:0 20px;
                 }
+            }
+        }
+        .progress_content{
+            margin-left: 20px;
+            background: rgba(244,244,244,1);
+            border-radius: 4px;
+            padding-left:20px;
+            padding-right: 62px;
+            margin-top:20px;
+            li{
+                font-size:16px;
+                line-height: 38px;
+                color:rgba(102, 102, 102, 1);
+                display: flex;
+                justify-content: space-between;
             }
         }
     }

@@ -55,6 +55,7 @@ export default {
     .teade_detail{
        display: flex;
        min-height: 300px;
+       margin-bottom: 60px;
        .left{
            width:284px;
            height:390px;
