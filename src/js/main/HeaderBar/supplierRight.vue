@@ -1,6 +1,6 @@
 <template>
     <div class="supplier_right">
-        <a class="text" href="">交易中心</a>
+        <router-link to="/trade" class="text">交易中心</router-link>
         <router-link to="/recommend" class="recommend text">推荐值</router-link>
         <el-switch
             style="display: block"

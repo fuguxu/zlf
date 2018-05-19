@@ -96,6 +96,7 @@ export default {
         .account_left{
             width:202px;
             box-sizing: border-box;
+            background: #fff;
             height:340px;
             text-align: center;
             border: 1px solid rgba(201,201,201,0.2);
@@ -144,12 +145,13 @@ export default {
         .account_right{
             flex: 1;
             min-height: 300px;
+            background: #fff;
             border: 1px solid rgba(201,201,201,0.2);
             box-shadow: 0 0 1px rgba(201,201,201,0.4);
             border-bottom: 1px solid rgba(201,201,201,0.4);
             .title{
                 line-height: 52px;
-                background: #FAFAF9;
+                // background: #FAFAF9;
                 font-size: 16px;
                 color: rgb(41, 43, 44);
                 padding-left:33px;

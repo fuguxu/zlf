@@ -27,6 +27,15 @@ import messageRead from '../Message/messageRead.vue';
 import messageList from '../Message/messageList.vue';
 import messageDetail from '../Message/messageDetail.vue';
 
+import CaseIntroduction from '../CaseIntroduction/main.vue';
+
+import TradeCenter from '../TradeCenter/main.vue';
+import TradeList from '../TradeCenter/tradeList.vue';
+import TradeDetail from '../TradeCenter/tradeDetail.vue';
+import TradeProgress from '../TradeCenter/TradeProgress.vue';
+import contract from '../TradeCenter/contract.vue';
+import saleService from '../TradeCenter/saleService.vue';
+
 Vue.use(VueRouter);
 
 /**路由表**/
@@ -171,6 +180,47 @@ const routesMap = [
                         path:'/account/code',
                         component:inviteCode
                     },
+                ]
+            },
+            {
+                path:'/case',
+                name:'案例介绍',
+                component:CaseIntroduction
+            },
+            {
+                path:'/trade',
+                name:'交易中心',
+                component:TradeCenter,
+                redirect:'/trade/list',
+                children:[
+                    {
+                        path:'/trade/list',
+                        name:'交易中心列表',
+                        component:TradeList,
+                    },
+                    {
+                        path:'/trade/detail',
+                        name:'交易详情',
+                        component:TradeDetail,
+                        redirect:'/trade/detail/progress',
+                        children:[
+                            {
+                                path:'/trade/detail/progress',
+                                name:'交易进展',
+                                component:TradeProgress,
+                            },
+                            {
+                                path:'/trade/detail/contract',
+                                name:'合同执行',
+                                component:contract,
+                            },
+                            {
+                                path:'/trade/detail/service',
+                                name:'售后服务',
+                                component:saleService,
+                            }
+                        ]
+                    }
                 ]
             }
         ]

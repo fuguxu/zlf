@@ -1,14 +1,16 @@
 <template>
     <div class="file-upload-container">
-        <div class="label_text">上传图片</div>
+        <div class="label_text">
+            <span v-if="isEdit">上传图片</span>
+        </div>
         <div class="file_box">
             <div class="imgs_box">
                 <img v-for="(item,index) in showFileList" :key="index" class="img_item" :src="item.url" alt="">
                 <div v-if="loading" class="loading"><i class="el-icon-loading"></i></div>
             </div>
-            <div class="file_container">
+            <div v-if="isEdit" class="file_container">
                 <div class="local_img">上传电脑本地图片</div>
-                <label v-if="isEdit" :for="id" class="label-file">
+                <label  :for="id" class="label-file">
                     <form ref="form">
                         <input ref="fileInput" @change="changeFile" :id="id" :multiple="multiple" type="file" />
                     </form>
@@ -18,7 +20,7 @@
                     <span>{{tipMessage}}</span>
                 </div>
             </div>
-            <div class="tip_text">最多上传 <span class="sub">5</span>张，每张图片大小不超过{{limitSize}}M，支持jpg、bmp、png格式</div>
+            <div v-if="isEdit"  class="tip_text">最多上传 <span class="sub">5</span>张，每张图片大小不超过{{limitSize}}M，支持jpg、bmp、png格式</div>
         </div>
     </div>
 </template>
@@ -165,6 +167,8 @@ export default {
     .label_text{
         color: rgba(41, 43, 44, 0.8);
         padding:22px 25px 0 0;
+        width:81px;
+        box-sizing: border-box;
     }
     .file_container{
         width:164px;

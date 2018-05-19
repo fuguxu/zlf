@@ -56,7 +56,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .message_container{
-        background: #fff;
+        // background: #fff;
         width:100%;
         height:100%;
         .message_content{
@@ -65,9 +65,11 @@ export default {
             min-height: 300px;
             display: flex;
             padding-top:52px;
+            
             .message_left{
                 width:202px;
                 box-sizing: border-box;
+                background: #fff;
                 height:340px;
                 text-align: center;
                 border: 1px solid rgba(201,201,201,0.2);
@@ -110,8 +112,10 @@ export default {
             }
             .message_right{
                 flex: 1;
-                padding-left:15px;
+                margin-left:15px;
                 box-sizing: border-box;
+                background: #fff;
+                margin-bottom: 60px;
             }
         }
     }

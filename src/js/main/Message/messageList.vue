@@ -75,7 +75,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .message_list{
-        padding-bottom: 60px;
+        // padding-bottom: 60px;
     }
     .message{
         border: 1px solid rgba(201,201,201,0.2);
@@ -97,7 +97,7 @@ export default {
         &.title{
             line-height: 50px;
             border:none;
-            background: rgb(250,250,250);
+            // background: rgb(250,250,250);
             font-size: 16px;
             color: #292B2C;
             padding-left:35px;
