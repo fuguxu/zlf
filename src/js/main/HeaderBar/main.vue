@@ -11,7 +11,7 @@
             <supplierRight v-if="role=='supplier'"></supplierRight>
             <div class="login_out">
                 <img src="../../../img/u1393.png" alt="">
-                <span class="text">退出</span>
+                <span @click="loginOut" class="text">退出</span>
             </div>
         </div>
     </div>
@@ -31,6 +31,11 @@
         },
         mounted(){
            this.role=localStorage.getItem('role');
+        },
+        methods:{
+            loginOut(){
+                window.location.href='home.html'
+            }
         },
         components:{
             positionCity,

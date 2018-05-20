@@ -36,6 +36,8 @@ import TradeProgress from '../TradeCenter/TradeProgress.vue';
 import contract from '../TradeCenter/contract.vue';
 import saleService from '../TradeCenter/saleService.vue';
 
+import RentCenter from '../RentCenter/main.vue';
+
 Vue.use(VueRouter);
 
 /**路由表**/
@@ -222,6 +224,11 @@ const routesMap = [
                         ]
                     }
                 ]
+            },
+            {
+                path:'/rent',
+                name:'租赁中心',
+                component:RentCenter
             }
         ]
     }

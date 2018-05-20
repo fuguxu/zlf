@@ -1,11 +1,12 @@
 <template>
     <div class="client_header_right">
         <div class="new_rent item">
-            <img src="../../../img/u1374.png" alt="">
+            <!-- <img src="../../../img/u1374.png" alt=""> -->
+            <i class="icon el-icon-circle-plus"></i>
             <span class="account_text">发起新租赁</span>
         </div>
         <div class="account_center item">
-            <span class="user_name">租赁中心 <i class="icon el-icon-arrow-down"></i></span>
+            <span @click="goRent" class="user_name">租赁中心 <i class="icon el-icon-arrow-down"></i></span>
             <div class="center_box">
                 <ul class="center">
                     <li class="account_text">租赁服务</li>
@@ -22,6 +23,11 @@ export default {
     data(){
         return {
 
+        }
+    },
+    methods:{
+        goRent(){
+            this.$router.push('/rent')
         }
     }
 }
@@ -46,11 +52,17 @@ export default {
             }
         }
         .new_rent{
-            img{
-                width:25px;
-                height:23px;
+            .icon{
+                font-size:20px;
                 margin-right:5px;
+                color:rgba(255, 166, 50, 1);
             }
+
+            // img{
+            //     width:25px;
+            //     height:23px;
+            //     margin-right:5px;
+            // }
         }
         .account_center{
             position: relative;
