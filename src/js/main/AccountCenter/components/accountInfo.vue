@@ -13,11 +13,11 @@
             <div class="item_content">{{form.userName}}</div>
         </div>
         <div class="supplierInfo" v-if="role=='supplier'">
-            <div class="form_item" v-if="!isEdit">
+            <div class="form_item" >
                 <div class="label">供应商类型</div>
                 <div class="item_content">{{form.supplierType}}</div>
             </div>
-            <supplierType v-if="isEdit"></supplierType>
+            <!-- <supplierType v-if="isEdit"></supplierType> -->
             <div class="form_item ">
                 <div class="label label_input">员工数<span class="sub">（人）</span></div>
                 <div class="item_content">
