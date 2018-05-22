@@ -41,6 +41,11 @@ const routesMap = [
                 component:homePage,
             },
             {
+                path: '/service',
+                name:'产品',
+                component:servicePage,
+            },
+            {
                 path: '/coorperation',
                 name:'合作案例',
                 redirect:'/coorperation/list',
@@ -58,11 +63,7 @@ const routesMap = [
                     }
                 ]
             },
-            {
-                path: '/service',
-                name:'配套服务',
-                component:servicePage,
-            },
+            
             {
                 path: '/news',
                 name:'新闻资讯',
