@@ -37,30 +37,45 @@
                 <div class="circel">5</div>
                 <span>物流信息</span>
             </div>
-            <i class="icon el-icon-arrow-down"></i>
+            <i class="icon" :class="{'el-icon-arrow-down':!logistics,'el-icon-arrow-up':logistics}"  @click="logistics=!logistics"></i>
+            <progressImg v-if="logistics">
+                <template slot-scope="scope" slot="logistics">
+                    <div class="logistics">
+                        <div class="title">其他物流信息</div>
+                        <div>跟车负责人信息：梁绍辉</div>
+                        <div>联系手机号码：13710353888</div>
+                        <div>运输车辆车牌号：粤A··R5678</div>
+                    </div>
+                </template>
+            </progressImg>
         </div>
         <div class="item">
             <div class="item_sub">
                 <div class="circel">5</div>
                 <span>验收完成</span>
             </div>
-            <i class="icon el-icon-arrow-down"></i>
+            <i class="icon" :class="{'el-icon-arrow-down':!check,'el-icon-arrow-up':check}"  @click="check=!check"></i>
+            <checkOrder v-if="check"></checkOrder>
         </div>
     </div>
 </template>
 <script>
 import progressImg from '../../components/progressImg';
+import checkOrder from '../../../components/checkOrder';
 export default {
     data(){
         return {
             start:false,
             doing:false,
             finish:false,
-            transfer:false
+            transfer:false,
+            logistics:false,
+            check:false
         }
     },
     components:{
-        progressImg
+        progressImg,
+        checkOrder
     }
 }
 </script>
@@ -96,6 +111,13 @@ export default {
             top: 50%;
             margin-top: -10px;
             cursor: pointer;
+        }
+        .logistics{
+            line-height:30px;
+            .title{
+                color:#000;
+            }
+            font-size:14px;
         }
     }
 </style>
