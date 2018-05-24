@@ -4,12 +4,13 @@
         <div class="check_img">
             <div class="title">验收函</div>
             <div class="img_box">
-                <img class="img" v-for="(item,index) in imgLists" :key="index" :src="item.url" alt="">
+                <img class="img" @click="previewImg(item)" v-for="(item,index) in imgLists" :key="index" :src="item.url" alt="">
             </div>
         </div>
         <div class="judgement">
-            <div class="title">评价供应商</div>
-            <div class="subtitle">您的评价，是对租立方平台最大的肯定！期待您的评价</div>
+            <div class="title" v-if="!isEdit">客户评价结果</div>
+            <div class="title" v-if="isEdit">评价供应商</div>
+            <div class="subtitle" v-if="isEdit">您的评价，是对租立方平台最大的肯定！期待您的评价</div>
             <div class="rate">
                 <div class="item" v-for="(item,index) in judgementList" :key="index">
                     <span class="desc_text" v-html="item.desc"></span>
@@ -17,18 +18,25 @@
                 </div>
             </div>
         </div>
+        <div class="subtitle shareWhoText" v-if="shareWhoText">{{shareWhoText}}</div>
         <div class="share">
-            <el-input type="textarea" v-model="shareText" autosize :maxlength="500" placeholder="分享您的体验心得~"></el-input>
-            <div class="restWord">还可输入<span :class="{lessTen:500-shareText.length<=10}">{{500-shareText.length}}</span>字</div>
+            <el-input type="textarea" v-model="shareText" autosize :maxlength="maxlength" placeholder="分享您的体验心得~"></el-input>
+            <div class="restWord">还可输入<span :class="{lessTen:maxlength-shareText.length<=10}">{{maxlength-shareText.length}}</span>字</div>
         </div>
         <div class="footer">
-            <span class="button">提交</span>
+            <span class="button" @click="submitJudement">提交</span>
         </div>
+        <resizeImg :visible.sync="visible" :url="activeUrl"></resizeImg>
     </div>
 </template>
 <script>
 import resizeImg from './resizeImg';
 export default {
+    props:{
+        // isEdit:{
+        //     default:true
+        // }
+    },
     data(){
         return {
             imgLists:[
@@ -42,7 +50,7 @@ export default {
                     url:require('../../img/u303.png')
                 },
                 {
-                    url:require('../../img/u303.png')
+                    url:require('../../img/u225.png')
                 },{
                     url:require('../../img/u303.png')
                 },
@@ -103,7 +111,39 @@ export default {
                     value:null
                 }
             ],
-            shareText:''
+            maxlength:500,
+            shareText:'',
+            visible:false,
+            activeUrl:'',
+            isEdit:'',
+            isSubmited:false
+        }
+    },
+    mounted(){
+        if(localStorage.getItem('role')=='client'){
+            this.isEdit=true
+        }else{
+            this.isEdit=false
+        }
+    },
+    methods:{
+        previewImg(item){
+            this.activeUrl=item.url;
+            this.visible=true;
+        },
+        submitJudement(){
+            this.isSubmited=true;
+        }
+    },
+    computed:{
+        shareWhoText(){
+            if(this.isSubmited){
+                return '您的体验心得：'
+            }else if(!this.isEdit){
+                return '客户的体验心得：'
+            }else{
+                return ''
+            }
         }
     },
     components:{
@@ -125,6 +165,7 @@ export default {
         .img{
             width:113px;
             height:154px;
+            cursor: pointer;
         }
     }
     .rate{
@@ -199,5 +240,10 @@ export default {
         color: rgba(54, 54, 54, 0.75);
         padding-left:13px;
         padding-bottom: 10px;
+        &.shareWhoText{
+            padding-top: 20px;
+            padding-bottom: 0;
+            margin-bottom: -15px;
+        }
     }
 </style>

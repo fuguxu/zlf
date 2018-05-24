@@ -51,7 +51,7 @@
             <el-tab-pane label="验收完成" name="six">
                 <transition name="slide-fade">
                     <div v-if="activeName=='six'" class="item">
-                        验收完成
+                        <checkOrder></checkOrder>
                     </div>
                 </transition>
             </el-tab-pane>
@@ -60,6 +60,7 @@
 </template>
 <script>
 import progressItem from './components/progressItem';
+import checkOrder from '../../components/checkOrder';
 export default {
     data(){
         return {
@@ -77,7 +78,8 @@ export default {
         }
     },
     components:{
-        progressItem
+        progressItem,
+        checkOrder
     }
 }
 </script>

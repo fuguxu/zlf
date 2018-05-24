@@ -1,6 +1,6 @@
 <template>
     <div class="file-upload-container">
-        <div class="text">上传营业执照</div>
+        <div v-if="showMore" class="text">上传营业执照</div>
         <div class="file_box">
             <div class="file_container" :class="{hsaFile:hasFile}">
                 <label v-if="!hasFile" for="fileId" class="label-file">
@@ -16,9 +16,11 @@
                     <span>{{tipMessage}}</span>
                 </div>
             </div>
-            <p class="tip">1.营业执照名称与公司名称保持一致</p>
-            <p class="tip tip2">2.营业执照需要加盖公司红章</p>
-            <p class="tip">3.营业执照要清晰可见</p>
+            <div v-if="showMore">
+                <p class="tip">1.营业执照名称与公司名称保持一致</p>
+                <p class="tip tip2">2.营业执照需要加盖公司红章</p>
+                <p class="tip">3.营业执照要清晰可见</p>
+            </div>
             <div>
                 <span @click="uploadFile" class="button" :class="{hsaFile:hasFile}">提交</span>
             </div>
@@ -32,7 +34,10 @@ export default {
         multiple:{
             type:Boolean,
             default:false
-        },      
+        },
+        showMore:{
+            default:true
+        }      
     },
   data(){
       return {
@@ -214,6 +219,7 @@ export default {
         line-height: 40px;
         font-size: 18px;
         color: rgba(255, 255, 255, 0.90);
+        text-align: center;
         &.hsaFile{
             background: rgb(237, 159, 52);
             &:hover{

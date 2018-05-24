@@ -1,7 +1,7 @@
 <template>
     <div class="dialog" v-if="visible" @click="cancel">
         <div class="img_box">
-            <img ref="resize" class="resize" src="../../img/p10.jpg" alt="" @DOMMouseScroll="mousewheel" @mousewheel="mousewheel" @click.stop="1">
+            <img ref="resize" class="resize" :src="url" alt="" @DOMMouseScroll="mousewheel" @mousewheel="mousewheel" @click.stop="1">
         </div>
     </div>
 </template>
@@ -10,6 +10,9 @@ export default {
     props:{
         visible:{
             default:true
+        },
+        url:{
+
         }
     },
     data(){
