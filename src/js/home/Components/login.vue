@@ -100,7 +100,7 @@ export default {
             left: 420px;
         }
         &.clientHeight{
-            top: 10px;
+            top: 60px;
         }
         .login_role{
             display: flex;
@@ -176,6 +176,10 @@ export default {
                     font-size: 14px;
                     color: rgb(0, 0, 0);
                     background:rgba(241,241,241,1);
+                    &:-webkit-autofill {
+                        background-color: rgba(241,241,241,1);
+                        background-image: none;
+                    }
                 }
                 .icon-close{
                     font-size: 20px;

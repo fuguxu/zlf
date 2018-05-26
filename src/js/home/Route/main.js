@@ -177,8 +177,12 @@ router.beforeEach((to, from, next) => {
     next()
 });
 router.afterEach(router => {
-    if (document.getElementById('app')){
-        document.getElementById('app').scrollTop = 0;
-    } 
+    if(document.body){
+        document.body.scrollTop=0
+    }
+    if(document.documentElement){
+        document.documentElement.scrollTop=0
+    }
+    
 });
 export default router;

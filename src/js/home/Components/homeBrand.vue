@@ -6,9 +6,9 @@
         <div class="home_brand_pic">
             <img v-for="(item,index) in data" :src="require(`../../../img/logo_0${item}.png`)" :key="index" alt="">
         </div>
-        <div style="height:500px;background:#fff;">
+        <div style="background:#fff;">
             <div class="title">
-                优质供应商 解您所需
+                <img src="../../../img/good_supplier.png" alt="">
             </div>
         </div>
         <div class="gif_container">

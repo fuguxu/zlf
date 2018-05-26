@@ -8,7 +8,7 @@
                 <img class="img" src="../../../img/sofa_nor_icon.png" alt="">
                 <img class="img" src="../../../img/device_nor_icon.png" alt="">
                 <img class="img" src="../../../img/material_nor_icon.png" alt="">
-                <img class="img" src="../../../img/sofa_nor_icon.png" alt="">
+                <img class="img" src="../../../img/machine_nor_icon.png" alt="">
                 <img class="img" src="../../../img/system_nor_icon.png" alt="">
                 <img class="img" src="../../../img/intelligent_nor_icon.png" alt="">
             </div>

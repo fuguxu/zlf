@@ -73,10 +73,8 @@
     }
     .logo_container{
         margin-left:67.5px;
-        img{
-            width:57px;
-            height:51px;
-        }
+        display: flex;
+        align-items: center;
     }
     .login_sign{
         line-height: 50px;
