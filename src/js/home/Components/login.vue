@@ -11,27 +11,27 @@
         <div class="role_text" :class="{active1:role==1,active2:role==2}">{{roleText}}</div>
         <div class="login_form">
             <div class="user_item user_name" :class="{userActive:userActive}">
-                <div class="icon_before">
+                <!-- <div class="icon_before">
 
-                </div>
-                <el-input type="text" ref="user"  @focus="userActive=true" @blur="userActive=false" class="input user_input" v-model="userName" placeholder="手机号">
+                </div> -->
+                <el-input type="text" ref="user"  @focus="userActive=true" @blur="userActive=false" class="input user_input" v-model="userName" placeholder="请输入您的手机号">
                     <i slot="suffix" class="iconfont icon-close" @click="userName=''" v-if="userName"></i>
                 </el-input>
             </div>
             <div class="user_item user_password" :class="{userActive:passwordActive}">
-                <div class="icon_before">
+                <!-- <div class="icon_before">
 
-                </div>
-                <el-input type="password" ref="password" @focus="passwordActive=true" @blur="passwordActive=false" class="input password_input" v-model="password" placeholder="密码">
+                </div> -->
+                <el-input type="password" ref="password" @focus="passwordActive=true" @blur="passwordActive=false" class="input password_input" v-model="password" placeholder="请输入您的密码">
                     <i slot="suffix" class="iconfont icon-close" @click="password=''" v-if="password"></i>
                 </el-input>
             </div>
             <div class="error_message" v-if="errorMessage">
-                <i class="icon el-icon-remove"></i>
+                <i class="icon el-icon-warning"></i>
                 <span>{{errorMessage}}</span>
             </div>
         </div>
-        <div class="login_button" :class="{buttonGong:role==2}" @click="submit">登 陆</div>
+        <div class="login_button" :class="{buttonGong:role==2}" @click="submit">登录</div>
         <div class="sign_forget" :class="{activeRole:role==2}">
             <a class="sign" href="">免费注册</a>
             <a class="forget" href="">忘记密码</a>
@@ -88,13 +88,13 @@ export default {
 </script>
 <style lang="scss" scoped>
     .login_box{
-        width:350px;
-        height: 391px;
+        width:366px;
         box-sizing: border-box;
         position: absolute;
         left: 840px;
-        top:70px;
+        top:120px;
         background: #fff;
+        border-radius: 6px;
         box-shadow: 0 0 7px rgba(134,134,134, 0.45);
         &.clientWidth{
             left: 420px;
@@ -104,16 +104,24 @@ export default {
         }
         .login_role{
             display: flex;
-            line-height: 64px;
+            line-height: 40px;
             background: #dbd8d3;
             cursor: pointer;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
             .item{
                 flex: 1;
                 text-align: center;
-                font-size: 22px;
-                color: #868686;
+                font-size: 16px;
+                color: rgba(159,159,159,1);
+                &.custorm{
+                    border-top-left-radius: 6px;
+                }
+                &.gong{
+                    border-top-right-radius: 6px;
+                }
                 &.custorm.active{
-                    background: #ff9829;
+                    background: rgba(255, 166, 50, 1);
                     color:#fff;
                 }
                 &.gong.active{
@@ -124,9 +132,9 @@ export default {
         }
         .role_text{
             font-weight: 700;
-            font-size: 20px;
-            line-height: 28px;
-            padding:18px 0 20px;
+            font-size: 16px;
+            line-height: 52px;
+            // padding:18px 0 20px;
             text-align: center;
             &.active1{
                 color: #F29F33;
@@ -136,18 +144,21 @@ export default {
             }
         }
         .login_form{
-            width:300px;
-            height:155px;
-            margin-left:25px;
+            width:320px;
+            padding-bottom: 30px;
+            margin-left:23px;
+            position: relative;
             .user_item{
                 height: 40px;
-                border: 1px solid rgb(219,216,211);
+                // border: 1px solid rgb(219,216,211);
                 display: flex;
+                border-radius: 4px;
+                
                 &.userActive{
                     box-shadow: 0 0 5px #D7D7D7;
                 }
                 &.user_name{
-                    margin-bottom: 35px;
+                    margin-bottom: 30px;
                 }
             }
             .icon_before{
@@ -164,6 +175,7 @@ export default {
                     padding-left:7px;
                     font-size: 14px;
                     color: rgb(0, 0, 0);
+                    background:rgba(241,241,241,1);
                 }
                 .icon-close{
                     font-size: 20px;
@@ -172,16 +184,16 @@ export default {
             }
         }
         .login_button{
-            width:300px;
+            width:318px;
             line-height: 40px;
             border-radius:5px;
             text-align: center;
             cursor: pointer;
-            margin-left:25px;
+            margin-left:24px;
             font-weight: 700;
-            font-size: 17px;
+            font-size: 16px;
             color:#fff;
-            background: #ff9829;
+            background: rgba(255, 166, 50, 1);
             &:hover{
                 background: rgba(242,159,51,0.8);
             }
@@ -193,9 +205,11 @@ export default {
             }
         }
         .sign_forget{
-            padding:26px 25px 0px;
-            text-align: right;
-            color: #949494;
+            line-height: 48px;
+            display: flex;
+            justify-content: space-between;
+            padding:0 23px;
+            color: rgba(153,153,153,1);
             font-size: 0px;
             a{
                 font-size: 14px;
@@ -212,11 +226,14 @@ export default {
         }
         .error_message{
             font-size: 14px;
-            color: #FF6C72;
+            color: rgba(255, 68, 68, 1);
             line-height: 34px;
+            position: absolute;
+            bottom: 0px;
+            width:100%;
             .icon{
-                margin-left: 20px;
-                margin-right: 20px;
+                // margin-left: 20px;
+                margin-right: 7px;
             }
         }
     }

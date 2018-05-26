@@ -41,7 +41,7 @@ export default {
               }, 3000);
         },
         renderStyle(item){
-          let imgSrc = require(`../../../img/home_banner${item}.jpg`);
+          let imgSrc = require(`../../../img/banner_${item}.png`);
           return {
             background:`url(${imgSrc}) no-repeat center`,
             'background-size': 'cover',
@@ -80,7 +80,7 @@ export default {
 <style lang="scss" scoped>
   .banner{
     width:100%;
-    height:550px;
+    height:600px;
     position: relative;
     .content_box{
       width:1200px;
@@ -92,23 +92,24 @@ export default {
     }
     .banner_button_list{
       position: absolute;
-      left:377px;
-      top:436px;
-      width:69px;
+      left:50%;
+      margin-left:-24px;
+      bottom:24px;
+      width:48px;
       height:21px;
       background: rgba(255, 255, 255,0.3);
       border-radius: 10px;
       display: flex;
       align-items: center;
-      justify-content:space-evenly;
+      justify-content:space-around;
       .banner_button{
-        width:19px;
-        height: 19px;
+        width:12px;
+        height: 12px;
         border-radius: 50%;
         background: rgba(255, 255, 255,0.8);
         cursor: pointer;
         &.current_button{
-          background: rgb(255, 217, 52);
+          background: rgba(255, 166, 50, 1)
         }
       }
     }

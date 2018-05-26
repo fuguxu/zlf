@@ -3,16 +3,19 @@
         <div class="title">
             如果你是我们的服务对象
         </div>
-        <div class="home_service_couple_pic" ref="color">
+        <div class="home_service_couple_pic">
             <div class="home_service_couple_pic_list">
-                <div class="pic1">
-                    <img @mouseenter="mouseEnter" @mouseleave="mouseLeave" src="../../../img/u46.png" alt="">
+                <div class="pic1 pic">
+                    <img @mouseenter="mouseEnter" @mouseleave="mouseLeave" src="../../../img/flats_pic.png" alt="">
                 </div>
-                <div class="pic2">
-                    <img  @mouseenter="mouseEnter" @mouseleave="mouseLeave" src="../../../img/u44.png" alt="">
+                <div class="pic2 pic">
+                    <img  @mouseenter="mouseEnter" @mouseleave="mouseLeave" src="../../../img/hotel_pic.png" alt="">
                 </div>
-                <div class="pic3">
-                    <img  @mouseenter="mouseEnter" @mouseleave="mouseLeave" src="../../../img/u48.png" alt="">
+                <div class="pic3 pic">
+                    <img  @mouseenter="mouseEnter" @mouseleave="mouseLeave" src="../../../img/pension_pic.png" alt="">
+                </div>
+                <div class="pic4 pic">
+                    <img  @mouseenter="mouseEnter" @mouseleave="mouseLeave" src="../../../img/office_pic.png" alt="">
                 </div>
             </div>
         </div>
@@ -25,24 +28,6 @@ export default {
       }
   },
   methods:{
-      scroll(event){
-          var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
-          var start=2926;
-          var end =2926+864;
-          var el=this.$refs.color;
-          if(el){
-            if(scrollTop<start){
-                this.$refs.color.style.background='';
-            }else if(scrollTop==start){
-                this.$refs.color.style.background='rgba(81,81,81,0.1)';
-            }else if(scrollTop>start&&scrollTop<end){
-                var opc= (0.4-0.1)/(end-start)*(scrollTop-start)
-                this.$refs.color.style.background=`rgba(81,81,81,${opc})`;
-            }else if(scrollTop>=end){
-                this.$refs.color.style.background='rgba(81,81,81,0.4)';
-            }
-          }
-      },
       mouseEnter(ev){
           ev.target.style.transform='scale(1.01)';
           setTimeout(()=>{
@@ -63,20 +48,20 @@ export default {
       }
   },
   mounted(){
-      AppUtil.addEventListener(window,'scroll',this.scroll);
+    
   }
 }
 </script>
 <style lang="scss" scoped>
     .home_service_couple{
+        background: rgba(244, 244, 244, 1);
+        padding-bottom: 100px;
         .title{
-            padding-top:130px;
-            padding-bottom: 80px;
+            padding-top:95px;
+            padding-bottom: 70px;
             text-align: center;
-            font-size: 33px;
-        }
-        .home_service_couple_pic{
-            // background:#eee;
+            font-size: 30px;
+            color:rgba(51, 51, 51, 1);
         }
         .home_service_couple_pic_list,.title{
             width:1200px;
@@ -86,23 +71,9 @@ export default {
             height:100%; 
             text-align: center;
             font-size:0px;
-            img{
-                width:650px;
-                height:282px;
-                // transition: all 0.5s;
-                &:hover{
-                    // transform: scale(1.01)
-                }
-            }
-        //    .pic1 img{
-        //         height:232px;
-        //     }
-        //     .pic2 img{
-        //         height:260px;
-        //     }  
-        //     .pic2 img{
-        //         height:262px;
-        //     }       
+            .pic{
+                margin-bottom: 20px;
+            }      
         }
     }
 </style>

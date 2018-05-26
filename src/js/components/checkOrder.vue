@@ -41,27 +41,27 @@ export default {
         return {
             imgLists:[
                 {
-                    url:require('../../img/u303.png')
+                    url:require('../../img/step_icon.png')
                 },
                 {
-                    url:require('../../img/u303.png')
+                    url:require('../../img/step_icon.png')
                 },
                 {
-                    url:require('../../img/u303.png')
+                    url:require('../../img/step_icon.png')
                 },
                 {
                     url:require('../../img/u225.png')
                 },{
-                    url:require('../../img/u303.png')
+                    url:require('../../img/step_icon.png')
                 },
                 {
-                    url:require('../../img/u303.png')
+                    url:require('../../img/step_icon.png')
                 },
                 {
-                    url:require('../../img/u303.png')
+                    url:require('../../img/step_icon.png')
                 },
                 {
-                    url:require('../../img/u303.png')
+                    url:require('../../img/step_icon.png')
                 }
             ],
             judgementList:[

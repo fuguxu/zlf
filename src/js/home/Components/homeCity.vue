@@ -5,10 +5,8 @@
             <div class="content content1">以深圳为总部</div>
             <div class="content content2">扩张至北京、上海、广州、杭州、苏州、南京、重庆、武汉、合肥、厦门、三亚......</div>
         </div>
-        <div class="home_city_pic" ref="color">
-            <div class="home_city_pic_list">
-                <img src="../../../img/u52.png" alt="">
-            </div>
+        <div class="home_city_pic_list">
+            <img class="img" src="../../../img/map_pic.png" alt="">
         </div>
     </div>
 </template>
@@ -19,61 +17,44 @@ export default {
       }
   },
   methods:{
-      scroll(event){
-          var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
-          var start=4100;
-          var end =4100+553;
-          var el=this.$refs.color;
-          if(el){
-            if(scrollTop<start){
-                this.$refs.color.style.background='';
-            }else if(scrollTop==start){
-                this.$refs.color.style.background='rgba(81,81,81,0.1)';
-            }else if(scrollTop>start&&scrollTop<end){
-                var opc= (0.4-0.1)/(end-start)*(scrollTop-start)
-                this.$refs.color.style.background=`rgba(81,81,81,${opc})`;
-            }else if(scrollTop>=end){
-                this.$refs.color.style.background='rgba(81,81,81,0.4)';
-            }
-          }
-      }
+      
   },
   mounted(){
-      AppUtil.addEventListener(window,'scroll',this.scroll);
+      
   }
 }
 </script>
 <style lang="scss" scoped>
     .home_city{
+        background: #fff;
+        padding-bottom: 120px;
+        position: relative;
         .title{
-            padding-top:120px;
-            padding-bottom: 40px;
+            top:0px;
+            position: absolute;
+            padding-top:95px;
             text-align: center;
-            font-size: 33px;
+            font-size: 30px;
+            left:50%;
+            margin-left:-600px;
+            color:rgba(51, 51, 51, 1);
+            z-index: 1000;
         }
         .content{
             font-size:18px;
             font-weight:normal;
             line-height:36px;
-            color:rgba(41,43,44,0.9);
+            color:rgba(136, 136, 136, 1);
             &.content1{
-                padding-top:50px;
+                padding-top:40px;
             }
-        }
-        .home_city_pic{
-            // background:#eee;
         }
         .home_city_pic_list,.title{
             width:1200px;
-            margin:0 auto;
         }
-        .home_city_pic_list{
-            height:100%; 
-            text-align: center;
-            img{
-                width:750px;
-                height:550px;
-            }         
+        .img{
+            position: relative;
+            left:-180px;
         }
     }
 </style>

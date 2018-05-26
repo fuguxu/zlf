@@ -76,7 +76,7 @@ export default {
     .app-footer{
         width:100%;
         height:252px;
-        background-color: rgba(55, 61, 65, 1);
+        background-color: rgba(41, 43, 44, 1);
     }
     .foot-container{
         width:1200px;

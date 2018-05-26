@@ -1,11 +1,30 @@
 <template>
     <div class="home_rent_flow">
-        <div class="title">
-            租赁流程
-        </div>
-        <div class="home_rent_flow_pic" ref="color">
-            <div class="home_rent_flow_pic_list">
-                <img src="../../../img/u41.png" alt="">
+        <div class="content">
+            <div class="title">
+                租赁流程
+            </div>
+            <div class="home_rent_flow_pic" >
+                <ul class="img_box">
+                    <li class="item">
+                        <img src="../../../img/certified_icon.png" alt="">
+                        <p class="text">提交资料</p>
+                        <p class="text">审核立项</p>
+                    </li>
+                    <li class="item">
+                        <img src="../../../img/program_icon.png" alt="">
+                        <p class="text">租赁期限 : 1、2、3、5年</p>
+                        <p class="text">保证金：融资总额20%</p>
+                        <p class="text">服务费：融资总额5%</p>
+                    </li>
+                    <li class="item">
+                        <img src="../../../img/execute_icon.png" alt="">
+                        <p class="text">租立方向供应商采购</p>
+                        <p class="text">承租人向租立方每月预付租金</p>
+                        <p class="text">合同期满，租赁物归属权</p>
+                        <p class="text">转为客户方</p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -16,54 +35,37 @@ export default {
       return {
       }
   },
-  methods:{
-      scroll(event){
-          var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
-          var start=2075;
-          var end =2075+642;
-          var el=this.$refs.color;
-          if(el){
-            if(scrollTop<start){
-                this.$refs.color.style.background='';
-            }else if(scrollTop==start){
-                this.$refs.color.style.background='rgba(81,81,81,0.1)';
-            }else if(scrollTop>start&&scrollTop<end){
-                var opc= (0.4-0.1)/(end-start)*(scrollTop-start)
-                this.$refs.color.style.background=`rgba(81,81,81,${opc})`;
-            }else if(scrollTop>=end){
-                this.$refs.color.style.background='rgba(81,81,81,0.4)';
-            }
-          }
-      }
-  },
-  mounted(){
-      AppUtil.addEventListener(window,'scroll',this.scroll);
-  }
 }
 </script>
 <style lang="scss" scoped>
     .home_rent_flow{
-        .title{
-            padding-top:120px;
-            padding-bottom: 40px;
-            text-align: center;
-            font-size: 33px;
-        }
-        .home_rent_flow_pic{
-            height:642px;
-            // background:#eee;
-        }
-        .home_rent_flow_pic_list,.title{
+        background: #fff;
+        padding-bottom: 85px;
+        .content{
             width:1200px;
             margin:0 auto;
+            .img_box{
+                display: flex;
+                justify-content: space-between;
+                .item{
+                    text-align: center;
+                    img{
+                        margin-bottom: 50px;
+                    }
+                    .text{
+                        margin-bottom:10px;
+                        font-size:14px;
+                        color:rgba(51,51,51,1);
+                    }
+                }
+            }
         }
-        .home_rent_flow_pic_list{
-            height:100%; 
+        .title{
+            padding-top:95px;
+            padding-bottom: 100px;
             text-align: center;
-            img{
-                height:642px;
-                width:700px;
-            }         
+            font-size: 30px;
+            color:rgba(51, 51, 51, 1);
         }
     }
 </style>
