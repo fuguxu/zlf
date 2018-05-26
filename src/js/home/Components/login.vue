@@ -56,6 +56,8 @@ export default {
         changeRole(role){
             this.role=role;
             this.$emit('stopBannerSlide',role);
+            this.userName='';
+            this.password='';
         },
         submit(){
             if(!this.userName&&!this.password){
@@ -91,7 +93,7 @@ export default {
         width:366px;
         box-sizing: border-box;
         position: absolute;
-        left: 840px;
+        right: 0px;
         top:120px;
         background: #fff;
         border-radius: 6px;
@@ -131,17 +133,18 @@ export default {
             }
         }
         .role_text{
-            font-weight: 700;
+            // font-weight: 700;
             font-size: 16px;
             line-height: 52px;
             // padding:18px 0 20px;
             text-align: center;
-            &.active1{
-                color: #F29F33;
-            }
-            &.active2{
-                color: #FFC11E;
-            }
+            color:rgba(102,102,102,1);
+            // &.active1{
+            //     color: #F29F33;
+            // }
+            // &.active2{
+            //     color: #FFC11E;
+            // }
         }
         .login_form{
             width:320px;
@@ -182,7 +185,7 @@ export default {
                     }
                 }
                 .icon-close{
-                    font-size: 20px;
+                    font-size: 12px;
                     cursor: pointer;
                 }
             }

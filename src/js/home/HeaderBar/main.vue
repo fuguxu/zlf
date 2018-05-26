@@ -16,6 +16,7 @@
                             </router-link>
                         </ul>
                    </div>
+                   <div class="bar"></div>
                 </router-link>    
            </div>
            <div class="login_sign">
@@ -50,7 +51,7 @@
 </script>
 <style lang="scss" scoped>
     .header_bar{
-        height: 51px;
+        height: 53px;
         width:100%;
         background-color: rgba(41,43,44, 1);
         position: fixed;
@@ -72,12 +73,12 @@
         display: flex;
     }
     .logo_container{
-        margin-left:67.5px;
+        // margin-left:67.5px;
         display: flex;
         align-items: center;
     }
     .login_sign{
-        line-height: 50px;
+        line-height: 53px;
         color:#fff;
         flex:1;
         justify-content: flex-end;
@@ -107,24 +108,43 @@
     .router_container{
         color:#fff;
         font-weight: 400;
-        line-height: 50px;
+        line-height: 53px;
         font-size:14px;
         a{
-            margin-left:76px;
+            margin-left:70px;
+            &:first-child{
+                margin-left:220px;
+            }
             font-size:14px;
             display: inline-block;
-            height:50px;
+            height:52px;
             box-sizing: border-box;
             position: relative;
+            .bar{
+                width:100%;
+                height: 5px;
+                background: #fff;
+                border-radius:4px;
+                display: none;
+                position: absolute;
+                bottom: 1px;
+                left:0px;
+            }
             .icon{
                 font-size:12px;
             }
             &.router-link-active{
-                border-bottom: 2px solid #fff;
+                // border-bottom: 2px solid #fff;
                 color: rgba(255, 255, 255, 0.75);
+                .bar{
+                    display: block;
+                }
             }
             &:hover{
-                border-bottom: 2px solid #fff;
+                // border-bottom: 2px solid #fff;
+                .bar{
+                    display: block;
+                }
             }
             &:hover{
                  .drop_menus{
@@ -136,9 +156,9 @@
                     transition: all 0.4s;
                 }
                .drop_menus {
-                   height:140px;
+                   height:93px;
                    &.drop_menu_out{
-                       height:80px;
+                       height:62px;
                    }
                    .drop_li{ 
                         top:0px;
@@ -158,14 +178,14 @@
                 .drop_li{
                     position: absolute;
                     width:100%;
-                    padding:10px 0;
+                    // padding:10px 0;
                     background:rgba(41,43,44,1);
-                    top:-140px;
+                    top:-92px;
                     &.scroll{
                         background:rgba(41,43,44,0.5);
                     }
                     li{
-                        line-height: 30px;
+                        line-height: 31px;
                         color:#fff;
                         &:hover{
                             color: rgba(255, 255, 255, 0.75);
@@ -174,7 +194,7 @@
                 }
             }
             .drop_menu_out .drop_li{
-                top:-80px;
+                top:-62px;
             }
         }
     }

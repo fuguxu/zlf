@@ -126,6 +126,7 @@ const routesMap = [
                         path:'/about/contact',
                         name:'联系我们',
                         component:contact,
+                        hide:true
                     },
                     {
                         path:'/about/join',

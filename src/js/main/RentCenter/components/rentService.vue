@@ -48,6 +48,7 @@
                 <span>产品清单沟通</span>
             </div>
             <i class="icon" :class="{'el-icon-arrow-down':!transfer,'el-icon-arrow-up':transfer}"  @click="transfer=!transfer"></i>
+            <choiceRent></choiceRent>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -61,6 +62,7 @@
 <script>
 import uploadLicence from '../../../components/uploadLicence';
 import rentMoneyInfo from '../../components/rentMoneyInfo';
+import choiceRent from '../../components/choiceRent';
 export default {
     data(){
         return {
@@ -73,7 +75,8 @@ export default {
     },
     components:{
         uploadLicence,
-        rentMoneyInfo
+        rentMoneyInfo,
+        choiceRent
     }
 }
 </script>

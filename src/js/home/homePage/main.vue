@@ -49,7 +49,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .home_container{
-      margin-top:-51px;
+      margin-top:-53px;
     }
 </style>
 
