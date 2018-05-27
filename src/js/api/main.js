@@ -28,4 +28,10 @@ export const customerModule={
     registerCustorm:params => { return customerAxios.post('/customers/register', params).then(res => res.data); },
     //获取验证码
     getVerification:params => { return customerAxios.get('/verification', {params:params}).then(res => res.data); },
+    //保存客户信息联系人
+    saveOrderCustomerInfo:params => { return customerAxios.post('/customers/saveOrderCustomerInfo', params).then(res => res.data); },
+
+
+    //供应商注册
+    registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },
 }

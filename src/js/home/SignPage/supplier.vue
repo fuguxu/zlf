@@ -1,6 +1,6 @@
 <template>
     <div>
-        <components role="supplier" @updateStep="updateStep" :is="step" stepComponent="contactInfo"></components>
+        <components :companyInfo="companyInfo" role="supplier" @updateStep="updateStep" :is="step" stepComponent="contactInfo"></components>
     </div>
 </template>
 <script>
@@ -12,13 +12,15 @@ import supplierStartUse from './components/supplierStartUse';
 export default {
     data(){
         return {
-            step:''
+            step:'',
+            companyInfo:""
         }
     },
     methods:{
-        updateStep(step){
+        updateStep(step,companyInfo){
             if(step=='signForm'){
                 this.step=signForm;
+                this.companyInfo=companyInfo;
             }else if(step=='kindSupplier'){
                 this.step=kindSupplier;
             }else if(step=='contactInfo'){

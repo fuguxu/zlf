@@ -192,7 +192,7 @@ export default {
       },
       submitSign(){//点击注册
       console.log(this.companyInfo)
-      this.visible=true;
+    //   this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
               let parmars={
                   userAbbr:this.memberName,
@@ -201,7 +201,12 @@ export default {
                   loginPwd:this.passWord,
                   
               }
-              this.registerCustorm({...this.companyInfo,...parmars});
+              console.log(this.role)
+              if(this.role=='client'){
+                  this.registerCustorm({...this.companyInfo,...parmars});
+              }else{
+                  this.registerSupplier({...this.companyInfo,...parmars});
+              }
         }
       },
       registerCustorm(parmars){//客户注册
@@ -210,6 +215,13 @@ export default {
                  this.visible=true;
              }
          })   
+      },
+      registerSupplier(parmars){//供应商注册
+         customerModule.registerSupplier(parmars).then(res=>{
+             if(res.success){
+                 this.visible=true;
+             }
+         })  
       },
       nextStep(){//到完善联系人信息一步
         if(this.role=='client'){

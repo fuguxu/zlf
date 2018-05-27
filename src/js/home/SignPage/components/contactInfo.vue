@@ -8,7 +8,7 @@
                     <i slot="suffix" class="iconfont icon-close" @click="contactName=''" v-if="contactName"></i>
                 </el-input>
                 <div class="error_message" v-if="contactNameErrorMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{contactNameErrorMessage}}</span>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     <i slot="suffix" class="iconfont icon-close" @click="positionJob=''" v-if="positionJob"></i>
                 </el-input>
                 <div class="error_message" v-if="positionJobErrorMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{positionJobErrorMessage}}</span>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     </el-option>
                 </el-select>
                 <div class="error_message sex_error_message" v-if="sexErrorMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{sexErrorMessage}}</span>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <i slot="suffix" class="iconfont icon-close" @click="email=''" v-if="email"></i>
                 </el-input>
                 <div class="error_message" v-if="emailErrorMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{emailErrorMessage}}</span>
                 </div>
             </div>
@@ -55,6 +55,7 @@
 </template>
 <script>
 import stepBar from './stepBar';
+import {customerModule} from '../../../api/main';
 export default {
     props:{
         role:{
@@ -130,14 +131,33 @@ export default {
                 return true
             }
         },
+        saveOrderCustomerInfo(){//保存客户联系人信息
+            let parmas={
+                name:this.contactName,
+                position:this.positionJob,
+                sex:this.sex,
+                email:this.email
+            }
+            customerModule.saveOrderCustomerInfo(parmas).then(res=>{
+                if(res.success){
+                    this.submitedAfter();
+                }
+            })
+        },
         updateStep(){//注册到此处 需要判断是什么角色注册的
+            if(this.blurContactName()&&this.blurPositionJob()&&this.blurSex()&&this.blurEmail()){
+                if(this.role=='client'){
+                    this.saveOrderCustomerInfo();
+                }
+            }
+        },
+        submitedAfter(){//接口提交成功之后
             localStorage.setItem('role',this.role);
             if(this.role=='client'){
                 window.location.href="main.html#/sign/client?cp=startUse";
             }else if(this.role=='supplier'){
                 window.location.href="main.html#/sign/supplier?cp=startUse";
             }
-            
         }
     },
     components:{
@@ -188,6 +208,7 @@ export default {
             .icon-close{
                 line-height: 40px;
                 margin-right:10px;
+                font-size:12px;
             }
             .identifyCode{
                 font-style: normal;
