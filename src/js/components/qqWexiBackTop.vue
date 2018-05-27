@@ -6,8 +6,8 @@
         <div class="qq square">
             <div class="text">在线<br />客服</div>
         </div>
-        <div class="wexin square" @mouseenter="mouseenter" @mouseleave="mouseleave">
-            <div class="text">关注<br />微信</div>
+        <div class="wexin square">
+            <div class="text" @mouseenter="mouseenter" @mouseleave="mouseleave">关注<br />微信</div>
             <div class="erWeiMa_box">
                 <img class="erWeiMa_icon" src="../../img/u225.png" :class="{show:showErWeiMa}" alt="">
             </div>
@@ -85,13 +85,17 @@ export default {
         .square{
             width:70px;
             height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             border-radius:8px;
             color:#fff;
             cursor: pointer;
             position: relative;
+            .text{
+                width:100%;
+                height:100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
             &.qq{
                 background:rgba(255,166,50,1);
                 margin-bottom: 10px;
