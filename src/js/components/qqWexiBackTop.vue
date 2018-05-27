@@ -1,22 +1,15 @@
 <template>
     <div class="tips_container" :class="{positionShow:showBackTop}">
-        <div class="erweima">
-            <img src="../../img/u225.png" :class="{show:showErWeiMa}" alt="">
+        <div class="toTop">
+            <img class="top_icon" src="../../img/arrow_up.png" @click="toTop" :class="{show:showBackTop}" alt="">
         </div>
-        <div class="qq">
-            <img class="qq_img" src="../../img/u189.png" alt="">
-            <div class="text">在线客服</div>
+        <div class="qq square">
+            <div class="text">在线<br />客服</div>
         </div>
-        <div class="wexin" @mouseenter="mouseenter" @mouseleave="mouseleave">
-            <div class="line"></div>
-            <img class="wexin_img" src="../../img/u196.png" alt="">
-            <div class="text">关注微信</div>
-        </div>
-        <div class="move" :class="{show:showBackTop}" @click="toTop">
-            <div class="backtop" :class="{show:showBackTop}">
-                <div class="line"></div>
-                <img class="backtop_img" src="../../img/u207.png" alt="">
-                <div class="text backtop_text">返回顶部</div>
+        <div class="wexin square" @mouseenter="mouseenter" @mouseleave="mouseleave">
+            <div class="text">关注<br />微信</div>
+            <div class="erWeiMa_box">
+                <img class="erWeiMa_icon" src="../../img/u225.png" :class="{show:showErWeiMa}" alt="">
             </div>
         </div>
     </div>
@@ -66,88 +59,66 @@ export default {
         position: fixed;
         width:70px;
         right: 0px;
-        top:245px;
-        background: #fff;
-        box-shadow: 0 0 7px rgba(0, 0, 0, 0.35);
+        bottom:70px;
         text-align: center;
-        font-size: 12px;
-        color: rgba(0, 0, 0, 0.6);
-        transition-delay: 1s;
-        &.positionShow{
-            top:285px;
-        }
-        .line{
-            width:24px;
-            height: 2px;
-            margin-bottom:10px;
-            margin-left:23px;
-            background:rgba(103, 102,98,1.0);
-        }
-        .text{
-            line-height: 20px;
-            margin-bottom:10px;
-        }
-        .qq:hover,.wexin:hover,.backtop:hover{
-            color: rgba(0, 0, 0, 0.847);
-        }
-        .move{
+        font-size: 18px;
+        .toTop{
+            width:70px;
+            height: 70px;
             position: relative;
-            width:100%;
-            background: #fff;
-            height:0px;
+            font-size: 0px;
+            margin-bottom: 10px;
             overflow: hidden;
-            transition: all 1s;
-            box-shadow: 
-              0px 0px 0px 0px transparent, /*左边阴影*/
-              0 0px 0px 0px transparent, /*顶部阴影*/
-              1px 7px 7px 0px rgba(0,0,0,0.35), /*底部阴影*/
-              0px 0 0px 0px transparent; /*右边阴影*/
-            &.show{
-                height:93px;
-            }
-        }
-        .backtop{
-            cursor: pointer;
-            width:100%;
-            position: absolute;
-            top:-93px;
-            background: #fff;
-            transition: top 1s;
-            
-            &.show{
-                top:0;
-            }
-        }
-        img{
-            margin-bottom:10px;
-        }
-        .qq_img{
-            margin-top: 10px;
-        }
-        .qq_img,.backtop_img{
-            width:38px;
-            height:38px;
-        }
-        .wexin_img{
-            width:46px;
-            height:46px;
-        }
-        .erweima{
-            position: absolute;
-            width:90px;
-            height: 90px;
-            right:0;
-            top:-100px;
-            overflow: hidden;
-            img{
+            .top_icon{
+                width:70px;
+                height:70px;
                 position: absolute;
-                width:90px;
-                height: 90px;
-                top:100%;
-                right: 0;
+                left: 0px;
+                top: 90px;
+                cursor: pointer;
                 transition: all 1s;
                 &.show{
-                    top:0;
+                    top:0px;
+                }
+            }
+        }
+        .square{
+            width:70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius:8px;
+            color:#fff;
+            cursor: pointer;
+            position: relative;
+            &.qq{
+                background:rgba(255,166,50,1);
+                margin-bottom: 10px;
+            }
+            &.wexin{
+                background:rgba(41,43,44,1);
+            }
+        }
+        .erWeiMa_box{
+            position: absolute;
+            font-size: 0px;
+            width:144px;
+            height:144px;
+            top:50%;
+            margin-top:-72px;
+            left:-150px;
+            cursor: default;
+            overflow: hidden;
+            .erWeiMa_icon{
+                width:144px;
+                height:144px;
+                position: absolute;
+                top:0px;
+                left:144px;
+                transition: all 1s;
+                &.show{
+                    left:0px;
                 }
             }
         }

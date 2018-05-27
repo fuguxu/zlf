@@ -8,7 +8,7 @@
                 <div class="banner_button" v-for="(item,index) in banners" :key="index" 
                     :class="{'current_button':buttonIndex==item}" @click="slideChange(item)"></div>
             </div>
-            <login @stopBannerSlide="stopBannerSlide"></login>
+            <login ref="login" @stopBannerSlide="stopBannerSlide" @startBannerSlide="startBannerSlide"></login>
         </div>
     </div>
 </template>
@@ -35,9 +35,9 @@ export default {
               }else{
                 this.bannerIndex++;
               }
-            this.timeOut=setTimeout(()=>{
+            // this.timeOut=setTimeout(()=>{
                     this.buttonIndex=this.bannerIndex;
-                  },1000)
+                  // },0)
               }, 3000);
         },
         renderStyle(item){
@@ -60,16 +60,20 @@ export default {
             clearInterval(this.setIntervalTime);
             clearTimeout(this.timeOut);
             this.bannerIndex=index;
-            setTimeout(()=>{
+            // setTimeout(()=>{
               this.buttonIndex=index;
-            },1000)
+            // },0)
         },
         slideChange(item){//点击切换
           this.clearChange(item);
           this.startChange();
+          this.$refs.login.changeRoleByParent(item);
         },
         stopBannerSlide(index){//切换登录框时 背景图片不轮播
           this.clearChange(index);
+        },
+        startBannerSlide(index){
+          this.startChange();
         }
     },
     components:{

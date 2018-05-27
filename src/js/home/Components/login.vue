@@ -1,5 +1,5 @@
 <template>
-    <div class="login_box" :class="{clientWidth:clientWidth<1190,clientHeight:clientHeight<528}">
+    <div class="login_box" @mouseleave="mouseleave" :class="{clientWidth:clientWidth<1190,clientHeight:clientHeight<528}">
         <div class="login_role">
             <div class="item custorm" @click="changeRole(1)" :class="{active:role==1}">
                 客户
@@ -50,14 +50,27 @@ export default {
             clientWidth:'',
             clientHeight:'',
             errorMessage:'',
+            isChange:false
         }
     },
     methods:{
         changeRole(role){
             this.role=role;
+            this.isChange=true;
             this.$emit('stopBannerSlide',role);
             this.userName='';
             this.password='';
+        },
+        changeRoleByParent(role){
+            this.role=role;
+            this.userName='';
+            this.password='';
+        },
+        mouseleave(){//点击过 鼠标移出 就让背景图循环
+            if(this.isChange){
+                this.$emit('startBannerSlide',this.role);
+            }
+            this.isChange=false;
         },
         submit(){
             if(!this.userName&&!this.password){
@@ -93,17 +106,17 @@ export default {
         width:366px;
         box-sizing: border-box;
         position: absolute;
-        right: 0px;
-        top:120px;
+        right: 20px;
+        top:165px;
         background: #fff;
         border-radius: 6px;
         box-shadow: 0 0 7px rgba(134,134,134, 0.45);
-        &.clientWidth{
-            left: 420px;
-        }
-        &.clientHeight{
-            top: 60px;
-        }
+        // &.clientWidth{
+        //     left: 420px;
+        // }
+        // &.clientHeight{
+        //     top: 60px;
+        // }
         .login_role{
             display: flex;
             line-height: 40px;
@@ -122,14 +135,14 @@ export default {
                 &.gong{
                     border-top-right-radius: 6px;
                 }
-                &.custorm.active{
+                &.active{
                     background: rgba(255, 166, 50, 1);
                     color:#fff;
                 }
-                &.gong.active{
-                    background: #ffd934;
-                    color:#fff;
-                }
+                // &.gong.active{
+                //     background: #ffd934;
+                //     color:#fff;
+                // }
             }
         }
         .role_text{
@@ -183,6 +196,15 @@ export default {
                         background-color: rgba(241,241,241,1);
                         background-image: none;
                     }
+                    &::-webkit-input-placeholder{
+                        color:rgba(153,153,153,1);
+                    }
+                    &::-moz-placeholder{
+                        color:rgba(153,153,153,1);
+                    }
+                    &:-ms-input-placeholder{
+                        color:rgba(153,153,153,1);
+                    }
                 }
                 .icon-close{
                     font-size: 12px;
@@ -204,12 +226,12 @@ export default {
             &:hover{
                 background: rgba(242,159,51,0.8);
             }
-            &.buttonGong{
-                background: #ffd934;
-                &:hover{
-                    background: rgba(252,217,51,0.8);
-                }
-            }
+            // &.buttonGong{
+            //     background: #ffd934;
+            //     &:hover{
+            //         background: rgba(252,217,51,0.8);
+            //     }
+            // }
         }
         .sign_forget{
             line-height: 48px;
@@ -224,9 +246,9 @@ export default {
                    color: rgb(242, 159, 51);
                 }
             }
-            &.activeRole a:hover{
-                color: rgb(252, 217, 51);
-            }
+            // &.activeRole a:hover{
+            //     color: rgb(252, 217, 51);
+            // }
             .forget{
                 margin-left:20px;
             }

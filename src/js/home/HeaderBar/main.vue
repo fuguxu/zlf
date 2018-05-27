@@ -71,6 +71,8 @@
         height: 100%;
         margin: 0 auto;
         display: flex;
+        box-sizing: border-box;
+        padding:0 20px;
     }
     .logo_container{
         // margin-left:67.5px;
