@@ -8,7 +8,7 @@
                     <i slot="suffix" class="iconfont icon-close" @click="memberName=''" v-if="memberName"></i>
                 </el-input>
                 <div class="error_message" v-if="memberNameErrorMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{memberNameErrorMessage}}</span>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     <i slot="suffix" class="iconfont icon-close" @click="userName=''" v-if="userName"></i>
                 </el-input>
                 <div class="error_message" v-if="userNameErrorMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{userNameErrorMessage}}</span>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <i slot="suffix" @click="getCode" class="identifyCode" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
                 </el-input>
                 <div class="error_message" v-if="identifyCodeErrorMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{identifyCodeErrorMessage}}</span>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     <i slot="suffix" class="iconfont icon-close" @click="passWord=''" v-if="passWord"></i>
                 </el-input>
                 <div class="error_message" v-if="passWordErrorMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{passWordErrorMessage}}</span>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <el-input class="input" type="password"  v-model="passWord2" @focus="activepassWord2=true" @blur="blurpassWord2" placeholder="请输入你的密码">
                 </el-input>
                 <div class="error_message" v-if="passWordErrorMessage2">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{passWordErrorMessage2}}</span>
                 </div>
             </div>
@@ -61,6 +61,7 @@
 <script>
 import stepBar from './stepBar';
 import stepDialog from './stepDialog';
+import {customerModule} from '../../../api/main';
 export default {
     props:{
         stepComponent:{
@@ -68,6 +69,11 @@ export default {
         },
         role:{
 
+        },
+        companyInfo:{
+            default(){
+                return {}
+            }
         }
     },
   data(){
@@ -136,8 +142,14 @@ export default {
               return true
           }
       },
+      getVerification(){//获取验证码接口
+            customerModule.getVerification({
+                mobile:this.userName
+            })
+      },
       getCode(){//获取验证码
         if(this.codeTime<120&&this.codeTime>0) return;
+        this.getVerification();
         if(this.codeTime<=0){
             this.codeTime=120;
         }
@@ -179,7 +191,25 @@ export default {
           }
       },
       submitSign(){//点击注册
-         this.visible=true;
+      console.log(this.companyInfo)
+      this.visible=true;
+        if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
+              let parmars={
+                  userAbbr:this.memberName,
+                  loginName:this.userName,
+                  code:this.identifyCode,
+                  loginPwd:this.passWord,
+                  
+              }
+              this.registerCustorm({...this.companyInfo,...parmars});
+        }
+      },
+      registerCustorm(parmars){//客户注册
+         customerModule.registerCustorm(parmars).then(res=>{
+             if(res.success){
+                 this.visible=true;
+             }
+         })   
       },
       nextStep(){//到完善联系人信息一步
         if(this.role=='client'){
@@ -189,6 +219,9 @@ export default {
         }
         
       }
+  },
+  mounted(){
+      
   },
   components:{
       stepBar,
@@ -224,7 +257,7 @@ export default {
                     line-height: 40px;
                     cursor: pointer;
                     background: #edebe9;
-                    font-size:20px;
+                    font-size:12px;
                     color:#86837e;
                 }
                 /deep/ .el-input__suffix{
@@ -233,6 +266,7 @@ export default {
                 .icon-close{
                     line-height: 40px;
                     margin-right:10px;
+                    font-size:12px;
                 }
                 .identifyCode{
                     font-style: normal;

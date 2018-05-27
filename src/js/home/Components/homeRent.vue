@@ -5,12 +5,30 @@
                 租赁物品类
             </div>
             <div class="home_rent_pic">
-                <img class="img" src="../../../img/sofa_nor_icon.png" alt="">
-                <img class="img" src="../../../img/device_nor_icon.png" alt="">
-                <img class="img" src="../../../img/material_nor_icon.png" alt="">
-                <img class="img" src="../../../img/machine_nor_icon.png" alt="">
-                <img class="img" src="../../../img/system_nor_icon.png" alt="">
-                <img class="img" src="../../../img/intelligent_nor_icon.png" alt="">
+                <div class="item">
+                   <img class="img" src="../../../img/sofa_nor_icon.png" alt="">
+                   <span class="text">家具</span> 
+                </div>
+                <div class="item">
+                    <img class="img" src="../../../img/device_nor_icon.png" alt="">
+                    <span class="text">家电</span> 
+                </div>
+                <div class="item">
+                    <img class="img" src="../../../img/material_nor_icon.png" alt="">
+                     <span class="text">主材</span>
+                </div>
+                <div class="item">
+                    <img class="img" src="../../../img/machine_nor_icon.png" alt="">
+                    <span class="text">机电设备</span>
+                </div>
+                <div class="item">
+                    <img class="img" src="../../../img/system_nor_icon.png" alt="">
+                    <span class="text">弱电系统</span>
+                </div>
+                <div class="item">
+                    <img class="img" src="../../../img/intelligent_nor_icon.png" alt="">
+                    <span class="text">智能系统家具</span>
+                </div>
             </div>
         </div>
     </div>
@@ -36,14 +54,30 @@ export default {
         .content{
             width:1200px;
             margin:0 auto;
+            padding:0 20px;
+            box-sizing: border-box;
             .home_rent_pic{
                 display: flex;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                height:600px;
+                height:610px;
+                .item{
+                    font-size:0px;
+                    position: relative;
+                    text-align: center;
+                    .text{
+                        position: absolute;
+                        bottom: 33px;
+                        color:rgba(136,136,136,1);
+                        font-size:16px;
+                        width:100%;
+                        display: inline-block;
+                        left:0px;
+                    }
+                }
                 .img{
-                    width:392px;
+                    width:372px;
                     height:290px;
                 }
             }

@@ -7,7 +7,7 @@
                 <i slot="suffix" @click="visible=true" class="icon el-icon-menu"></i>
             </el-input>
             <div class="error_message" v-if="cityNameErrorMessage">
-                <i class="icon el-icon-remove"></i>
+                <i class="icon el-icon-error"></i>
                 <span>{{cityNameErrorMessage}}</span>
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <i slot="suffix" class="iconfont icon-close" @click="companyName=''" v-if="companyName"></i>
             </el-input>
             <div class="error_message" v-if="companyErrorMessage">
-                <i class="icon el-icon-remove"></i>
+                <i class="icon el-icon-error"></i>
                 <span>{{companyErrorMessage}}</span>
             </div>
         </div>
@@ -27,7 +27,7 @@
                 <i slot="suffix" class="iconfont icon-close" @click="inviteCode=''" v-if="inviteCode"></i>
             </el-input>
             <div class="error_message" v-if="inviteCodeErrorMessage">
-                <i class="icon el-icon-remove"></i>
+                <i class="icon el-icon-error"></i>
                 <span>{{inviteCodeErrorMessage}}</span>
             </div>
         </div>
@@ -102,12 +102,17 @@ export default {
             
         },
         nextStep(){
-           let c= this.valiteCompany()
+           let c= this.valiteCompany();
+           let companyInfo={
+               city:this.cityName,
+               userFullname:this.companyName,
+               invitationCode:this.inviteCode
+           }
             if(this.role=='client'){
               let valiteCity= this.valiteCity();
-                c&&valiteCity&&this.$emit('updateStep','signForm');
+                c&&valiteCity&&this.$emit('updateStep','signForm',companyInfo);
             }else if(this.role=='supplier'){
-                c&&this.$emit('updateStep','signForm');
+                c&&this.$emit('updateStep','signForm',companyInfo);
             }
             
         }

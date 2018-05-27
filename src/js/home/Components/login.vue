@@ -33,7 +33,7 @@
         </div>
         <div class="login_button" :class="{buttonGong:role==2}" @click="submit">登录</div>
         <div class="sign_forget" :class="{activeRole:role==2}">
-            <a class="sign" href="">免费注册</a>
+            <a class="sign" href="#/sign">免费注册</a>
             <a class="forget" href="">忘记密码</a>
         </div>
     </div>

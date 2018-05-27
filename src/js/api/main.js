@@ -24,4 +24,8 @@ export const customerModule={
     getNewsList:params => { return customerAxios.get('/article/getByPage', {params:params}).then(res => res.data); },
     //新闻详情
     getNewsDetail:params => { return customerAxios.get('/article/getArticleDetail', {params:params}).then(res => res.data); },
+    //客户注册
+    registerCustorm:params => { return customerAxios.post('/customers/register', params).then(res => res.data); },
+    //获取验证码
+    getVerification:params => { return customerAxios.get('/verification', {params:params}).then(res => res.data); },
 }
