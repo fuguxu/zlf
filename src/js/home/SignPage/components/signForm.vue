@@ -192,7 +192,7 @@ export default {
       },
       submitSign(){//点击注册
       console.log(this.companyInfo)
-    //   this.visible=true;
+      this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
               let parmars={
                   userAbbr:this.memberName,
