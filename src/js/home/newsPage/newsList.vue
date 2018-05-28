@@ -5,13 +5,13 @@
       <div class="content_box">
           <div class="news_item" v-for="(item,index) in data" :key="index" :class="{oddClass:index%2==1}">
               <img class="img" :src="item.homePage" alt="">
-              <div class="content_text">
-                    <div class="title">{{item.title}}</div>
-                    <div class="sub">
+              <div class="content_text" :class="{oddClass:index%2==1}">
+                    <div class="title font18">{{item.title}}</div>
+                    <div class="sub font12 color8">
                       <span class="time">{{item.createTime}}</span>
                       <span class="resouce">来自{{item.source}}</span>
                     </div>
-                    <p class="contentRes">{{item.contentRes}}......</p>
+                    <p class="contentRes font14">{{item.contentRes}}......</p>
                     <div class="readDetail">
                       <a :href="'#/news/detail?pageNo='+(pageSize*(pageNo-1)+index+1)">阅读详情</a>
                     </div>
@@ -73,21 +73,21 @@ export default {
     .news_list_container{
         .banner{
           width:100%;
-          height: 601px;
-          background: url('../../../img/u2832.jpg') center no-repeat;
+          height: 600px;
+          background: url('../../../img/u2832.png') center no-repeat;
           background-size:cover;
         }
         .content_box{
           width:1200px;
           margin:0 auto;
-          padding:0 25px;
+          padding:0 20px;
           box-sizing: border-box;
           min-height: 300px;
           .news_item{
             width:100%;
-            height: 280px;
+            height: 290px;
             background: #fff;
-            margin-top:30px;
+            margin-top:20px;
             display: flex;
             &.oddClass{
               flex-flow:row-reverse;
@@ -96,38 +96,30 @@ export default {
               box-shadow: 5px 5px 5px rgba(174,174,174,0.4);
             }
             .img{
-              width:430px;
-              height:280px;
+              width:372px;
+              height:290px;
             }
             .content_text{
-              padding:0 30px;
+              padding:0 58px;
+              &.oddClass{
+                padding:0 73px 0px 43px;
+              }
               flex: 1;
               position: relative;
               .title{
-                 font-size: 20px;
-                  color: #333333;
-                  padding-top:55px;
+                  padding-top:45px;
               }
               .sub{
-                line-height: 28px;
-                font-family: 'SimHei';
-                color: #333333;
-                padding:12px 0 25px;
+                padding:28px 0 32px;
               }
               .contentRes{
-                font-size: 13px;
-                color: #333333;
-                line-height: 25px;
+                line-height: 28px;
               }
               .readDetail{
-                position: absolute;
-                display: inline-block;
-                right: 25px;
-                bottom: 25px;
+                padding-top:35px;
                 a{
-                  font-family: SimHei;
-                  font-size: 13px;
-                  color: rgb(0, 153, 204);
+                  font-size: 14px;
+                  color:rgba(42, 157, 255, 1);
                   &:hover{
                     color: rgb(254, 216, 0);
                   }
@@ -137,7 +129,7 @@ export default {
           }
           .pagination_box{
             width:100%;
-            height:104px;
+            padding:82px 0px 62px 0px;
           }
         }
     }

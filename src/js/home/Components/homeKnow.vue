@@ -112,7 +112,7 @@ export default {
             color:rgba(51, 51, 51, 1);
         }
         .banner1{
-            height:550px;
+            height:500px;
             background: url('../../../img/sale_service.png') center no-repeat;
             background-size: cover;
         }

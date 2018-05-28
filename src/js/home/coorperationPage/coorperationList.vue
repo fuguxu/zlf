@@ -1,12 +1,14 @@
 <template>
   <div class="coorperation_list">
       <div class="banner"></div>
-      <div class="case_list_box">
+      <div class="title_box">
           <div class="title">
             <span @click="changeType(item)" v-for="(item,index) in dataType" :key="index" :class="{current:item.value==active}">{{item.label}}</span>
           </div>
+      </div>
+      <div class="case_list_box">
           <div class="case_list">
-              <div class="item" @click="clickItem(item)" v-for="(item,index) in dataList" :key="index">
+              <div class="item" :class="{three:(index+1)%3==0}" @click="clickItem(item)" v-for="(item,index) in dataList" :key="index">
                   <img :src="item.url" alt="">
                   <div class="item_dec">
                       <div class="name">{{item.name.replace(/\s/g,'')}}</div>
@@ -79,43 +81,62 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+    .coorperation_list{
+        background: rgba(244, 244, 244, 1);
+    }
     .banner{
-      height:650px;
-      background: url('../../../img/u297.jpeg') center no-repeat;
+      height:600px;
+      background: url('../../../img/u297.png') center no-repeat;
       background-size: cover;
     }
-    .case_list_box{
-      width: 1200px;
-      margin:0 auto;
+    .title_box{
+      background: #fff;
       .title{
-        line-height: 46px;
-        font-size: 14px;
-        color: #434343;
-        margin: 60px 32px 12px 40px;
-        background: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 5px #eee;
+        width:1160px;
+        margin:0 auto;
+        height: 72px;
+        font-size: 16px;
+        color:rgba(153,153,153,1);
+        // border-radius: 5px;
+        // box-shadow: 0 0 5px #eee;
         box-sizing: border-box;
         span{
           cursor: pointer;
-          margin-left: 60px;
+          margin-left: 90px;
+          display: inline-block;
+          border-bottom: 4px solid transparent;
+          box-sizing: border-box;
+          height: 100%;
+          line-height: 72px;
           &:first-child{
-            margin-left:30px;
+            margin-left:0px;
           }
         }
         span:hover,.current{
-          color: rgb(255, 192, 46);
+          color:rgba(255,166,50,1);
+          border-bottom: 4px solid rgba(255,166,50,1);
         }
       }
+    }
+    .case_list_box{
+      width: 1160px;
+      margin:0 auto;
+      box-sizing: border-box;
+      padding-bottom: 40px;
       .case_list{
         width:100%;
         flex-wrap: wrap;
         display: flex;
+        // justify-content: space-between;
         .item{
-          width:350px;
-          height:440px;
-          margin-left:40px;
-          margin-bottom: 40px;
+          // width:350px;
+          // height:440px;
+          margin-right:22px;
+          &.three{
+            margin-right: 0px;
+          }
+          background: #fff;
+          margin-top: 40px;
           font-size: 0px;
           cursor: pointer;
           box-shadow: 0 0 5px rgba(215, 215, 215, 0.6);
@@ -126,26 +147,25 @@ export default {
           img{
             border-top-left-radius: 7px;
             border-top-right-radius: 7px;
-            width:350px;
-            height:231px;
+            width:372px;
+            height:290px;
           }
           .name{
-            font-size: 18px;
-            color: #363636;
-            padding: 22px 0;
-            padding-left: 30px;
+            font-size: 16px;
+            color:rgba(51,51,51,1);
+            padding: 25px 0 11px 22px;
           }
           .desc{
-            font-size: 15px;
-            color: rgba(54, 54, 54, 0.75);
-            padding-bottom: 22px;
-            padding-left: 30px;
+            font-size: 14px;
+            color:rgba(136,136,136,1);
+            padding-bottom: 20px;
+            padding-left: 22px;
           }
           .line{
             height: 1px;
-            width:315px;
-            margin-left:17.5px;
-            background:rgb(221, 220, 219);
+            width:333px;
+            margin-left:22px;
+            background:rgba(244,244,244,1);
           }
           .room_info{
             display: flex;
@@ -156,13 +176,14 @@ export default {
               flex-flow: column;
             }
             .nu{
-              color: #FFC02E;
-              font-size: 16px;
-              line-height: 70px;
+              color:rgba(255,166,50,1);
+              font-size: 18px;
+              padding:18px 0 14px 0px;
             }
             .it{
-              font-size:13px;
-             color: rgba(54, 54, 54, 0.55);
+              font-size:14px;
+             color:rgba(136,136,136,1);
+             padding-bottom: 18px;
             }
           }
         }

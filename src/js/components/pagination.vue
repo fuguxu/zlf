@@ -34,44 +34,55 @@ export default {
 <style lang="scss" scoped>
     .el-pagination{
         text-align: center;
-        padding-top:30px;
+        padding: 0px;
         /deep/ .el-pager li{
-            font-size: 13px;
-            color: #0000FF;
-            width:22px;
-            min-width: 22px;
-            height: 22px;
-            line-height: 22px;
+            font-size: 14px;
+            color: #666;
+            width:32px;
+            min-width: 32px;
+            height: 32px;
+            line-height: 32px;
             padding: 0px;
-            margin-left:6px;
-            border-radius: 3px;
+            // margin-left:6px;
+            // border-radius: 3px;
             font-weight: normal;
-            border:1px solid #eee;
+            border:1px solid rgba(220, 220, 220, 1);
+            border-right:none;
             &:hover{
-                border-color:#0099ff;
+                // border-color:#0099ff;
+                color:rgba(255, 166, 50, 1);
             }
             &.active{
-                color:#000;
+                color:#fff;
+                background:rgba(255, 166, 50, 1);
                 border:none;
             }
         }
         /deep/ button,/deep/ button span{
-            height: 22px;
-            line-height: 22px;
+            height: 32px;
+            line-height: 32px;
         }
             /deep/ button {
                 padding: 0 6px;
-                border-radius: 3px;
-                border:1px solid #eee;
-                color: #0000FF;
+                
+                border:1px solid rgba(220, 220, 220, 1);
+                border-right: none;
+                color: #666;
                 &.disabled{
                 cursor: pointer;
                 }
                 &:hover{
-                    border-color:#0099ff;
+                    // border-color:#0099ff;
+                }
+                &.btn-prev{
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
                 }
                 &.btn-next{
-                margin-left:6px;
+                    border-right:1px solid rgba(220, 220, 220, 1);
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                // margin-left:6px;
                 }
             } 
     }

@@ -160,7 +160,7 @@ export default {
                     line-height: 40px;
                     cursor: pointer;
                     background: #edebe9;
-                    font-size:20px;
+                    font-size:12px;
                     color:#86837e;
                 }
                 /deep/ .el-input__suffix{

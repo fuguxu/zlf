@@ -45,6 +45,7 @@
             <div class="input_box" :class="{active:activepassWord2}">
                 <div class="label">确认密码</div>
                 <el-input class="input" type="password"  v-model="passWord2" @focus="activepassWord2=true" @blur="blurpassWord2" placeholder="请输入你的密码">
+                    <i slot="suffix" class="iconfont icon-close" @click="passWord2=''" v-if="passWord2"></i>
                 </el-input>
                 <div class="error_message" v-if="passWordErrorMessage2">
                     <i class="icon el-icon-error"></i>
@@ -192,7 +193,7 @@ export default {
       },
       submitSign(){//点击注册
       console.log(this.companyInfo)
-      this.visible=true;
+    //   this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
               let parmars={
                   userAbbr:this.memberName,

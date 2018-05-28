@@ -6,10 +6,10 @@
         <div class="content">
           <div class="left_content">
               <div class="back" @click="toBack"></div>
-              <p class="leftTitle">{{data.title}}</p>
+              <p class="leftTitle font16">{{data.title}}</p>
           </div>
           <div class="right_content">
-              <div class="rightTitle">{{data.title}}</div>
+              <div class="rightTitle font30 ">{{data.title}}</div>
               <div v-html="data.content"></div>
           </div>
         </div>
@@ -55,67 +55,62 @@ export default {
     .news_detail_container{
       .banner{
           width:100%;
-          height: 601px;
-          background: url('../../../img/u2832.jpg') center no-repeat;
+          height: 600px;
+          background: url('../../../img/u2832.png') center no-repeat;
           background-size:cover;
       }
       .article_content{
-        width:1130px;
+        width:1160px;
         margin:0 auto;
         background: #fff;
         // min-height: 500px;
-        margin-top:23px;
-        margin-bottom: 40px;
+        margin-top:50px;
+        margin-bottom: 200px;
+        border-radius:10px;
         .content{
           display: flex;
           min-height:100%;
+          padding-top:75px;
           .left_content{
-            width:415px;
+            width:307px;
+            box-sizing: border-box;
+            padding-left:95px;
             .leftTitle{
-              font-size: 36px;
-              color: rgba(107, 107, 107, 0.90);
               word-break: break-all;
-              width:280px;
-              margin-left:40px;
+              width:117px;
+              line-height: 30px;
             }
             .back{
-              width:45px;
-              height: 45px;
+              width:30px;
+              height: 30px;
               cursor: pointer;
-              margin:32px 0 66px 40px;
-              background: url('../../../img/u3003.png') center no-repeat;
+              margin:5px 0 48px 0px;
+              background: url('../../../img/back.png') center no-repeat;
               background-size:cover;
-              &:hover{
-                background: url('../../../img/u3003_mouseOver.png') center no-repeat;
-                background-size:cover;
-              }
             }
           }
           .right_content{
             flex: 1;
-            padding-right: 64px;
+            padding-right: 160px;
             .rightTitle{
-              padding:43px 0px 35px;
-              line-height: 33px;
-              font-size: 22px;
-              color: #0D0D0D;
+              padding:0px 0px 45px;
             }
             /deep/ img{
-              width:650px;
-              height:256px;
+              width:680px;
+              height:268px;
             }
           }
         }
         .pre_next{
           line-height: 32px;
-          padding:50px 64px 15px 40px;
+          padding:100px 125px 90px 125px;
           display: flex;
           justify-content: space-between;
-          font-size: 13px;
-          color: rgba(161, 161, 161, 0.90);
+          font-size: 14px;
+          color: #888;
           .littleTitle{
             &:hover{
-              color: rgb(255, 205, 0);
+              color: rgba(255, 166, 50, 1);
             }
           }
         }
