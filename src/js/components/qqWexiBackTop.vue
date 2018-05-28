@@ -8,7 +8,7 @@
         </div>
         <div class="wexin square">
             <div class="text" @mouseenter="mouseenter" @mouseleave="mouseleave">关注<br />微信</div>
-            <div class="erWeiMa_box">
+            <div class="erWeiMa_box" :class="{show:showErWeiMa,hiden:!showErWeiMa}">
                 <div class="erWeiMa_border" :class="{show:showErWeiMa}">
                    <img class="erWeiMa_icon" src="../../img/u225.png"  alt="">
                    <div class="jangle"></div> 
@@ -99,6 +99,10 @@ export default {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                position: absolute;
+                top:0px;
+                left: 0px;
+                z-index: 1000;
             }
             &.qq{
                 background:rgba(255,166,50,1);
@@ -109,18 +113,23 @@ export default {
             }
         }
         .erWeiMa_box{
-            z-index: 1000;
+            z-index: 999;
             position: absolute;
-            font-size: 0px;
+            // font-size: 0px;
             width:150px;
             height:140px;
             top:50%;
-            margin-top:-70px;
-            left:-160px;
+            margin-top:-70px;   
             cursor: default;
             overflow: hidden;
+            &.hiden{
+                left:0px;
+                transition-delay: 1s;
+            }
+            &.show{
+                left:-160px;
+            }
             .erWeiMa_border{
-                // position: relative;
                 position: absolute;
                 top:0px;
                 left:174px;
@@ -136,7 +145,7 @@ export default {
                     border-color:transparent transparent transparent rgba(41,43,44,1);
                     right: -10px;
                     top:50%;
-                    margin-top:-5px;
+                    margin-top:-10px;
                 }
             }
             .erWeiMa_icon{

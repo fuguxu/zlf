@@ -194,7 +194,7 @@ export default {
                     color: rgb(0, 0, 0);
                     background:rgba(241,241,241,1);
                     &:-webkit-autofill {
-                        -webkit-box-shadow:0 0 0px 1000px white inset;
+                        -webkit-box-shadow:0 0 0px 1000px rgba(241,241,241,1) inset;
                         background-color: rgba(241,241,241,1);
                         background-image: none;
                     }

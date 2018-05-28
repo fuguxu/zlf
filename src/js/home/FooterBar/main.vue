@@ -1,5 +1,5 @@
 <template>
-    <div class="app-footer">
+    <div class="app-footer" :class="{isMac:isMac}">
         <div class="foot-container">
            <!-- <div class="icon_box">
                <img src="../../../img/u178.png" alt="">
@@ -9,7 +9,7 @@
                    <div class="links_left">
                        <ul>
                            <li class="title">租赁服务咨询热线</li>
-                           <li style="font-size:20px;line-height:30px;margin-top:10px;margin-bottom:25px;" class="item">440-880-4604</li>
+                           <li style="font-size:20px;line-height:30px;margin-top:10px;margin-bottom:25px;" class="item">400-880-4604</li>
                            <li class="item">专业租赁咨询</li>
                            <li class="item">成熟解决方案</li>
                            <li class="item">全方位产品解读</li>
@@ -61,7 +61,7 @@ export default {
     data() {
         return {
             footHide: true,
-            
+            isMac:false
         }
     },
     computed:{
@@ -70,8 +70,10 @@ export default {
     methods: {
         
     },
-    created () {
-       
+    mounted () {
+       if(window.navigator.platform.indexOf('Mac')!=-1){
+            this.isMac=true;
+        }
     }
 }
 </script>
@@ -80,6 +82,9 @@ export default {
         min-width:100%;
         height:350px;
         background-color: rgba(41, 43, 44, 1);
+        &.isMac .item{
+            letter-spacing: 1px;
+        }
     }
     .foot-container{
         width:1200px;
