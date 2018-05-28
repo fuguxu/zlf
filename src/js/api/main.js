@@ -34,4 +34,7 @@ export const customerModule={
 
     //供应商注册
     registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },
+
+    //登录接口
+    login:params => { return customerAxios.post('/login?'+ qs.stringify(params)).then(res => res.data); },
 }

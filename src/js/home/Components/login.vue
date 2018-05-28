@@ -39,6 +39,7 @@
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
@@ -47,8 +48,8 @@ export default {
             password:'',
             userActive:false,
             passwordActive:false,
-            clientWidth:'',
-            clientHeight:'',
+            // clientWidth:'',
+            // clientHeight:'',
             errorMessage:'',
             isChange:false
         }
@@ -85,15 +86,26 @@ export default {
                 this.$refs.password.focus();
             }else{
                 this.errorMessage='';
+                this.login();
             }
         },
+        login(){//登录接口
+            customerModule.login({
+                userName:this.userName,
+                passWord:this.password
+            }).then(res=>{
+                if(res.statusCode==1){
+
+                }
+            })
+        }
     },
     mounted(){
-        window.onresize=(ev)=>{
-            this.clientWidth=document.documentElement.clientWidth;
-            this.clientHeight=document.documentElement.clientHeight;
-        }
-        window.onresize();
+        // window.onresize=(ev)=>{
+        //     this.clientWidth=document.documentElement.clientWidth;
+        //     this.clientHeight=document.documentElement.clientHeight;
+        // }
+        // window.onresize();
     },
     computed:{
         roleText(){

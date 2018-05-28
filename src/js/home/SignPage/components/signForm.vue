@@ -212,14 +212,14 @@ export default {
       },
       registerCustorm(parmars){//客户注册
          customerModule.registerCustorm(parmars).then(res=>{
-             if(res.success){
+             if(res.statusCode==1){
                  this.visible=true;
              }
          })   
       },
       registerSupplier(parmars){//供应商注册
          customerModule.registerSupplier(parmars).then(res=>{
-             if(res.success){
+             if(res.statusCode==1){
                  this.visible=true;
              }
          })  
