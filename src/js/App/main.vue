@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" :class="{letterSpace:isMac}">
         <router-view></router-view>
     </div>
 </template>
@@ -17,7 +17,13 @@
     export default{
         data(){
             return{
+                isMac:false
             }
         },
+        mounted(){
+            if(window.navigator.platform.indexOf('Mac')!=-1){
+                this.isMac=true;
+            }
+        }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="home_service_couple">
         <div class="title">
-            如果你是我们的服务对象
+            如果您是我们的服务对象
         </div>
         <div class="home_service_couple_pic">
             <div class="home_service_couple_pic_list">

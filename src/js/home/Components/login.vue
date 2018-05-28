@@ -1,5 +1,5 @@
 <template>
-    <div class="login_box" @mouseleave="mouseleave" :class="{clientWidth:clientWidth<1190,clientHeight:clientHeight<528}">
+    <div class="login_box" @mouseleave="mouseleave">
         <div class="login_role">
             <div class="item custorm" @click="changeRole(1)" :class="{active:role==1}">
                 客户
@@ -60,6 +60,7 @@ export default {
             this.$emit('stopBannerSlide',role);
             this.userName='';
             this.password='';
+            this.errorMessage='';
         },
         changeRoleByParent(role){
             this.role=role;
@@ -193,6 +194,7 @@ export default {
                     color: rgb(0, 0, 0);
                     background:rgba(241,241,241,1);
                     &:-webkit-autofill {
+                        -webkit-box-shadow:0 0 0px 1000px white inset;
                         background-color: rgba(241,241,241,1);
                         background-image: none;
                     }

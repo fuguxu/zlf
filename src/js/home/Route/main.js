@@ -89,12 +89,12 @@ const routesMap = [
                 showChildren:true,
                 dropMenu:[
                     {
-                        path:'',
+                        path:'/business',
                         name:'供应商进驻',
                         // component:newsList,
                     },
                     {
-                        path:'',
+                        path:'/business',
                         name:'媒体合作',
                         // component:newsDetail,
                     }

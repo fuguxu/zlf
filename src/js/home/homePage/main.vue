@@ -50,6 +50,7 @@ export default {
 <style lang="scss" scoped>
     .home_container{
       margin-top:-53px;
+      min-width: 100%;
     }
 </style>
 

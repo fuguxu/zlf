@@ -2,7 +2,7 @@
     <div class="home_know">
         <div class="rate">
             <div class="title">
-                高效率交货周期
+                精准把控交货周期
             </div>
             <div class="home_know_pic_list">
                 <div class="sub_title">交付流程全程把控</div>

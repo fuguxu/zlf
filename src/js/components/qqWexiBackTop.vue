@@ -9,7 +9,10 @@
         <div class="wexin square">
             <div class="text" @mouseenter="mouseenter" @mouseleave="mouseleave">关注<br />微信</div>
             <div class="erWeiMa_box">
-                <img class="erWeiMa_icon" src="../../img/u225.png" :class="{show:showErWeiMa}" alt="">
+                <div class="erWeiMa_border" :class="{show:showErWeiMa}">
+                   <img class="erWeiMa_icon" src="../../img/u225.png"  alt="">
+                   <div class="jangle"></div> 
+                </div>
             </div>
         </div>
     </div>
@@ -62,6 +65,7 @@ export default {
         bottom:70px;
         text-align: center;
         font-size: 18px;
+        z-index: 1000;
         .toTop{
             width:70px;
             height: 70px;
@@ -105,25 +109,40 @@ export default {
             }
         }
         .erWeiMa_box{
+            z-index: 1000;
             position: absolute;
             font-size: 0px;
-            width:144px;
-            height:144px;
+            width:150px;
+            height:140px;
             top:50%;
-            margin-top:-72px;
-            left:-150px;
+            margin-top:-70px;
+            left:-160px;
             cursor: default;
             overflow: hidden;
-            .erWeiMa_icon{
-                width:144px;
-                height:144px;
+            .erWeiMa_border{
+                // position: relative;
                 position: absolute;
                 top:0px;
-                left:144px;
+                left:174px;
                 transition: all 1s;
+                z-index: 1000;
                 &.show{
                     left:0px;
                 }
+                .jangle{
+                    position: absolute;
+                    border-width:10px 0 10px 10px;
+                    border-style:solid;
+                    border-color:transparent transparent transparent rgba(41,43,44,1);
+                    right: -10px;
+                    top:50%;
+                    margin-top:-5px;
+                }
+            }
+            .erWeiMa_icon{
+                border:10px solid rgba(41,43,44,1);
+                border-radius:8px;
+                
             }
         }
     }

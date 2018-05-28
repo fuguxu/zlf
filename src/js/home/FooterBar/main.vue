@@ -19,11 +19,11 @@
                    <div class="link_right">
                        <ul class="link_right_ul">
                            <li class="title"><a href="javascript:;">商业合作</a></li>
-                           <li class="item"><a href="">供应链进驻</a></li>
-                           <li class="item"><a href="">媒体合作</a></li>
+                           <li class="item"><a href="#/business">供应商进驻</a></li>
+                           <li class="item"><a href="#/business">媒体合作</a></li>
                        </ul>
                        <ul class="link_right_ul">
-                           <li class="title"><a href="javascript:;">产品&案例</a></li>
+                           <li class="title"><a href="javascript:;" >产品&案例</a></li>
                            <li class="item"><a href="#/service">租赁产品</a></li>
                            <li class="item"><a href="#/coorperation">客户案例</a></li>
                            <!-- <li class="item"><a href="">售后服务</a></li> -->
@@ -32,7 +32,7 @@
                            <li class="title"><a href="javascript:;">帮助中心</a></li>
                            <li class="item"><a href="#/about/qs">常见问题</a></li>
                            <!-- <li class="item"><a href="#/about/contact">联系我们</a></li> -->
-                           <li class="item"><a href="">建议&反馈</a></li>
+                           <li class="item"><a href="https://www.baidu.com" target="_blank">建议&反馈</a></li>
                        </ul>
                        <ul class="link_right_ul">
                            <li class="title"><a href="javascript:;">关于租立方</a></li>
@@ -50,7 +50,7 @@
                    </div>
                </div>
                <div class="copy_right">
-                   <span class="item">Copyright © 2015~2017 租立方｜粤ICP备15052623号-1</span>
+                   <span class="item">Copyright © 2015~2020 租立方｜粤ICP备18037223号-1</span>
                </div>
            </div>
         </div>
@@ -77,7 +77,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .app-footer{
-        width:100%;
+        min-width:100%;
         height:350px;
         background-color: rgba(41, 43, 44, 1);
     }

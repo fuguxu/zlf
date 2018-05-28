@@ -52,7 +52,7 @@
 <style lang="scss" scoped>
     .header_bar{
         height: 53px;
-        width:100%;
+        min-width:100%;
         background-color: rgba(41,43,44, 1);
         position: fixed;
         top:0;
@@ -170,9 +170,10 @@
             }
             .drop_menus{
                 position: absolute;
-                left: 50%;
-                margin-left:-38px;
-                width:76px;
+                // left: 50%;
+                // margin-left:-36px;
+                // width:76px;
+                width:100%;
                 background:transparent;
                 text-align: center;
                 overflow: hidden;
@@ -187,7 +188,7 @@
                         background:rgba(41,43,44,0.5);
                     }
                     li{
-                        line-height: 31px;
+                        line-height: 32px;
                         color:#fff;
                         &:hover{
                             color: rgba(255, 255, 255, 0.75);
