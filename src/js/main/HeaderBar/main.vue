@@ -34,7 +34,8 @@
         },
         methods:{
             loginOut(){
-                window.location.href='home.html'
+                localStorage.removeItem('role');
+                window.location.href='home.html';
             }
         },
         components:{

@@ -145,7 +145,7 @@ export default {
             })
         },
         updateStep(){//注册到此处 需要判断是什么角色注册的
-            this.submitedAfter()
+            // this.submitedAfter()
             if(this.blurContactName()&&this.blurPositionJob()&&this.blurSex()&&this.blurEmail()){
                 if(this.role=='client'){
                     this.saveOrderCustomerInfo();

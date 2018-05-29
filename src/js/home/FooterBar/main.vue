@@ -1,5 +1,5 @@
 <template>
-    <div class="app-footer" :class="{isMac:isMac}">
+    <div class="app-footer">
         <div class="foot-container">
            <!-- <div class="icon_box">
                <img src="../../../img/u178.png" alt="">
@@ -61,7 +61,7 @@ export default {
     data() {
         return {
             footHide: true,
-            isMac:false
+            
         }
     },
     computed:{
@@ -71,9 +71,7 @@ export default {
         
     },
     mounted () {
-       if(window.navigator.platform.indexOf('Mac')!=-1){
-            this.isMac=true;
-        }
+       
     }
 }
 </script>
@@ -82,9 +80,6 @@ export default {
         min-width:100%;
         height:350px;
         background-color: rgba(41, 43, 44, 1);
-        &.isMac .item{
-            letter-spacing: 1px;
-        }
     }
     .foot-container{
         width:1200px;

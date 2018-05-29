@@ -95,7 +95,18 @@ export default {
                 passWord:this.password
             }).then(res=>{
                 if(res.statusCode==1){
-
+                    let data =res.data;
+                    if(data.type==0){
+                        localStorage.setItem('role','client');
+                        window.location.href='main.html#/rent';
+                    }else if(data.type==1){
+                        localStorage.setItem('role','supplier');
+                        window.location.href='main.html#/trade';
+                    }
+                    
+                }else{
+                    this.errorMessage='账号名或密码错误';
+                    this.$refs.user.focus();
                 }
             })
         }

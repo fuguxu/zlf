@@ -39,6 +39,7 @@
 </template>
 <script>
 import city from './city';
+import {customerModule} from '../../../api/main';
 export default {
     props:{
         role:{
@@ -57,6 +58,8 @@ export default {
             companyErrorMessage:'',
             inviteCodeErrorMessage:'',
             cityNameErrorMessage:'',
+
+            // checkCompanyFlag:true
         }
     },
     methods:{
@@ -99,22 +102,40 @@ export default {
                 this.companyErrorMessage='';
                 return true;
             }
-            
+        },
+        checkCompany(){//检验公司名是否已注册
+            customerModule.checkInfo({
+                userFullname:this.companyName
+            }).then(res=>{
+                if(res.data){
+                    this.companyErrorMessage='该公司已注册，请直接登录！';
+                }else{
+                     this.companyErrorMessage='';
+                     this.goNext();
+                }
+            })
         },
         nextStep(){
            let c= this.valiteCompany();
-           let companyInfo={
+            if(this.role=='client'){
+                let valiteCity= this.valiteCity();
+                if(c&&valiteCity){
+                    this.checkCompany();
+                }
+            }else if(this.role=='supplier'){
+                if(c){
+                    this.checkCompany();
+                }
+            }
+            
+        },
+        goNext(){
+            let companyInfo={
                city:this.cityName,
                userFullname:this.companyName,
                invitationCode:this.inviteCode
            }
-            if(this.role=='client'){
-              let valiteCity= this.valiteCity();
-                c&&valiteCity&&this.$emit('updateStep','signForm',companyInfo);
-            }else if(this.role=='supplier'){
-                c&&this.$emit('updateStep','signForm',companyInfo);
-            }
-            
+           this.$emit('updateStep','signForm',companyInfo);
         }
     },
     components:{

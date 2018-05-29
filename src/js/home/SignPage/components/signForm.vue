@@ -213,13 +213,17 @@ export default {
       registerCustorm(parmars){//客户注册
          customerModule.registerCustorm(parmars).then(res=>{
              if(res.statusCode==1){
+                 localStorage.setItem('role',this.role);
                  this.visible=true;
+             }else{
+                 
              }
          })   
       },
       registerSupplier(parmars){//供应商注册
          customerModule.registerSupplier(parmars).then(res=>{
              if(res.statusCode==1){
+                 localStorage.setItem('role',this.role);
                  this.visible=true;
              }
          })  

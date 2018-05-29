@@ -6,7 +6,7 @@ var TIME_OUT=50000;
 var zlf_base_prefix
 
 if(__DEV__){
-    zlf_base_prefix = 'http://ming849358679.imwork.net:12625';
+    zlf_base_prefix = 1?'https://api.zulifangs.com':'http://ming849358679.imwork.net:12625';
 }else if(__PROD__){
     
 }
@@ -26,10 +26,12 @@ export const customerModule={
     getNewsDetail:params => { return customerAxios.get('/article/getArticleDetail', {params:params}).then(res => res.data); },
     //客户注册
     registerCustorm:params => { return customerAxios.post('/customers/register', params).then(res => res.data); },
+    //检验公司名字是否注册
+    checkInfo:params => { return customerAxios.post('/user/checkInfo', params).then(res => res.data); },
     //获取验证码
     getVerification:params => { return customerAxios.get('/verification', {params:params}).then(res => res.data); },
     //保存客户信息联系人
-    saveOrderCustomerInfo:params => { return customerAxios.post('/customers/saveOrderCustomerInfo', params).then(res => res.data); },
+    saveOrderCustomerInfo:params => { return customerAxios.post('/user/perfectUser', params).then(res => res.data); },
 
 
     //供应商注册
