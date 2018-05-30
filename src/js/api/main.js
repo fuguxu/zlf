@@ -6,18 +6,28 @@ var TIME_OUT=50000;
 var zlf_base_prefix
 
 if(__DEV__){
-    zlf_base_prefix = 1?'https://api.zulifangs.com':'http://ming849358679.imwork.net:12625';
+    zlf_base_prefix = 0?'https://api.zulifangs.com':'http://ming849358679.imwork.net:12625/api-zlf';
 }else if(__PROD__){
     
 }
 
 const base_axios_options = {
     withCredentials:true,
-    timeout:TIME_OUT,
-    headers: { 'content-type': 'application/json' }
+    // timeout:TIME_OUT,
+    // maxRedirects:0,
+    // proxy: {
+    //     host: "http://ming849358679.imwork.net",
+    //     port: 12625,
+    //     auth: {
+    //       username: "admin",
+    //       password: "123456"
+    //     }
+    //   },
+    // xsrfCookieName:'zlf.sesssion',
+    headers: { 'Content-Type': 'application/json' }
 };
 
-const customer_base = `${zlf_base_prefix}/api-zlf`;
+const customer_base = `${zlf_base_prefix}`;
 const customerAxios = axios.create(Object.assign({}, { baseURL: `${customer_base}`}, base_axios_options));
 export const customerModule={
     //新闻列表
@@ -32,6 +42,8 @@ export const customerModule={
     getVerification:params => { return customerAxios.get('/verification', {params:params}).then(res => res.data); },
     //保存客户信息联系人
     saveOrderCustomerInfo:params => { return customerAxios.post('/user/perfectUser', params).then(res => res.data); },
+    //租赁测算体验
+    calculation:params => { return customerAxios.post('/calcul/calculation', params).then(res => res.data); },
 
 
     //供应商注册

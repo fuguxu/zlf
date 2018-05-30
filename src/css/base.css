@@ -355,7 +355,7 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
     position: relative;
 }
 .icon-close{
-    font-size: 20px;
+    font-size: 12px;
     cursor: pointer;
 }
 .input_box.active{

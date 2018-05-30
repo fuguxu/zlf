@@ -12,22 +12,23 @@
         type:'酒店',
         keyWord:'生活主题、公寓式酒店、有温度、家',
         area:'海南三亚',
-        url:require('../../../img/sanwuqiwu/sanwuqiwu.jpg'),
+        url:require('../../../img/sanwuqiwu/sanwuqiwu.png'),
+        bannerUrl:require('../../../img/sanwuqiwu/banner.png'),
         children:[
             {
-                url:require('../../../img/sanwuqiwu/1.jpg'),
+                url:require('../../../img/sanwuqiwu/1.png'),
             },
             {
-                url:require('../../../img/sanwuqiwu/2.jpg'),
+                url:require('../../../img/sanwuqiwu/2.png'),
             },
             {
-                url:require('../../../img/sanwuqiwu/3.jpg'),
+                url:require('../../../img/sanwuqiwu/3.png'),
             },
             {
-                url:require('../../../img/sanwuqiwu/4.jpg'),
+                url:require('../../../img/sanwuqiwu/4.png'),
             },
             {
-                url:require('../../../img/sanwuqiwu/5.jpg'),
+                url:require('../../../img/sanwuqiwu/5.png'),
             }
         ]
     },
@@ -44,22 +45,23 @@
         type:'酒店',
         keyWord:'新中式、禅意、轻奢、智能、环保',
         area:'广东广州',
-        url:require('../../../img/guangzhouhuaxuanli/guangzhouhuaxuanli.jpg'),
+        url:require('../../../img/guangzhouhuaxuanli/guangzhouhuaxuanli.png'),
+        bannerUrl:require('../../../img/guangzhouhuaxuanli/banner.png'),
         children:[
             {
-                url:require('../../../img/guangzhouhuaxuanli/1.jpg'),
+                url:require('../../../img/guangzhouhuaxuanli/1.png'),
             },
             {
-                url:require('../../../img/guangzhouhuaxuanli/2.jpg'),
+                url:require('../../../img/guangzhouhuaxuanli/2.png'),
             },
             {
-                url:require('../../../img/guangzhouhuaxuanli/3.jpg'),
+                url:require('../../../img/guangzhouhuaxuanli/3.png'),
             },
             {
-                url:require('../../../img/guangzhouhuaxuanli/4.jpg'),
+                url:require('../../../img/guangzhouhuaxuanli/4.png'),
             },
             {
-                url:require('../../../img/guangzhouhuaxuanli/5.jpg'),
+                url:require('../../../img/guangzhouhuaxuanli/5.png'),
             }
         ]
     },
@@ -76,22 +78,23 @@
         type:'酒店',
         keyWord:'新中式、禅意、轻奢、智能、环保',
         area:'广东佛山',
-        url:require('../../../img/shundehuaxuanli/shundehuaxuanli.jpg'),
+        url:require('../../../img/shundehuaxuanli/shundehuaxuanli.png'),
+        bannerUrl:require('../../../img/shundehuaxuanli/banner.png'),
         children:[
             {
-                url:require('../../../img/shundehuaxuanli/1.jpg'),
+                url:require('../../../img/shundehuaxuanli/1.png'),
             },
             {
-                url:require('../../../img/shundehuaxuanli/2.jpg'),
+                url:require('../../../img/shundehuaxuanli/2.png'),
             },
             {
-                url:require('../../../img/shundehuaxuanli/3.jpg'),
+                url:require('../../../img/shundehuaxuanli/3.png'),
             },
             {
-                url:require('../../../img/shundehuaxuanli/4.jpg'),
+                url:require('../../../img/shundehuaxuanli/4.png'),
             },
             {
-                url:require('../../../img/shundehuaxuanli/5.jpg'),
+                url:require('../../../img/shundehuaxuanli/5.png'),
             }
         ]
     },
@@ -108,22 +111,23 @@
         type:'公寓',
         keyWord:'舒适、轻奢、有温度、家',
         area:'湖南长沙',
-        url:require('../../../img/ruisibao/ruisibao.jpg'),
+        url:require('../../../img/ruisibao/ruisibao.png'),
+        bannerUrl:require('../../../img/ruisibao/banner.png'),
         children:[
             {
-                url:require('../../../img/ruisibao/1.jpg'),
+                url:require('../../../img/ruisibao/1.png'),
             },
             {
-                url:require('../../../img/ruisibao/2.jpg'),
+                url:require('../../../img/ruisibao/2.png'),
             },
             {
-                url:require('../../../img/ruisibao/3.jpg'),
+                url:require('../../../img/ruisibao/3.png'),
             },
             {
-                url:require('../../../img/ruisibao/4.jpg'),
+                url:require('../../../img/ruisibao/4.png'),
             },
             {
-                url:require('../../../img/ruisibao/5.jpg'),
+                url:require('../../../img/ruisibao/5.png'),
             }
         ]
     },
@@ -140,22 +144,23 @@
         type:'公寓',
         keyWord:'高端、商务、温度、居家、智能、环保',
         area:'广东深圳',
-        url:require('../../../img/xizhixing/xizhixing.jpg'),
+        url:require('../../../img/xizhixing/xizhixing.png'),
+        bannerUrl:require('../../../img/xizhixing/banner.png'),
         children:[
             {
-                url:require('../../../img/xizhixing/1.jpg'),
+                url:require('../../../img/xizhixing/1.png'),
             },
             {
-                url:require('../../../img/xizhixing/2.jpg'),
+                url:require('../../../img/xizhixing/2.png'),
             },
             {
-                url:require('../../../img/xizhixing/3.jpg'),
+                url:require('../../../img/xizhixing/3.png'),
             },
             {
-                url:require('../../../img/xizhixing/4.jpg'),
+                url:require('../../../img/xizhixing/4.png'),
             },
             {
-                url:require('../../../img/xizhixing/5.jpg'),
+                url:require('../../../img/xizhixing/5.png'),
             }
         ]
     },
@@ -172,22 +177,23 @@
         type:'公寓',
         keyWord:'新中式、禅意',
         area:'广东深圳',
-        url:require('../../../img/hualiliyu/hualiliyu.jpg'),
+        url:require('../../../img/hualiliyu/hualiliyu.png'),
+        bannerUrl:require('../../../img/hualiliyu/banner.png'),
         children:[
             {
-                url:require('../../../img/hualiliyu/1.jpg'),
+                url:require('../../../img/hualiliyu/1.png'),
             },
             {
-                url:require('../../../img/hualiliyu/2.jpg'),
+                url:require('../../../img/hualiliyu/2.png'),
             },
             {
-                url:require('../../../img/hualiliyu/3.jpg'),
+                url:require('../../../img/hualiliyu/3.png'),
             },
             {
-                url:require('../../../img/hualiliyu/4.jpg'),
+                url:require('../../../img/hualiliyu/4.png'),
             },
             {
-                url:require('../../../img/hualiliyu/5.jpg'),
+                url:require('../../../img/hualiliyu/5.png'),
             }
         ]
     },
@@ -204,22 +210,23 @@
         type:'公寓',
         keyWord:'现代、轻奢、设计感、后现代',
         area:'上海',
-        url:require('../../../img/shanghaiqueyu/shanghaiqueyu.jpg'),
+        url:require('../../../img/shanghaiqueyu/shanghaiqueyu.png'),
+        bannerUrl:require('../../../img/shanghaiqueyu/banner.png'),
         children:[
             {
-                url:require('../../../img/shanghaiqueyu/1.jpg'),
+                url:require('../../../img/shanghaiqueyu/1.png'),
             },
             {
-                url:require('../../../img/shanghaiqueyu/2.jpg'),
+                url:require('../../../img/shanghaiqueyu/2.png'),
             },
             {
-                url:require('../../../img/shanghaiqueyu/3.jpg'),
+                url:require('../../../img/shanghaiqueyu/3.png'),
             },
             {
-                url:require('../../../img/shanghaiqueyu/4.jpg'),
+                url:require('../../../img/shanghaiqueyu/4.png'),
             },
             {
-                url:require('../../../img/shanghaiqueyu/5.jpg'),
+                url:require('../../../img/shanghaiqueyu/5.png'),
             }
         ]
     },
@@ -236,22 +243,23 @@
         type:'公寓',
         keyWord:'现代简约',
         area:'上海',
-        url:require('../../../img/shanghaiyuju/shanghaiyuju.jpg'),
+        url:require('../../../img/shanghaiyuju/shanghaiyuju.png'),
+        bannerUrl:require('../../../img/shanghaiyuju/banner.png'),
         children:[
             {
-                url:require('../../../img/shanghaiyuju/1.jpg'),
+                url:require('../../../img/shanghaiyuju/1.png'),
             },
             {
-                url:require('../../../img/shanghaiyuju/2.jpg'),
+                url:require('../../../img/shanghaiyuju/2.png'),
             },
             {
-                url:require('../../../img/shanghaiyuju/3.jpg'),
+                url:require('../../../img/shanghaiyuju/3.png'),
             },
             {
-                url:require('../../../img/shanghaiyuju/4.jpg'),
+                url:require('../../../img/shanghaiyuju/4.png'),
             },
             {
-                url:require('../../../img/shanghaiyuju/5.jpg'),
+                url:require('../../../img/shanghaiyuju/5.png'),
             }
         ]
     },
@@ -268,22 +276,23 @@
         type:'公寓',
         keyWord:'现代简约、商务、高级灰',
         area:'湖南长沙',
-        url:require('../../../img/bubugao/bubugao.jpg'),
+        url:require('../../../img/bubugao/bubugao.png'),
+        bannerUrl:require('../../../img/bubugao/banner.png'),
         children:[
             {
-                url:require('../../../img/bubugao/1.jpg'),
+                url:require('../../../img/bubugao/1.png'),
             },
             {
-                url:require('../../../img/bubugao/2.jpg'),
+                url:require('../../../img/bubugao/2.png'),
             },
             {
-                url:require('../../../img/bubugao/3.jpg'),
+                url:require('../../../img/bubugao/3.png'),
             },
             {
-                url:require('../../../img/bubugao/4.jpg'),
+                url:require('../../../img/bubugao/4.png'),
             },
             {
-                url:require('../../../img/bubugao/5.jpg'),
+                url:require('../../../img/bubugao/5.png'),
             }
         ]
     },
@@ -300,22 +309,23 @@
         type:'公寓',
         keyWord:'简约、现代、工业风',
         area:'广东广州',
-        url:require('../../../img/guangzhouyou/guangzhouyou.jpg'),
+        url:require('../../../img/guangzhouyou/guangzhouyou.png'),
+        bannerUrl:require('../../../img/guangzhouyou/banner.png'),
         children:[
             {
-                url:require('../../../img/guangzhouyou/1.jpg'),
+                url:require('../../../img/guangzhouyou/1.png'),
             },
             {
-                url:require('../../../img/guangzhouyou/2.jpg'),
+                url:require('../../../img/guangzhouyou/2.png'),
             },
             {
-                url:require('../../../img/guangzhouyou/3.jpg'),
+                url:require('../../../img/guangzhouyou/3.png'),
             },
             {
-                url:require('../../../img/guangzhouyou/4.jpg'),
+                url:require('../../../img/guangzhouyou/4.png'),
             },
             {
-                url:require('../../../img/guangzhouyou/5.jpg'),
+                url:require('../../../img/guangzhouyou/5.png'),
             }
         ]
     },
@@ -332,22 +342,23 @@
         type:'公寓',
         keyWord:'融合、包容、注重人文交流、自然',
         area:'广东深圳',
-        url:require('../../../img/xinpaigongyu/xinpaigongyu.jpeg'),
+        url:require('../../../img/xinpaigongyu/xinpaigongyu.png'),
+        bannerUrl:require('../../../img/xinpaigongyu/banner.png'),
         children:[
             {
-                url:require('../../../img/xinpaigongyu/1.jpeg'),
+                url:require('../../../img/xinpaigongyu/1.png'),
             },
             {
-                url:require('../../../img/xinpaigongyu/2.jpeg'),
+                url:require('../../../img/xinpaigongyu/2.png'),
             },
             {
-                url:require('../../../img/xinpaigongyu/3.jpeg'),
+                url:require('../../../img/xinpaigongyu/3.png'),
             },
             {
-                url:require('../../../img/xinpaigongyu/4.jpeg'),
+                url:require('../../../img/xinpaigongyu/4.png'),
             },
             {
-                url:require('../../../img/xinpaigongyu/5.jpeg'),
+                url:require('../../../img/xinpaigongyu/5.png'),
             }
         ]
     },
@@ -364,22 +375,23 @@
         type:'办公场所',
         keyWord:'传统、实用、稳重',
         area:'广东韶关',
-        url:require('../../../img/ehuadianli/ehuadianli.jpg'),
+        url:require('../../../img/ehuadianli/ehuadianli.png'),
+        bannerUrl:require('../../../img/ehuadianli/banner.png'),
         children:[
             {
-                url:require('../../../img/ehuadianli/1.jpg'),
+                url:require('../../../img/ehuadianli/1.png'),
             },
             {
-                url:require('../../../img/ehuadianli/2.jpg'),
+                url:require('../../../img/ehuadianli/2.png'),
             },
             {
-                url:require('../../../img/ehuadianli/3.jpg'),
+                url:require('../../../img/ehuadianli/3.png'),
             },
             {
-                url:require('../../../img/ehuadianli/4.jpg'),
+                url:require('../../../img/ehuadianli/4.png'),
             },
             {
-                url:require('../../../img/ehuadianli/5.jpg'),
+                url:require('../../../img/ehuadianli/5.png'),
             }
         ]
     },
@@ -396,22 +408,23 @@
         type:'办公场所',
         keyWord:'时尚、实用、高档',
         area:'广东深圳',
-        url:require('../../../img/lvjing/lvjing.jpg'),
+        url:require('../../../img/lvjing/lvjing.png'),
+        bannerUrl:require('../../../img/lvjing/banner.png'),
         children:[
             {
-                url:require('../../../img/lvjing/1.jpg'),
+                url:require('../../../img/lvjing/1.png'),
             },
             {
-                url:require('../../../img/lvjing/2.jpg'),
+                url:require('../../../img/lvjing/2.png'),
             },
             {
-                url:require('../../../img/lvjing/3.jpg'),
+                url:require('../../../img/lvjing/3.png'),
             },
             {
-                url:require('../../../img/lvjing/4.jpg'),
+                url:require('../../../img/lvjing/4.png'),
             },
             {
-                url:require('../../../img/lvjing/5.jpg'),
+                url:require('../../../img/lvjing/5.png'),
             }
         ]
     },
@@ -428,22 +441,23 @@
         type:'办公场所',
         keyWord:'时尚、实用、高档',
         area:'香港荃湾区',
-        url:require('../../../img/jiwu/jiwu.jpg'),
+        url:require('../../../img/jiwu/jiwu.png'),
+        bannerUrl:require('../../../img/jiwu/banner.png'),
         children:[
             {
-                url:require('../../../img/jiwu/1.jpg'),
+                url:require('../../../img/jiwu/1.png'),
             },
             {
-                url:require('../../../img/jiwu/2.jpg'),
+                url:require('../../../img/jiwu/2.png'),
             },
             {
-                url:require('../../../img/jiwu/3.jpg'),
+                url:require('../../../img/jiwu/3.png'),
             },
             {
-                url:require('../../../img/jiwu/4.jpg'),
+                url:require('../../../img/jiwu/4.png'),
             },
             {
-                url:require('../../../img/jiwu/5.jpg'),
+                url:require('../../../img/jiwu/5.png'),
             }
         ]
     }

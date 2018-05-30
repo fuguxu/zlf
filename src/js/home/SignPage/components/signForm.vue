@@ -115,6 +115,17 @@ export default {
               return true
           }
       },
+      checkMemberName(cb){//校验会员名 不能重复
+            customerModule.checkInfo({
+                userAbbr:this.memberName
+            }).then(res=>{
+                if(res.data){
+                    this.memberNameErrorMessage='该简称已存在，请重新输入！';
+                }else{
+                    cb();
+                }
+            })
+      },
       bluruserName(){
           this.activeUserName=false;
           if(!this.userName){
@@ -192,22 +203,23 @@ export default {
           }
       },
       submitSign(){//点击注册
-      console.log(this.companyInfo)
-    //   this.visible=true;
+    //   console.log(this.companyInfo)
+      this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
-              let parmars={
-                  userAbbr:this.memberName,
-                  loginName:this.userName,
-                  code:this.identifyCode,
-                  loginPwd:this.passWord,
-                  
-              }
-              console.log(this.role)
-              if(this.role=='client'){
-                  this.registerCustorm({...this.companyInfo,...parmars});
-              }else{
-                  this.registerSupplier({...this.companyInfo,...parmars});
-              }
+               this.checkMemberName(this.postData);
+        }
+      },
+      postData(){//发送请求
+          let parmars={
+            userAbbr:this.memberName,
+            loginName:this.userName,
+            code:this.identifyCode,
+            loginPwd:this.passWord,
+        }
+        if(this.role=='client'){
+            this.registerCustorm({...this.companyInfo,...parmars});
+        }else{
+            this.registerSupplier({...this.companyInfo,...parmars});
         }
       },
       registerCustorm(parmars){//客户注册
@@ -216,7 +228,7 @@ export default {
                  localStorage.setItem('role',this.role);
                  this.visible=true;
              }else{
-                 
+
              }
          })   
       },
@@ -283,7 +295,6 @@ export default {
                 .icon-close{
                     line-height: 40px;
                     margin-right:10px;
-                    font-size:12px;
                 }
                 .identifyCode{
                     font-style: normal;

@@ -140,7 +140,7 @@ export default {
             }
             customerModule.saveOrderCustomerInfo(parmas).then(res=>{
                 if(res.success){
-                    this.submitedAfter();
+                    // this.submitedAfter();
                 }
             })
         },
@@ -209,7 +209,6 @@ export default {
             .icon-close{
                 line-height: 40px;
                 margin-right:10px;
-                font-size:12px;
             }
             .identifyCode{
                 font-style: normal;

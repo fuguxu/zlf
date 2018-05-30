@@ -55,7 +55,7 @@
                 </div>
                 <div class="footer">
                     <span @click="nextStep" class="button">跳过</span>
-                    <span class="button" @click="calcuate">计算</span>
+                    <span class="button" @click="clickCalcuate">计算</span>
                 </div>
             </div>
         </div>
@@ -83,6 +83,7 @@
     </div>
 </template>
 <script>
+import {customerModule} from '../../../api/main';
 export default {
     props:{
         visible:{
@@ -149,14 +150,25 @@ export default {
                 return true;
             }
         },
-        calcuate(){
-            this.blurRentPrice();
-            this.blurRentRate();
-            this.blurRentTime();
+        clickCalcuate(){
+            if(this.blurRentPrice()&&this.blurRentRate()&&this.blurRentTime()){
+                this.calculationHttp();
+                this.visibleResult=true;
+                setTimeout(()=>{
+                    this.showResult=true;
+                },10)
+            }
             this.visibleResult=true;
             setTimeout(()=>{
                 this.showResult=true;
             },10)
+        },
+        calculationHttp(){//计算接口
+            customerModule.calculation({
+                leaseTotalAmount:this.rentPrice,
+                annualRate:this.rentRate,
+                leaseholdCycle:this.rentTime
+            })
         }
     },
     mounted(){

@@ -116,6 +116,7 @@ export default {
             })
         },
         nextStep(){
+            // this.goNext();
            let c= this.valiteCompany();
             if(this.role=='client'){
                 let valiteCity= this.valiteCity();
@@ -190,7 +191,6 @@ export default {
                 .icon-close{
                     line-height: 40px;
                     margin-right:10px;
-                    font-size:12px;
                 }
             }
             .error_message{

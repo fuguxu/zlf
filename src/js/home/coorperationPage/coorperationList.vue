@@ -17,7 +17,7 @@
                       <div class="room_info">
                           <ul class="info">
                             <li class="nu">{{item.rentNumber}}</li>
-                            <li class="it">租赁额</li>
+                            <li class="it">租赁总额</li>
                           </ul>
                           <ul class="info">
                             <li class="nu">{{item.roomNumber}}</li>

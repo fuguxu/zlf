@@ -6,6 +6,13 @@
                 <el-option v-for="item in options" :key="item.name" :label="item.name" :value="item.name">
                 </el-option>
             </el-select>
+            <br />
+            <!-- <div > -->
+                <el-select v-if="value=='家具'" class="el-input-box" @change="changJiaJuType" v-model="JiaJuType" placeholder="再次选择">
+                    <el-option v-for="item in jiajuTypeOption" :key="item.name" :label="item.name" :value="item.name">
+                    </el-option>
+                </el-select>
+            <!-- </div> -->
             <div class="error_message" v-if="errorMessage">
                 <i class="icon el-icon-remove"></i>
                 <span>{{errorMessage}}</span>
@@ -122,6 +129,18 @@ export default {
                     children:[]
                 }
             ],
+            jiajuTypeOption:[
+                {
+                    name:'酒店家具'
+                },
+                {
+                    name:'公寓家具'
+                },
+                {
+                    name:'办公家具'
+                }
+            ],
+            JiaJuType:'',
             value:'',
             showSelect:'',
             activeBox:false,
@@ -130,6 +149,11 @@ export default {
     },
     methods:{
         changeType(value){
+            this.JiaJuType='';
+            if(value=='家具'){
+                this.showSelect=''
+                return;
+            } 
             setTimeout(()=> {
                 this.showSelect=value;
             }, 300);
@@ -138,6 +162,13 @@ export default {
             }else{
                 this.activeBox=false
             }
+        },
+        changJiaJuType(){
+            this.showSelect='';
+            setTimeout(()=> {
+                this.showSelect=this.options[0].name;
+            }, 100);
+            this.activeBox=true;
         },
         valiate(){
             if(!this.value){

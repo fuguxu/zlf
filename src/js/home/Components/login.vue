@@ -232,7 +232,6 @@ export default {
                     }
                 }
                 .icon-close{
-                    font-size: 12px;
                     cursor: pointer;
                 }
             }

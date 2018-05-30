@@ -12,7 +12,7 @@
             <div class="content_container">
                 <div class="content" :class="{show:showProvience}" @click.stop="1">
                     <div class="color_line"></div>
-                    <div class="title">请选择业务覆盖省份<span class="sub">（可多选）</span></div>
+                    <div class="title">请选择业务覆盖范围<span class="sub">（可多选）</span></div>
                     <el-checkbox-group v-model="provinceList">
                         <el-checkbox v-for="item in provicen" :label="item.name" :key="item.name"></el-checkbox>
                     </el-checkbox-group>
