@@ -64,14 +64,14 @@
                 <div class="result_content" :class="{showClass:showResult}">
                     <div class="title before">按照银行现行标准，租赁前期费用如下：</div>
                     <div class="item">
-                        保证金：<span class="number">00.00</span>元
+                        保证金：<span class="number">{{data.quarterlyRent}}</span>元
                     </div>
                     <div class="item">
-                        融资服务费：<span class="number">00.00</span>元
+                        融资服务费：<span class="number">{{data.financingServiceFee}}</span>元
                     </div>
                     <div class="title">《融资租赁合同》签署后，您须缴付租金，按月份预付：</div>
                     <div class="item">
-                        每月租金：<span class="number">00.00</span>元
+                        每月租金：<span class="number">{{data.marginAmount}}</span>元
                     </div>
                     <div class="footer">
                         <span @click="cancelResult" class="button">再算一次</span>
@@ -107,7 +107,8 @@ export default {
 
             rentTime:'',
             rentTimeErrorMessage:'',
-            rentTimeOptions:[{value:12,label:'12个月'},{value:24,label:'24个月'},{value:36,label:'36个月'},{value:60,label:'60个月'}]
+            rentTimeOptions:[{value:12,label:'12个月'},{value:24,label:'24个月'},{value:36,label:'36个月'},{value:60,label:'60个月'}],
+            data:{}
         
         }
     },
@@ -153,21 +154,21 @@ export default {
         clickCalcuate(){
             if(this.blurRentPrice()&&this.blurRentRate()&&this.blurRentTime()){
                 this.calculationHttp();
-                this.visibleResult=true;
-                setTimeout(()=>{
-                    this.showResult=true;
-                },10)
             }
-            this.visibleResult=true;
-            setTimeout(()=>{
-                this.showResult=true;
-            },10)
         },
         calculationHttp(){//计算接口
             customerModule.calculation({
-                leaseTotalAmount:this.rentPrice,
+                leaseContractTotalAmt:this.rentPrice,
                 annualRate:this.rentRate,
                 leaseholdCycle:this.rentTime
+            }).then(res=>{
+                if(res.statusCode==1){
+                    this.data=res.data||{};
+                    this.visibleResult=true;
+                    setTimeout(()=>{
+                        this.showResult=true;
+                    },10)
+                }
             })
         }
     },

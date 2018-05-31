@@ -139,8 +139,8 @@ export default {
                 email:this.email
             }
             customerModule.saveOrderCustomerInfo(parmas).then(res=>{
-                if(res.success){
-                    // this.submitedAfter();
+                if(res.statusCode==1){
+                    this.submitedAfter();
                 }
             })
         },

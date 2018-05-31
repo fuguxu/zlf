@@ -83,6 +83,7 @@ export default {
   },
   mounted(){
     this.data=filterCoorperation('order',this.$route.query.id)[0];
+    console.log(this.data)
     // this.headStyle={
     //   background:`url(${this.data.bannerUrl}) center no-repeat`,
     //   backgroundSize:'cover'

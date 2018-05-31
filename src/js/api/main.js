@@ -14,16 +14,6 @@ if(__DEV__){
 const base_axios_options = {
     withCredentials:true,
     // timeout:TIME_OUT,
-    // maxRedirects:0,
-    // proxy: {
-    //     host: "http://ming849358679.imwork.net",
-    //     port: 12625,
-    //     auth: {
-    //       username: "admin",
-    //       password: "123456"
-    //     }
-    //   },
-    // xsrfCookieName:'zlf.sesssion',
     headers: { 'Content-Type': 'application/json' }
 };
 
