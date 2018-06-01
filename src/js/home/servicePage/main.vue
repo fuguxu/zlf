@@ -16,10 +16,8 @@
                             <p class="desc_title_sub font16">{{item.text1}}</p>
                             <p class="text2 font14" v-html="item.text2"></p>
                           </div>
-                            
                         </div>
                     </div>
-                    
                 </div>
                 <div class="img_right">
                     <div class="item_img" v-for="(item,index) in rightImg" :key="index" @mouseenter="mouseenter(item)" @mouseleave="mouseleave(item)" >
@@ -31,14 +29,29 @@
                             <p class="desc_title_sub font16">{{item.text1}}</p>
                             <p class="text2 font14" v-html="item.text2"></p>
                           </div>
-                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
      </div>
-     
+     <div class="logo_container">
+          <div class="logo_item" v-for="(item,index) in logoData" :key="index">
+                <div class="item">
+                    <div class="title font30">{{item.title}}</div>
+                    <div class="desc font16">{{item.desc}}</div>
+                    <div class="" v-for="(it,i) in item.children" :key="i">
+                          <div class="font18 name colorYellow">{{it.name}}</div>
+                          <div class="font0">
+                            <img src="../../../img/arrow_down.png" alt="">
+                          </div>
+                          <div class="font0">
+                            <img class="img" v-for="(url,n) in it.url" :src="url" :key="n" alt="">
+                          </div>
+                    </div>
+                </div>
+          </div>
+     </div>
   </div>
 </template>
 <script>
@@ -104,6 +117,96 @@ export default {
               text1:'享受碧海蓝天的清爽，地中海风格独特的美学特点',
               text2:`选择自然的柔和色彩,在组合设计上注意空间搭配,在组合搭配上避免<br />琐碎,显得大方、自然,散发出古老尊贵的田园气息和文化品位`
             },
+          ],
+          logoData:[
+            {
+              title:'家电',
+              desc:'覆盖当前品类Top10品牌',
+              children:[
+                {
+                  name:'空调',
+                  url:[require('../../../img/kongtiao_logo.png')]
+                },
+                {
+                  name:'热水器',
+                  url:[require('../../../img/reshuiqi_logo.png')]
+                },
+                {
+                  name:'洗衣机',
+                  url:[require('../../../img/xiyiji_logo.png')]
+                },
+                {
+                  name:'冰箱',
+                  url:[require('../../../img/bingxiang_logo.png')]
+                }
+              ]
+            },
+            {
+              title:'机电',
+              desc:'覆盖当前品类Top10品牌',
+              children:[
+                {
+                  name:'电梯',
+                  url:[require('../../../img/dianti_logo.png')]
+                },
+                {
+                  name:'新风系统',
+                  url:[require('../../../img/xinfengxitong_logo.png')]
+                },
+                {
+                  name:'太阳能系统',
+                  url:[require('../../../img/taiyangnengxitong_logo.png')]
+                },
+                {
+                  name:'弱电',
+                  url:[require('../../../img/ruodian_logo1.png'),require('../../../img/ruodian_logo2.png')]
+                }
+              ]
+            },
+            {
+              title:'智能系统',
+              desc:'覆盖当前品类Top10品牌',
+              children:[
+                {
+                  name:'智能门锁',
+                  url:[require('../../../img/zhinnegmensuo_logo.png')]
+                },
+                {
+                  name:'智能水电表',
+                  url:[require('../../../img/zhinnegshuidianbiao_logo.png')]
+                },
+                {
+                  name:'智能入住系统',
+                  url:[require('../../../img/zhinnegruzhuxitong_logo.png')]
+                }
+              ]
+            },
+            {
+              title:'卫浴',
+              desc:'覆盖当前品类Top10品牌',
+              children:[
+                {
+                  name:'水龙头',
+                  url:[require('../../../img/shuilongtou_logo.png')]
+                },
+                {
+                  name:'花洒',
+                  url:[require('../../../img/huasa_logo.png')]
+                },
+                {
+                  name:'台盘',
+                  url:[require('../../../img/taipan_logo.png')]
+                },
+                {
+                  name:'智能马桶',
+                  url:[require('../../../img/zhinengmatong_logo.png')]
+                },
+                {
+                  name:'普通马桶',
+                  url:[require('../../../img/putongmatong_logo.png')]
+                }
+              ]
+            }
           ]
       }
   },
@@ -142,6 +245,7 @@ export default {
           }
           .img_box{
               display: flex;
+              margin-bottom: 60px;
              .img_left{
                flex:1;
                margin-right:40px;
@@ -208,6 +312,30 @@ export default {
                  }
                }
              }
+          }
+        }
+        .logo_item{
+          &:nth-child(odd){
+              background:rgba(244,244,244,1);
+          }
+          .item{
+            width:1160px;
+            margin:0 auto;
+            text-align: center;
+            padding-bottom: 100px;
+            .title{
+              padding-top:92px;
+            }
+            .desc{
+              padding:20px 0px 5px;
+            }
+            .name{
+              padding-top:60px;
+              padding-bottom: 12px;
+            }
+            .img{
+              margin-top:30px;
+            }
           }
         }
     }

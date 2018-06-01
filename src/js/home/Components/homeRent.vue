@@ -27,7 +27,7 @@
                 </div>
                 <div class="item">
                     <img class="img" src="../../../img/intelligent_nor_icon.png" alt="">
-                    <span class="text">智能系统家具</span>
+                    <span class="text">智能系统</span>
                 </div>
             </div>
         </div>

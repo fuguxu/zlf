@@ -34,11 +34,11 @@ export const customerModule={
     saveOrderCustomerInfo:params => { return customerAxios.post('/user/perfectUser', params).then(res => res.data); },
     //租赁测算体验
     calculation:params => { return customerAxios.post('/calcul/calculation', params).then(res => res.data); },
-
-
     //供应商注册
     registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },
 
     //登录接口
     login:params => { return customerAxios.post('/login?'+ qs.stringify(params)).then(res => res.data); },
+    //上传接口 营业执照
+    upload:params => { return customerAxios.post('/updateContent', params).then(res => res.data); },
 }

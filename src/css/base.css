@@ -25,7 +25,13 @@ html,body{ min-width:1349px;width:100%;height:100%;background:rgba(244, 244, 244
 .color255,.color255 *{
     color:#fff;
 }
+.colorYellow{
+    color:rgba(255,166,50,1);
+}
 /* 定义字体大小 */
+.font0{
+    font-size: 0px;
+}
 .font12{
     font-size: 12px;
 }

@@ -28,7 +28,7 @@
     </div>
 </template>
 <script>
-
+import {customerModule} from '../api/main';
 export default {
     props:{
         multiple:{
@@ -37,12 +37,16 @@ export default {
         },
         showMore:{
             default:true
+        },
+        saveType:{
+            default:'customerLicense'//默认为市场客户的类型
         }      
     },
   data(){
       return {
         fileList:[],
-        tipMessage:''
+        tipMessage:'',
+        formData:''
       }
   },
   methods:{
@@ -54,6 +58,8 @@ export default {
           if(postFiles.length==0){return}
           if(this.valiateType(postFiles[0])&&this.valiateSize(postFiles[0])){
               this.fileList.push(postFiles[0]);
+              this.uploadParams(this.fileList[0]);
+              this.uploadFile();
           }
           
       },
@@ -83,15 +89,16 @@ export default {
          let form = new FormData(); // FormData 对象
          if (this.fileList.length > 0) {
             form.append("file", file); // 文件对象
+            form.append("saveType", this.saveType); // 保存类型
             this.formData=form;
          }
        },
        progressFile(){
 
        },
-      uploadFile(file){//调接口函数
-       this.$router.push('/submited')
-        uploadFileModuleAPI.upload(this.formData,this.progressFile).then(res=>{
+      uploadFile(){//调接口函数
+    //    this.$router.push('/submited')
+        customerModule.upload(this.formData).then(res=>{
            
         });
       },
