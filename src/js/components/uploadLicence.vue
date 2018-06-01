@@ -46,7 +46,8 @@ export default {
       return {
         fileList:[],
         tipMessage:'',
-        formData:''
+        formData:'',
+        // imgUrl:''
       }
   },
   methods:{
@@ -58,8 +59,7 @@ export default {
           if(postFiles.length==0){return}
           if(this.valiateType(postFiles[0])&&this.valiateSize(postFiles[0])){
               this.fileList.push(postFiles[0]);
-              this.uploadParams(this.fileList[0]);
-              this.uploadFile();
+              this.uploadParams(postFiles[0]);
           }
           
       },
@@ -98,11 +98,17 @@ export default {
        },
       uploadFile(){//调接口函数
     //    this.$router.push('/submited')
+        if(!this.hasFile) return;
         customerModule.upload(this.formData).then(res=>{
-           
+           console.log(res)
+           if(res.error==0){
+            //    this.imgUrl=res.url;
+            this.$router.push('/submited')
+           }
         });
       },
       emitHandleRemove(){//删除
+            // this.imgUrl='';
             this.fileList=[];
       },
       previewImg(){//预览图片
