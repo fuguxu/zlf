@@ -35,6 +35,7 @@
         methods:{
             loginOut(){
                 localStorage.removeItem('role');
+                localStorage.removeItem('userInfo');
                 window.location.href='home.html';
             }
         },

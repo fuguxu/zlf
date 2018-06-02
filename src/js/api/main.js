@@ -41,4 +41,6 @@ export const customerModule={
     login:params => { return customerAxios.post('/login?'+ qs.stringify(params)).then(res => res.data); },
     //上传接口 营业执照
     upload:params => { return customerAxios.post('/updateContent', params).then(res => res.data); },
+    //获取当前登陆人
+    getCurrentUser:params => { return customerAxios.post('/getUser').then(res => res.data); },
 }

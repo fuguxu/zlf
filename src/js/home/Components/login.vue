@@ -98,9 +98,11 @@ export default {
                     let data =res.data;
                     if(data.type==0){
                         localStorage.setItem('role','client');
+                        AppUtil.setCurrentUserInfo(data);
                         window.location.href='main.html#/rent';
                     }else if(data.type==1){
                         localStorage.setItem('role','supplier');
+                        AppUtil.setCurrentUserInfo(data);
                         window.location.href='main.html#/trade';
                     }
                     

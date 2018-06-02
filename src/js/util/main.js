@@ -23,3 +23,10 @@ s.findWhere=function(list,key,value){
     }
     return false
 }
+
+s.getCurrentUserInfo=function(){
+   return JSON.parse(localStorage.getItem('userInfo'))
+}
+s.setCurrentUserInfo=function(data){
+    localStorage.setItem('userInfo',JSON.stringify(data))
+ }

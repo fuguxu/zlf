@@ -3,8 +3,8 @@
         <div class="account_content">
             <div class="account_left" :class="{high:role=='supplier'}">
                 <div class="account_icon">
-                    <img class="icon" src="../../../img/u1973.png" alt="">
-                    <div class="title">金凤凰家具</div>
+                    <img class="icon" :src="user.userHeadimg" alt="">
+                    <div class="title">{{user.userAbbr}}</div>
                 </div>
                 <ul class="router_list">
                     <li v-for="(item,index) in muens" :key="index" class="item">
@@ -71,7 +71,8 @@ export default {
                     icon:require('../../../img/u3703.png')
                 }
             ],
-            role:''
+            role:'',
+            user:{}
         }
     },
     methods:{
@@ -83,7 +84,7 @@ export default {
         this.role=localStorage.getItem('role');
         this.muens=this.role=='client'?this.clientMuen:this.supplier;
         this.changeAccount(AppUtil.findWhere(this.muens,'path',this.$route.path));
-        
+        this.user=AppUtil.getCurrentUserInfo();
     }
 }
 </script>
@@ -116,6 +117,7 @@ export default {
                     width:100px;
                     height:100px;
                     margin:19px 0 5px 0;
+                    border-radius: 50%;
                 }
                 .title{
                     font-size: 15px;

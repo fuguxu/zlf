@@ -1,7 +1,7 @@
 <template>
     <div class="avatar_container">
         <span class="avatar_text">头像</span>
-        <img class="icon" src="../../../../img/u1973.png" alt="">
+        <img class="icon" :src="user.userHeadimg" alt="">
         <div>
             <label for="fileId" class="label-file">
                 <span>修改头像</span>
@@ -17,7 +17,7 @@
 export default {
     data(){
         return {
-
+            user:{}
         }
     },
     methods:{
@@ -28,6 +28,9 @@ export default {
           if (!this.multiple) { postFiles = postFiles.slice(0, 1); }
           if(postFiles.length==0){return}
       },
+    },
+    created(){
+        this.user=AppUtil.getCurrentUserInfo();
     }
 }
 </script>
@@ -44,6 +47,7 @@ export default {
     .icon{
         width:150px;
         height:150px;
+        border-radius: 50%;
         margin:0px 10px 0px 40px;
     }
     .label-file{

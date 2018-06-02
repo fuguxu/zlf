@@ -1,9 +1,9 @@
 <template>
     <div class="account_center">
-        <span class="user_name">您好，新派公寓 <i class="icon el-icon-arrow-down"></i></span>
+        <span class="user_name">您好,{{user.userAbbr}} <i class="icon el-icon-arrow-down"></i></span>
         <div class="center_box">
             <div class="center">
-                <img class="user_icon" src="../../../img/u1388.png" alt="">
+                <img class="user_icon" :src="user.userHeadimg" alt="">
                 <a class="account_text" :href="renderHref()">账号中心</a>
                 <span class="line"></span>
                 <a class="account_text" href="javascript:;">退出</a>
@@ -15,13 +15,19 @@
 export default {
     data(){
         return {
-
+            user:{}
         }
     },
     methods:{
         renderHref(){
           return  localStorage.getItem('role')=='client'?'#/account/information':'#/account/company'
+        },
+        getCurrentUser(){
+           this.user=AppUtil.getCurrentUserInfo();
         }
+    },
+    created(){
+        this.getCurrentUser()
     }
 }
 </script>
@@ -70,6 +76,7 @@ export default {
                 .user_icon{
                     width:45px;
                     height: 45px;
+                    border-radius: 50%;
                 }
                 .account_text{
                     font-size: 14px;

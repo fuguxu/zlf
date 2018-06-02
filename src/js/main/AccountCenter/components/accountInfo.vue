@@ -2,15 +2,15 @@
     <div class="accountInfo">
         <div class="form_item" v-if="role=='supplier'">
             <div class="label">公司名称</div>
-            <div class="item_content">{{form.company}}</div>
+            <div class="item_content">{{form.userFullname}}</div>
         </div>
         <div class="form_item">
             <div class="label">会员名</div>
-            <div class="item_content">{{form.vipName}}</div>
+            <div class="item_content">{{form.userAbbr}}</div>
         </div>
         <div class="form_item">
             <div class="label">用户名</div>
-            <div class="item_content">{{form.userName}}</div>
+            <div class="item_content">{{form.loginName}}</div>
         </div>
         <div class="supplierInfo" v-if="role=='supplier'">
             <div class="form_item" >
@@ -38,7 +38,7 @@
             <div class="label" :class="{'label_input':isEdit}">公司地址</div>
             <div class="item_content">
                 <div v-if="isEdit">
-                    <el-select :disabled="!isEdit" v-model="form.provicen" @change="changProvicen" placeholder="请选择省份">
+                    <el-select :disabled="!isEdit" v-model="form.province" @change="changProvicen" placeholder="请选择省份">
                         <el-option 
                         v-for="item in provicen"
                         :key="item.name"
@@ -54,18 +54,18 @@
                         :value="item.name">
                         </el-option>
                     </el-select>
-                    <el-input :disabled="!isEdit" v-model="form.area" placeholder="详细地址"></el-input>
+                    <el-input :disabled="!isEdit" v-model="form.town" placeholder="详细地址"></el-input>
                 </div>
                 <div v-if="!isEdit" class="address">
-                    <span>{{form.provicen}}</span>
+                    <span>{{form.province}}</span>
                     <span>{{form.city}}</span>
-                    <span>{{form.area}}</span>
+                    <span>{{form.town}}</span>
                 </div>
             </div>
         </div>
         <div class="form_item">
             <span v-if="isEdit" @click="cancel" class="button cancel">取消</span>
-            <span v-if="isEdit" class="button sure">保存</span>
+            <span v-if="isEdit" @click="perfectUser" class="button sure">保存</span>
             <span v-if="!isEdit" @click="clickEdit" class="button">编辑</span>
         </div>
     </div>
@@ -74,6 +74,7 @@
 import provicen from '../../../../../static/provicen';
 import supplierType from '../../../components/supplierType';
 import bussinessProvince from '../../../components/bussinessProvince';
+import {customerModule} from '../../../api/main';
 export default {
     props:{
         role:{
@@ -83,26 +84,28 @@ export default {
     data(){
         return {
             form:{
-                company:'深圳市金凤凰家具集团',
+                userFullname:'深圳市金凤凰家具集团',
                 supplierType:'#活动板木家具  #固装家具  #家电  #空调',
                 provicence:'#广东省  #广西  #西藏  #新疆',
                 personNumber:'200',
-                vipName:'新派公寓',
-                userName:'13710353878',
-                email:'354480928@163.com',
-                provicen:'广东省',
-                city:'',
-                area:''
+                // vipName:'新派公寓',
+                // userName:'13710353878',
+                // email:'354480928@163.com',
+                // provicen:'广东省',
+                // city:'',
+                // area:''
             },
             isEdit:false,
             provicen:provicen,
-            city:[]
+            city:[],
         }
     },
     methods:{
-        changProvicen(value){
-            this.form.city='';
-            this.form.area='';
+        changProvicen(value,falg){
+            if(!falg){
+                this.form.city='';
+                this.form.town='';
+            }
            this.city=AppUtil.findWhere(this.provicen,'name',value).city;
         },
         clickEdit(){
@@ -113,14 +116,22 @@ export default {
             this.initData();
         },
         initData(){
-            this.form.provicen='广东省';
-            this.form.city='深圳';
-            this.form.area='招商街道沿山路火炬创业大厦';
+        },
+        perfectUser(){//完善信息
+            customerModule.saveOrderCustomerInfo(this.form).then(res=>{
+                if(res.statusCode){
+                    AppUtil.setCurrentUserInfo(this.form);
+                    this.isEdit=false;
+                }
+            })
         }
     },
     mounted(){
-        this.changProvicen(this.form.provicen);
-        this.initData();
+        this.changProvicen(this.form.province,true);
+        // this.initData();
+    },
+    created(){
+        this.form=AppUtil.getCurrentUserInfo();
     },
     components:{
         supplierType,

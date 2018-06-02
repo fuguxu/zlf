@@ -9,15 +9,15 @@
         <div class="form_item">
             <div class="label label_input">职位</div>
             <div class="item_content">
-                <el-input :disabled="!isEdit" v-model="form.job" placeholder=""></el-input>
+                <el-input :disabled="!isEdit" v-model="form.position" placeholder=""></el-input>
             </div>
         </div>
         <div class="form_item">
             <div class="label label_input">性别</div>
             <div class="item_content">
                 <el-select :disabled="!isEdit" v-model="form.sex"  placeholder="">
-                    <el-option :key="1" label="男" value="1"></el-option>
-                    <el-option :key="0" label="女" value="0"></el-option>
+                    <el-option :key="1" label="男" :value="1"></el-option>
+                    <el-option :key="0" label="女" :value="0"></el-option>
                 </el-select>
             </div>
         </div>
@@ -27,20 +27,21 @@
         </div>
         <div class="form_item foot_item">
             <span v-if="isEdit" @click="cancel" class="button cancel">取消</span>
-            <span v-if="isEdit" class="button sure">保存</span>
+            <span v-if="isEdit" @click="perfectUser" class="button sure">保存</span>
             <span v-if="!isEdit" @click="clickEdit" class="button">编辑</span>
         </div>
     </div>
 </template>
 <script>
+import {customerModule} from '../../../api/main';
 export default {
     data(){
         return {
             form:{
-                name:'张三',
-                job:'总监',
-                sex:'1',
-                email:'354480928@163.com',
+                name:'',
+                position:'',
+                sex:'',
+                email:'',
             },
             isEdit:false
         }
@@ -52,6 +53,17 @@ export default {
         cancel(){
             this.isEdit=false;
         },
+        perfectUser(){//完善信息
+            customerModule.saveOrderCustomerInfo(this.form).then(res=>{
+                if(res.statusCode){
+                    AppUtil.setCurrentUserInfo(this.form);
+                    this.isEdit=false;
+                }
+            })
+        }
+    },
+    created(){
+        this.form=AppUtil.getCurrentUserInfo();
     }
 }
 </script>
