@@ -29,7 +29,7 @@ export default {
                     url:require('../../../img/u319.png')
                 },
                 {
-                    url:require('../../../img/u50.jpg')
+                    url:require('../../../img/u10.png')
                 }
             ],
             activeUrl:'',
