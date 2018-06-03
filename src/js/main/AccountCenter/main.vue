@@ -78,13 +78,19 @@ export default {
     methods:{
         changeAccount(item){
             this.title=item.hideTitle?'':item.name;
+        },
+        updateHeaderImg(imgUrl){
+            this.user.userHeadimg=imgUrl;
         }
     },
     mounted(){
         this.role=localStorage.getItem('role');
         this.muens=this.role=='client'?this.clientMuen:this.supplier;
         this.changeAccount(AppUtil.findWhere(this.muens,'path',this.$route.path));
-        this.user=AppUtil.getCurrentUserInfo();
+        AppUtil.getCurrentUserInfo(user=>{
+            this.user=user;
+        });
+        Bus.$on('updateHeaderImg',this.updateHeaderImg);
     }
 }
 </script>

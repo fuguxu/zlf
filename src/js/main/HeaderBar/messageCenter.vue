@@ -3,15 +3,28 @@
         <img class="message_icon" src="../../../img/u1405.png" alt="">
         <!-- <span class="message_text">消息</span> -->
         <router-link class="message_text" to="/message">消息</router-link>
-        <span class="number">7</span>
+        <span v-if="number" class="number">{{number}}</span>
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-
+            number:''
         }
+    },
+    methods:{
+        getNotReadNum(){
+            customerModule.getNotReadNum().then(res=>{
+                if(res.statusCode=='1'){
+                    this.number=res.data;
+                }
+            })
+        }
+    },
+    mounted(){
+        this.getNotReadNum();
     }
 }
 </script>

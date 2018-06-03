@@ -1,3 +1,4 @@
+import {customerModule} from '../api/main';
 let s=module.exports=global.AppUtil={};
 
 // 绑定事件
@@ -11,7 +12,7 @@ s.transferTimeToString=function(time,format='-',hAndM=false){
     let y=dateTime.getFullYear();
     let m=dateTime.getMonth()+1;m=m>=10?m:'0'+m;
     let d=dateTime.getDate();d=d>=10?d:'0'+d;
-    let hourAndMinute=hAndM?' '+dateTime.toTimeString().slice(0,5):'';
+    let hourAndMinute=hAndM?' '+dateTime.toTimeString().slice(0,8):'';
     return y+format+m+format+d+hourAndMinute;
 }
 
@@ -24,9 +25,18 @@ s.findWhere=function(list,key,value){
     return false
 }
 
-s.getCurrentUserInfo=function(){
-   return JSON.parse(localStorage.getItem('userInfo'))
+s.getCurrentUserInfo=function(cb){
+   if(!localStorage.getItem('zlfuserInfo')){
+       customerModule.getCurrentUser().then(res=>{
+           if(res.statusCode=='1'){
+               s.setCurrentUserInfo(res.data);
+               cb(res.data);
+           }
+       })
+   }else{
+       cb(JSON.parse(localStorage.getItem('zlfuserInfo')))
+   }
 }
 s.setCurrentUserInfo=function(data){
-    localStorage.setItem('userInfo',JSON.stringify(data))
+    localStorage.setItem('zlfuserInfo',JSON.stringify(data))
  }

@@ -6,34 +6,52 @@
         </div>
         <div class="content">
             <div class="content_title">
-                <p class="title_text">融资服务合作框架协议审核通过通知</p>
-                <p class="time">2018-04-23 23:01:05</p>
+                <p class="title_text">{{data.msgTitle}}</p>
+                <p class="time">{{data.sentTime}}</p>
+            </div>
+            <div class="content_text">
+                {{data.msgContent}}
             </div>
         </div>
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            title:'全部消息'
+            data:{},
+            title:''
         }
-    },
-    mounted(){
-           let path=this.$route.path.split('/');
-            if(path.indexOf('all')>-1){
-                this.title='全部消息'
-            }else if(path.indexOf('read')>-1){
-                this.title='已读消息'
-            }else if(path.indexOf('unread')>-1){
-                this.title='未读消息'
-            }
     },
     methods:{
         goBack(){
             this.$router.go(-1);
+        },
+        getMsgDetail(){
+            customerModule.getMsgDetail({
+                id:this.$route.query.id
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.data=res.data;
+                    this.data.sentTime=AppUtil.transferTimeToString(this.data.sentTime,'-',true);
+                    //让头部的未读消息刷新
+
+                }
+            })
         }
-    }
+    },
+    mounted(){
+        let path=this.$route.path.split('/');
+        if(path.indexOf('all')>-1){
+            this.title='全部消息'
+        }else if(path.indexOf('read')>-1){
+            this.title='已读消息'
+        }else if(path.indexOf('unread')>-1){
+            this.title='未读消息'
+        }
+        this.getMsgDetail();
+    },
 }
 </script>
 <style lang="scss" scoped>
@@ -79,6 +97,10 @@ export default {
                 font-size: 13px;
                 color: #292B2C;
             }
+        }
+        .content_text{
+            padding-top:40px;
+            line-height: 30px;
         }
     }
 </style>

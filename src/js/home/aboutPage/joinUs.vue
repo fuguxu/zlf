@@ -1,10 +1,12 @@
 <template>
+<div>
+  <div class="banner"></div>
   <div class="join_container">
       <div class="header">
-          <p class="chance">职 业 机 会</p>
-          <p class="career">Careers</p>
+          <!-- <p class="chance">职 业 机 会</p>
+          <p class="career">Careers</p> -->
+          <p class="email font20">简历投递至：hr@zulifang.co</p>
           <p class="line"></p>
-          <p class="email">简历投递至：hr@zulifang.co</p>
       </div>
       <div class="content">
           <div class="item">
@@ -69,7 +71,7 @@
           </div>
           <div class="item">
               <div>
-                <img src="../../../img/u42.png" alt="">
+                <img src="../../../img/u49.png" alt="">
               </div>
               <div class="job">供应链金融</div>
               <div class="text">
@@ -80,6 +82,7 @@
               </div>
           </div>
       </div>
+  </div>
   </div>
 </template>
 <script>
@@ -92,70 +95,73 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.banner{
+  height: 600px;
+  background: url('../../../img/u3353.png') center no-repeat;
+  background-size: cover;
+}
     .join_container{
-      width:1140px;
+      width:1160px;
       margin:0 auto;
       background: #fff;
-      box-shadow: 0 0 5px rgba(0,0,0,0.5);
-      margin-top:-1px;
+      // box-shadow: 0 0 5px rgba(0,0,0,0.5);
+      margin-top:-124px;
       margin-bottom: 30px;
+      border-radius: 2px;
       padding-bottom: 62px;
     }
     .header{
       text-align: center;
-      padding-top: 70px;
-      color: rgba(0, 0, 0, 0.73);
-      .chance{
-        line-height: 35px;
-        font-size: 24px;
-        padding-bottom: 17px;
-      }
-      .career{
-        font-size: 20px;
-        font-family: 'SimHei';
-        line-height: 27px;
-        padding-bottom: 22px;
-      }
+      padding-top: 56px;
+      // color: rgba(0, 0, 0, 0.73);
+      // .chance{
+      //   line-height: 35px;
+      //   font-size: 24px;
+      //   padding-bottom: 17px;
+      // }
+      // .career{
+      //   font-size: 20px;
+      //   font-family: 'SimHei';
+      //   line-height: 27px;
+      //   padding-bottom: 22px;
+      // }
       .email{
-        font-size:18px;
-        line-height: 24px;
+        padding-bottom:44px;
       }
       .line{
-        width:351px;
+        width:330px;
         margin:0 auto;
-        border-top: 1px solid rgba(188,188,188,0.7);
-        padding-bottom: 30px;
+        border-top: 1px solid rgba(219,219,219,1);
+        // padding-bottom: 30px;
       }
     }
     .content{
       display: flex;
       flex-flow: wrap;
       .item{
-        width:450px;
+        width:372px;
         padding-top:80px;
         text-align: center;
         &:nth-child(odd){
-          margin-left:87px;
+          margin-left:114px;
         }
         &:nth-child(even){
-          margin-left:122px;
-        }
-        img{
-          width:55px;
-          height:55px;
+          margin-left:188px;
         }
         .job{
           line-height: 35px;
-          font-size: 24px;
-          color: rgba(0, 0, 0, 0.73);
+          font-size: 20px;
           padding-top:13px;
           padding-bottom: 15px;
         }
         .text{
           font-size: 14px;
           text-align: left;
-          color: rgba(0, 0, 0, 0.73);
+          color: rgba(102, 102, 102, 1);
           line-height: 24px;
+          p{
+            padding-bottom: 20px;
+          }
         }
       }
     }

@@ -22,6 +22,7 @@
     import messageCenter from './messageCenter.vue';
     import clientRight from './clientRight.vue';
     import supplierRight from './supplierRight.vue';
+    import {customerModule} from '../../api/main';
     export default{
         data(){
             return{
@@ -34,9 +35,14 @@
         },
         methods:{
             loginOut(){
-                localStorage.removeItem('role');
-                localStorage.removeItem('userInfo');
-                window.location.href='home.html';
+                customerModule.logout().then(res=>{
+                //     if(res.statusCode=='1'){
+                        localStorage.removeItem('role');
+                        localStorage.removeItem('zlfuserInfo');
+                        window.location.href='/home.html';
+                    // }
+                })
+                
             }
         },
         components:{

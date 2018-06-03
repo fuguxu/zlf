@@ -1,6 +1,18 @@
 import axios from 'axios';
 import qs from 'qs';
 
+axios.defaults.validateStatus=(status)=>{
+    console.log(status)
+    if (status === 302) {//没登陆
+        localStorage.removeItem('role');
+        localStorage.removeItem('userInfo');
+        window.location.href='/home.html';
+        return false;
+    } else {
+        return true
+    };
+}
+
 var TIME_OUT=50000;
 
 var zlf_base_prefix
@@ -30,6 +42,10 @@ export const customerModule={
     checkInfo:params => { return customerAxios.post('/user/checkInfo', params).then(res => res.data); },
     //获取验证码
     getVerification:params => { return customerAxios.get('/verification', {params:params}).then(res => res.data); },
+    //重新绑定邮箱时 获取验证码
+    verificationMail:params => { return customerAxios.get('/verificationMail', {params:params}).then(res => res.data); },
+    //绑定邮箱接口
+    changeMail:params => { return customerAxios.get('/changeMail', {params:params}).then(res => res.data); },
     //保存客户信息联系人
     saveOrderCustomerInfo:params => { return customerAxios.post('/user/perfectUser', params).then(res => res.data); },
     //租赁测算体验
@@ -39,8 +55,15 @@ export const customerModule={
 
     //登录接口
     login:params => { return customerAxios.post('/login?'+ qs.stringify(params)).then(res => res.data); },
-    //上传接口 营业执照
+    //退出登陆接口
+    logout:params => { return customerAxios.post('/logout').then(res => res.data); },
+    //上传接口 
     upload:params => { return customerAxios.post('/updateContent', params).then(res => res.data); },
     //获取当前登陆人
     getCurrentUser:params => { return customerAxios.post('/getUser').then(res => res.data); },
+
+    //获取消息接口
+    getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },
+    getMsgDetail:params => { return customerAxios.get('/msg/getMsgDetail', {params:params}).then(res => res.data); },
+    getNotReadNum:params => { return customerAxios.get('/msg/getNotReadNum', {params:params}).then(res => res.data); },
 }

@@ -3,58 +3,62 @@
         <ul class="message">
             <li class="item title">{{title}}</li>
             <li v-for="(item,index) in messageList" :key="index" class="item message_item">
-                <span class="dot" v-if="item.status=='1'"></span>
-                <a class="title_text" :href="renderHref()" :class="{unread:item.status=='1'}">{{item.title}}</a>
-                <span class="time">{{item.time}}</span>
+                <span class="dot" v-if="item.readed=='0'"></span>
+                <a class="title_text" :href="renderHref(item)" :class="{unread:item.readed=='0'}">{{item.msgTitle}}</a>
+                <span class="time">{{renderTime(item)}}</span>
             </li>
-            <li class="item foot">
+            <li class="item foot" v-if="total">
                 <span>共有{{total}}条，每页显示：15条</span>
-                <pagination :pageSize="pageSize" :total="total"></pagination>
+                <pagination @currentChange="currentChange" :pageSize="pageSize" :total="total"></pagination>
             </li>
         </ul>
     </div>
 </template>
 <script>
 import pagination from '../../components/pagination';
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            messageList:[
-                {
-                    title:'市场客户营业执照审批不通过通知',
-                    status:'0',
-                    time:'2018-04-23 23:01:05'
-                }
-            ],
+            messageList:[],
             title:'全部消息',
             pageSize:15,
-            total:30
+            pageNo:1,
+            total:0
         }
     },
     methods:{
-        renderHref(){
-            let path ='#'+this.$route.path.replace('list','detail');
+        renderHref(item){
+            let path ='#'+this.$route.path.replace('list',`detail?id=${item.id}`);
             return path
+        },
+        renderTime(item){
+          return  AppUtil.transferTimeToString(item.sentTime,'-',true)
+        },
+        getMsg(type){
+            customerModule.getMsg({
+                pageNo:this.pageNo,
+                pageSize:this.pageSize,
+                type:type
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.messageList=res.data.records;
+                    this.total=res.data.total;
+                }
+            })
+        },
+        currentChange(currentPage){
+            this.pageNo=currentPage;
+            this.getMsg(this.status);
         }
     },
     mounted(){
-        for(var i=0;i<15;i++){
-           this.messageList.push({
-               title:'市场客户营业执照审批不通过通知',
-                status:i%2==0?'1':'0',
-                time:'2018-04-23 23:01:05'
-           })
+        if(this.status=='0'){
+            this.title='未读消息'
+        }else if(this.status=='1'){
+            this.title='已读消息'
         }
-        if(this.status){
-            this.messageList=this.messageList.filter(item=>{
-                return item.status==this.status;
-            })
-            if(this.status=='0'){
-                this.title='已读消息'
-            }else if(this.status=='1'){
-                this.title='未读消息'
-            }
-        }
+        this.getMsg(this.status);
     },
     computed:{
         status(){

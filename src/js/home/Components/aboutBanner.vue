@@ -15,7 +15,7 @@ export default {
 <style lang="scss" scoped>
     .about_banner{
         width:100%;
-        height: 522px;
+        height: 600px;
         background: url('../../../img/u3353.png') center no-repeat;
         background-size: cover;
     }

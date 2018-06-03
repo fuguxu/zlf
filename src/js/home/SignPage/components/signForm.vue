@@ -101,7 +101,8 @@ export default {
           activepassWord2:false,
           passWordErrorMessage2:'',
 
-          visible:false
+          visible:false,
+          setTime:null
       }
   },
   methods:{
@@ -157,6 +158,18 @@ export default {
       getVerification(){//获取验证码接口
             customerModule.getVerification({
                 mobile:this.userName
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.setTime= setInterval(()=>{
+                        if(this.codeTime==0){
+                            this.codeText='重新获取验证码';
+                            clearInterval(this.setTime);
+                        }else{
+                            this.codeTime--;
+                            this.codeText=this.codeTime+'秒后可重发';
+                        }
+                    },1000)
+                }
             })
       },
       getCode(){//获取验证码
@@ -165,15 +178,6 @@ export default {
         if(this.codeTime<=0){
             this.codeTime=120;
         }
-        var set= setInterval(()=>{
-             if(this.codeTime==0){
-                 this.codeText='重新获取验证码';
-                 clearInterval(set);
-             }else{
-                this.codeTime--;
-                this.codeText=this.codeTime+'秒后可重发';
-             }
-         },1000)
       },
       blurpassWord(){
           this.activepassWord=false;

@@ -3,7 +3,7 @@
         <div class="form_item contact_form_item">
             <div class="label label_input">联系人姓名</div>
             <div class="item_content">
-                <el-input :disabled="!isEdit" v-model="form.name" placeholder=""></el-input>
+                <el-input :disabled="!isEdit" v-model="form.contacts" placeholder=""></el-input>
             </div>
         </div>
         <div class="form_item">
@@ -38,7 +38,7 @@ export default {
     data(){
         return {
             form:{
-                name:'',
+                contacts:'',
                 position:'',
                 sex:'',
                 email:'',
@@ -63,7 +63,9 @@ export default {
         }
     },
     created(){
-        this.form=AppUtil.getCurrentUserInfo();
+        AppUtil.getCurrentUserInfo(user=>{
+            this.form=user;
+        });
     }
 }
 </script>

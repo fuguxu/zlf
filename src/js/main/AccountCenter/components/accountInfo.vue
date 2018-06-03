@@ -131,7 +131,9 @@ export default {
         // this.initData();
     },
     created(){
-        this.form=AppUtil.getCurrentUserInfo();
+        AppUtil.getCurrentUserInfo(user=>{
+            this.form=user;
+        });
     },
     components:{
         supplierType,

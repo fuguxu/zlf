@@ -23,7 +23,9 @@ export default {
           return  localStorage.getItem('role')=='client'?'#/account/information':'#/account/company'
         },
         getCurrentUser(){
-           this.user=AppUtil.getCurrentUserInfo();
+           AppUtil.getCurrentUserInfo(user=>{
+                this.user=user;
+            });
         }
     },
     created(){

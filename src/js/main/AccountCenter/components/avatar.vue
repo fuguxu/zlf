@@ -14,10 +14,14 @@
     </div>
 </template>
 <script>
+import {customerModule} from '../../../api/main';
 export default {
     data(){
         return {
-            user:{}
+            user:{},
+            formData:{},
+            saveType:'headerimg',
+            tipMessage:''
         }
     },
     methods:{
@@ -27,10 +31,62 @@ export default {
           this.$refs.form.reset();//form表单的置空 兼容ie10 
           if (!this.multiple) { postFiles = postFiles.slice(0, 1); }
           if(postFiles.length==0){return}
+          if(this.valiateSize(postFiles[0])&&this.valiateType(postFiles[0])){
+              this.uploadParams(postFiles[0]);
+            this.upload();
+          }
+      },
+       //生成上传附件参数的函数
+      uploadParams(file){
+         let form = new FormData(); // FormData 对象
+            form.append("file", file); // 文件对象
+            form.append("saveType", this.saveType); // 保存类型
+            this.formData=form;
+       },
+      upload(){
+          customerModule.upload(this.formData).then(res=>{
+              if(res.error==0){
+                  this.perfectUser(res.url);
+              }
+          })
+      },
+      perfectUser(headerImgUrl){//修改用户头像接口
+            customerModule.saveOrderCustomerInfo({
+                userHeadimg:headerImgUrl
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.user.userHeadimg=headerImgUrl;
+                    AppUtil.setCurrentUserInfo(this.user);
+                    Bus.$emit('updateHeaderImg',headerImgUrl);
+                }
+            })
+      },
+      valiateSize(file){
+          let size=file.size;
+          if(size>10*1024*1024){
+              this.tipMessage='文件超过限制大小！';
+              return false
+          }else{
+              this.tipMessage='';
+              return true;
+          }
+      },
+      valiateType(file){
+          let typeList=['jpg','bmp','png'];
+          let type=file.name.substr(file.name.lastIndexOf('.')+1);
+          if(typeList.indexOf(type)!=-1){
+              this.tipMessage='';
+              return true
+          }else{
+              this.tipMessage='上传格式为jpg/bmp/png';
+              return false
+          }
       },
     },
     created(){
-        this.user=AppUtil.getCurrentUserInfo();
+        AppUtil.getCurrentUserInfo(user=>{
+            this.user=user;
+        });
     }
 }
 </script>

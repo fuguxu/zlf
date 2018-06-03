@@ -5,10 +5,10 @@
             <div class="item_content">{{form.email}}</div>
         </div>
         <div class="edit_item" :class="{show:isEdit}" v-if="isEdit">
-            <p class="tel_text">请获取13710353888手机验证码</p>
+            <p class="tel_text">请获取{{form.loginName}}手机验证码</p>
             <div class="form_item">
                 <div class="item_content">
-                    <el-input :maxlength="6" @blur="blurIdentifyCode"  v-model="form.code" placeholder="输入验证码">
+                    <el-input :maxlength="6" @blur="blurIdentifyCode"  v-model="code" placeholder="输入验证码">
                         <i slot="suffix" @click="getCode" class="identifyCode" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
                     </el-input>
                     <div class="error_message" v-if="codeErrorMessage">
@@ -20,7 +20,7 @@
             <p class="tel_text">请输入新邮箱地址</p>
             <div class="form_item">
                 <div class="item_content">
-                    <el-input @blur="blurEmail"  v-model="form.newEmail" placeholder="输入正确的邮箱地址"></el-input>
+                    <el-input @blur="blurEmail"  v-model="newEmail" placeholder="输入正确的邮箱地址"></el-input>
                     <div class="error_message" v-if="emailErrorMessage">
                         <i class="icon el-icon-remove"></i>
                         <span>{{emailErrorMessage}}</span>
@@ -30,48 +30,70 @@
         </div>
         <div class="form_item">
             <span  v-if="isEdit" @click="cancel" class="button cancel">取消</span>
-            <span  v-if="isEdit" class="button sure">确认绑定</span>
+            <span  v-if="isEdit" @click="sureBind" class="button sure">确认绑定</span>
             <span  v-if="!isEdit" @click="clickEdit" class="button bind" :class="{hide:isEdit}">重新绑定</span>
         </div>
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            form:{
-                email:'354480928@163.com',
-                code:'',
-                newEmail:''
+            form:{   
             },
+            newEmail:'',
+            code:'',
             isEdit:false,
             emailErrorMessage:'',
             codeErrorMessage:'',
             codeText:'获取验证码',
             codeTime:120,
+            setTime:null
         }
     },
     methods:{
+        initData(){
+            this.newEmail='';
+            this.code='';
+            clearInterval(this.setTime);
+            this.codeText='获取验证码';
+            this.codeTime=120;
+            this.emailErrorMessage='';
+            this.codeErrorMessage='';
+        },
         getCode(){//获取验证码
             if(this.codeTime<120&&this.codeTime>0) return;
             if(this.codeTime<=0){
                 this.codeTime=120;
             }
-            var set= setInterval(()=>{
-                if(this.codeTime==0){
-                    this.codeText='重新获取验证码';
-                    clearInterval(set);
+            this.getVerification();//调接口
+        },
+        getVerification(){//获取验证码接口
+            customerModule.verificationMail({
+                mobile:this.form.loginName
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.codeErrorMessage='';
+                    this.setTime= setInterval(()=>{
+                        if(this.codeTime==0){
+                            this.codeText='重新获取验证码';
+                            clearInterval(this.setTime);
+                        }else{
+                            this.codeTime--;
+                            this.codeText=this.codeTime+'秒后可重发';
+                        }
+                    },1000)
                 }else{
-                    this.codeTime--;
-                    this.codeText=this.codeTime+'秒后可重发';
+                    this.codeErrorMessage='获取验证码失败，请重新获取！';
                 }
-            },1000)
+            })
         },
         blurIdentifyCode(){
-          if(!this.form.code){
+          if(!this.code){
               this.codeErrorMessage='请输入验证码！';
               return false;
-          }else if(this.form.code.length<6){
+          }else if(this.code.length<6){
               this.codeErrorMessage='验证码长度不够！'||'验证码不正确！';
               return false;
           } else{
@@ -81,7 +103,7 @@ export default {
         },
         blurEmail(){
             var reg=/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-            if(!reg.test(this.form.newEmail)){
+            if(!reg.test(this.newEmail)){
                this.emailErrorMessage= '该邮箱将作为租赁服务的重要联系工具，请务必正确输入！';
                return false
             }else{
@@ -89,12 +111,39 @@ export default {
                 return true
             }
         },
+        sureBind(){//确认绑定
+            if(this.blurIdentifyCode()&&this.blurEmail()){
+                this.changeMail();
+            }
+        },
+        changeMail(){//重新绑定接口
+            customerModule.changeMail({
+                email:this.newEmail,
+                code:this.code
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.isEdit=false;
+                    this.codeErrorMessage='';
+                    this.form.email=this.newEmail;
+                    AppUtil.setCurrentUserInfo(this.form);
+                    this.initData();
+                }else{
+                    this.codeErrorMessage='验证码不正确！';
+                }
+            })
+        },
         clickEdit(){
             this.isEdit=true;
         },
         cancel(){
             this.isEdit=false;
+            this.initData();
         },
+    },
+    created(){
+        AppUtil.getCurrentUserInfo(user=>{
+            this.form={...this.form,...user}
+        })
     }
 }
 </script>

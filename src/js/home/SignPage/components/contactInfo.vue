@@ -133,7 +133,7 @@ export default {
         },
         saveOrderCustomerInfo(){//保存客户联系人信息
             let parmas={
-                name:this.contactName,
+                contacts:this.contactName,
                 position:this.positionJob,
                 sex:this.sex,
                 email:this.email
