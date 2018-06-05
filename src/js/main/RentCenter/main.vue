@@ -18,7 +18,7 @@
                 </el-menu>
                 <div class="new_rent">
                     <i class="icon el-icon-circle-plus"></i>
-                    <span class="account_text">发起新租赁</span>
+                    <span @click="visible=true" class="account_text">发起新租赁</span>
                 </div>
             </div>
             <div class="right">
@@ -40,8 +40,8 @@
                     <components :is="isCp" @updateCp="updateCp"></components>
                 </div>
             </div>
-            
         </div>
+        <rentNameDialog :visible.sync="visible"></rentNameDialog>
     </div>
 </template>
 <script>
@@ -50,6 +50,7 @@ import contractList from './components/contractList';
 import contractDetail from './components/contractDetail';
 import rentMoney from './components/rentMoney';
 import saleService from './components/saleService';
+import rentNameDialog from './components/rentNameDialog';
 export default {
     data(){
         return {
@@ -94,7 +95,8 @@ export default {
             subTitle:'',
             thirdTitle:'',
             activeIndex:'',
-            isCp:''
+            isCp:'',
+            visible:false
         }
     },
     methods:{
@@ -136,7 +138,8 @@ export default {
         contractList,
         contractDetail,
         rentMoney,
-        saleService
+        saleService,
+        rentNameDialog
     }
 }
 </script>
