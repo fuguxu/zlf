@@ -6,8 +6,12 @@
                 <span @click="close" class="close font18">×</span>
             </div>
             <el-form :rules="rules" :model="form" ref="form"  class="demo-ruleForm">
-                <el-form-item prop="name" required>
-                    <el-input  v-model="form.name" placeholder="请输入您的项目名称"></el-input>
+                <el-form-item prop="projectName">
+                    <el-input  v-model="form.projectName" placeholder="请输入您的项目名称"></el-input>
+                    <div class="error_message" v-if="tipMessage">
+                        <i class="icon el-icon-remove"></i>
+                        <span>{{tipMessage}}</span>
+                    </div>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="submitForm">提交</el-button>
@@ -17,17 +21,19 @@
     </div>
 </template>
 <script>
+import {customerModule} from '../../../api/main';
 export default {
     props:['visible'],
     data(){
         return {
             form:{
-                name:''
+                projectName:''
             },
+            tipMessage:'',
             rules: {
-                name: [
-                    { required: true, message: '请输入项目名称', trigger: 'blur,change' },
-                ],
+                // projectName:[
+                //     { required: true, message: '请输入项目名称', trigger: 'blur,change' },
+                // ],
             }
         }
     },
@@ -43,6 +49,22 @@ export default {
             //         return false
             //     }
             // });
+            if(!this.form.projectName){
+                this.tipMessage='请输入项目名称';
+            }else{
+                this.tipMessage='';
+                this.saveCustomerItem();
+            }
+        },
+        saveCustomerItem(){
+            customerModule.saveCustomerItem({
+                projectName:this.form.projectName
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.$emit('updateItem',true);
+                    this.close();
+                }
+            })
         }
     },
     mounted(){
@@ -95,5 +117,8 @@ export default {
             border-radius:14px;
             height:50px;
         }
+    }
+    .error_message{
+        position: absolute;
     }
 </style>

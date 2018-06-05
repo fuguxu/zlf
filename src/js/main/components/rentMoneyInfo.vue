@@ -1,8 +1,8 @@
 <template>
     <el-form ref="form" :model="form" label-width="10px">
         <el-form-item label=" ">
-            <el-input :placeholder="placeholderPerson" @blur="valiatePerson" v-model="form.person">
-                <i slot="suffix" class="iconfont icon-close" @click="form.person=''" v-if="form.person"></i>
+            <el-input :placeholder="placeholderPerson" @blur="valiatePerson" v-model="form.name">
+                <i slot="suffix" class="iconfont icon-close" @click="form.name=''" v-if="form.name"></i>
             </el-input>
             <div class="error_message" v-if="personErrorMessage">
                 <i class="icon el-icon-circle-close"></i>
@@ -20,8 +20,8 @@
             </div>
         </el-form-item>
         <el-form-item label=" ">
-            <el-input :placeholder="placeholderJob" @blur="valiatejob" v-model="form.job">
-                <i slot="suffix" class="iconfont icon-close" @click="form.job=''" v-if="form.job"></i>
+            <el-input :placeholder="placeholderJob" @blur="valiatejob" v-model="form.position">
+                <i slot="suffix" class="iconfont icon-close" @click="form.position=''" v-if="form.position"></i>
             </el-input>
             <div class="error_message" v-if="jobErrorMessage">
                 <i class="icon el-icon-circle-close"></i>
@@ -29,8 +29,8 @@
             </div>
         </el-form-item>
         <el-form-item label=" ">
-            <el-input placeholder="请输入常用手机号码" @blur="valiatetel" :maxlength="11" v-model="form.tel">
-                <i slot="suffix" class="iconfont icon-close" @click="form.tel=''" v-if="form.tel"></i>
+            <el-input placeholder="请输入常用手机号码" @blur="valiatetel" :maxlength="11" v-model="form.mobile">
+                <i slot="suffix" class="iconfont icon-close" @click="form.mobile=''" v-if="form.mobile"></i>
             </el-input>
             <div class="error_message" v-if="telErrorMessage">
                 <i class="icon el-icon-circle-close"></i>
@@ -47,11 +47,12 @@
             </div>
         </el-form-item>
         <el-form-item label=" ">
-            <span class="button">提交</span>
+            <span @click="submit" class="button">提交</span>
         </el-form-item>
     </el-form>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     props:{
        placeholderPerson:{
@@ -59,15 +60,21 @@ export default {
        },
        placeholderJob:{
            default:'请输入对接人在贵司所担任职位'
+       },
+       orderNo:{
+
+       },
+       cusType:{
+
        }
     },
     data(){
         return {
             form:{
-                person:'',
+                name:'',
                 sex:'',
-                job:'',
-                tel:'',
+                position:'',
+                mobile:'',
                 email:''
             },
             personErrorMessage:'',
@@ -79,7 +86,7 @@ export default {
     },
     methods:{
         valiatePerson(){
-            if(!this.form.person){
+            if(!this.form.name){
                 this.personErrorMessage='请输入联系人姓名！';
                 return false
             }else{
@@ -97,7 +104,7 @@ export default {
             }
         },
         valiatejob(){
-            if(!this.form.job){
+            if(!this.form.position){
                 this.jobErrorMessage='请输入在贵公司所担任职位！';
                 return false
             }else{
@@ -106,10 +113,10 @@ export default {
             }
         },
         valiatetel(){
-            if(!this.form.tel){
+            if(!this.form.mobile){
                 this.telErrorMessage='请输入常用手机号！';
                 return false
-            }else if(this.form.tel.length<11){
+            }else if(this.form.mobile.length<11){
                 this.telErrorMessage='您输入的手机号码长度不够！';
                 return false
             }
@@ -131,6 +138,18 @@ export default {
                 this.emailErrorMessage='';
                 return true
             }
+        },
+        submit(){//提交接口
+            if(this.valiatePerson()&&this.valiateSex()&&this.valiatejob()&&this.valiatetel()&&this.valiateEmail()){
+                this.saveProjectPersonInfo();
+            }
+        },
+        saveProjectPersonInfo(){//保存联系人
+            customerModule.saveProjectPersonInfo({
+                cusType:this.cusType,
+                orderNo:this.orderNo,
+                ...this.form
+            })
         }
     }
 }

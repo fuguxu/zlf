@@ -36,11 +36,11 @@
         methods:{
             loginOut(){
                 customerModule.logout().then(res=>{
-                //     if(res.statusCode=='1'){
+                    if(res.statusCode=='401'){
                         localStorage.removeItem('role');
                         localStorage.removeItem('zlfuserInfo');
                         window.location.href='/home.html';
-                    // }
+                    }
                 })
                 
             }

@@ -37,11 +37,11 @@
                     </div>
                 </div>
                 <div class="content">
-                    <components :is="isCp" @updateCp="updateCp"></components>
+                    <components :orderName="title" :orderNo="orderNo" :data="itemData" :is="isCp" @updateCp="updateCp"></components>
                 </div>
             </div>
         </div>
-        <rentNameDialog :visible.sync="visible"></rentNameDialog>
+        <rentNameDialog  @updateItem="updateItem" :visible.sync="visible"></rentNameDialog>
     </div>
 </template>
 <script>
@@ -51,27 +51,11 @@ import contractDetail from './components/contractDetail';
 import rentMoney from './components/rentMoney';
 import saleService from './components/saleService';
 import rentNameDialog from './components/rentNameDialog';
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            data:[
-                {
-                    name:'CBD国贸店',
-                    id:1
-                },
-                {
-                    name:'紫禁城店',
-                    id:2
-                },
-                {
-                    name:'深圳新店',
-                    id:3
-                },
-                {
-                    name:'广州新店',
-                    id:4
-                },
-            ],
+            data:[],
             subData:[
                 {
                     name:'租赁服务',
@@ -90,19 +74,22 @@ export default {
                     id:3
                 }
             ],
+            itemData:'',
             defaultActive:'0-0',
             title:'',
             subTitle:'',
             thirdTitle:'',
             activeIndex:'',
+            orderNo:'',
             isCp:'',
             visible:false
         }
     },
     methods:{
-        choiceCp(){
+        choiceCp(item){
             if(this.activeIndex==0){
-                this.isCp=rentService
+                this.isCp=rentService;
+                this.getRentService(item);
             }else if(this.activeIndex==1){
                 this.isCp=contractList
             }else if(this.activeIndex==2){
@@ -111,23 +98,44 @@ export default {
                 this.isCp=saleService
             }
             this.thirdTitle='';
+            this.orderNo=item.orderNo;
         },
-        selectMenu(i,p){
+        selectMenu(i,p){//点击菜单
             this.title=this.data[+p[0]].name;
             this.subTitle=this.subData[+p[1].split('-')[1]].name;
             this.activeIndex=this.subData[+p[1].split('-')[1]].id;
-            this.choiceCp();
+            this.choiceCp(this.data[+p[0]]);
         },
         updateCp(item){//到合同执行的详情
             this.isCp=contractDetail;
             this.thirdTitle='公寓固装家具';
+        },
+        getRentService(item){//获取租赁服务
+            customerModule.getRentService({orderNo:item.orderNo}).then(res=>{
+                if(res.statusCode=='1'){
+                    this.itemData=res.data;
+                }
+            })
+        },
+        getOrderInfoList(){//获取项目列表
+            customerModule.getOrderInfoList().then(res=>{
+                if(res.statusCode=='1'){
+                    this.data=res.data.map(item=>{
+                        return {...item,name:item.projectName}
+                    });
+                    this.title=this.data[0].name;
+                    this.subTitle=this.subData[+this.defaultActive.split('-')[1]].name;
+                    this.activeIndex=this.subData[+this.defaultActive.split('-')[1]].id;
+                    this.choiceCp(this.data[0]);
+                }
+            })
+        },
+        updateItem(){//新增项目之后
+            this.getOrderInfoList();
         }
     },
     mounted(){
-        this.title=this.data[0].name;
-        this.subTitle=this.subData[+this.defaultActive.split('-')[1]].name;
-        this.activeIndex=this.subData[+this.defaultActive.split('-')[1]].id;
-        this.choiceCp();
+        this.getOrderInfoList();
     },
     watch:{
     },

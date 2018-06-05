@@ -40,6 +40,9 @@ export default {
         },
         saveType:{
             default:'customerLicense'//默认为市场客户的类型
+        },
+        orderNo:{
+            default:''
         }      
     },
   data(){
@@ -90,6 +93,9 @@ export default {
          if (this.fileList.length > 0) {
             form.append("file", file); // 文件对象
             form.append("saveType", this.saveType); // 保存类型
+            if(this.orderNo){
+                form.append("orderNo", this.orderNo);//订单号 在租赁服务处有用到
+            }
             this.formData=form;
          }
        },

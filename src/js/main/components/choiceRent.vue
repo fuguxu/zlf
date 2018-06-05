@@ -1,6 +1,11 @@
 <template>
     <div class="choice_rent">
         <ul>
+            <li class="item" v-for="(item,index) in jiajuData" :key="index">
+                <div class="item_title">
+                    <el-checkbox v-model="item.checked">{{item.name}}</el-checkbox>
+                </div>
+            </li>
             <li class="item" v-for="(item,index) in data" :key="index" >
                 <div class="item_title">
                     <el-checkbox v-model="item.checked">{{item.name}}</el-checkbox>
@@ -26,6 +31,12 @@
 export default {
     data(){
         return {
+            jiajuData:[
+                {
+                    name:'家具',
+                    checked:false,
+                }
+            ],
             data:[
                 {
                     name:'家电',

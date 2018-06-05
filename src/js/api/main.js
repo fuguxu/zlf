@@ -3,9 +3,9 @@ import qs from 'qs';
 
 axios.defaults.validateStatus=(status)=>{
     console.log(status)
-    if (status === 302) {//没登陆
+    if (status === 401) {//没登陆
         localStorage.removeItem('role');
-        localStorage.removeItem('userInfo');
+        localStorage.removeItem('zlfuserInfo');
         window.location.href='/home.html';
         return false;
     } else {
@@ -50,6 +50,15 @@ export const customerModule={
     saveOrderCustomerInfo:params => { return customerAxios.post('/user/perfectUser', params).then(res => res.data); },
     //租赁测算体验
     calculation:params => { return customerAxios.post('/calcul/calculation', params).then(res => res.data); },
+    //客户新建项目
+    saveCustomerItem:params => { return customerAxios.post('/customers/save', params).then(res => res.data); },
+    //获取所有项目
+    getOrderInfoList:params => { return customerAxios.get('/customers/getOrderInfoList').then(res => res.data); },
+    //获取租赁服务
+    getRentService:params => { return customerAxios.get('/customers/getNewProjectMenu', {params:params}).then(res => res.data); },
+    //保存项目联系人
+    saveProjectPersonInfo:params => { return customerAxios.post('/customers/saveOrderCustomerInfo', params).then(res => res.data); },
+
     //供应商注册
     registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },
 
