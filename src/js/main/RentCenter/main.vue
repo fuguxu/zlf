@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <components :orderName="title" :orderNo="orderNo" :data="itemData" :is="isCp" @updateCp="updateCp"></components>
+                    <components v-if="isCp" :orderName="title" :orderNo="orderNo" :data="itemData" :is="isCp" @updateCp="updateCp"></components>
                 </div>
             </div>
         </div>
@@ -87,18 +87,21 @@ export default {
     },
     methods:{
         choiceCp(item){
-            if(this.activeIndex==0){
-                this.isCp=rentService;
-                this.getRentService(item);
-            }else if(this.activeIndex==1){
-                this.isCp=contractList
-            }else if(this.activeIndex==2){
-                this.isCp=rentMoney
-            }else if(this.activeIndex==3){
-                this.isCp=saleService
-            }
-            this.thirdTitle='';
-            this.orderNo=item.orderNo;
+            this.isCp='';//让组件重新渲染
+            this.$nextTick(()=>{
+                if(this.activeIndex==0){
+                    this.isCp=rentService;
+                    this.getRentService(item);
+                }else if(this.activeIndex==1){
+                    this.isCp=contractList
+                }else if(this.activeIndex==2){
+                    this.isCp=rentMoney
+                }else if(this.activeIndex==3){
+                    this.isCp=saleService
+                }
+                this.thirdTitle='';
+                this.orderNo=item.orderNo;
+            })
         },
         selectMenu(i,p){//点击菜单
             this.title=this.data[+p[0]].name;

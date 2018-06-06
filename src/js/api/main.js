@@ -2,7 +2,6 @@ import axios from 'axios';
 import qs from 'qs';
 
 axios.defaults.validateStatus=(status)=>{
-    console.log(status)
     if (status === 401) {//没登陆
         localStorage.removeItem('role');
         localStorage.removeItem('zlfuserInfo');
@@ -12,6 +11,9 @@ axios.defaults.validateStatus=(status)=>{
         return true
     };
 }
+
+
+
 
 var TIME_OUT=50000;
 
@@ -58,7 +60,12 @@ export const customerModule={
     getRentService:params => { return customerAxios.get('/customers/getNewProjectMenu', {params:params}).then(res => res.data); },
     //保存项目联系人
     saveProjectPersonInfo:params => { return customerAxios.post('/customers/saveOrderCustomerInfo', params).then(res => res.data); },
+    //获取项目联系人
+    getOrderCustomerInfo:params => { return customerAxios.get('/customers/getOrderCustomerInfo', {params:params}).then(res => res.data); },
+    //获取租赁物
+    getLease:params => { return customerAxios.get('/getLease', {params:params}).then(res => res.data); },
 
+    
     //供应商注册
     registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },
 
@@ -76,3 +83,16 @@ export const customerModule={
     getMsgDetail:params => { return customerAxios.get('/msg/getMsgDetail', {params:params}).then(res => res.data); },
     getNotReadNum:params => { return customerAxios.get('/msg/getNotReadNum', {params:params}).then(res => res.data); },
 }
+
+customerAxios.interceptors.response.use( (response)=> {
+    // 对响应数据做点什么
+    if(response.data.statusCode=='401'){
+        localStorage.removeItem('role');
+        localStorage.removeItem('zlfuserInfo');
+        window.location.href='/home.html';
+    }
+    return response;
+  },  (error)=>{
+    // 对响应错误做点什么
+    return Promise.reject(error);
+  });

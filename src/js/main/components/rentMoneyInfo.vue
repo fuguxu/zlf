@@ -11,8 +11,8 @@
         </el-form-item>
         <el-form-item label=" ">
             <el-select v-model="form.sex" placeholder="请选择性别">
-                <el-option value="1" label="男"></el-option>
-                <el-option value="0" label="女"></el-option>
+                <el-option :value="1" label="男"></el-option>
+                <el-option :value="0" label="女"></el-option>
             </el-select>
             <div class="error_message" v-if="sexErrorMessage">
                 <i class="icon el-icon-circle-close"></i>
@@ -150,7 +150,20 @@ export default {
                 orderNo:this.orderNo,
                 ...this.form
             })
+        },
+        getOrderCustomerInfo(){//获取联系人信息
+            customerModule.getOrderCustomerInfo({
+                cusType:this.cusType,
+                orderNo:this.orderNo,
+            }).then(res=>{
+                if(res.statusCode=='1'&&res.data){
+                    this.form={...this.form,...res.data}
+                }
+            })
         }
+    },
+    mounted(){
+        this.getOrderCustomerInfo();
     }
 }
 </script>
