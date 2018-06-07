@@ -52,7 +52,7 @@
                 <span>产品清单沟通</span>
                 <i class="icon" :class="{'el-icon-arrow-down':!transfer,'el-icon-arrow-up':transfer}"  @click="clickExtend(3,'transfer')"></i>
             </div>
-            <choiceRent v-if="transfer"></choiceRent>
+            <choiceRent :orderNo="orderNo" v-if="transfer"></choiceRent>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -93,7 +93,7 @@ export default {
     },
     watch:{
         data(n,o){
-            console.log(n)
+            // console.log(n)
         }
     }
 }

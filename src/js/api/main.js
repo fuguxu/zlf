@@ -64,7 +64,8 @@ export const customerModule={
     getOrderCustomerInfo:params => { return customerAxios.get('/customers/getOrderCustomerInfo', {params:params}).then(res => res.data); },
     //获取租赁物
     getLease:params => { return customerAxios.get('/getLease', {params:params}).then(res => res.data); },
-
+    //保存产品清单
+    saveProductComm:params => { return customerAxios.post('/customers/saveProductComm', params).then(res => res.data); },
     
     //供应商注册
     registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },
