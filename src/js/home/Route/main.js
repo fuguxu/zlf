@@ -146,7 +146,7 @@ const routesMap = [
                 children:[
                     {
                         path:'/sign/client',
-                        name:'客户开通新账号',
+                        name:'客户注册',
                         meta:{
                             hideBackTop:true,
                         },
@@ -154,7 +154,7 @@ const routesMap = [
                     },
                     {
                         path:'/sign/supplier',
-                        name:'供应商进驻平台',
+                        name:'供应商注册',
                         meta:{
                             hideBackTop:true,
                         },

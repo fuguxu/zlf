@@ -1,9 +1,9 @@
 <template>
-    <div style="padding-top:85px;background:#fafafa;">
+    <div style="padding-top:85px;">
         <div class="sign_container">
             <div class="sign_role">
-                <a class="client" :class="{active:$route.path=='/sign/client'}"  href="home.html#/sign/client">客户开通新账号</a>
-                <a class="supplior" :class="{active:$route.path=='/sign/supplier'}" href="home.html#/sign/supplier">供应商进驻平台</a>
+                <a class="client" :class="{active:$route.path=='/sign/client'}"  href="home.html#/sign/client">客户注册</a>
+                <a class="supplior" :class="{active:$route.path=='/sign/supplier'}" href="home.html#/sign/supplier">供应商注册</a>
             </div>
             <router-view></router-view>
         </div>

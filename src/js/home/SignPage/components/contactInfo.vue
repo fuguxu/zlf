@@ -4,8 +4,8 @@
         <div class="form">
             <div class="input_box" :class="{active:activeContactName}">
                 <div class="label">联系人</div>
-                <el-input class="input" v-model="contactName" @focus="activeContactName=true" @blur="blurContactName" placeholder="请输入联系人姓名">
-                    <i slot="suffix" class="iconfont icon-close" @click="contactName=''" v-if="contactName"></i>
+                <el-input class="input" v-model="form.contacts" @focus="activeContactName=true" @blur="blurContactName" placeholder="请输入联系人姓名">
+                    <i slot="suffix" class="iconfont icon-close" @click="form.contacts=''" v-if="form.contacts"></i>
                 </el-input>
                 <div class="error_message" v-if="contactNameErrorMessage">
                     <i class="icon el-icon-error"></i>
@@ -14,8 +14,8 @@
             </div>
             <div class="input_box" :class="{active:activePositionJob}">
                 <div class="label">职位</div>
-                <el-input class="input" v-model="positionJob" @focus="activePositionJob=true" @blur="blurPositionJob" placeholder="请输入在贵公司所担任职位">
-                    <i slot="suffix" class="iconfont icon-close" @click="positionJob=''" v-if="positionJob"></i>
+                <el-input class="input" v-model="form.position" @focus="activePositionJob=true" @blur="blurPositionJob" placeholder="请输入在贵公司所担任职位">
+                    <i slot="suffix" class="iconfont icon-close" @click="form.position=''" v-if="form.position"></i>
                 </el-input>
                 <div class="error_message" v-if="positionJobErrorMessage">
                     <i class="icon el-icon-error"></i>
@@ -24,7 +24,7 @@
             </div>
             <div class="input_box sex_box" >
                 <div class="label">性别</div>
-                <el-select v-model="sex" placeholder="请选择">
+                <el-select v-model="form.sex" placeholder="请选择">
                     <el-option
                     v-for="item in sexOption"
                     :key="item.value"
@@ -38,9 +38,19 @@
                 </div>
             </div>
             <div class="input_box" :class="{active:activeEmail}">
+                <div class="label">手机号</div>
+                <el-input class="input" v-model="form.phone" @focus="activePhone=true" @blur="blurPhone" placeholder="请输入联系人常用手机号码">
+                    <i slot="suffix" class="iconfont icon-close" @click="form.phone=''" v-if="form.phone"></i>
+                </el-input>
+                <div class="error_message" v-if="phoneErrorMessage">
+                    <i class="icon el-icon-error"></i>
+                    <span>{{phoneErrorMessage}}</span>
+                </div>
+            </div>
+            <div class="input_box" :class="{active:activeEmail}">
                 <div class="label">邮箱</div>
-                <el-input class="input" v-model="email" @focus="activeEmail=true" @blur="blurEmail" placeholder="请务必输入正确的邮箱地址">
-                    <i slot="suffix" class="iconfont icon-close" @click="email=''" v-if="email"></i>
+                <el-input class="input" v-model="form.email" @focus="activeEmail=true" @blur="blurEmail" placeholder="请务必输入正确的邮箱地址">
+                    <i slot="suffix" class="iconfont icon-close" @click="form.email=''" v-if="form.email"></i>
                 </el-input>
                 <div class="error_message" v-if="emailErrorMessage">
                     <i class="icon el-icon-error"></i>
@@ -74,18 +84,24 @@ export default {
                     label:'女'
                 }
             ],
-            sex:'',
+            form:{
+                contacts:'',
+                position:'',
+                sex:'',
+                phone:'',
+                email:'',
+            },
             sexErrorMessage:'',
 
-            contactName:'',
             activeContactName:false,
             contactNameErrorMessage:'',
 
-            positionJob:'',
             activePositionJob:false,
             positionJobErrorMessage:'',
 
-            email:'',
+            activePhone:false,
+            phoneErrorMessage:'',
+
             activeEmail:false,
             emailErrorMessage:'',
         }
@@ -93,7 +109,7 @@ export default {
     methods:{
         blurContactName(){
             this.activeContactName=false;
-            if(!this.contactName){
+            if(!this.form.contacts){
                this.contactNameErrorMessage= '请输入联系人姓名！';
                return false
             }else{
@@ -103,7 +119,7 @@ export default {
         },
         blurPositionJob(){
             this.activePositionJob=false;
-            if(!this.positionJob){
+            if(!this.form.position){
                this.positionJobErrorMessage= '请输入在贵公司所担任职位！';
                return false
             }else{
@@ -111,10 +127,20 @@ export default {
                 return true
             }
         },
+        blurPhone(){
+            this.activePhone=true;
+            if(!this.form.phone){
+               this.phoneErrorMessage= '请输入联系人常用手机号码！';
+               return false
+            }else{
+                this.phoneErrorMessage='';
+                return true
+            }
+        },
         blurEmail(){
             this.activeEmail=false;
             var reg=/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-            if(!reg.test(this.email)){
+            if(!reg.test(this.form.email)){
                this.emailErrorMessage= '该邮箱将作为租赁服务的重要联系工具，请务必正确输入！';
                return false
             }else{
@@ -123,7 +149,7 @@ export default {
             }
         },
         blurSex(){
-            if(!this.sex){
+            if(!this.form.sex){
                this.sexErrorMessage= '请选择性别！';
                return false
             }else{
@@ -132,13 +158,7 @@ export default {
             }
         },
         saveOrderCustomerInfo(){//保存客户联系人信息
-            let parmas={
-                contacts:this.contactName,
-                position:this.positionJob,
-                sex:this.sex,
-                email:this.email
-            }
-            customerModule.saveOrderCustomerInfo(parmas).then(res=>{
+            customerModule.saveOrderCustomerInfo(this.form).then(res=>{
                 if(res.statusCode==1){
                     this.submitedAfter();
                 }
@@ -146,7 +166,7 @@ export default {
         },
         updateStep(){//注册到此处 需要判断是什么角色注册的
             // this.submitedAfter()
-            if(this.blurContactName()&&this.blurPositionJob()&&this.blurSex()&&this.blurEmail()){
+            if(this.blurContactName()&&this.blurPositionJob()&&this.blurSex()&&this.blurPhone()&&this.blurEmail()){
                 if(this.role=='client'){
                     this.saveOrderCustomerInfo();
                 }
@@ -160,6 +180,11 @@ export default {
                 window.location.href="main.html#/sign/supplier?cp=startUse";
             }
         }
+    },
+    created(){
+        AppUtil.getCurrentUserInfo(user=>{
+            this.form=user;
+        });
     },
     components:{
         stepBar

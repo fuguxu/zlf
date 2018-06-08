@@ -1,6 +1,7 @@
 <template>
     <div class="company_container">
-        <div class="company">您要为哪家公司开通账号？</div>
+        <!-- 您要为哪家公司开通账号？ -->
+        <div class="company"></div>
         <div class="input_box city_box" :class="{active:activeCity}" v-if="role=='client'">
             <div class="label">城&nbsp;&nbsp;&nbsp;&nbsp;市</div>
             <el-input class="input" v-model="cityName" @focus="foucsCity" @blur="blurCity" placeholder="请选择公司所在城市，如：深圳">

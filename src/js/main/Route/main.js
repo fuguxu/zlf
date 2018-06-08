@@ -70,12 +70,12 @@ const routesMap = [
                 children:[
                     {
                         path:'/sign/client',
-                        name:'客户开通新账号',
+                        name:'客户注册',
                         component:client,
                     },
                     {
                         path:'/sign/supplier',
-                        name:'供应商进驻平台',
+                        name:'供应商注册',
                         component:supplier,
                     }
                 ]

@@ -38,7 +38,7 @@ export const customerModule={
     getNewsList:params => { return customerAxios.get('/article/getByPage', {params:params}).then(res => res.data); },
     //新闻详情
     getNewsDetail:params => { return customerAxios.get('/article/getArticleDetail', {params:params}).then(res => res.data); },
-    //客户注册
+    //客户注册接口
     registerCustorm:params => { return customerAxios.post('/customers/register', params).then(res => res.data); },
     //检验公司名字是否注册
     checkInfo:params => { return customerAxios.post('/user/checkInfo', params).then(res => res.data); },
@@ -88,9 +88,9 @@ export const customerModule={
 customerAxios.interceptors.response.use( (response)=> {
     // 对响应数据做点什么
     if(response.data.statusCode=='401'){
-        localStorage.removeItem('role');
-        localStorage.removeItem('zlfuserInfo');
-        window.location.href='/home.html';
+        // localStorage.removeItem('role');
+        // localStorage.removeItem('zlfuserInfo');
+        // window.location.href='/home.html';
     }
     return response;
   },  (error)=>{

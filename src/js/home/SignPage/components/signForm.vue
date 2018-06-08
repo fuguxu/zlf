@@ -4,8 +4,8 @@
         <div class="form">
             <div class="input_box" :class="{active:activeMember}">
                 <div class="label">会员名</div>
-                <el-input class="input" v-model="memberName" @focus="activeMember=true" @blur="blurmemberName" placeholder="请输入公司简称作为用户名">
-                    <i slot="suffix" class="iconfont icon-close" @click="memberName=''" v-if="memberName"></i>
+                <el-input class="input" v-model="form.userAbbr" @focus="activeMember=true" @blur="blurmemberName" placeholder="请输入公司简称作为用户名">
+                    <i slot="suffix" class="iconfont icon-close" @click="form.userAbbr=''" v-if="form.userAbbr"></i>
                 </el-input>
                 <div class="error_message" v-if="memberNameErrorMessage">
                     <i class="icon el-icon-error"></i>
@@ -14,8 +14,8 @@
             </div>
             <div class="input_box" :class="{active:activeUserName}">
                 <div class="label">用户名</div>
-                <el-input class="input" :maxlength="11" v-model="userName" @focus="activeUserName=true" @blur="bluruserName" placeholder="请输入常用手机号码作为用户名">
-                    <i slot="suffix" class="iconfont icon-close" @click="userName=''" v-if="userName"></i>
+                <el-input class="input" :maxlength="11" v-model="form.loginName" @focus="activeUserName=true" @blur="bluruserName" placeholder="请输入常用手机号码作为用户名">
+                    <i slot="suffix" class="iconfont icon-close" @click="form.loginName=''" v-if="form.loginName"></i>
                 </el-input>
                 <div class="error_message" v-if="userNameErrorMessage">
                     <i class="icon el-icon-error"></i>
@@ -24,8 +24,8 @@
             </div>
             <div class="input_box" :class="{active:activeIdentifyCode}">
                 <div class="label">手机验证码</div>
-                <el-input class="input" :maxlength="6" v-model="identifyCode" @focus="activeIdentifyCode=true" @blur="blurIdentifyCode" placeholder="请输入验证码">
-                    <i slot="suffix" @click="getCode" class="identifyCode" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
+                <el-input class="input" :maxlength="6" v-model="form.code" @focus="activeIdentifyCode=true" @blur="blurIdentifyCode" placeholder="请输入验证码">
+                    <i slot="suffix" @click="getCode" class="code" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
                 </el-input>
                 <div class="error_message" v-if="identifyCodeErrorMessage">
                     <i class="icon el-icon-error"></i>
@@ -34,8 +34,8 @@
             </div>
             <div class="input_box" :class="{active:activepassWord}">
                 <div class="label">密码</div>
-                <el-input class="input" type="password"  v-model="passWord" @focus="activepassWord=true" @blur="blurpassWord" placeholder="请输入你的密码">
-                    <i slot="suffix" class="iconfont icon-close" @click="passWord=''" v-if="passWord"></i>
+                <el-input class="input" type="password"  v-model="form.loginPwd" @focus="activepassWord=true" @blur="blurpassWord" placeholder="请输入你的密码">
+                    <i slot="suffix" class="iconfont icon-close" @click="form.loginPwd=''" v-if="form.loginPwd"></i>
                 </el-input>
                 <div class="error_message" v-if="passWordErrorMessage">
                     <i class="icon el-icon-error"></i>
@@ -56,12 +56,12 @@
                 <div class="button" @click="submitSign">立即注册</div>
             </div>
         </div>
-        <stepDialog :role="role" :visible.sync="visible" @nextStep="nextStep" :stepComponent="stepComponent"></stepDialog>
+        <!-- <stepDialog :role="role" :visible.sync="visible" @nextStep="nextStep" :stepComponent="stepComponent"></stepDialog> -->
     </div>
 </template>
 <script>
 import stepBar from './stepBar';
-import stepDialog from './stepDialog';
+// import stepDialog from './stepDialog';
 import {customerModule} from '../../../api/main';
 export default {
     props:{
@@ -79,21 +79,17 @@ export default {
     },
   data(){
       return {
-          memberName:'',
           activeMember:false,
           memberNameErrorMessage:'',
 
-          userName:'',
           activeUserName:false,
           userNameErrorMessage:'',
 
-          identifyCode:'',
           activeIdentifyCode:false,
           identifyCodeErrorMessage:'',
           codeText:'获取验证码',
           codeTime:120,
 
-          passWord:'',
           activepassWord:false,
           passWordErrorMessage:'',
 
@@ -101,14 +97,21 @@ export default {
           activepassWord2:false,
           passWordErrorMessage2:'',
 
-          visible:false,
+          form:{
+              userAbbr:'',
+              loginName:'',
+              code:'',
+              loginPwd:'',
+          },
+
+        //   visible:false,
           setTime:null
       }
   },
   methods:{
       blurmemberName(){//失去焦点 带验证
           this.activeMember=false;
-          if(!this.memberName){
+          if(!this.form.userAbbr){
               this.memberNameErrorMessage='请输入公司简称！';
               return false;
           }else{
@@ -118,7 +121,7 @@ export default {
       },
       checkMemberName(cb){//校验会员名 不能重复
             customerModule.checkInfo({
-                userAbbr:this.memberName
+                userAbbr:this.form.userAbbr
             }).then(res=>{
                 if(res.data){
                     this.memberNameErrorMessage='该简称已存在，请重新输入！';
@@ -129,10 +132,10 @@ export default {
       },
       bluruserName(){
           this.activeUserName=false;
-          if(!this.userName){
+          if(!this.form.loginName){
               this.userNameErrorMessage='请输入常用手机号！';
               return false;
-          }else if(this.userName.length<11){
+          }else if(this.form.loginName.length<11){
               this.userNameErrorMessage='您输入的手机号码长度不够！';
               return false;
           }
@@ -143,10 +146,10 @@ export default {
       },
       blurIdentifyCode(){
           this.activeIdentifyCode=false;
-          if(!this.identifyCode){
+          if(!this.form.code){
               this.identifyCodeErrorMessage='请输入验证码！';
               return false;
-          }else if(this.identifyCode.length<6){
+          }else if(this.form.code.length<6){
               this.identifyCodeErrorMessage='验证码长度不够！'||'验证码不正确！';
               return false;
           }
@@ -157,7 +160,7 @@ export default {
       },
       getVerification(){//获取验证码接口
             customerModule.getVerification({
-                mobile:this.userName
+                mobile:this.form.loginName
             }).then(res=>{
                 if(res.statusCode=='1'){
                     this.setTime= setInterval(()=>{
@@ -182,13 +185,13 @@ export default {
       blurpassWord(){
           this.activepassWord=false;
           var reg= /(?!^(\d+|[a-zA-Z]+|[!#%]+)$)^[A-Za-z0-9!#%]{6,13}$/
-          if(!this.passWord){
+          if(!this.form.loginPwd){
               this.passWordErrorMessage="请输入密码！"
               return false
-          }else if(this.passWord.length<6){
+          }else if(this.form.loginPwd.length<6){
               this.passWordErrorMessage="密码长度不够！"
               return false
-          }else if(!reg.test(this.passWord)){
+          }else if(!reg.test(this.form.loginPwd)){
               this.passWordErrorMessage="密码必须在6～12位之间，且至少包含英文字母、数字(0到9)及符号(如: !, #, %)中的任意两种！";
               return false
           }else{
@@ -198,7 +201,7 @@ export default {
       },
       blurpassWord2(){
           this.activepassWord2=false;
-          if(this.passWord!=this.passWord2){
+          if(this.form.loginPwd!=this.passWord2){
               this.passWordErrorMessage2="两次密码不一致！"
               return false
           }else{
@@ -207,30 +210,26 @@ export default {
           }
       },
       submitSign(){//点击注册
+    //   this.nextStep();
     //   console.log(this.companyInfo)
-      this.visible=true;
+    //   this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
                this.checkMemberName(this.postData);
         }
       },
       postData(){//发送请求
-          let parmars={
-            userAbbr:this.memberName,
-            loginName:this.userName,
-            code:this.identifyCode,
-            loginPwd:this.passWord,
-        }
         if(this.role=='client'){
-            this.registerCustorm({...this.companyInfo,...parmars});
+            this.registerCustorm({...this.companyInfo,...this.form});
         }else{
-            this.registerSupplier({...this.companyInfo,...parmars});
+            this.registerSupplier({...this.companyInfo,...this.form});
         }
       },
-      registerCustorm(parmars){//客户注册
+      registerCustorm(parmars){//注册
          customerModule.registerCustorm(parmars).then(res=>{
              if(res.statusCode==1){
                  localStorage.setItem('role',this.role);
-                 this.visible=true;
+                 this.nextStep();
+                //  this.visible=true;
              }else{
 
              }
@@ -240,7 +239,8 @@ export default {
          customerModule.registerSupplier(parmars).then(res=>{
              if(res.statusCode==1){
                  localStorage.setItem('role',this.role);
-                 this.visible=true;
+                 this.nextStep();
+                //  this.visible=true;
              }
          })  
       },
@@ -258,7 +258,7 @@ export default {
   },
   components:{
       stepBar,
-      stepDialog
+    //   stepDialog
   }
 }
 </script>
@@ -300,7 +300,7 @@ export default {
                     line-height: 40px;
                     margin-right:10px;
                 }
-                .identifyCode{
+                .code{
                     font-style: normal;
                     width:115px;
                     line-height: 28px;
