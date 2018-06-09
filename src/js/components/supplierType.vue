@@ -2,26 +2,26 @@
     <div class="supplier_type">
         <span class="label">供应商类型</span>
         <div class="select_box" :class="{active:activeBox}">
-            <el-select class="el-input-box" @change="changeType" v-model="value" placeholder="请选择">
-                <el-option v-for="item in options" :key="item.name" :label="item.name" :value="item.name">
+            <el-select class="el-input-box" @change="changeType" v-model="rootValue" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.id" :label="item.catName" :value="item.id">
                 </el-option>
             </el-select>
             <br />
             <!-- <div > -->
-                <el-select v-if="value=='家具'" class="el-input-box" @change="changJiaJuType" v-model="JiaJuType" placeholder="再次选择">
-                    <el-option v-for="item in jiajuTypeOption" :key="item.name" :label="item.name" :value="item.name">
+                <el-select v-if="furnitureTypeOption.length>0"  class="el-input-box" @change="changfurnitureType" v-model="furnitureType" placeholder="再次选择">
+                    <el-option v-for="item in furnitureTypeOption" :key="item.id" :label="item.catName" :value="item.id">
                     </el-option>
                 </el-select>
             <!-- </div> -->
             <div class="error_message" v-if="errorMessage">
-                <i class="icon el-icon-remove"></i>
+                <i class="icon el-icon-error"></i>
                 <span>{{errorMessage}}</span>
             </div>
             <div class="item_box" >
-                <div v-for="(item,index) in options" :key="index" v-if="item.children.length>0"  :class="{show:showSelect==item.name}" class="item" v-left>
+                <div v-if="childenOptions.length>0"   :class="{show:showSelect}" class="item" v-left>
                     <span class="label_sub">请进一步选择：</span>
-                    <el-checkbox-group v-model="item.checkList">
-                        <el-checkbox v-for="(it,i) in item.children" :label="it.name" :key="i"></el-checkbox>
+                    <el-checkbox-group v-model="checkList">
+                        <el-checkbox v-for="(it,i) in childenOptions" :label="it.id" :key="i">{{it.catName}}</el-checkbox>
                     </el-checkbox-group>
                 </div> 
             </div>
@@ -29,159 +29,117 @@
     </div>
 </template>
 <script>
+import {customerModule} from '../api/main';
 export default {
     data(){
         return {
-            options:[
-                {
-                    name:'家具',
-                    checkList:[],
-                    children:[
-                        {
-                            name:'固装家具'
-                        },
-                        {
-                            name:'活动板式家具'
-                        },
-                        {
-                            name:'活动板木家具'
-                        },
-                        {
-                            name:'活动实木家具'
-                        }
-                    ]
-                },
-                {
-                    name:'家电',
-                    checkList:[],
-                    children:[
-                        {
-                            name:'空调'
-                        },
-                        {
-                            name:'热水器'
-                        },
-                        {
-                            name:'洗衣机'
-                        },
-                        {
-                            name:'冰箱'
-                        }
-                    ]
-                },
-                {
-                    name:'机电',
-                    checkList:[],
-                    children:[
-                        {
-                            name:'电梯'
-                        },
-                        {
-                            name:'新风系统'
-                        },
-                        {
-                            name:'太阳能系统'
-                        },
-                        {
-                            name:'弱电'
-                        }
-                    ]
-                },
-                {
-                    name:'智能系统',
-                    checkList:[],
-                    children:[
-                        {
-                            name:'智能门锁'
-                        },
-                        {
-                            name:'智能水电表'
-                        },
-                        {
-                            name:'智能入住系统'
-                        }
-                    ]
-                },
-                {
-                    name:'卫浴',
-                    checkList:[],
-                    children:[
-                        {
-                            name:'水龙头'
-                        },
-                        {
-                            name:'花洒'
-                        },
-                        {
-                            name:'台盘'
-                        },
-                        {
-                            name:'普通马桶'
-                        },
-                        {
-                            name:'智能马桶'
-                        }
-                    ]
-                },
-                {
-                    name:'窗帘',
-                    checkList:[],
-                    children:[]
-                }
-            ],
-            jiajuTypeOption:[
-                {
-                    name:'酒店家具'
-                },
-                {
-                    name:'公寓家具'
-                },
-                {
-                    name:'办公家具'
-                }
-            ],
-            JiaJuType:'',
-            value:'',
+            options:[],
+            childenOptions:[],
+            furnitureTypeOption:[],
+            furnitureType:'',
+            rootValue:'',
+            checkList:[],
             showSelect:'',
             activeBox:false,
             errorMessage:''
         }
     },
     methods:{
-        changeType(value){
-            this.JiaJuType='';
-            if(value=='家具'){
-                this.showSelect=''
-                return;
-            } 
-            setTimeout(()=> {
-                this.showSelect=value;
-            }, 300);
-            if(AppUtil.findWhere(this.options,'name',value).children.length>0){
-                this.activeBox=true
+        initData(){
+            this.childenOptions=[];
+            this.checkList=[];
+            this.showSelect=false;
+        },
+        changeType(value){//选择第一级
+            let item=AppUtil.findWhere(this.options,'id',value);
+            this.furnitureTypeOption=[];
+            this.furnitureType='';
+            this.initData();
+            if(item.ext!='1'){
+                this.getLease(item.id);
             }else{
-                this.activeBox=false
+                this.getFurnitureOption(item.id);//获取家具第二次下拉框
             }
         },
-        changJiaJuType(){
-            this.showSelect='';
-            setTimeout(()=> {
-                this.showSelect=this.options[0].name;
-            }, 100);
-            this.activeBox=true;
+        changfurnitureType(value){//家具第二次下拉框
+            this.initData();
+            this.getLeaseByfurniture(value);
+        },
+        getLeaseByfurniture(id,flag){//家具第二次下拉框得调2次接口
+            customerModule.getLease({
+                parentId:id
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    let op1=res.data.filter(item=>{
+                        return item.remark!='1'
+                    })
+                    let op2=res.data.filter(item=>{
+                        return item.remark=='1'
+                    })
+                    customerModule.getLease({
+                        parentId:op2[0].id
+                    }).then(res=>{
+                        if(res.statusCode=='1'){
+                            this.childenOptions=[...op1,...res.data];
+                            setTimeout(()=> {
+                                this.showSelect=true;
+                            }, 300);
+                        }
+                    })
+                }
+            })
         },
         valiate(){
-            if(!this.value){
+            if(this.checkList.length==0){
                 this.errorMessage='请选择供应商类型！';
                 return false;
             }else{
                 this.errorMessage='';
                 return true;
             }
+        },
+        getLease(id){
+            customerModule.getLease({
+                parentId:id
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    if(id=='0'){
+                        this.options=res.data;
+                    }else{
+                        this.childenOptions=res.data;
+                        setTimeout(()=> {
+                            this.showSelect=true;
+                        }, 300);
+                    }
+                }
+            })
+        },
+        getFurnitureOption(id){
+            customerModule.getLease({
+                parentId:id
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                   this.furnitureTypeOption=res.data;
+                }
+            })
         }
     },
     mounted(){
-
+        //获取根数据
+        this.getLease('0')
+    },
+    watch:{
+        checkList(n,o){
+           let checklist= this.childenOptions.filter(item=>{
+                return n.indexOf(item.id)>-1;
+            })
+            this.$emit('updateType',checklist.map(item=>{
+                return {
+                    ...item,
+                    catFullname:item.fullName
+                }
+            }))
+        }
     },
     directives: {
         left: {

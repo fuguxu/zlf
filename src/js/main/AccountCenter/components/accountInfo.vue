@@ -21,12 +21,12 @@
             <div class="form_item ">
                 <div class="label label_input">员工数<span class="sub">（人）</span></div>
                 <div class="item_content">
-                    <el-input class="el-input-person" :disabled="!isEdit" v-model="form.personNumber" placeholder="请输入阿拉伯数字"></el-input>
+                    <el-input class="el-input-person" :disabled="!isEdit" v-model="form.employeesNum" placeholder="请输入阿拉伯数字"></el-input>
                 </div>
             </div>
             <div class="form_item" v-if="!isEdit">
                 <div class="label">业务覆盖范围</div>
-                <div class="item_content">{{form.provicence}}</div>
+                <div class="item_content">{{form.coverArea}}</div>
             </div>
             <bussinessProvince v-if="isEdit"></bussinessProvince>
         </div>
@@ -84,16 +84,6 @@ export default {
     data(){
         return {
             form:{
-                userFullname:'深圳市金凤凰家具集团',
-                supplierType:'#活动板木家具  #固装家具  #家电  #空调',
-                provicence:'#广东省  #广西  #西藏  #新疆',
-                personNumber:'200',
-                // vipName:'新派公寓',
-                // userName:'13710353878',
-                // email:'354480928@163.com',
-                // provicen:'广东省',
-                // city:'',
-                // area:''
             },
             isEdit:false,
             provicen:provicen,

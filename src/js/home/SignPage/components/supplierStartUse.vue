@@ -4,9 +4,9 @@
         <div class="img_box">
             <img src="../../../../img/u1340.png" alt="">
         </div>
-        <p class="tip_success">深圳市金凤凰家具集团，您已成功注册！</p>
+        <p class="tip_success">{{user.userAbbr}}，您已成功注册！</p>
         <p class="tip_success">通过营业执照审核，开始使用账号！</p>
-        <uploadLicence></uploadLicence>
+        <uploadLicence ></uploadLicence>
     </div>
 </template>
 <script>
@@ -20,7 +20,14 @@ export default {
     },
     data(){
         return {
+            user:{}
         }
+    },
+    mounted(){
+        AppUtil.getCurrentUserInfo(user=>{
+            this.user=user;
+        });
+        // AppUtil.message(this,'恭喜你，这是一条成功消息','warning')
     },
     methods:{
     },

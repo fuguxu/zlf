@@ -70,6 +70,9 @@ export default {
     props:{
         role:{
 
+        },
+        kindTypeInfo:{//供应商有这个数据
+
         }
     },
     data(){
@@ -158,18 +161,26 @@ export default {
             }
         },
         saveOrderCustomerInfo(){//保存客户联系人信息
-            customerModule.saveOrderCustomerInfo(this.form).then(res=>{
+            customerModule.saveOrderCustomerInfo({...this.form,...(this.kindTypeInfo||{})}).then(res=>{
                 if(res.statusCode==1){
                     this.submitedAfter();
                 }
             })
         },
+        changeSupplierUser(){//保存供应商联系人
+            customerModule.changeSupplierUser({
+                ...this.form,
+                ...this.kindTypeInfo
+            }).then(res=>{
+
+            })
+        },
         updateStep(){//注册到此处 需要判断是什么角色注册的
             // this.submitedAfter()
             if(this.blurContactName()&&this.blurPositionJob()&&this.blurSex()&&this.blurPhone()&&this.blurEmail()){
-                if(this.role=='client'){
+                // if(this.role=='client'){
                     this.saveOrderCustomerInfo();
-                }
+                // }
             }
         },
         submitedAfter(){//接口提交成功之后
@@ -182,9 +193,10 @@ export default {
         }
     },
     created(){
-        AppUtil.getCurrentUserInfo(user=>{
-            this.form=user;
-        });
+        
+    },
+    mounted(){
+        // console.log(this.kindTypeInfo)
     },
     components:{
         stepBar

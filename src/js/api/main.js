@@ -64,6 +64,8 @@ export const customerModule={
     getOrderCustomerInfo:params => { return customerAxios.get('/customers/getOrderCustomerInfo', {params:params}).then(res => res.data); },
     //获取租赁物
     getLease:params => { return customerAxios.get('/getLease', {params:params}).then(res => res.data); },
+    //保存供应商联系人接口
+    changeSupplierUser:params => { return customerAxios.post('/supplier/changeUser', params).then(res => res.data); },
     //保存产品清单
     saveProductComm:params => { return customerAxios.post('/customers/saveProductComm', params).then(res => res.data); },
     
@@ -76,8 +78,10 @@ export const customerModule={
     logout:params => { return customerAxios.post('/logout').then(res => res.data); },
     //上传接口 
     upload:params => { return customerAxios.post('/updateContent', params).then(res => res.data); },
-    //获取当前登陆人
+    //获取市场客户登陆人信息
     getCurrentUser:params => { return customerAxios.post('/getUser').then(res => res.data); },
+    //获取供应商登陆人信息
+    getSupplierUser:params => { return customerAxios.get('/supplier/getUser').then(res => res.data); },
 
     //获取消息接口
     getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },

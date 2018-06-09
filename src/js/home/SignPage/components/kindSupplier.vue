@@ -2,8 +2,8 @@
     <div class="kind_supplier">
         <stepBar :step="2" :role="role"></stepBar>
         <div class="kind_content">
-            <supplierType ref="type"></supplierType>
-            <bussinessProvince ref="province"></bussinessProvince>
+            <supplierType @updateType="updateType" ref="type"></supplierType>
+            <bussinessProvince @updateArea="updateArea" ref="province"></bussinessProvince>
             <div class="footer">
                 <span class="button" @click="nextStep">下一步</span>
             </div>
@@ -25,14 +25,24 @@ export default {
     },
     data(){
         return {
-
+            sullpierType:{
+                leaseArea:[],
+                userType:[]
+            }
+            
         }
     },
     methods:{
         nextStep(){
            let type= this.$refs.type.valiate();
            let province= this.$refs.province.valiate();
-            type&&province&&this.$emit('updateStep',this.stepComponent);
+            type&&province&&this.$emit('updateStep',this.stepComponent,this.sullpierType);
+        },
+        updateArea(area){//接受覆盖范围
+            this.sullpierType.leaseArea=area;
+        },
+        updateType(userType){//接受类型
+            this.sullpierType.userType=userType;
         }
     },
     components:{
@@ -59,7 +69,7 @@ export default {
         /deep/ .error_message{
             position: absolute;
             left: 100%;
-            width:500%;
+            width:200%;
             top:0px;
             line-height: 40px;
             .icon{

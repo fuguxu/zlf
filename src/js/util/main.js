@@ -16,6 +16,16 @@ s.transferTimeToString=function(time,format='-',hAndM=false){
     return y+format+m+format+d+hourAndMinute;
 }
 
+s.message=function(target,message,type){
+    target.$message({
+        showClose: true,
+        message: message,
+        type: type
+      });
+}
+
+
+
 s.findWhere=function(list,key,value){
     for(var v of list){
         if(v[key]==value){
@@ -27,12 +37,21 @@ s.findWhere=function(list,key,value){
 
 s.getCurrentUserInfo=function(cb){
    if(!localStorage.getItem('zlfuserInfo')){
-       customerModule.getCurrentUser().then(res=>{
-           if(res.statusCode=='1'){
-               s.setCurrentUserInfo(res.data);
-               cb(res.data);
-           }
-       })
+       if(localStorage.getItem('role')=='client'){
+           customerModule.getCurrentUser().then(res=>{
+                if(res.statusCode=='1'){
+                    s.setCurrentUserInfo(res.data);
+                    cb(res.data);
+                }
+            })
+       }else{
+            customerModule.getSupplierUser().then(res=>{
+                if(res.statusCode=='1'){
+                    s.setCurrentUserInfo(res.data);
+                    cb(res.data);
+                }
+            })
+       }
    }else{
        cb(JSON.parse(localStorage.getItem('zlfuserInfo')))
    }

@@ -14,17 +14,22 @@ import dialogTip from './dialogTip';
 export default {
     data(){
         return {
-            tipText:''
+            tipText:'',
+            user:{}
         }
     },
     mounted(){
+        AppUtil.getCurrentUserInfo(user=>{
+            this.user=user;
+        });
       let role =localStorage.getItem('role');
+
       if(role=='client'){
           this.tipText=`深圳市中租借科技有限公司，您的营业执照已提交审核，<br />
                         我们将会在2个工作日内审核完毕，并会邮件通知您，请 <br />
                         您耐心等待。`
       }else{
-          this.tipText=`深圳市金凤凰家具集团，您的营业执照已提交审核，<br />
+          this.tipText=`${this.user.userAbbr}，您的营业执照已提交审核，<br />
                         我们将会在2个工作日内与您取得联系，请留意。`
       }
     },

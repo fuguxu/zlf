@@ -210,7 +210,7 @@ export default {
           }
       },
       submitSign(){//点击注册
-    //   this.nextStep();
+      this.nextStep();
     //   console.log(this.companyInfo)
     //   this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
@@ -224,23 +224,26 @@ export default {
             this.registerSupplier({...this.companyInfo,...this.form});
         }
       },
-      registerCustorm(parmars){//注册
+      registerCustorm(parmars){//客户注册
          customerModule.registerCustorm(parmars).then(res=>{
-             if(res.statusCode==1){
+             if(res.statusCode=='1'){
                  localStorage.setItem('role',this.role);
                  this.nextStep();
                 //  this.visible=true;
              }else{
-
+                //  AppUtil.message(this,res.message,'warning');
              }
          })   
       },
       registerSupplier(parmars){//供应商注册
          customerModule.registerSupplier(parmars).then(res=>{
-             if(res.statusCode==1){
+             if(res.statusCode=='1'){
                  localStorage.setItem('role',this.role);
                  this.nextStep();
                 //  this.visible=true;
+             }else{
+                //  AppUtil.message(this,res.message,'warning');
+                 
              }
          })  
       },

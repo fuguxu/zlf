@@ -4,7 +4,7 @@
         <div class="select_box" @click="visible=true">
             <el-input class="el-input-box" placeholder="请选择" readonly suffix-icon="el-icon-arrow-down" v-model="value"></el-input>
             <div class="error_message" v-if="errorMessage">
-                <i class="icon el-icon-remove"></i>
+                <i class="icon el-icon-error"></i>
                 <span>{{errorMessage}}</span>
             </div>
         </div>
@@ -71,6 +71,13 @@ export default {
             }else{
                 this.showProvience=false;
             }
+        },
+        provinceList(n,o){
+            this.$emit('updateArea',n.map(item=>{
+                return {
+                    name:item
+                }
+            }))
         }
     }
 }
