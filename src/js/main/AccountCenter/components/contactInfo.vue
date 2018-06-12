@@ -22,12 +22,18 @@
             </div>
         </div>
         <div class="form_item">
+            <div class="label label_input">手机号</div>
+            <div class="item_content">
+                <el-input :disabled="!isEdit" v-model="form.phone" placeholder=""></el-input>
+            </div>
+        </div>
+        <div class="form_item">
             <div class="label">邮箱</div>
             <div class="item_content">{{form.email}}</div>
         </div>
         <div class="form_item foot_item">
             <span v-if="isEdit" @click="cancel" class="button cancel">取消</span>
-            <span v-if="isEdit" @click="perfectUser" class="button sure">保存</span>
+            <span v-if="isEdit" @click="save" class="button sure">保存</span>
             <span v-if="!isEdit" @click="clickEdit" class="button">编辑</span>
         </div>
     </div>
@@ -53,14 +59,29 @@ export default {
         cancel(){
             this.isEdit=false;
         },
-        perfectUser(){//完善信息
+         save(){//点击保存
+            if(localStorage.getItem('role')=='client'){
+                this.perfectUser();
+            }else{
+                this.changeSupplierUser();
+            }
+        },
+        perfectUser(){//完善客户信息
             customerModule.saveOrderCustomerInfo(this.form).then(res=>{
                 if(res.statusCode){
                     AppUtil.setCurrentUserInfo(this.form);
                     this.isEdit=false;
                 }
             })
-        }
+        },
+        changeSupplierUser(){//完善供应商信息
+            customerModule.changeSupplierUser(this.form).then(res=>{
+                if(res.statusCode=='1'){
+                    AppUtil.setCurrentUserInfo(this.form);
+                    this.isEdit=false;
+                }
+            })
+        },
     },
     created(){
         AppUtil.getCurrentUserInfo(user=>{

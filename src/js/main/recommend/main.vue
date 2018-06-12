@@ -3,8 +3,8 @@
         <div class="recommend_content">
             <div class="recommend_left">
                 <div class="recommend_icon">
-                    <img class="icon" src="../../../img/u1973.png" alt="">
-                    <div class="title">金凤凰家具</div>
+                    <img class="icon" :src="user.userHeadimg" alt="">
+                    <div class="title">{{user.userAbbr}}</div>
                 </div>
                 <div class="recommend_desc">
                     推荐值
@@ -14,25 +14,25 @@
                 <div class="title">推荐值</div>
                 <div class="recommend_value">
                     <div class="value">
-                        <p class="sub">当前推荐值：<span class="time">更新于2018-04-23 23:01:05</span> </p>
-                        <p class="number">93.5<span class="union">分</span></p>
+                        <p class="sub">当前推荐值：<span class="time">更新于{{data.lastUpdateTime}}</span> </p>
+                        <p class="number">{{data.recommValue}}<span class="union">分</span></p>
                     </div>
                     <div class="line"></div>
                     <div class="rate">
-                        <div class="circle">89.5%</div>
-                        <p class="text">超过平台89.5%的同类供应商</p>
+                        <div class="circle">{{data.recommPercent}}</div>
+                        <p class="text">超过平台{{data.recommPercent}}的同类供应商</p>
                     </div>
                 </div>
                 <div class="result">
                     <div class="title_sub">推荐结果</div>
                     <div v-if="!switchValue" class="close_recommend">当前推荐处于关闭状态，如您有足够的产能，请手动开启</div>
                     <div v-else class="open_recommend">
-                        <div class="open_time"><span>开启推荐时间：</span><span class="time">2018-04-21 10:12:47</span></div>
+                        <div class="open_time"><span>开启推荐时间：</span><span class="time">{{data.startRecommTime}}</span></div>
                         <div class="circle">
-                            15
+                            {{data.recommNum}}
                             <div class="circle_img"></div>
                         </div>
-                        <div class="open_text">截至当前，租立方已已将您推荐给<span class="number">15</span>名客户。</div>
+                        <div class="open_text">截至当前，租立方已已将您推荐给<span class="number">{{data.recommNum}}</span>名客户。</div>
                     </div>
                 </div>
                 <div class="rise_up">
@@ -59,20 +59,39 @@
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            switchValue:''
+            switchValue:'',
+            user:{},
+            data:{}
         }
     },
     methods:{
-        receviewSwitch(value){
+        receviewSwitch(value){//接受开关改变
+            if(value&&this.switchValue!=value){
+                this.getRecommResult();
+            }
             this.switchValue=value;
-        }
+        },
+        getRecommResult(){//获取推荐值
+            customerModule.getRecommResult().then(res=>{
+                if(res.statusCode=='1'){
+                    this.data=res.data;
+                    this.data.startRecommTime=AppUtil.transferTimeToString(this.data.startRecommTime,'-',true);
+                    this.data.lastUpdateTime=AppUtil.transferTimeToString(this.data.lastUpdateTime,'-',true);
+                }
+            })
+        },
     },
     mounted(){
         Bus.$on('recommendSwitch',this.receviewSwitch);
         this.switchValue=localStorage.getItem('recommendSwitch')=='false'?false:true;
+         AppUtil.getCurrentUserInfo(user=>{
+            this.user=user;
+        });
+        this.getRecommResult();
     }
 }
 </script>

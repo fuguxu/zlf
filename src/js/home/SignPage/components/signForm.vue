@@ -231,7 +231,7 @@ export default {
                  this.nextStep();
                 //  this.visible=true;
              }else{
-                //  AppUtil.message(this,res.message,'warning');
+                 AppUtil.message(this,res.message,'warning');
              }
          })   
       },
@@ -242,7 +242,7 @@ export default {
                  this.nextStep();
                 //  this.visible=true;
              }else{
-                //  AppUtil.message(this,res.message,'warning');
+                 AppUtil.message(this,res.message,'warning');
                  
              }
          })  

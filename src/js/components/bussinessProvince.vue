@@ -28,6 +28,7 @@
 <script>
 import provicen from '../../../static/provicen';
 export default {
+    props:['defaultData'],
     data(){
         return {
             value:'',
@@ -61,6 +62,12 @@ export default {
         }
     },
     mounted(){
+        if(this.defaultData){
+            this.provinceList=this.defaultData.map(item=>{
+                return item.name
+            })
+            this.value='选择成功';
+        }
     },
     watch:{
         visible(n,o){

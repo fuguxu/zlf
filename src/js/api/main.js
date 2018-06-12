@@ -82,6 +82,14 @@ export const customerModule={
     getCurrentUser:params => { return customerAxios.post('/getUser').then(res => res.data); },
     //获取供应商登陆人信息
     getSupplierUser:params => { return customerAxios.get('/supplier/getUser').then(res => res.data); },
+    //获取供应商资料
+    getDatum:params => { return customerAxios.get('/supplier/getDatum').then(res => res.data); },
+    //获取供应商扩展信息
+    getExtSupplier:params => { return customerAxios.get('/supplier/getExtSupplier').then(res => res.data); },
+    //推荐值开关
+    openRecom:params => { return customerAxios.get('/supplier/openRecom', {params:params}).then(res => res.data); },
+    //获取推荐值
+    getRecommResult:params => { return customerAxios.get('/supplier/getRecommResult').then(res => res.data); },
 
     //获取消息接口
     getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },

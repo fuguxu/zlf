@@ -46,11 +46,16 @@ export default {
       upload(){
           customerModule.upload(this.formData).then(res=>{
               if(res.error==0){
-                  this.perfectUser(res.url);
+                  if(localStorage.getItem('role')=='client'){
+                      this.perfectUser(res.url);
+                  }else{
+                      this.changeSupplierUser(res.url);
+                  }
+                  
               }
           })
       },
-      perfectUser(headerImgUrl){//修改用户头像接口
+      perfectUser(headerImgUrl){//修改客户用户头像接口
             customerModule.saveOrderCustomerInfo({
                 userHeadimg:headerImgUrl
             }).then(res=>{
@@ -61,6 +66,17 @@ export default {
                 }
             })
       },
+      changeSupplierUser(headerImgUrl){//修改供应商用户头像接口
+            customerModule.changeSupplierUser({
+                userHeadimg:headerImgUrl
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.user.userHeadimg=headerImgUrl;
+                    AppUtil.setCurrentUserInfo(this.user);
+                    Bus.$emit('updateHeaderImg',headerImgUrl);
+                }
+            })
+        },
       valiateSize(file){
           let size=file.size;
           if(size>10*1024*1024){

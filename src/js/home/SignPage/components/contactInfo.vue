@@ -161,7 +161,7 @@ export default {
             }
         },
         saveOrderCustomerInfo(){//保存客户联系人信息
-            customerModule.saveOrderCustomerInfo({...this.form,...(this.kindTypeInfo||{})}).then(res=>{
+            customerModule.saveOrderCustomerInfo(this.form).then(res=>{
                 if(res.statusCode==1){
                     this.submitedAfter();
                 }
@@ -172,7 +172,9 @@ export default {
                 ...this.form,
                 ...this.kindTypeInfo
             }).then(res=>{
-
+                if(res.statusCode==1){
+                    this.submitedAfter();
+                }
             })
         },
         updateStep(){//注册到此处 需要判断是什么角色注册的

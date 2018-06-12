@@ -28,7 +28,7 @@
                 <div class="label">业务覆盖范围</div>
                 <div class="item_content">{{form.coverArea}}</div>
             </div>
-            <bussinessProvince v-if="isEdit"></bussinessProvince>
+            <bussinessProvince :defaultData="form.leaseArea" @updateArea="updateArea" v-if="isEdit"></bussinessProvince>
         </div>
         <div class="form_item">
             <div class="label">邮箱</div>
@@ -54,18 +54,18 @@
                         :value="item.name">
                         </el-option>
                     </el-select>
-                    <el-input :disabled="!isEdit" v-model="form.town" placeholder="详细地址"></el-input>
+                    <el-input :disabled="!isEdit" v-model="form.detailAddr" placeholder="详细地址"></el-input>
                 </div>
                 <div v-if="!isEdit" class="address">
                     <span>{{form.province}}</span>
                     <span>{{form.city}}</span>
-                    <span>{{form.town}}</span>
+                    <span>{{form.detailAddr}}</span>
                 </div>
             </div>
         </div>
         <div class="form_item">
             <span v-if="isEdit" @click="cancel" class="button cancel">取消</span>
-            <span v-if="isEdit" @click="perfectUser" class="button sure">保存</span>
+            <span v-if="isEdit" @click="save" class="button sure">保存</span>
             <span v-if="!isEdit" @click="clickEdit" class="button">编辑</span>
         </div>
     </div>
@@ -94,7 +94,7 @@ export default {
         changProvicen(value,falg){
             if(!falg){
                 this.form.city='';
-                this.form.town='';
+                this.form.detailAddr='';
             }
            this.city=AppUtil.findWhere(this.provicen,'name',value).city;
         },
@@ -107,14 +107,40 @@ export default {
         },
         initData(){
         },
-        perfectUser(){//完善信息
+        updateArea(area){//选择覆盖范围
+            this.form.leaseArea=area.map(item=>{
+                return {
+                    ...item,
+                    userNo:this.form.userNo
+                }
+            })
+        },
+        save(){//点击保存
+            if(localStorage.getItem('role')=='client'){
+                this.perfectUser();
+            }else{
+                this.changeSupplierUser();
+            }
+        },
+        perfectUser(){//完善客户信息
             customerModule.saveOrderCustomerInfo(this.form).then(res=>{
                 if(res.statusCode){
                     AppUtil.setCurrentUserInfo(this.form);
                     this.isEdit=false;
                 }
             })
-        }
+        },
+        changeSupplierUser(){//完善供应商信息
+            customerModule.changeSupplierUser(this.form).then(res=>{
+                if(res.statusCode==1){
+                    this.form.coverArea=this.form.leaseArea.map(item=>{
+                        return '#'+item.name
+                    }).join('');
+                    AppUtil.setCurrentUserInfo(this.form);
+                    this.isEdit=false;
+                }
+            })
+        },
     },
     mounted(){
         this.changProvicen(this.form.province,true);

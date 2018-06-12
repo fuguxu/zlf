@@ -13,14 +13,37 @@
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
             switchValue:'',
         }
     },
+    methods:{
+        getExtSupplier(){//供应商扩展信息
+            customerModule.getExtSupplier().then(res=>{
+                if(res.statusCode=='1'){
+                    this.switchValue=res.data.recoStatus==0?false:true;
+                }
+            })
+        },
+        openRecom(val){//推荐值开关
+            customerModule.openRecom({
+                isOpen:this.switchValue?1:0
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.setSwitchValue(val);
+                }
+            })
+        },
+        setSwitchValue(val){
+            Bus.$emit('recommendSwitch',val);
+            localStorage.setItem('recommendSwitch',val);
+        }
+    },
     mounted(){
-        this.switchValue=false;
+        this.getExtSupplier();
     },
     computed:{
         activeText(){
@@ -29,8 +52,11 @@ export default {
     },
     watch:{
         switchValue(n,o){
-            Bus.$emit('recommendSwitch',n);
-            localStorage.setItem('recommendSwitch',n);
+            if(o!==''){
+                this.openRecom(n);
+            }else{
+                this.setSwitchValue(n);
+            }
         }
     }
 }

@@ -31,9 +31,9 @@ export default {
             },
             tipMessage:'',
             rules: {
-                // projectName:[
-                //     { required: true, message: '请输入项目名称', trigger: 'blur,change' },
-                // ],
+                projectName:[
+                    {type:'string', required: true, message: '请输入项目名称', trigger: 'blur,change' },
+                ],
             }
         }
     },
@@ -41,14 +41,18 @@ export default {
         close(){
             this.$emit('update:visible',false);
         },
-        submitForm(form){
-            // this.$refs.form.validate(v=>{
-            //     if(v){
-            //         return true
-            //     }else{
-            //         return false
+        submitForm(){
+            console.log(this.$refs.form)
+            // this.$refs.form.validate(
+            //     (v,e)=>{
+            //         console.log(v,e)
+            //         if(v){
+            //             return true
+            //         }else{
+            //             return false
+            //         }
             //     }
-            // });
+            // );
             if(!this.form.projectName){
                 this.tipMessage='请输入项目名称';
             }else{
