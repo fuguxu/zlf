@@ -26,7 +26,7 @@ export default {
     .position_city{
         display: flex;
         align-items: center;
-        padding-left:50px;
+        padding-left:34px;
         img{
             width:25px;
             height:25px;

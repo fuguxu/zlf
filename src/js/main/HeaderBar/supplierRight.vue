@@ -3,11 +3,12 @@
         <router-link to="/trade" class="text">交易中心</router-link>
         <router-link to="/recommend" class="recommend text">推荐值</router-link>
         <el-switch
+            :width="36"
             style="display: block"
             v-model="switchValue"
             active-color="#fff"
             inactive-color="#fff"
-            :active-text="activeText"
+            :inactive-text="activeText"
             >
         </el-switch>
     </div>
@@ -84,7 +85,7 @@ export default {
         margin-right: 50px;
     }
     .el-switch>>>.el-switch__core .el-switch__button{
-        background-color: #ffd700;
+        background-color: rgba(255,166,50,1);
     }
     .el-switch>>>.el-switch__label{
         font-size: 14px;

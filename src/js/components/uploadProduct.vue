@@ -16,7 +16,7 @@
                     </form>
                 </label>
                 <div class="error_message" v-if="tipMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{tipMessage}}</span>
                 </div>
             </div>
@@ -25,7 +25,7 @@
     </div>
 </template>
 <script>
-
+import {customerModule} from '../api/main'
 export default {
     props:{
         multiple:{
@@ -34,6 +34,9 @@ export default {
         },
         isEdit:{
             default:true
+        },
+        saveType:{
+
         },
         id:{
 
@@ -57,13 +60,12 @@ export default {
           }else{
               postFiles = postFiles.slice(0);
           }
+          console.log(postFiles)
           if(postFiles.length==0){return};
           if(this.valiateType(postFiles)&&this.valiateSize(postFiles)&&this.valiateNumber(postFiles)){
               this.loading=true;
-              setTimeout(()=>{
-                  this.loading=false;
-                  this.fileList=[...this.fileList,...postFiles];
-              },1000)
+              this.uploadParams(postFiles);
+              this.uploadFile(postFiles);
           } 
       },
       valiateNumber(files){//验证数量
@@ -100,17 +102,21 @@ export default {
       //生成上传附件参数的函数
       uploadParams(file){
          let form = new FormData(); // FormData 对象
-         if (this.fileList.length > 0) {
+        //  if (this.fileList.length > 0) {
             form.append("file", file); // 文件对象
+            form.append("saveType", this.saveType); // 文件对象
             this.formData=form;
-         }
+        //  }
        },
        progressFile(){
 
        },
-      uploadFile(file){//调接口函数
-        uploadFileModuleAPI.upload(this.formData,this.progressFile).then(res=>{
-           
+      uploadFile(postFiles){//调接口函数
+        customerModule.mulUploadFile(this.formData).then(res=>{
+           if(res.error==0){
+               this.loading=false;
+               this.fileList=[...this.fileList,...postFiles];
+           }
         });
       },
       emitHandleRemove(){//删除

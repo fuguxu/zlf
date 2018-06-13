@@ -1,7 +1,6 @@
 <template>
   <div class="team_container">
-      <banner>
-      </banner>
+      <div class="about_banner"></div>
       <div class="content_container">
           <leftContent></leftContent>
           <div class="content_right">
@@ -44,6 +43,12 @@ export default {
 .team_container{
   background: #fff;
   padding-bottom: 140px;
+}
+.about_banner{
+    width:100%;
+    height: 600px;
+    background: url('../../../img/about_us_team.png') center no-repeat;
+    background-size: cover;
 }
     .content_container{
       width:1160px;

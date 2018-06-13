@@ -34,7 +34,8 @@ export default {
         height: 100%;
         align-items: center;
         cursor: pointer;
-        margin-left:50px;
+        margin-left:155px;
+        margin-right:34px;
         .message_icon{
             width:20px;
             height:20px;

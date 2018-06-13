@@ -78,6 +78,8 @@ export const customerModule={
     logout:params => { return customerAxios.post('/logout').then(res => res.data); },
     //上传接口 
     upload:params => { return customerAxios.post('/updateContent', params).then(res => res.data); },
+    //多文件上传
+    mulUploadFile:params => { return customerAxios.post('/mulUploadFile', params).then(res => res.data); },
     //获取市场客户登陆人信息
     getCurrentUser:params => { return customerAxios.post('/getUser').then(res => res.data); },
     //获取供应商登陆人信息

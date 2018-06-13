@@ -97,7 +97,7 @@ export default {
 <style lang="scss" scoped>
 .banner{
   height: 600px;
-  background: url('../../../img/u3353.png') center no-repeat;
+  background: url('../../../img/about_us_careers.png') center no-repeat;
   background-size: cover;
 }
     .join_container{

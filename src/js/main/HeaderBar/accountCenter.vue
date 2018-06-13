@@ -36,7 +36,7 @@ export default {
 <style lang="scss" scoped>
     .account_center{
         position: relative;
-        margin-left:50px;
+        margin-left:70px;
         cursor: pointer;
         height:100%;
         display: flex;

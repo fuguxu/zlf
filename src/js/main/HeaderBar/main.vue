@@ -6,9 +6,9 @@
             </div>
             <positionCity></positionCity>
             <accountCenter></accountCenter>
-            <messageCenter></messageCenter>
             <clientRight v-if="role=='client'"></clientRight>
             <supplierRight v-if="role=='supplier'"></supplierRight>
+            <messageCenter></messageCenter>
             <div class="login_out">
                 <img src="../../../img/u1393.png" alt="">
                 <span @click="loginOut" class="text">退出</span>
@@ -58,22 +58,21 @@
     .header_bar{
         height: 51px;
         width:100%;
-        background-color: rgba(13, 13, 13, 0.92);
+        background-color: rgba(41,43,44,1);
         position: fixed;
         top:0;
         left:0;
         z-index:999;
         .header_container{
-            width:1200px;
+            width:1160px;
             height: 100%;
             margin: 0 auto;
             display: flex;
             align-items: center;
             color:#fff;
-            font-size: 14px;
         }
         .logo_container{
-            margin-left:67.5px;
+            // margin-left:67.5px;
             display: flex;
             align-items: center;
         }

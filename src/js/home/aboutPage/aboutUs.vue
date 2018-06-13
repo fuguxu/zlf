@@ -1,7 +1,6 @@
 <template>
   <div class="about_us_container">
-      <banner>
-      </banner>
+      <div class="about_banner"></div>
       <div class="content">
           <leftContent></leftContent>
           <div class="content_right">
@@ -15,7 +14,7 @@
               </div>
               <div class="item item_top">
                   <div class="left">
-                        <div class="font16 item_title">"专业，更专注"</div>
+                        <div class="font16 item_title item_title1">"专业，更专注"</div>
                         <p class="font14 text">租立方是招商局集团（股票代码：00144）旗下家居融资租赁互联网平台，成立于2015年，于2016年6月正式上线，向公寓、酒店、办公场所等重资产投资企业提供供应链金融服务。引入招商局战略合作资源进一步推动租立方在房地产，金融、科技、家居等板块全面布局，仅用一年半时间完成以深圳至全国的战略布局，2018年租立方业务扩张至北京、上海、广州、杭州、苏州、南京、重庆、武汉、合肥、厦门、三亚等地。</p>
                         <div class="font16 item_title item_title2">"金融租赁，快速扩张"</div>
                         <p class="text text2">租立方通过融资租赁的方式，致力于解决企业重资产投入痛点，无需一次性投入资金采购家具、家电、机电、弱电系统智能系统等，缓解企业资金链压力，大幅度盘活企业现金流助跑酒店、公寓等品牌规模化扩张速度，减税增收；产品交时间前置，快速开业；完善的租后管理，省心更省时。</p>
@@ -74,6 +73,12 @@ export default {
   background: #fff;
   padding-bottom: 178px;
 }
+.about_banner{
+    width:100%;
+    height: 600px;
+    background: url('../../../img/about_us_logo.png') center no-repeat;
+    background-size: cover;
+}
   .content{
     width:1160px;
     margin:0 auto;
@@ -100,6 +105,9 @@ export default {
           }
           .item_title{
             margin-bottom: 13px;
+          }
+          .item_title1{
+            font-weight: bold;
           }
           .item_title2{
             padding-top:56px;

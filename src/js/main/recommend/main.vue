@@ -4,9 +4,9 @@
             <div class="recommend_left">
                 <div class="recommend_icon">
                     <img class="icon" :src="user.userHeadimg" alt="">
-                    <div class="title">{{user.userAbbr}}</div>
+                    <div class="title font18">{{user.userAbbr}}</div>
                 </div>
-                <div class="recommend_desc">
+                <div class="recommend_desc font16">
                     推荐值
                 </div>
             </div>
@@ -97,59 +97,53 @@ export default {
 </script>
 <style lang="scss" scoped>
     .recommend_content{
-        width:1200px;
+        width:1160px;
         margin:0 auto;
         display: flex;
-        padding:52px 0px;
+        padding:20px 0 40px 0px;
         .recommend_left{
-            width:202px;
+            width:264px;
             box-sizing: border-box;
+            padding:0 12px;
             background: #fff;
-            height:258px;
+            height:277px;
             text-align: center;
-            border: 1px solid rgba(201,201,201,0.2);
-            box-shadow: 0 0 2px rgba(201,201,201,0.4);
-            color: #292B2C;
+            border-radius:6px;
             font-size:14px;
-            margin-right: 15px;
+            margin-right: 20px;
             .recommend_icon{
-                width:170px;
-                height: 166px;
-                margin-left:16px;
-                border-bottom: 1px solid rgba(201,201,201,0.2);
+                border-bottom: 1px solid rgba(244,244,244,1);
                 .icon{
-                    width:100px;
-                    height:100px;
-                    margin:19px 0 5px 0;
+                    width:88px;
+                    height:88px;
+                    margin-top:52px;
                 }
                 .title{
-                    font-size: 15px;
+                    padding:28px 0px;
                 }
             }
             .recommend_desc{
-                color: rgb(242, 159, 51);
+                color: rgba(255,166,50,1);
                 cursor: pointer;
                 font-size: 15px;
                 height: 26px;
                 line-height: 26px;
-                margin-top:20px;
+                margin-top:14px;
                 background: url('../../../img/u4148.png') no-repeat 45px center;
                 background-size: 26px;
             }
         }
         .recommend_right{
             flex: 1;
-            border: 1px solid rgba(201,201,201,0.2);
-            box-shadow: 0 0 1px rgba(201,201,201,0.4);
-            border-bottom: 1px solid rgba(201,201,201,0.4);
+            border: 1px solid rgba(237, 237, 237, 1);
             background: #fff;
+            border-radius:6px;
             .title{
-                line-height: 52px;
-                // background: #FAFAF9;
-                font-size: 16px;
+                line-height: 64px;
+                font-size: 18px;
                 color: rgb(41, 43, 44);
-                padding-left:33px;
-                border-bottom: 1px solid rgba(201,201,201,0.2);
+                padding-left:21px;
+                border-bottom: 1px solid rgba(237, 237, 237, 1);
             }
              .circle{
                 color: rgb(242, 159, 51);
@@ -162,10 +156,10 @@ export default {
                 line-height: 134px;
             }
             .recommend_value{
-                width:908px;
+                // width:908px;
                 margin:0 auto;
                 height:190px;
-                border-bottom: 1px solid rgba(201,201,201,0.2);
+                border-bottom: 1px solid rgba(237, 237, 237, 1);
                 display: flex;
                 .value{
                     flex: 1;
@@ -191,7 +185,7 @@ export default {
                 .line{
                     height: 108px;
                     width:1px;
-                    background:rgba(201,201,201,0.2);
+                    background:rgba(237, 237, 237, 1);
                     margin-top:41px; 
                 }
                 .rate{
@@ -209,7 +203,7 @@ export default {
                 }
             }          
             .result{
-                width:908px;
+                // width:908px;
                 margin:0 auto;
                 padding-bottom: 102px;
                 .close_recommend{
@@ -271,7 +265,7 @@ export default {
             }
             .rise_up{
                 height: 578px;
-                width:908px;
+                // width:908px;
                 margin:0 auto;
                 border-top: 1px solid rgba(201,201,201,0.2);
                 .desc{

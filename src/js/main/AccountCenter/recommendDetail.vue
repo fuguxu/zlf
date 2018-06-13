@@ -11,9 +11,9 @@
             <div class="content">
                 <div class="sub_title">详细介绍</div>
                 <div class="desc_box">
-                    <el-input class="company_textarea" :maxlength="companyNumber" type="textarea" :rows="4" autosize placeholder="展示公司实力，示例：**家具成立于2004年，主要从事酒店家具的生产制造，目前设有深圳、惠州两个生产基地，员工800余人，月产值2000万，致力于打造最具优秀的产品和服务，推动家具制造商的文明发展。" v-model="companyInfo">
+                    <el-input class="company_textarea" :maxlength="companyNumber" type="textarea" :rows="4" autosize placeholder="展示公司实力，示例：**家具成立于2004年，主要从事酒店家具的生产制造，目前设有深圳、惠州两个生产基地，员工800余人，月产值2000万，致力于打造最具优秀的产品和服务，推动家具制造商的文明发展。" v-model="form.briefIntro">
                     </el-input>
-                    <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':companyNumber-companyInfo.length<=10}">{{companyNumber-companyInfo.length}}</span>字</div>
+                    <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':companyNumber-form.briefIntro.length<=10}">{{companyNumber-form.briefIntro.length}}</span>字</div>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="upload_box">
-                <uploadProduct id="equipment" :isEdit="isEdit"></uploadProduct>
+                <uploadProduct id="equipment" saveType="equipment" :isEdit="isEdit"></uploadProduct>
             </div>
         </div>
         <div class="product_info item_info">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="upload_box">
-                    <uploadProduct :isEdit="isEdit" :id="'product'+index"></uploadProduct>
+                    <uploadProduct :isEdit="isEdit" saveType="product" :id="'product'+index"></uploadProduct>
                 </div>
             </div>
             <div v-if="isEdit" class="addarea">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="upload_box">
-                    <uploadProduct :isEdit="isEdit" :id="'case'+index"></uploadProduct>
+                    <uploadProduct :isEdit="isEdit" saveType="case" :id="'case'+index"></uploadProduct>
                 </div>
             </div>
             <div v-if="isEdit" class="addarea">
@@ -102,7 +102,10 @@ import uploadProduct from '../../components/uploadProduct';
 export default {
     data(){
         return {
-            companyInfo:'创始人兼CEO 罗森柏告诉36氪，距离上次报道，公司的进展主要包括以下几个方面：第一，商业模式更加清晰：互联网+供应链+金融。',
+            form:{
+                briefIntro:''
+            },
+            // form.briefIntro:'创始人兼CEO 罗森柏告诉36氪，距离上次报道，公司的进展主要包括以下几个方面：第一，商业模式更加清晰：互联网+供应链+金融。',
             companyNumber:200,
             equipmentInfo:'紧落实中。虽然获得一些其他城市同行的加盟意向，但罗森柏表示，每个区域对产品的需求不同。',
             equipmentNumber:50,
@@ -134,10 +137,10 @@ export default {
             }
             this.caseList.push({...this.product});
         },
-        clickEdit(){
+        clickEdit(){//点击编辑
             this.isEdit=true;
         },
-        clickCancel(){
+        clickCancel(){//点击取消
             this.isEdit=false;
         },
         preview(){
@@ -145,8 +148,11 @@ export default {
         }
     },
     mounted(){
-        this.productList.push({...this.product});
-        this.caseList.push({...this.product});
+        for(var i=0;i<3;i++){
+            this.productList.push({...this.product});
+            this.caseList.push({...this.product});
+        }
+        
     },
     components:{
         uploadProduct

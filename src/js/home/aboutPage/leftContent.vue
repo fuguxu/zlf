@@ -37,7 +37,7 @@
             </div>
             <div class="contact_item">
                 <div class="img_box font0">
-                    <img src="../../../img/time_icon.png" alt="">
+                    <img src="../../../img/time_icon_small.png" alt="">
                 </div>
                 <div>
                     <div class="font14">工作时间</div>
