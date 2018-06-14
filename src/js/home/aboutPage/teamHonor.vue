@@ -6,15 +6,15 @@
           <div class="content_right">
                 <div class="font18 title_text">团队荣誉</div>
                 <div class="font16 title_en">TEAM GLORY</div>
-                <div class="font0">
-                    <img src="../../../img/hlf_frame.png" alt="">
+                <div class="font0" style="margin-bottom:20px;">
+                    <img src="../../../img/lbs_frame.png" alt="">
                 </div>
                 <div class="font0">
                     <img src="../../../img/hlf_frame.png" alt="">
                 </div>
                 <div class="font18 title_text">荣获奖牌</div>
                 <div class="font16 title_en">WON THE MEDAL</div>
-                <div class="font0">
+                <div class="font0" style="margin-bottom:60px;">
                     <img src="../../../img/zs_01.png" alt="">
                 </div>
                 <div class="font0">
@@ -57,6 +57,15 @@ export default {
       display: flex;
       .content_right{
         flex: 1;
+      }
+      .title_text{
+          padding-top:132px;
+          padding-bottom: 18px;
+      }
+      .title_en{
+          font-family:'Adobe Heiti Std R';
+          color:rgba(0,0,0,1);
+          padding-bottom: 45px;
       }
     }
 </style>

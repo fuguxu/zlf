@@ -5,7 +5,7 @@
         </div>
         <div class="file_box">
             <div class="imgs_box">
-                <img v-for="(item,index) in showFileList" :key="index" class="img_item" :src="item.url" alt="">
+                <img v-for="(item,index) in fileList" :key="index" class="img_item" :src="item.url" alt="">
                 <div v-if="loading" class="loading"><i class="el-icon-loading"></i></div>
             </div>
             <div v-if="isEdit" class="file_container">
@@ -40,6 +40,9 @@ export default {
         },
         id:{
 
+        },
+        data:{
+
         }      
     },
   data(){
@@ -60,7 +63,6 @@ export default {
           }else{
               postFiles = postFiles.slice(0);
           }
-          console.log(postFiles)
           if(postFiles.length==0){return};
           if(this.valiateType(postFiles)&&this.valiateSize(postFiles)&&this.valiateNumber(postFiles)){
               this.loading=true;
@@ -103,7 +105,10 @@ export default {
       uploadParams(file){
          let form = new FormData(); // FormData 对象
         //  if (this.fileList.length > 0) {
-            form.append("file", file); // 文件对象
+            for(var i=1;i<=file.length;i++){
+                form.append("file"+i, file[i-1]);// 文件对象
+            }
+             
             form.append("saveType", this.saveType); // 文件对象
             this.formData=form;
         //  }
@@ -115,31 +120,43 @@ export default {
         customerModule.mulUploadFile(this.formData).then(res=>{
            if(res.error==0){
                this.loading=false;
-               this.fileList=[...this.fileList,...postFiles];
+               let urlFiles =res.url.map((item,i)=>{
+                   return {
+                       url:item,
+                   }
+               })
+               this.fileList=[...this.fileList,...urlFiles];
+               this.$emit('updatePic',this.fileList,this.id);
            }
         });
       },
-      emitHandleRemove(){//删除
-            this.fileList=[];
+      emitHandleRemove(index){//删除
+            this.fileList.splice(index,1);
       },
       previewImg(){//预览图片
         //   window.open(this.imgUrl);
       }
     }, 
   mounted(){
-    
+    console.log(this.data)
+    this.fileList=this.data;
   },
   computed:{
       hasFile(){
           return this.fileList.length!=0;
       },
-      showFileList(){
-         return this.fileList.map(v=>{
-              return {
-                  ...v,
-                  url:window.URL.createObjectURL(v)
-              }
-          }) 
+    //   showFileList(){
+    //      return this.fileList.map(v=>{
+    //           return {
+    //               ...v,
+    //               url:window.URL.createObjectURL(v)
+    //           }
+    //       }) 
+    //   }
+  },
+  watch:{
+      data(n,o){
+          console.log(n)
       }
   }
 }

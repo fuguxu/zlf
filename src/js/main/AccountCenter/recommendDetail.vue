@@ -22,35 +22,35 @@
             <div class="content">
                 <div class="sub_title">简单描述</div>
                 <div class="desc_box">
-                    <el-input class="equipment_textarea" v-model="equipmentInfo" :maxlength="equipmentNumber" type="textarea" :rows="4" autosize placeholder="简单描述生产设备的流水线生产、自动化程度等~" >
+                    <el-input class="equipment_textarea" v-model="form.equipment[0].content" :maxlength="equipmentNumber" type="textarea" :rows="4" autosize placeholder="简单描述生产设备的流水线生产、自动化程度等~" >
                     </el-input>
-                    <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':equipmentNumber-equipmentInfo.length<=10}">{{equipmentNumber-equipmentInfo.length}}</span>字</div>
+                    <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':equipmentNumber-form.equipment[0].content.length<=10}">{{equipmentNumber-form.equipment[0].content.length}}</span>字</div>
                 </div>
             </div>
             <div class="upload_box">
-                <uploadProduct id="equipment" saveType="equipment" :isEdit="isEdit"></uploadProduct>
+                <uploadProduct id="equipment" :data="form.equipment[0].fileList" @updatePic="updatePic" saveType="equipment" :isEdit="isEdit"></uploadProduct>
             </div>
         </div>
         <div class="product_info item_info">
             <div class="title_item">产品介绍</div>
-            <div class="content_container" v-for="(item,index) in productList" :key="index">
+            <div class="content_container" v-for="(item,index) in form.product" :key="index">
                 <div class="content">
                     <div class="sub_title">产品{{numbers[index]}}</div>
                     <div class="desc_box sub_desc_box">
-                        <el-input v-model="item.productName"  :placeholder="`请输入产品${numbers[index]}名称`" >
+                        <el-input v-model="item.keywords"  :placeholder="`请输入产品${numbers[index]}名称`" >
                         </el-input>
                     </div>
                 </div>
                 <div class="content">
                     <div class="sub_title">简单描述</div>
                     <div class="desc_box">
-                        <el-input class="equipment_textarea" v-model="item.simbleDesc" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍产品${numbers[index]}，包括特点、优势...`" >
+                        <el-input class="equipment_textarea" v-model="item.content" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍产品${numbers[index]}，包括特点、优势...`" >
                         </el-input>
-                        <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':item.maxLength-item.simbleDesc.length<=10}">{{item.maxLength-item.simbleDesc.length}}</span>字</div>
+                        <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':item.maxLength-item.content.length<=10}">{{item.maxLength-item.content.length}}</span>字</div>
                     </div>
                 </div>
                 <div class="upload_box">
-                    <uploadProduct :isEdit="isEdit" saveType="product" :id="'product'+index"></uploadProduct>
+                    <uploadProduct :isEdit="isEdit" :data="item.fileList" @updatePic="updatePic" saveType="product" :id="'product'+index"></uploadProduct>
                 </div>
             </div>
             <div v-if="isEdit" class="addarea">
@@ -63,24 +63,24 @@
         </div>
         <div class="product_info item_info">
             <div class="title_item">案例介绍</div>
-            <div class="content_container" v-for="(item,index) in caseList" :key="index">
+            <div class="content_container" v-for="(item,index) in form.cases" :key="index">
                 <div class="content">
                     <div class="sub_title">案例{{numbers[index]}}</div>
                     <div class="desc_box sub_desc_box">
-                        <el-input v-model="item.productName"  :placeholder="`请输入案例${numbers[index]}名称`" >
+                        <el-input v-model="item.keywords"  :placeholder="`请输入案例${numbers[index]}名称`" >
                         </el-input>
                     </div>
                 </div>
                 <div class="content">
                     <div class="sub_title">简单描述</div>
                     <div class="desc_box">
-                        <el-input class="equipment_textarea" v-model="item.simbleDesc" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍案例${numbers[index]}`" >
+                        <el-input class="equipment_textarea" v-model="item.content" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍案例${numbers[index]}`" >
                         </el-input>
-                        <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':item.maxLength-item.simbleDesc.length<=10}">{{item.maxLength-item.simbleDesc.length}}</span>字</div>
+                        <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':item.maxLength-item.content.length<=10}">{{item.maxLength-item.content.length}}</span>字</div>
                     </div>
                 </div>
                 <div class="upload_box">
-                    <uploadProduct :isEdit="isEdit" saveType="case" :id="'case'+index"></uploadProduct>
+                    <uploadProduct :isEdit="isEdit" :data="item.fileList" @updatePic="updatePic" saveType="case" :id="'case'+index"></uploadProduct>
                 </div>
             </div>
             <div v-if="isEdit" class="addarea">
@@ -93,49 +93,118 @@
         </div>
         <div class="footer" v-if="isEdit">
             <span @click="clickCancel" class="button cancel">取消</span>
-            <span class="button edit">保存</span>
+            <span @click="submit" class="button edit">保存</span>
         </div>
     </div>
 </template>
 <script>
 import uploadProduct from '../../components/uploadProduct';
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
             form:{
-                briefIntro:''
+                briefIntro:'',
+                equipment:[{
+                    content:'',
+                    fileList:[]
+                }],
+                product:[],
+                cases:[]
             },
-            // form.briefIntro:'创始人兼CEO 罗森柏告诉36氪，距离上次报道，公司的进展主要包括以下几个方面：第一，商业模式更加清晰：互联网+供应链+金融。',
             companyNumber:200,
-            equipmentInfo:'紧落实中。虽然获得一些其他城市同行的加盟意向，但罗森柏表示，每个区域对产品的需求不同。',
             equipmentNumber:50,
-            productList:[],
-            product:{
-                productName:'',
-                simbleDesc:'',
-                maxLength:50
+            commonObj:{
+                keywords:'',//名称
+                content:'',//描述
+                maxLength:50,
+                fileList:[]
             },
             showProductErrorMessage:false,
-            caseList:[],
             showCaseErrorMessage:false,
             numbers:['一','二','三','四','五'],
-            isEdit:true
+            isEdit:false
         }
     },
     methods:{
-        addProduct(){
-            if(this.productList.length>=5){
+        addProduct(){//增加产品
+            if(this.form.product.length>=5){
                 this.showProductErrorMessage=true;
                 return;
             }
-            this.productList.push({...this.product});
+            this.form.product.push({...this.commonObj});
         },
-        addCase(){
-             if(this.caseList.length>=5){
+        addCase(){//增加案例
+             if(this.form.cases.length>=5){
                 this.showCaseErrorMessage=true;
                 return;
             }
-            this.caseList.push({...this.product});
+            this.form.cases.push({...this.commonObj});
+        },
+        handleId(id,name){
+          return  id.split(name)[1];
+        },
+        deleteAddreImg(obj){
+            for(var i=1;i<=5;i++){
+                delete obj['imgAddr'+i];
+            }
+        },
+        updatePic(file,id){//接受文件
+            let fileObj={};
+            file.forEach((v,k)=>{
+                fileObj[`imgAddr${k+1}`]=v.url;
+            });
+            if(id=='equipment'){
+                this.deleteAddreImg(this.form.equipment[0]);//有的话先删除
+                this.form.equipment[0]=Object.assign(this.form.equipment[0],fileObj);
+            }else if(id.indexOf('product')>-1){
+                let index=this.handleId(id,'product');
+                this.deleteAddreImg(this.form.product[index]);
+                this.form.product[index]=Object.assign(this.form.product[index],fileObj);
+            }else if(id.indexOf('case')>-1){
+                let index=this.handleId(id,'case');
+                this.deleteAddreImg(this.form.cases[index]);
+                this.form.cases[index]==Object.assign(this.form.cases[index],fileObj);
+            }
+        },
+        saveRecommend(){//提交接口
+            customerModule.saveRecommend(this.form).then(res=>{
+                if(res.statusCode=='1'){
+
+                }
+            });
+        },
+        submit(){//保存按钮
+            this.saveRecommend();
+        },
+        handleFile(attrList){//处理附件
+          return  attrList.map(item=>{
+                    let fileList=[];
+                    for(var i=1;i<=5;i++){
+                        if(item['imgAddr'+i]){
+                            fileList.push({url:item['imgAddr'+i]});
+                        }
+                    }
+                    return {
+                        ...this.commonObj,
+                        ...item,
+                        fileList:fileList
+                    }
+                })
+        },
+        getRecommend(){//获取详情
+            customerModule.getRecommend().then(res=>{
+                if(res.statusCode=='1'){
+                    if(res.data.id){
+                        this.form=res.data;
+                        this.form.equipment=this.handleFile(this.form.equipment);
+                        this.form.cases=this.handleFile(this.form.cases);
+                        this.form.product=this.handleFile(this.form.product);
+                    }else{
+                        this.initData();
+                    }
+                }
+            })
         },
         clickEdit(){//点击编辑
             this.isEdit=true;
@@ -145,14 +214,16 @@ export default {
         },
         preview(){
             this.$router.push('/case')
+        },
+        initData(){
+            for(var i=0;i<3;i++){
+                this.form.product.push({...this.commonObj});
+                this.form.cases.push({...this.commonObj});
+            }
         }
     },
     mounted(){
-        for(var i=0;i<3;i++){
-            this.productList.push({...this.product});
-            this.caseList.push({...this.product});
-        }
-        
+        this.getRecommend();
     },
     components:{
         uploadProduct

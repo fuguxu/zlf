@@ -92,6 +92,10 @@ export const customerModule={
     openRecom:params => { return customerAxios.get('/supplier/openRecom', {params:params}).then(res => res.data); },
     //获取推荐值
     getRecommResult:params => { return customerAxios.get('/supplier/getRecommResult').then(res => res.data); },
+    //保存推荐详情
+    saveRecommend:params => { return customerAxios.post('/supplier/saveRecommend', params).then(res => res.data); },
+    //获取推荐详情
+    getRecommend:params => { return customerAxios.get('/supplier/getRecommend').then(res => res.data); },
 
     //获取消息接口
     getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },
