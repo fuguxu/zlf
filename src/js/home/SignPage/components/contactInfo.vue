@@ -79,11 +79,11 @@ export default {
         return {
             sexOption:[
                 {
-                    value:'0',
+                    value:'1',
                     label:'男'
                 },
                 {
-                    value:'1',
+                    value:'0',
                     label:'女'
                 }
             ],
@@ -173,16 +173,18 @@ export default {
                 ...this.kindTypeInfo
             }).then(res=>{
                 if(res.statusCode==1){
-                    this.submitedAfter();
+                    // this.submitedAfter();
                 }
             })
         },
         updateStep(){//注册到此处 需要判断是什么角色注册的
             // this.submitedAfter()
             if(this.blurContactName()&&this.blurPositionJob()&&this.blurSex()&&this.blurPhone()&&this.blurEmail()){
-                // if(this.role=='client'){
+                if(this.role=='client'){
                     this.saveOrderCustomerInfo();
-                // }
+                }else{
+                    this.changeSupplierUser();
+                }
             }
         },
         submitedAfter(){//接口提交成功之后

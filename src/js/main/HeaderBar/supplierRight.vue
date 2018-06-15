@@ -24,7 +24,7 @@ export default {
     methods:{
         getExtSupplier(){//供应商扩展信息
             customerModule.getExtSupplier().then(res=>{
-                if(res.statusCode=='1'){
+                if(res.statusCode=='1'&&res.data){
                     this.switchValue=res.data.recoStatus==0?false:true;
                 }
             })

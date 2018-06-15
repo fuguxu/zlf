@@ -92,7 +92,8 @@ export default {
         login(){//登录接口
             customerModule.login({
                 userName:this.userName,
-                passWord:this.password
+                passWord:this.password,
+                type:this.role==1?'0':'1'
             }).then(res=>{
                 if(res.statusCode==1){
                     let data =res.data;
