@@ -107,7 +107,7 @@ export default {
         if(!this.hasFile) return;
         customerModule.upload(this.formData).then(res=>{
         //    console.log(res)
-           if(res.error==0){
+           if(res.error==0&&!this.orderNo){
             //    this.imgUrl=res.url;
             this.$router.push('/submited')
            }

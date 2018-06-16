@@ -68,6 +68,12 @@ export const customerModule={
     changeSupplierUser:params => { return customerAxios.post('/supplier/changeUser', params).then(res => res.data); },
     //保存产品清单
     saveProductComm:params => { return customerAxios.post('/customers/saveProductComm', params).then(res => res.data); },
+    //获取项目详情
+    getProjectInfo:params => { return customerAxios.get('/customers/getProjectInfo', {params:params}).then(res => res.data); },
+    //获取指定供应商信息
+    getAppointSupplier:params => { return customerAxios.get('/customers/getAppointSupplier', {params:params}).then(res => res.data); },
+    //获取推荐供应商
+    getRecommendSupplier:params => { return customerAxios.get('/customers/getRecommendSupplier', {params:params}).then(res => res.data); },
     
     //供应商注册
     registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },

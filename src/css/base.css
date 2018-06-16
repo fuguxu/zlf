@@ -321,6 +321,9 @@ th{font-weight: normal;}
 textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
 
 /* 覆盖element-ui样式 */
+.el-message{
+    z-index: 20000 !important;
+}
 .el-input__inner{
     border: none;
 }

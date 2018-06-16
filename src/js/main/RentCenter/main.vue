@@ -122,7 +122,7 @@ export default {
         },
         getOrderInfoList(){//获取项目列表
             customerModule.getOrderInfoList().then(res=>{
-                if(res.statusCode=='1'){
+                if(res.statusCode=='1'&&res.data.length>0){
                     this.data=res.data.map(item=>{
                         return {...item,name:item.projectName}
                     });
@@ -159,58 +159,69 @@ export default {
         min-height: 700px;
         background: #fff;
         .rent_content_box{
-            width:1200px;
+            width:1160px;
             margin:0 auto;
-            padding-top:52px;
+            padding-top:33px;
             display: flex;
             .left{
-                width:218px;
-                margin-right:40px;
+                width:284px;
+                margin-right:60px;
+                box-sizing: border-box;
                 .el-menu{
                     border:1px solid rgba(231, 231, 231, 1);
                     border-bottom: none;
                     /deep/ .el-submenu__title:hover{
                         background-color: inherit !important;
                         color:rgba(255, 166, 50, 1) !important;
+
+                    }
+                   /deep/ .el-submenu.is-active .el-menu-item{
+                        background:#f6f5f5 !important;
                     }
                     .el-submenu.is-active /deep/ .el-submenu__title{
                         color:#fff !important;
+                        border-left:6px solid rgba(41,43,44,1);
                         background-color:rgba(255, 166, 50, 1) !important;
                         i{
                             color:#fff;
                         }
                     }
                     /deep/ .el-menu-item,/deep/ .el-submenu__title{
-                        height: 42px;
-                        line-height: 42px;
+                        height: 58px;
+                        line-height: 58px;
                         border-bottom: 1px solid rgba(231, 231, 231, 1);
                     }
                     /deep/ .el-submenu__title{
-                        padding-left:60px !important;
+                        padding-left:21px !important;
+                        border-left:6px solid transparent;
                     }
                 }
-                .el-menu-item:focus, .el-menu-item:hover{
+                .el-menu-item:focus, .el-menu-item:hover,.el-menu-item.is-active{
                     background-color: #fff !important;
-                    color: rgb(255, 208, 75) !important;
+                    color: rgba(255,166,50,1) !important;
                 }
-
+                .el-menu-item{
+                    padding-left:44px !important;
+                    color:rgba(136,136,136,1);
+                }
                 .new_rent{
-                    line-height: 44px;
-                    margin-top:30px;
-                    // background: rgba(255, 166, 50, 1);
-                    border:1px solid rgba(255, 166, 50, 1);
-                    border-radius: 5px;
-                    text-align: center;
+                    line-height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top:32px;
+                    margin-bottom:100px;
+                    background: rgba(255,166,50,1);
+                    border-radius: 2px;
                     cursor: pointer;
-                    color:#888;
-                    font-size:17px;
+                    color:#fff;
+                    font-size:14px;
                     &:hover{
-                        color:rgba(255, 166, 50, 1);
+                        background:rgba(255, 166, 50, 0.8);
                     }
                     .icon{
-                        font-size:20px;
+                        font-size:18px;
                         margin-right:5px;
-                        // color:#fff;
                     }
                 }
             }

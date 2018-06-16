@@ -11,7 +11,7 @@
                 <div class="extend_title">了解您的项目详情，以便开展下一步融资服务，请您：</div>
                 <p class="text"><span> a. 下载《项目信息收集表》</span><a class="link" href="">（点此下载）</a></p>
                 <p class="text"><span> b. 线下填写《项目信息收集表》，并将该表及表中要求的附件，一起打包邮件至</span><span class="link">service@zulifang.co</span></p>
-                <div class="next_step">审核通过，将开启下一步</div>
+                <!-- <div class="next_step">审核通过，将开启下一步</div> -->
             </div>
         </div>
         <div class="item">
@@ -27,7 +27,7 @@
                 <p class="text"><span> a. 下载《融资服务合作框架协议》</span><a class="link" href="">（点此下载）</a></p>
                 <p class="text"><span> b. 线下签署并加盖公司红章，上传清晰可见的扫描件</span></p>
                 <uploadLicence saveType="cooperationAgreement" :orderNo="orderNo" :showMore="false"></uploadLicence>
-                <div class="next_step">审核通过，将开启下一步</div>
+                <!-- <div class="next_step">审核通过，将开启下一步</div> -->
             </div>
         </div>
         <div class="item">
@@ -52,7 +52,57 @@
                 <span>产品清单沟通</span>
                 <i class="icon" :class="{'el-icon-arrow-down':!transfer,'el-icon-arrow-up':transfer}"  @click="clickExtend(3,'transfer')"></i>
             </div>
-            <choiceRent :orderNo="orderNo" v-if="transfer"></choiceRent>
+            <div v-if="transfer" class="extend">
+                <div class="big_custorm">
+                    <p class="font16">此环节，请您与供应商针对产品清单沟通产品需求、报价等相关事宜。</p>
+                    <p class="font16">我们将指派租立方大客户代表，撮和供应商与您之间的沟通，监督供应商发挥应用的作用。</p>
+                    <ul>
+                        <li class="title">租立方大客户代表</li>
+                        <li class="name"><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span><span>{{projectDetail.platBigCustomerName}}</span></li>
+                        <li class="contact"><span>联系方式：</span><span>{{projectDetail.platBigCustomerMobile}}</span></li>
+                    </ul>
+                </div>
+                <div class="step font16"><span class="line"></span><span>a.开始选择您的租赁物以及对应的供应商来源</span></div>
+                <choiceRent :orderNo="orderNo"></choiceRent>
+                <div class="recommend_supplier">
+                    <div class="step font16"><span class="line"></span><span>b.与供应商产品沟通进展</span></div>
+                    <div class="detail">
+                        <div class="detail_item">
+                            <div class="detail_title"><span class="dot"></span><span>指定合作供应商</span></div>
+                            <p class="color6 desc">请将以下租赁物对应的进驻邀请码，发送给您所指定合作的供应商；供应商只有进驻到租立方平台，您后面的租赁服务，包括租赁物生产、运输、验收、售后等才能得到更好的保障</p>
+                            <table>
+                                <tr>
+                                    <th>租赁物体</th>
+                                    <th>进驻邀请码</th>
+                                    <th>供应商</th>
+                                </tr>
+                                <tr v-for="(item,index) in appointSupplier" :key="index">
+                                    <td>{{item.leaseTypeName}}</td>
+                                    <td>{{item.invitationCode}}</td>
+                                    <td>发送至"{{item.leaseTypeName}}"供应商</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="detail_item">
+                            <div class="detail_title"><span class="dot"></span><span>推荐供应商</span></div>
+                            <p class="color6 desc">租立方根据您的租赁需求，推荐以下优质供应商，优先次序排列如下。</p>
+                            <div class="recommend_supplier_item" v-for="(item,index) in recommendSupplier" :key="index">
+                                <div class="supplier_item_title font16">{{item.name}}</div>
+                                <table>
+                                    <tr>
+                                        <th>次序</th><th>供应商</th><th>供应商简介</th><th>联系人</th>
+                                    </tr>
+                                    <tr v-for="(it,i) in item.list" :key="i"><td>{{i+1}}</td>
+                                        <td>{{it.userAbbr}}</td>
+                                        <td><a href="">点击查看详情</a></td>
+                                        <td>{{it.contacts}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -68,6 +118,7 @@
 import uploadLicence from '../../../components/uploadLicence';
 import rentMoneyInfo from '../../components/rentMoneyInfo';
 import choiceRent from '../../components/choiceRent';
+import {customerModule} from '../../../api/main';
 export default {
     props:['data','orderNo','orderName'],
     data(){
@@ -77,14 +128,46 @@ export default {
             finish:false,
             transfer:false,
             logistics:false,
+            projectDetail:{},
+            appointSupplier:[],
+            recommendSupplier:[]
         }
     },
     methods:{
         clickExtend(index,flag){
-            // if(this.data[index].isOperation=='1'){
-                this[flag]=!this[flag]
-            // }
+            if(this.data[index].isOperation=='1'){
+                this[flag]=!this[flag];
+                if(this.transfer){
+                    this.getProjectInfo();
+                    this.getAppointSupplier();
+                    this.getRecommendSupplier();
+                }
+            }
+        },
+        getProjectInfo(){//获得大客户联系人
+            customerModule.getProjectInfo({orderNo:this.orderNo}).then(res=>{
+                if(res.statusCode=='1'){
+                    this.projectDetail=res.data;
+                }
+            })
+        },
+        getAppointSupplier(){//获取指定供应商信息
+            customerModule.getAppointSupplier({orderNo:this.orderNo}).then(res=>{
+                if(res.statusCode=='1'){
+                    this.appointSupplier=res.data;
+                }
+            })
+        },
+        getRecommendSupplier(){//获取推荐供应商信息
+            customerModule.getRecommendSupplier({orderNo:this.orderNo}).then(res=>{
+                if(res.statusCode=='1'){
+                    this.recommendSupplier=res.data;
+                }
+            })
         }
+    },
+    mounted(){
+        
     },
     components:{
         uploadLicence,
@@ -100,10 +183,20 @@ export default {
 </script>
 <style lang="scss" scoped>
     .item{
-        padding:0 20px;
-        background: #f6f5f5;
         position: relative;
         margin-bottom: 15px;
+        .step{
+            display: flex;
+            align-items: center;
+            padding-bottom: 18px;
+            .line{
+                width:6px;
+                height: 12px;
+                background:rgba(255,166,50,1);
+                border-radius:3px;
+                margin-right: 10px;
+            }
+        }
         .item_sub{
             display: flex;
             height: 60px;
@@ -111,6 +204,8 @@ export default {
             font-size: 16px;
             color: #363636;
             position: relative;
+            background: #f6f5f5;
+            padding:0 20px 0px 16px;
             .circel{
                 width:26px;
                 height: 26px;
@@ -124,8 +219,9 @@ export default {
             }
         }
         .extend{
-            padding-left:46px;
+            padding:0px 28px;
             padding-bottom:20px;
+            border:1px solid rgba(231, 231, 231, 1);
             .extend_title{
                 font-size: 15px;
                 color: rgba(54, 54, 54, 0.75);
@@ -155,6 +251,73 @@ export default {
                 color:#fff;
                 font-size: 16px;
                 margin-top:20px;
+            }
+            .big_custorm{
+                padding-top:30px;
+                padding-bottom:60px;
+                p{
+                    line-height: 30px;
+                }
+                ul{
+                    padding-top:17px;
+                }
+                li{
+                    line-height: 46px;
+                    padding-left:17px;
+                    border-bottom:1px solid rgba(231,231,231,1);
+                    &.title{
+                        background:rgba(244,244,244,1);
+                    }
+                    &.name,&.contact{
+                        border-left:1px solid rgba(231,231,231,1);
+                        border-right:1px solid rgba(231,231,231,1);
+                    }
+                }
+            }
+            .recommend_supplier{
+                .detail{
+                    padding-left:22px;
+                    .detail_item{
+                        padding-bottom: 30px;
+                    }
+                    .detail_title{
+                        display: flex;
+                        align-items: center;
+                        padding: 16px 0px;
+                        .dot{
+                            width:6px;
+                            height: 6px;
+                            border-radius: 6px;
+                            background:rgba(255,166,50,1);
+                            margin-right:6px;
+                        }
+                    }
+                    .desc{
+                        padding-bottom: 22px;
+                    }
+                    .supplier_item_title{
+                        border:1px solid rgba(244,244,244,1);
+                        line-height: 46px;
+                        text-align: center;
+                    }
+                    table{
+                        border-collapse:collapse;
+                        border-radius: 3px;
+                        td,th{
+                            text-align: center;
+                            border:1px solid rgba(244,244,244,1);
+                            line-height: 46px;
+                        }
+                        th{
+                            background:rgba(244,244,244,1);
+                            color:fff;
+                        }
+                        a{
+                            color:rgba(75,168,255,1);
+                            text-decoration: underline;
+                        }
+                    }
+                }
             }
         }
         .icon{

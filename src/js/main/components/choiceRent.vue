@@ -60,11 +60,13 @@
                 </ul>
             </li>
         </ul>
-        <el-button @click="submit">提交你的选择</el-button>
+        <el-button @click="submit">{{buttonText}}</el-button>
+        <confirmRentDialog :loading="loading" v-if="visible" @submit="confirm" :visible.sync="visible" :data="selectData"></confirmRentDialog>
     </div>
 </template>
 <script>
 import {customerModule} from '../../api/main';
+import confirmRentDialog from './confirmRentDialog';
 export default {
     props:['orderNo'],
     data(){
@@ -72,6 +74,9 @@ export default {
             data:[],
             furniture:[],
             selectData:[],
+            visible:false,
+            buttonText:'提交你的选择',
+            loading:false
         }
     },
     methods:{
@@ -193,14 +198,17 @@ export default {
                 })
             }
         },
-        submit(){//对数据处理 选到最后一步传给后端
+        confirm(){//对数据处理 选到最后一步传给后端
+            this.saveProductComm();
+        },
+        submit(){//出现弹窗
             console.log(this.data)
             console.log(this.furniture)
             this.selectData=[];
             let data=[...this.furniture,...this.data];
             this.handlerData(data);
             console.log(this.selectData)
-            this.saveProductComm();
+            this.visible=true;
         },
         handlerData(data){
             for(var val of data){
@@ -212,6 +220,7 @@ export default {
             }
         },
         saveProductComm(){//保存清单接口
+            this.loading=true
             customerModule.saveProductComm(this.selectData.map(item=>{
                 return {
                     // ...item,
@@ -221,15 +230,27 @@ export default {
                     leaseTypeName:item.catName,
                     orderNo:this.orderNo
                 }
-            }))
+            })).then(res=>{
+                if(res.statusCode=='1'){
+                    this.loading=false;
+                    this.visible=false;
+                    this.buttonText='提交成功，推荐结果请见下方'
+                }
+            })
         }
     },
     mounted(){
         this.getRoot();
+    },
+    components:{
+        confirmRentDialog
     }
 }
 </script>
 <style lang="scss" scoped>
+.choice_rent{
+    padding-bottom: 50px;
+}
     .item{
         // display: flex;      
         background: #f5eaa6;
