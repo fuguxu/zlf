@@ -5,7 +5,7 @@
                 <div class="item_title">
                     <el-checkbox @change="selectRoot(item)" v-model="item.checked">{{item.catName}}</el-checkbox>
                 </div>
-                <div v-if="item.children.length>0&&item.checked" style="display:flex;background:#fff;">
+                <div class="extend furniture-extend" v-if="item.children.length>0&&item.checked" style="display:flex;background:#fff;">
                     <div>
                         <span>请选择</span>
                         <el-select v-model="item.optionValue" @change="changeSelect"  placeholder="">
@@ -13,21 +13,21 @@
                         </el-select>
                     </div>
                     <div style="display:flex;">
-                        <span>请进一步选择</span>
+                        <span style="margin-right:26px;">请进一步选择</span>
                         <ul class="children_item" v-if="item.children2.length>0">
-                            <li v-for="(it,i) in item.children2" :key="i">
+                            <li  v-for="(it,i) in item.children2" :key="i">
                                 <el-checkbox @change="selectItem(it)" v-model="it.checked">{{it.catName}}</el-checkbox>
                                 <el-radio-group v-if="it.checked&&it.needDetail===false" v-model="it.supplierSource">
                                     <el-radio :label="1">我已有{{it.catName}}指定的供应商</el-radio><br />
                                     <el-radio :label="0">我需要租立方推荐优质供应商</el-radio>
                                 </el-radio-group>
-                                <div v-if="it.checked&&it.remark=='1'&&!it.click">
+                                <div class="need-spread" v-if="it.checked&&it.remark=='1'&&!it.click">
                                     <span>您还需要进一步细分活动家具吗？</span>
-                                    <span @click="clickNeed(it,true);" >需要</span>
-                                    <span @click="clickNeed(it,false);">不需要</span>
+                                    <span class="button need" @click="clickNeed(it,true);" >需要</span>
+                                    <span class="button no" @click="clickNeed(it,false);">不需要</span>
                                 </div>
-                                <ul class="children_item" v-if="it.checked&&it.needDetail===true&&it.children.length>0">
-                                    <li v-for="(it2,i) in it.children" :key="i">
+                                <ul class="children_item children_item_detail" v-if="it.checked&&it.needDetail===true&&it.children.length>0">
+                                    <li class="children_li" v-for="(it2,i) in it.children" :key="i">
                                         <el-checkbox @change="selectItem(it2)" v-model="it2.checked">{{it2.catName}}</el-checkbox>
                                         <el-radio-group v-if="it2.checked" v-model="it2.supplierSource">
                                             <el-radio :label="1">我已有{{it2.catName}}指定的供应商</el-radio><br />
@@ -45,22 +45,27 @@
                 <div class="item_title">
                     <el-checkbox @change="selectRoot(item)" v-model="item.checked">{{item.catName}}</el-checkbox>
                 </div>
-                <el-radio-group v-if="item.checked&&item.children.length==0" v-model="item.supplierSource">
-                    <el-radio :label="1">我已有{{item.catName}}指定的供应商</el-radio><br />
-                    <el-radio :label="0">我需要租立方推荐优质供应商</el-radio>
-                </el-radio-group>
-                <ul class="children_item" v-if="item.checked&&item.children.length>0">
-                    <li v-for="(it,i) in item.children" :key="i">
-                        <el-checkbox @change="selectItem(it)" v-model="it.checked">{{it.catName}}</el-checkbox>
-                        <el-radio-group v-if="it.checked" v-model="it.supplierSource">
-                            <el-radio :label="1">我已有{{it.catName}}指定的供应商</el-radio><br />
-                            <el-radio :label="0">我需要租立方推荐优质供应商</el-radio>
-                        </el-radio-group>
-                    </li>
-                </ul>
+                <div class="extend" v-if="item.checked">
+                    <el-radio-group class="only-radio-group" v-if="item.checked&&item.children.length==0" v-model="item.supplierSource">
+                        <el-radio :label="1">我已有{{item.catName}}指定的供应商</el-radio><br />
+                        <el-radio :label="0">我需要租立方推荐优质供应商</el-radio>
+                    </el-radio-group>
+                    <ul class="children_item" v-if="item.checked&&item.children.length>0">
+                        <li v-for="(it,i) in item.children" :key="i" class="children_li">
+                            <el-checkbox @change="selectItem(it)" v-model="it.checked">{{it.catName}}</el-checkbox>
+                            <el-radio-group v-if="it.checked" v-model="it.supplierSource">
+                                <el-radio :label="1">我已有{{it.catName}}指定的供应商</el-radio><br />
+                                <el-radio :label="0">我需要租立方推荐优质供应商</el-radio>
+                            </el-radio-group>
+                        </li>
+                    </ul>
+                </div>
+                
             </li>
         </ul>
-        <el-button @click="submit">{{buttonText}}</el-button>
+        <div class="footer">
+            <span class="button" :class="{disabled:disabled}" @click="submit">{{buttonText}}</span>
+        </div>
         <confirmRentDialog :loading="loading" v-if="visible" @submit="confirm" :visible.sync="visible" :data="selectData"></confirmRentDialog>
     </div>
 </template>
@@ -76,7 +81,8 @@ export default {
             selectData:[],
             visible:false,
             buttonText:'提交你的选择',
-            loading:false
+            loading:false,
+            disabled:false
         }
     },
     methods:{
@@ -204,6 +210,7 @@ export default {
         submit(){//出现弹窗
             console.log(this.data)
             console.log(this.furniture)
+            if(this.disabled) return;
             this.selectData=[];
             let data=[...this.furniture,...this.data];
             this.handlerData(data);
@@ -234,6 +241,7 @@ export default {
                 if(res.statusCode=='1'){
                     this.loading=false;
                     this.visible=false;
+                    this.disabled=true;
                     this.buttonText='提交成功，推荐结果请见下方'
                 }
             })
@@ -251,20 +259,145 @@ export default {
 .choice_rent{
     padding-bottom: 50px;
 }
+   .extend .children_li{
+       display: flex;
+   }
     .item{
-        // display: flex;      
-        background: #f5eaa6;
-        padding-left:20px;
+        // display: block; 
+        margin-bottom: 8px;     
         .item_title{
             line-height: 46px;
-            border-bottom: 1px solid #eee;
-            width:100%;
+            padding-left:16px;
+            background: rgba(255,166,50,1);
+            /deep/ .el-checkbox__label{
+                color:#fff;
+                margin-left:9px;
+                &:hover{
+                    color:rgba(255,255,255,0.7);
+                }
+            }
         }
-        .children_item{
-            background: #fff;
-            padding-left:40px;
+        
+        .extend{
+            padding-left:45px;
+            padding-bottom: 30px;
+            border:1px solid rgba(244,244,244,1);
             li{
-                line-height: 50px;
+                line-height: 40px;
+                margin-top:30px;
+                // height:40px;
+                // display: flex;
+            }
+            .el-checkbox{
+                min-width:110px;
+            }
+            /deep/ .el-checkbox__input.is-checked .el-checkbox__inner{
+                background: rgba(255,166,50,1);
+                &:after{
+                    border: 1px solid #fff;
+                    border-left: 0;
+                    border-top: 0;
+                }
+            }
+            /deep/ .el-checkbox__inner{
+                border-color: rgba(244,244,244,1);
+            }
+            /deep/ .el-checkbox__label{
+                color:rgba(102,102,102,1);
+                font-size: 14px;
+            }
+            .only-radio-group{
+                margin-top:30px;
+            }
+            .el-radio-group{
+                border-left:1px solid rgba(214,214,214,1);
+                padding:2px 0px 2px 12px;
+                /deep/ .el-radio__label{
+                    font-size:12px;
+                    color:rgba(102,102,102,1);
+                }
+               /deep/ .el-radio__inner{
+                   border-color: rgba(244,244,244,1);
+                    background: #fff;
+                   &:after{
+                        background-color: rgba(255,166,50,1);
+                        width: 10px;
+                        height: 10px;
+                    }
+               }
+               
+            }
+            &.furniture-extend{
+                padding-top:15px;
+                padding-bottom:20px; 
+                .el-select{
+                    border:1px solid rgba(244,244,244,1);
+                    width:118px;
+                    margin:0 75px 0 7px;
+                /deep/ .el-input__inner{
+                    color:rgba(102,102,102,1);
+                }
+                }
+                li{
+                    margin-top:0px;
+                    &:first-child{
+                         margin-bottom: 30px;
+                    }
+                }
+                 .children_item_detail{
+                    li{
+                        margin-bottom: 30px;
+                        padding-left:20px;
+                    }
+                }
+                .need-spread{
+                    margin-left: -110px;
+                    margin-top: 20px;
+                    display: flex;
+                    .button{
+                        font-size: 16px;
+                        text-align: center;
+                        width:100px;
+                        border-radius:2px;
+                        cursor: pointer;
+                        &.need{
+                            background:rgba(255,166,50,1);
+                            color:#fff;
+                            margin:0px 23px 0px 12px;
+                            &:hover{
+                                background:rgba(255,166,50,0.8);
+                            }
+                        }
+                        &.no{
+                            background:rgba(244,244,244,1);
+                            color:rgba(153,153,153,1);
+                            &:hover{
+                                background:#E1E1E1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .footer{
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+        .button{
+            cursor: pointer;
+            width:240px;
+            line-height: 40px;
+            background:rgba(255,166,50,1);
+            border-radius:2px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            &:hover{
+                background:rgba(255,166,50,0.8);
+            }
+            &.disabled{
+                background: #AEAEAE;
             }
         }
     }

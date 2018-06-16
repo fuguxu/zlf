@@ -343,22 +343,28 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
     border-radius: 5px;
 }
 .el-select-dropdown__item{
-    font-size: 15px;
+    font-size: 14px;
     color: rgba(41, 43, 44, 0.8);
 }
 .el-select-dropdown__item.selected,.el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
-    color: rgb(242, 159, 51);
+    color: rgba(255,166,50,1);
+}
+/* //改变下拉框的图标 */
+.el-icon-arrow-up:before,.el-icon-arrow-down:before{
+    content: "\E60C";
+    font-size: 12px;
+    color: #999999;
 }
 .el-checkbox__inner:hover,.el-checkbox__input.is-focus .el-checkbox__inner{
-    border-color: rgb(242, 159, 51);
+    border-color: rgba(255,166,50,1);
 }
 .el-checkbox__input.is-checked .el-checkbox__inner,.el-checkbox__input.is-indeterminate .el-checkbox__inner{
     background-color:#fff;
-    color:rgb(242, 159, 51);
-    border-color: rgb(242, 159, 51);
+    color:rgba(255,166,50,1);
+    border-color: rgba(255,166,50,1);
 }
 .el-checkbox__inner::after{
-    border: 1px solid rgb(242, 159, 51);
+    border: 1px solid rgba(255,166,50,1);
     border-left:0;
     border-top:0;
     transition: none;

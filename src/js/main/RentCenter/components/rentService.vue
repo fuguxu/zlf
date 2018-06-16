@@ -5,7 +5,7 @@
                 <div class="circel">1</div>
                 <span>填写《项目信息收集表》</span>
                 <!-- <i v-if="data[0].isOperation=='0'" class="el-icon-setting"></i> -->
-                <i class="icon" :class="{'el-icon-arrow-down':!start,'el-icon-arrow-up':start}" @click="clickExtend(0,'start')"></i>
+                <i class="icon" :class="{'el-icon-caret-bottom':!start,'el-icon-caret-top':start}" @click="clickExtend(0,'start')"></i>
             </div>
             <div class="extend" v-if="start">
                 <div class="extend_title">了解您的项目详情，以便开展下一步融资服务，请您：</div>
@@ -19,7 +19,7 @@
                 <div class="circel">2</div>
                 <span>签署《融资服务合作框架协议》</span>
                 <!-- <i v-if="data[1].isOperation=='0'" class="el-icon-setting"></i> -->
-                <i class="icon" :class="{'el-icon-arrow-down':!doing,'el-icon-arrow-up':doing}" @click="clickExtend(1,'doing')"></i>
+                <i class="icon" :class="{'el-icon-caret-bottom':!doing,'el-icon-caret-top':doing}" @click="clickExtend(1,'doing')"></i>
             </div>
             
             <div v-if="doing" class="extend" >
@@ -34,7 +34,7 @@
             <div class="item_sub">
                 <div class="circel">3</div>
                 <span>提交风控资料</span>
-                <i class="icon" :class="{'el-icon-arrow-down':!finish,'el-icon-arrow-up':finish}" @click="clickExtend(2,'finish')"></i>
+                <i class="icon" :class="{'el-icon-caret-bottom':!finish,'el-icon-caret-top':finish}" @click="clickExtend(2,'finish')"></i>
             </div>
             
             <div v-if="finish" class="extend">
@@ -50,7 +50,7 @@
             <div class="item_sub">
                 <div class="circel">4</div>
                 <span>产品清单沟通</span>
-                <i class="icon" :class="{'el-icon-arrow-down':!transfer,'el-icon-arrow-up':transfer}"  @click="clickExtend(3,'transfer')"></i>
+                <i class="icon" :class="{'el-icon-caret-bottom':!transfer,'el-icon-caret-top':transfer}"  @click="clickExtend(3,'transfer')"></i>
             </div>
             <div v-if="transfer" class="extend">
                 <div class="big_custorm">
@@ -95,10 +95,26 @@
                                     <tr v-for="(it,i) in item.list" :key="i"><td>{{i+1}}</td>
                                         <td>{{it.userAbbr}}</td>
                                         <td><a href="">点击查看详情</a></td>
-                                        <td>{{it.contacts}}</td>
+                                        <td>{{it.ext}}</td>
                                     </tr>
                                 </table>
                             </div>
+                        </div>
+                        <div class="detail_item">
+                            <div class="detail_title"><span class="dot"></span><span>指定合作供应商产品清单沟通进展</span></div>
+                            <ul>
+                                <li class="title">公寓固装家具产品清单沟通进展</li>
+                                <li><span>1. 该供应商已与您取得联系</span><span>2018/04/23 15:21</span></li>
+                                <li><span>2. 当前沟通基本顺利。</span><span>2018/04/23 15:21</span></li>
+                            </ul>
+                        </div>
+                        <div class="detail_item">
+                            <div class="detail_title"><span class="dot"></span><span>推荐供应商产品清单沟通进展</span></div>
+                            <ul>
+                                <li class="title">公寓固装家具产品清单沟通进展</li>
+                                <li><span>1. 该供应商已与您取得联系</span><span>2018/04/23 15:21</span></li>
+                                <li><span>2. 当前沟通基本顺利。</span><span>2018/04/23 15:21</span></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -108,7 +124,7 @@
             <div class="item_sub">
                 <div class="circel">5</div>
                 <span>签署租赁合同与付款</span>
-                <i class="icon" :class="{'el-icon-arrow-down':!logistics,'el-icon-arrow-up':logistics}"  @click="clickExtend(4,'logistics')"></i>
+                <i class="icon" :class="{'el-icon-caret-bottom':!logistics,'el-icon-caret-top':logistics}"  @click="clickExtend(4,'logistics')"></i>
             </div>
             
         </div>
@@ -295,6 +311,9 @@ export default {
                     .desc{
                         padding-bottom: 22px;
                     }
+                    .recommend_supplier_item{
+                        padding-bottom: 20px;
+                    }
                     .supplier_item_title{
                         border:1px solid rgba(244,244,244,1);
                         line-height: 46px;
@@ -317,16 +336,30 @@ export default {
                             text-decoration: underline;
                         }
                     }
+                    ul{
+                        border:1px solid rgba(244,244,244,1);
+                    }
+                    li{
+                        line-height: 46px;
+                        display: flex;
+                        justify-content: space-between;
+                        padding:0 25px 0 28px;
+                        &.title{
+                            background:rgba(244,244,244,1);
+                            padding-left:14px;
+                            font-size: 14px;
+                        }
+                    }
                 }
             }
         }
         .icon{
-            font-size:20px;
-            color:#888;
+            font-size:12px;
+            color:rgba(153,153,153,1);
             position: absolute;
             right: 20px;
             top: 50%;
-            margin-top: -10px;
+            margin-top: -6px;
             cursor: pointer;
             z-index: 1000;
         }

@@ -182,7 +182,7 @@ export default {
                         color:#fff !important;
                         border-left:6px solid rgba(41,43,44,1);
                         background-color:rgba(255, 166, 50, 1) !important;
-                        i{
+                        i:before{
                             color:#fff;
                         }
                     }
