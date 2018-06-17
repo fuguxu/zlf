@@ -87,6 +87,11 @@ export default {
               margin:5px 0 48px 0px;
               background: url('../../../img/back.png') center no-repeat;
               background-size:cover;
+              transition: all 1s;
+              &:hover{
+                width:35px;
+                height:35px;
+              }
             }
           }
           .right_content{
@@ -110,7 +115,7 @@ export default {
           color: #888;
           .littleTitle{
             &:hover{
-              color: rgba(255, 166, 50, 1);
+              color: #797979;
             }
           }
         }

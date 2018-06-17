@@ -121,7 +121,7 @@ export default {
                   font-size: 14px;
                   color:rgba(42, 157, 255, 1);
                   &:hover{
-                    color: rgb(254, 216, 0);
+                    color: #FFA632;
                   }
                 }
               }

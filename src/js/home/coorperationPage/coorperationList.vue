@@ -57,6 +57,10 @@ export default {
               value:'company',
               label:'办公场所'
             },
+            {
+              value:'old',
+              label:'养老公寓'
+            },
           ],
           active:''
       }
@@ -127,6 +131,7 @@ export default {
         width:100%;
         flex-wrap: wrap;
         display: flex;
+        min-height: 300px;
         // justify-content: space-between;
         .item{
           // width:350px;
@@ -139,7 +144,7 @@ export default {
           margin-top: 40px;
           font-size: 0px;
           cursor: pointer;
-          box-shadow: 0 0 5px rgba(215, 215, 215, 0.6);
+          box-shadow: 0 0 8px rgba(215, 215, 215, 0.6);
           border-radius: 7px;
           &:hover,&:hover img{
             box-shadow: 0 0 10px rgba(255,192,46, 0.3);
