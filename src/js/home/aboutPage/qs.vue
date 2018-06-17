@@ -41,6 +41,16 @@ export default {
       }
   },
   mounted(){
+    var scrollTop=0;
+      var st= setInterval(()=>{
+        scrollTop+=10;
+        if(scrollTop>=600){
+            scrollTop=600;
+            clearInterval(st);
+        }
+        document.body.scrollTop=scrollTop;
+       document.documentElement.scrollTop=scrollTop;
+    },10)
     this.data=questionAnswer.map(item=>{
       item.children=item.children.map(v=>{
         return {
@@ -105,8 +115,8 @@ export default {
         color:rgba(153,153,153,1);
         cursor: pointer;
         &:hover{
-          background:rgba(0,0,0,1);
-          color:#fff;
+          // background:rgba(0,0,0,1);
+          color:#333;
         }
         &.active{
           background:rgba(0,0,0,1);
@@ -133,7 +143,7 @@ export default {
           // color: rgba(0, 0, 0, 0.85);
         }
         &:hover .question_text{
-          color: rgba(0, 0, 0, 0.647);
+          color: #333;
         }
         .icon{
           display: inline-block;

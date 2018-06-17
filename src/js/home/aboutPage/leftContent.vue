@@ -80,6 +80,9 @@ export default {
                 border-left:6px solid rgba(41,43,44,1);
                 border-bottom: none;
             }
+            &:not(.router-link-active):hover{
+                color:#333;
+            }
             .icon{
                 font-size:14px;
                 float: right;

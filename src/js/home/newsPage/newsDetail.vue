@@ -5,7 +5,9 @@
       <div class="article_content">
         <div class="content">
           <div class="left_content">
-              <div class="back" @click="toBack"></div>
+            <div class="back_wrap">
+              <img class="back" @click="toBack" src="../../../img/back.png" alt="">
+            </div>
               <p class="leftTitle font16">{{data.title}}</p>
           </div>
           <div class="right_content">
@@ -80,13 +82,13 @@ export default {
               width:117px;
               line-height: 30px;
             }
+            .back_wrap{
+              height:83px;
+            }
             .back{
               width:30px;
               height: 30px;
               cursor: pointer;
-              margin:5px 0 48px 0px;
-              background: url('../../../img/back.png') center no-repeat;
-              background-size:cover;
               transition: all 1s;
               &:hover{
                 width:35px;

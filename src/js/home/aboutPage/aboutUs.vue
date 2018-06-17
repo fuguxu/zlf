@@ -62,6 +62,18 @@ export default {
           
       }
   },
+  mounted(){
+    var scrollTop=0;
+      var st= setInterval(()=>{
+        scrollTop+=10;
+        if(scrollTop>=600){
+            scrollTop=600;
+            clearInterval(st);
+        }
+        document.body.scrollTop=scrollTop;
+       document.documentElement.scrollTop=scrollTop;
+    },10)
+  },
   components:{
       banner,
       leftContent
