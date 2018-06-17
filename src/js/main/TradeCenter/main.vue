@@ -14,7 +14,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .trade{
-        width:1200px;
+        width:1160px;
         margin:0 auto;
         padding-top:20px;
     }

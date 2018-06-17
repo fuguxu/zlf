@@ -89,17 +89,17 @@ export default {
         padding:50px 0px 100px;
     }
     .button{
-        cursor: pointer;
-        display: inline-block;
-        text-align: center;
+        // cursor: pointer;
+        // display: inline-block;
+        // text-align: center;
         font-size: 18px;
         color: rgba(255, 255, 255, 0.9);
         width:110px;
         line-height: 36px;
         background: #ff9829;
-        border-radius: 5px;
-        &:hover{
-            background:  #ffa64c;
-        }
+        // border-radius: 5px;
+        // &:hover{
+        //     background:  #ffa64c;
+        // }
     }
 </style>

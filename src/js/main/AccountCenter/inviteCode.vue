@@ -41,16 +41,16 @@ export default {
             width:70px;
             height: 30px;
             margin-top:30px;
-            cursor: pointer;
-            display: inline-block;
+            // cursor: pointer;
+            // display: inline-block;
             font-size: 14px;
             color: #fff;
             line-height:30px;
-            text-align: center;
-            border-radius: 5px;
+            // text-align: center;
+            // border-radius: 5px;
             background: #ed9f34;
             &:hover{
-                background: #f1b255;
+                // background: #f1b255;
             }
         }
     }

@@ -325,19 +325,24 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
     z-index: 20000 !important;
 }
 .el-input__inner{
-    border: none;
+    border:1px solid rgba(224,224,224,1);
+    border-radius: 2px;
+}
+.el-input__inner:focus{
+    border: 1px solid rgba(201, 201, 201,0.6);
+    box-shadow: 0 0 3px rgba(201, 201, 201,0.4);
 }
 .el-input-box .el-input__inner,.el-input-box .el-input__inner:hover,.el-input-box .el-input.is-focus .el-input__inner,.el-input-box .el-input__inner:focus{
-    border: 1px solid #dbd8d3;
+    /* border: 1px solid #dbd8d3; */
 }
-.el-input__inner::-webkit-input-placeholder{
-    color:rgba(153,153,153,1);
+.el-input__inner::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+    color:rgba(153,153,153,1) !important;
 }
-.el-input__inner::-moz-placeholder{
-    color:rgba(153,153,153,1);
+.el-input__inner::-moz-placeholder,.textarea::-moz-placeholder{
+    color:rgba(153,153,153,1) !important;;
 }
-.el-input__inner:-ms-input-placeholder{
-    color:rgba(153,153,153,1);
+.el-input__inner:-ms-input-placeholder,.textarea::-ms-placeholder{
+    color:rgba(153,153,153,1) !important;;
 }
 .el-select-dropdown{
     border-radius: 5px;
@@ -349,8 +354,11 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
 .el-select-dropdown__item.selected,.el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
     color: rgba(255,166,50,1);
 }
+.el-select .el-input.is-focus .el-input__inner,.el-select .el-input__inner:focus {
+    border-color: rgba(224,224,224,1);
+}
 /* //改变下拉框的图标 */
-.el-icon-arrow-up:before,.el-icon-arrow-down:before{
+.el-select .el-icon-arrow-up:before,.el-menu .el-icon-arrow-down:before{
     content: "\E60C";
     font-size: 12px;
     color: #999999;
@@ -375,7 +383,7 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
     padding-left:5px;
 }
 .input_box{
-    border: 1px solid #dbd8d3;
+    /* border: 1px solid #dbd8d3; */
     position: relative;
 }
 .icon-close{
@@ -383,7 +391,7 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
     cursor: pointer;
 }
 .input_box.active{
-    box-shadow: 0 0 5px #d7d7d7;
+    /* box-shadow: 0 0 5px #d7d7d7; */
 }
 .dialog{
     position: fixed;
@@ -395,6 +403,28 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
     z-index: 1000;
 }
 .error_message{
-    color: #FF6C72;
-    font-size:14px;
+    color: rgba(255,68,68,1);
+    font-size:12px;
+}
+.error_message .icon{
+    font-size: 16px;
+}
+.button{
+    display: inline-block;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+    background:rgba(255,166,50,1);
+    color:#fff;
+}
+.button.cancel{
+    background:rgba(240,240,240,1);
+    color:rgba(153,153,153,1);
+}
+.button:hover{
+    opacity: 0.8;
+}
+.button.disabled,.button.disabled:hover{
+    background: #AEAEAE;
+    opacity: 1;
 }

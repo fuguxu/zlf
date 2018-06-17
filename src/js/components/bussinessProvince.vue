@@ -151,10 +151,10 @@ export default {
             text-align: center;
             .button{
                 font-size:14px;
-                display: inline-block;
+                // display: inline-block;
                 line-height: 30px;
-                border-radius: 5px;
-                cursor: pointer;
+                // border-radius: 5px;
+                // cursor: pointer;
                 &.cancel{
                     width:95px;
                     color: rgba(174, 174, 174, 0.90);

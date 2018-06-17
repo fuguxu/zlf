@@ -207,16 +207,16 @@ export default {
          .button{
             width:130px;
             height: 40px;
-            cursor: pointer;
-            display: inline-block;
+            // cursor: pointer;
+            // display: inline-block;
             font-size: 18px;
             color: #fff;
             line-height:40px;
-            text-align: center;
+            // text-align: center;
             border-radius: 5px;
             background: #ed9f34;
             &:hover{
-                background: #f1b255;
+                // background: #f1b255;
             }
         }
     }

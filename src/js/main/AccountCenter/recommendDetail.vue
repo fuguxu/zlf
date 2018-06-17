@@ -195,12 +195,14 @@ export default {
         getRecommend(){//获取详情
             customerModule.getRecommend().then(res=>{
                 if(res.statusCode=='1'){
-                    if(res.data.id){
+                    if(res.data.isEdit=='1'){
                         this.form=res.data;
                         this.form.equipment=this.handleFile(this.form.equipment);
                         this.form.cases=this.handleFile(this.form.cases);
                         this.form.product=this.handleFile(this.form.product);
+                        this.isEdit=false;
                     }else{
+                        this.isEdit=true;
                         this.initData();
                     }
                 }
@@ -358,15 +360,15 @@ export default {
             padding-top:50px;
         }
         .button{
-            display: inline-block;
+            // display: inline-block;
             width:80px;
             height: 30px;
             line-height: 30px;
-            border-radius: 5px;
+            // border-radius: 5px;
             color:#fff;
             font-size:14px;
-            text-align: center;
-            cursor: pointer;
+            // text-align: center;
+            // cursor: pointer;
             &.edit{
                 background: #ed9f34;
                 margin:0 30px;
@@ -390,15 +392,10 @@ export default {
         .el-textarea /deep/ .el-textarea__inner{
             border:none;
             font-size: 14px;
-             color: rgba(41, 43, 44, 0.898039215686275);  
+            //  color: rgba(41, 43, 44, 0.898039215686275);  
         }
         .company_textarea /deep/ .el-textarea__inner{
             min-height:100px !important;
-        }
-       /deep/ textarea::-webkit-input-placeholder,/deep/ input::-webkit-input-placeholder
-       {
-            font-size: 13px; 
-            color: rgba(41, 43, 44, 0.6);
         }
     }
 </style>

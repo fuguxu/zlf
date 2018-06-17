@@ -172,7 +172,7 @@ export default {
                 width:86px;
                 line-height: 36px;
                 text-align: center;
-                border-right: 1px solid #dbd8d3;
+                // border-right: 1px solid #dbd8d3;
             }
             .input{
                 flex: 1;

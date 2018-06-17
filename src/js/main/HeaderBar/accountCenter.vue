@@ -57,7 +57,7 @@ export default {
             }  
         }
         .icon{
-           color:rgba(255, 255,255, 0.75);
+           color:rgba(255, 255,255, 1);
            margin-left:5px;
         }
         .center_box{

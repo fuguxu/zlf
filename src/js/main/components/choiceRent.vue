@@ -356,10 +356,10 @@ export default {
                     display: flex;
                     .button{
                         font-size: 16px;
-                        text-align: center;
+                        // text-align: center;
                         width:100px;
-                        border-radius:2px;
-                        cursor: pointer;
+                        // border-radius:2px;
+                        // cursor: pointer;
                         &.need{
                             background:rgba(255,166,50,1);
                             color:#fff;
@@ -385,20 +385,11 @@ export default {
         justify-content: center;
         padding-top: 30px;
         .button{
-            cursor: pointer;
             width:240px;
             line-height: 40px;
-            background:rgba(255,166,50,1);
-            border-radius:2px;
-            text-align: center;
+            // background:rgba(255,166,50,1);
             color: #fff;
-            font-size: 16px;
-            &:hover{
-                background:rgba(255,166,50,0.8);
-            }
-            &.disabled{
-                background: #AEAEAE;
-            }
+            font-size: 16px;          
         }
     }
 </style>

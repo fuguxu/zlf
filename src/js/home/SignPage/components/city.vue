@@ -169,8 +169,8 @@ export default {
             .button{
                 line-height: 26px;
                 width:60px;
-                text-align: center;
-                cursor: pointer;
+                // text-align: center;
+                // cursor: pointer;
                 &.sure{
                    color: rgba(255, 255, 255, 0.90);
                    background: #feb152;

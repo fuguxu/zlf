@@ -230,15 +230,15 @@ export default {
     }
     .button{
         margin-top:50px;
-        display: inline-block;
-        cursor: pointer;
+        // display: inline-block;
+        // cursor: pointer;
         background: rgb(161, 161, 161);
-        border-radius: 5px;
+        // border-radius: 5px;
         width:118px;
         line-height: 40px;
         font-size: 18px;
         color: rgba(255, 255, 255, 0.90);
-        text-align: center;
+        // text-align: center;
         &.hsaFile{
             background: rgb(237, 159, 52);
             &:hover{

@@ -9,12 +9,12 @@
                 <div v-if="loading" class="loading"><i class="el-icon-loading"></i></div>
             </div>
             <div v-if="isEdit" class="file_container">
-                <div class="local_img">上传电脑本地图片</div>
                 <label  :for="id" class="label-file">
                     <form ref="form">
                         <input ref="fileInput" @change="changeFile" :id="id" :multiple="multiple" type="file" />
                     </form>
                 </label>
+                <div class="local_img">上传电脑本地图片</div>
                 <div class="error_message" v-if="tipMessage">
                     <i class="icon el-icon-error"></i>
                     <span>{{tipMessage}}</span>
@@ -59,7 +59,7 @@ export default {
           let postFiles = Array.prototype.slice.call(this.$refs.fileInput.files);
           this.$refs.form.reset();//form表单的置空 兼容ie10 
           if (!this.multiple) {
-               postFiles = postFiles.slice(0, 1);
+               postFiles = postFiles.slice(0,1);
           }else{
               postFiles = postFiles.slice(0);
           }
@@ -138,8 +138,9 @@ export default {
       }
     }, 
   mounted(){
-    console.log(this.data)
-    this.fileList=this.data;
+    if(this.data){
+        this.fileList=this.data;
+    }
   },
   computed:{
       hasFile(){
@@ -176,48 +177,47 @@ export default {
             text-align: center;
             line-height: 100px;
             background: rgb(250,250,250);
+            border:1px solid rgba(237, 237, 237, 1);
             .el-icon-loading{
                 font-size:32px;
+                color:rgba(153,153,153,1);
             }
         }
         .img_item,.loading{
-            width:130px;
-            height: 100px;
+            width:128px;
+            height: 90px;
             margin-bottom:10px;
             margin-right:10px;
         }
     }
     .label_text{
-        color: rgba(41, 43, 44, 0.8);
-        padding:22px 25px 0 0;
+        color:rgba(102, 102, 102, 1);
+        padding:10px 25px 0 0;
         width:81px;
         box-sizing: border-box;
     }
     .file_container{
-        width:164px;
-        height: 134px;
-        border: 1px solid #EEEDEB;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        width:128px;
+        height: 90px;
+        border: 1px solid rgba(237, 237, 237, 1);
+        text-align: center;
         background: #fff;
-        margin-bottom: 10px;
+        margin-bottom: 17px;
         position: relative;
         .local_img{
-            color: rgba(41, 43, 44, 0.6);
-            line-height: 40px;
-            background: #f6f5f5;
-            padding-left:5px;
+            color:rgba(153,153,153,1);
         }
         .label-file{
-            width:80px;
-            height:80px;
-            margin-left:43px;
+            width:40px;
+            height:33px;
+            // margin-left:43px;
             cursor: pointer;
             display: inline-block;
             position: relative;
             overflow: hidden;
             background: url('../../img/u2653.png') no-repeat center;
             background-size: cover;
+            margin:26px 0px 5px 0px;
         }
         .error_message{
             position: absolute;
@@ -237,11 +237,11 @@ export default {
     .tip_text{
         margin-bottom: 5px;
         font-size: 13px;
-        color: rgba(41, 43, 44, 0.70);
+        color: rgba(153,153,153,1);
         line-height: 22px;
         text-align: left;
         .sub{
-            color: #F29F33;
+            color: rgba(255,166,50,1);
         }
     }   
     .label-file input[type="file"]{

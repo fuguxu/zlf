@@ -4,21 +4,21 @@
             <el-tab-pane label="家具生产启动" name="first">
                 <transition name="slide-fade">
                     <div v-if="activeName=='first'" class="item">
-                        <progressItem></progressItem>
+                        <progressItem :type="0"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
             <el-tab-pane label="家具生产进行中" name="second">
                 <transition name="slide-fade">
                     <div v-if="activeName=='second'" class="item">
-                        <progressItem></progressItem>
+                        <progressItem :type="1"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
             <el-tab-pane label="家具生产完成" name="third">
                <transition name="slide-fade">
                     <div v-if="activeName=='third'" class="item">
-                        <progressItem></progressItem>
+                        <progressItem :type="2"></progressItem>
                     </div>
                 </transition>
                 
@@ -26,7 +26,7 @@
             <el-tab-pane label="运输包装" name="fourth">
                 <transition name="slide-fade">
                     <div v-if="activeName=='fourth'" class="item">
-                        <progressItem></progressItem>
+                        <progressItem :type="leaseType=='1'?3:5"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
@@ -44,13 +44,13 @@
                                 <el-input placeholder="选填，输入运输车辆车牌号" v-model="form.car"></el-input>
                             </el-form-item>
                         </el-form>
-                        <progressItem></progressItem>
+                        <progressItem class="transfer" :type="leaseType=='1'?4:6"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
             <el-tab-pane label="验收完成" name="six">
                 <transition name="slide-fade">
-                    <div v-if="activeName=='six'" class="item">
+                    <div v-if="activeName=='six'" class="">
                         <checkOrder></checkOrder>
                     </div>
                 </transition>
@@ -69,13 +69,17 @@ export default {
                 person:'',
                 tel:'',
                 car:''
-            }
+            },
+            leaseType:this.$route.query.leaseType
         }
     },
     methods:{
         handleClick(){
 
         }
+    },
+    mounted(){
+        console.log(this.leaseType)
     },
     components:{
         progressItem,
@@ -87,50 +91,54 @@ export default {
     .contract{
         padding:0 21px;
         padding-bottom:40px;
-        /deep/ textarea::-webkit-input-placeholder,/deep/ input::-webkit-input-placeholder
-       {
-            font-size: 13px; 
-            color: rgba(41, 43, 44, 0.6);
-        }
+        box-sizing: border-box;
     }
     .el-tabs{
         /deep/ .el-tabs__active-bar{
-            background-color: #ed9f34;
+            background-color:rgba(255,166,50,1);
+            display: none;
         }
         /deep/ .el-tabs__nav{
-            padding:25px 0px 15px 0px;
+            // padding:25px 0px 15px 0px;
+        }
+        /deep/ .el-tabs__header{
+            margin-bottom: 36px;
         }
         /deep/ .el-tabs__item{
-            font-size: 15px;
-            color: #292B2C;
+            font-size: 14px;
+            color: rgba(136,136,136,1);
             height: 20px;
             line-height: 20px;
-            padding:0 20px !important;
+            padding:37px 0px 34px 0px !important;
+            margin:0 30px;
             box-shadow: none !important;
-            &:not(:last-child){
-                border-right:1px solid #efefef;
-            }
-            &.is-active{
-                color:#ed9f34;
+            &.is-active,&:hover{
+                color:rgba(255,166,50,1);
+                border-bottom: 2px solid rgba(255,166,50,1);
             }
         }
         /deep/ .el-tabs__nav-wrap:after{
-            background-color: #dadbdb;
+            background-color: rgba(244,244,244,1);
         }
         .item{
             min-height: 300px;
-            background: #f6f5f5;
-            border-radius: 7px;
+            background: rgba(244,244,244,1);
+            padding-right: 14px;
+            // border-radius: 7px;
         }
     }
     .el-form{
-        padding-top:22px;
+        padding-top:30px;
+        .el-form-item{
+            margin-bottom: 20px;
+        }
         /deep/ .el-form-item__content{
             margin-left:103px !important;
-            width:282px;
+            width:336px;
         }
         /deep/ .el-form-item__label{
             width:90px !important;
+            color:rgba(102,102,102,1);
         }
     }
 

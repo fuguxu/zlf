@@ -77,14 +77,14 @@ export default {
         .footer{
             text-align: center;
             .button{
-                display: inline-block;
+                // display: inline-block;
                 width:130px;
                 line-height: 40px;
                 font-size: 17px;
                 color: #F29F33;
                 border:1px solid #F29F33;
-                border-radius: 5px;
-                cursor: pointer;
+                // border-radius: 5px;
+                // cursor: pointer;
             }
         }
     }

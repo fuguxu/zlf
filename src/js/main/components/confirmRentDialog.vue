@@ -1,5 +1,5 @@
 <template>
-    <div class="dialog" @click="cancel">
+    <div class="dialog dialog_wrap" @click="cancel">
         <div class="content" @click.stop="1">
             <div class="header font18 color6">您选择了如下租赁物以及对应的供应商来源，<br />请再次确认！</div>
             <div class="table-wrap">
@@ -14,7 +14,7 @@
                     </tr>
                 </table>
                 <div class="footer">
-                    <span @click="cancel" class="button back">返回修改</span>
+                    <span @click="cancel" class="button back cancel">返回修改</span>
                     <span @click="submit" class="button sure">确认提交</span>
                 </div>
             </div>
@@ -51,9 +51,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.dialog_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
     .content{
-        margin:0 auto;
-        margin-top:100px;
         width:590px;
         min-height: 200px;
         background:rgba(255,255,255,1);
@@ -87,26 +91,26 @@ export default {
             display: flex;
             justify-content: space-between;
             .button{
-                cursor: pointer;
+                // cursor: pointer;
                 width:176px;
                 line-height: 44px;
                 font-size:16px;
-                text-align: center;
+                // text-align: center;
                 border-radius:4px;
-                &.back{
-                    background:rgba(240,240,240,1);
-                    color:rgba(153,153,153,1);
-                    &:hover{
-                        background:rgba(240,240,240,0.8);
-                    }
-                }
-                &.sure{
-                    background:rgba(255,166,50,1);
-                    color: #fff;
-                    &:hover{
-                        background:rgba(255,166,50,0.8);
-                    }
-                }
+                // &.back{
+                //     background:rgba(240,240,240,1);
+                //     color:rgba(153,153,153,1);
+                //     &:hover{
+                //         background:rgba(240,240,240,0.8);
+                //     }
+                // }
+                // &.sure{
+                //     background:rgba(255,166,50,1);
+                //     color: #fff;
+                //     &:hover{
+                //         background:rgba(255,166,50,0.8);
+                //     }
+                // }
             }
         }
     }

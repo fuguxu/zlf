@@ -41,24 +41,24 @@
             </div>
             <div class="item_content">
                 <div class="label">姓&nbsp;&nbsp;&nbsp;&nbsp;名</div>
-                <div class="content">杨栎</div>
+                <div class="content">{{bigCustorm.platBigCustomerName}}</div>
             </div>
-            <div class="item_content">
+            <!-- <div class="item_content">
                 <div class="label">性&nbsp;&nbsp;&nbsp;&nbsp;别</div>
                 <div class="content">女</div>
-            </div>
+            </div> -->
             <div class="item_content">
-                <div class="label">手机号码</div>
-                <div class="content">13710353888</div>
+                <div class="label">联系方式</div>
+                <div class="content">{{bigCustorm.platBigCustomerMobile}}</div>
             </div>
-            <div class="item_content">
+            <!-- <div class="item_content">
                 <div class="label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</div>
                 <div class="content">354480928@163.com</div>
             </div>
             <div class="item_content">
                 <div class="label">我司座机或400电话</div>
                 <div class="content">4008804604</div>
-            </div>
+            </div> -->
         </div>
         <div class="item progress">
             <div class="item_title">
@@ -91,11 +91,27 @@
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-
+            orderNo:this.$route.query.id,
+            bigCustorm:{}
         }
+    },
+    methods:{
+        getPlatformContact(){//大客户代表
+            customerModule.getPlatformContact({
+                orderNo:this.orderNo
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.bigCustorm=res.data;
+                }
+            })
+        }
+    },
+    created(){
+        this.getPlatformContact();
     }
 }
 </script>
@@ -109,7 +125,7 @@ export default {
            }
             .item_title{
                 display: flex;
-                font-size:18px;
+                font-size:16px;
                 align-items: center;
                 .line{
                     width:6px;
@@ -121,8 +137,6 @@ export default {
             }
             .item_content{
                 display: flex;
-                font-size:16px;
-                color:rgba(51,51,51,1);
                 margin-top:28px;
                 .label{
                     min-width: 144px;
@@ -140,7 +154,6 @@ export default {
             padding-right: 62px;
             margin-top:20px;
             li{
-                font-size:16px;
                 line-height: 38px;
                 color:rgba(102, 102, 102, 1);
                 display: flex;

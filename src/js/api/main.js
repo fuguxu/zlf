@@ -75,6 +75,7 @@ export const customerModule={
     //获取推荐供应商
     getRecommendSupplier:params => { return customerAxios.get('/customers/getRecommendSupplier', {params:params}).then(res => res.data); },
     
+    
     //供应商注册
     registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },
 
@@ -102,6 +103,12 @@ export const customerModule={
     saveRecommend:params => { return customerAxios.post('/supplier/saveRecommend', params).then(res => res.data); },
     //获取推荐详情
     getRecommend:params => { return customerAxios.get('/supplier/getRecommend').then(res => res.data); },
+    //获取交易中心列表
+    getRecommDetail:params => { return customerAxios.get('/supplier/getRecommDetail', {params:params}).then(res => res.data); },
+    //获取项目客户信息
+    getCustomerContact:params => { return customerAxios.get('/supplier/getCustomerContact', {params:params}).then(res => res.data); },
+    //获取项目大客户代表
+    getPlatformContact:params => { return customerAxios.get('/supplier/getPlatformContact', {params:params}).then(res => res.data); },
 
     //获取消息接口
     getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },

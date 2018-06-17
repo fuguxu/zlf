@@ -282,7 +282,7 @@ export default {
                 width:86px;
                 line-height: 36px;
                 text-align: center;
-                border-right: 1px solid #dbd8d3;
+                // border-right: 1px solid #dbd8d3;
             }
             .input{
                 flex: 1;
@@ -347,16 +347,16 @@ export default {
             text-align: center;
             padding:20px 0px 50px;
             .button{
-                cursor: pointer;
-                display: inline-block;
+                // cursor: pointer;
+                // display: inline-block;
                 font-size: 18px;
                 color: rgba(255, 255, 255, 0.9);
                 width:130px;
                 line-height: 40px;
                 background: #ff9829;
-                border-radius: 5px;
+                // border-radius: 5px;
                 &:hover{
-                  background:  #ffa64c;
+                //   background:  #ffa64c;
                 }
             }
         }

@@ -1,6 +1,6 @@
 <template>
     <div class="sale">
-        <div class="item_title">
+        <div class="item_title font16">
             <div class="line"></div>
             <span>提交贵司售后服务对接人信息</span>
         </div>
@@ -110,16 +110,9 @@ export default {
     .sale{
         padding-left:21px;
         min-height: 400px;
-        /deep/ input::-webkit-input-placeholder
-       {
-            font-size: 13px; 
-            color: rgba(41, 43, 44, 0.6);
-        }
     }
     .item_title{
         display: flex;
-        font-size: 15px;
-        color: #292B2C;
         align-items: center;
         padding:25px 0 15px;
         .line{
@@ -133,7 +126,6 @@ export default {
     .form{
         padding-left:20px;
         .form_item{
-             color: rgba(41, 43, 44, 0.8);
             margin-bottom: 22px;
             position: relative;
             .el-input{
@@ -145,10 +137,6 @@ export default {
             /deep/ .el-input__inner{
                 height: 40px !important;
                 line-height: 40px;
-                border: 1px solid #dbd8d3;
-                &:focus{
-                    box-shadow: 0 0 5px #d7d7d7;
-                }
             }
             /deep/ .el-input__suffix{
                 line-height: 40px;
@@ -158,8 +146,6 @@ export default {
                 left: 282px;
                 top:0px;
                 line-height: 40px;
-                font-size: 13px;
-                color: #FF6C72;
                 display: flex;
                 align-items: center;
                 margin-left: 15px;
@@ -169,21 +155,11 @@ export default {
             }
         }
        .button{
-            display: inline-block;
-            width:110px;
-            height: 36px;
-            line-height: 36px;
-            border-radius: 5px;
+            width:90px;
+            height: 40px;
+            line-height: 40px;
             color:#fff;
-            font-size:16px;
-            text-align: center;
-            cursor: pointer;
-            &.edit{
-                background: #ed9f34;
-                &:hover{
-                    background: #f0b154;
-                }
-            }
+            background:rgba(255,166,50,1);
         }
     }
 </style>
