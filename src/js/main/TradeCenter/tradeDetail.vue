@@ -27,19 +27,19 @@ export default {
         return {
             routerList:[
                 {
-                    path:`/trade/detail/progress?id=${this.$route.query.id}&leaseType=${this.$route.query.leaseType}`,
+                    path:`/trade/detail/progress?id=${this.$route.query.id}&leaseType=${this.$route.query.leaseType}&listNo=${this.$route.query.listNo}`,
                     name:'交易进展',
                     icon:require('../../../img/u5594.png'),
                     iconActive:require('../../../img/u5594_active.png'),
                 },
                 {
-                    path:`/trade/detail/contract?id=${this.$route.query.id}&leaseType=${this.$route.query.leaseType}`,
+                    path:`/trade/detail/contract?id=${this.$route.query.id}&leaseType=${this.$route.query.leaseType}&listNo=${this.$route.query.listNo}`,
                     name:'合同执行',
                     icon:require('../../../img/u5599.png'),
                     iconActive:require('../../../img/u5599_active.png'),
                 },
                 {
-                    path:`/trade/detail/service?id=${this.$route.query.id}&leaseType=${this.$route.query.leaseType}`,
+                    path:`/trade/detail/service?id=${this.$route.query.id}&leaseType=${this.$route.query.leaseType}&listNo=${this.$route.query.listNo}`,
                     name:'售后服务',
                     icon:require('../../../img/u6838.png'),
                     iconActive:require('../../../img/u6838_active.png'),

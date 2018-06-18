@@ -3,28 +3,55 @@
         <div class="content">
             <div class="sub_title">简单描述</div>
             <div class="desc_box">
-                <el-input class="equipment_textarea" v-model="simbleDesc" resize="none"
+                <el-input class="equipment_textarea" v-model="form.contractProgressDesc" resize="none"
                  :maxlength="maxLength" type="textarea" :rows="4" autosize placeholder="简单描述您所上传的家具生产启动照片~" >
                 </el-input>
-                <div class="rest_numbers">还可输入<span :class="{'rest_ten':maxLength-simbleDesc.length<=10}">{{maxLength-simbleDesc.length}}</span>字</div>
+                <div class="rest_numbers">还可输入<span :class="{'rest_ten':maxLength-form.contractProgressDesc.length<=10}">{{maxLength-form.contractProgressDesc.length}}</span>字</div>
             </div>
         </div>
         <div class="upload_box">
-            <uploadProduct saveType="logistics"  id="product"></uploadProduct>
+            <uploadProduct saveType="logistics" @updatePic="updatePic"  id="product"></uploadProduct>
         </div>
         <div class="footer">
-            <span class="button edit">提交</span>
+            <span @click="submit" class="button edit">提交</span>
         </div>
     </div>
 </template>
 <script>
 import uploadProduct from '../../../components/uploadProduct';
+import {customerModule} from '../../../api/main';
 export default {
+    props:['type','leaseType','transferInfo'],
     data(){
         return {
-            simbleDesc:'',
+            form:{
+                contractProgressDesc:'',
+                type:this.type,
+                leaseContractNo:this.leaseType
+            },
+            fileObj:{},
             maxLength:100
         }
+    },
+    methods:{
+        updatePic(file,id){//接受附件
+            let fileObj={};
+            file.forEach((v,k)=>{
+                fileObj[`imgAddr${k+1}`]=v.url;
+            });
+            this.fileObj=fileObj;
+        },
+        saveContract(){
+            customerModule.saveContract({...this.form,...this.fileObj,...this.transferInfo}).then(res=>{
+
+            })
+        },
+        submit(){
+            this.saveContract();
+        }
+    },
+    mounted(){
+        console.log(222)
     },
     components:{
         uploadProduct

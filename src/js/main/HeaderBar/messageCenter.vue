@@ -37,8 +37,8 @@ export default {
         margin-left:155px;
         margin-right:34px;
         .message_icon{
-            width:20px;
-            height:20px;
+            // width:20px;
+            // height:20px;
         }
         .message_text{
             margin:0 5px;

@@ -4,7 +4,7 @@
             <div class="line"></div>
             <div>提交贵司财务对接人信息</div>
         </div>
-        <rentMoneyInfo></rentMoneyInfo>
+        <rentMoneyInfo :orderNo="orderNo" :cusType="1"></rentMoneyInfo>
         <div class="title">
             <div class="line"></div>
             <div>请留存我司租金对接人信息</div>
@@ -12,33 +12,46 @@
         <div class="my_person">
             <div class="form_item">
                 <div class="label">姓名：</div>
-                <div class="text">梁绍辉</div>
+                <div class="text">{{projectInfo.platFinancerName}}</div>
             </div>
             <div class="form_item">
                 <div class="label">性别：</div>
-                <div class="text">男</div>
+                <div class="text">{{projectInfo.platFinancerSex==1?'男':'女'}}</div>
             </div>
             <div class="form_item">
                 <div class="label">手机号码：</div>
-                <div class="text">13710353888</div>
+                <div class="text">{{projectInfo.platFinancerMobile}}</div>
             </div>
             <div class="form_item">
                 <div class="label">我司座机或400电话：</div>
-                <div class="text">4008804604</div>
+                <div class="text">{{projectInfo.platFinancerTel}}</div>
             </div>
         </div>
     </div>
 </template>
 <script>
 import rentMoneyInfo from '../../components/rentMoneyInfo'; 
+import {customerModule} from '../../../api/main';
 export default {
+    props:['orderNo'],
     data(){
         return {
-            
+            projectInfo:{}
         }
     },
     methods:{
-        
+        getProjectInfo(){
+            customerModule.getProjectInfo({
+                orderNo:this.orderNo
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.projectInfo=res.data;
+                }
+            })
+        }
+    },
+    created(){
+        this.getProjectInfo();
     },
     components:{
         rentMoneyInfo
@@ -49,18 +62,12 @@ export default {
     .rent_money{
         min-height:400px;
         padding-left:10px;
-        background: #f6f5f5;
-        /deep/ textarea::-webkit-input-placeholder,/deep/ input::-webkit-input-placeholder
-       {
-            font-size: 13px; 
-            color: rgba(41, 43, 44, 0.6);
-        }
+        // background: #f6f5f5;
+        border: 1px solid rgba(231,231,231,1);
         .title{
             display: flex;
             align-items: center;
             padding: 20px 0px;
-            font-size: 16px;
-            color: #363636;
             .line{
                 width:6px;
                 height:12px; 
@@ -75,14 +82,11 @@ export default {
                 display: flex;
                 align-items: center;
                 padding:5px 15px;
+                color:rgba(102,102,102,1);
                 .label{
-                    font-size: 14px;
-                    color: rgba(54, 54, 54, 0.8);
                     margin-right: 5px;
                 }
                 .text{
-                    font-size: 15px;
-                    color: #363636;
                 }
             }
         }

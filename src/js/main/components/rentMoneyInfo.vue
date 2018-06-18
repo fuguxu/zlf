@@ -178,9 +178,9 @@ export default {
             width:282px;
         }
         /deep/ .el-input__inner{
-            border: 1px solid #dbd8d3;
+            // border: 1px solid #dbd8d3;
             &:focus{
-                box-shadow: 0 0 5px #d7d7d7;
+                // box-shadow: 0 0 5px #d7d7d7;
             }
         }
         /deep/ .el-input__suffix{

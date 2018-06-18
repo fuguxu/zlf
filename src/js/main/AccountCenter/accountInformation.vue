@@ -25,9 +25,9 @@ export default {
 </script>
 <style lang="scss" scoped>
     .account_information{
-        padding:0 60px;
+        padding:0 43px;
         .avatar{
-            border-bottom: 1px solid rgba(201,201,201,0.2);
+            border-bottom: 1px solid rgba(244, 244, 244, 1);
         }
     }
 </style>

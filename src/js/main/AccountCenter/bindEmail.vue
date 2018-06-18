@@ -12,7 +12,7 @@
                         <i slot="suffix" @click="getCode" class="identifyCode" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
                     </el-input>
                     <div class="error_message" v-if="codeErrorMessage">
-                        <i class="icon el-icon-remove"></i>
+                        <i class="icon el-icon-error"></i>
                         <span>{{codeErrorMessage}}</span>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="item_content">
                     <el-input @blur="blurEmail"  v-model="newEmail" placeholder="输入正确的邮箱地址"></el-input>
                     <div class="error_message" v-if="emailErrorMessage">
-                        <i class="icon el-icon-remove"></i>
+                        <i class="icon el-icon-error"></i>
                         <span>{{emailErrorMessage}}</span>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../../css/formItem.scss';
     .email_container{
-        padding-left:60px;
+        padding-left:43px;
         padding-top:40px;
         height:350px;
         .item_content{

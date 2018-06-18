@@ -324,9 +324,10 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
 .el-message{
     z-index: 20000 !important;
 }
-.el-input__inner{
+.el-input__inner,.el-input__inner:hover{
     border:1px solid rgba(224,224,224,1);
     border-radius: 2px;
+    color:#333;
 }
 .el-input__inner:focus{
     border: 1px solid rgba(201, 201, 201,0.6);

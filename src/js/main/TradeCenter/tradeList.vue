@@ -52,7 +52,7 @@
                             <div class="line"></div>
                         </div>
                     </div>
-                    <a class="detail_text colorYellow" :href="`#/trade/detail?id=${item.orderNo}&leaseType=${item.leaseType}`">交易详情</a>
+                    <a class="detail_text colorYellow" :href="`#/trade/detail?id=${item.orderNo}&leaseType=${item.leaseType}&listNo=${item.proListCommNo}`">交易详情</a>
                 </div>
             </div>
         </div>

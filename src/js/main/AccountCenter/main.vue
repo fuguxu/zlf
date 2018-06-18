@@ -2,16 +2,21 @@
     <div class="account_container">
         <div class="account_content">
             <div class="account_left" :class="{high:role=='supplier'}">
-                <div class="account_icon">
-                    <img class="icon" :src="user.userHeadimg" alt="">
-                    <div class="title">{{user.userAbbr}}</div>
+                <div class="account_left_content">
+                    <div class="account_icon">
+                        <img class="icon" :src="user.userHeadimg" alt="">
+                        <div class="title font20">{{user.userAbbr}}</div>
+                    </div>
+                    <ul class="router_list">
+                        <router-link tag="li" @click.native="changeAccount(item)" v-for="(item,index) in muens" :key="index" :to="item.path" class="item">
+                            <div class="link_box">
+                                <img class="icon_img icon_img_defalut" :src="item.icon" alt="">
+                                <img class="icon_img icon_img_active" :src="item.icon2" alt="">
+                                <span class="link">{{item.name}}</span>
+                            </div>
+                        </router-link>
+                    </ul>
                 </div>
-                <ul class="router_list">
-                    <li v-for="(item,index) in muens" :key="index" class="item">
-                        <img class="icon_img" :src="item.icon" alt="">
-                        <router-link class="link" @click.native="changeAccount(item)" :to="item.path">{{item.name}}</router-link>
-                    </li>
-                </ul>
             </div>
             <div class="account_right">
                 <div v-if="title" class="title">{{title}}</div>
@@ -30,45 +35,53 @@ export default {
                 {
                     name:'账号资料',
                     path:'/account/information',
-                    icon:require('../../../img/u7422.png')
+                    icon:require('../../../img/u7422.png'),
+                    icon2:require('../../../img/u7422_2.png'),
                 },
                 {
                     name:'联系人信息',
                     path:'/account/contact',
-                    icon:require('../../../img/u7427.png')
+                    icon:require('../../../img/u7427.png'),
+                    icon2:require('../../../img/u7427_2.png'),
                 },
                 {
                     name:'重新绑定邮箱',
                     path:'/account/email',
-                    icon:require('../../../img/u7673.png')
+                    icon:require('../../../img/u7673.png'),
+                    icon2:require('../../../img/u7673_2.png'),
                 }
             ],
             supplier:[
                 {
                     name:'公司信息',
                     path:'/account/company',
-                    icon:require('../../../img/u7422.png')
+                    icon:require('../../../img/u7422.png'),
+                    icon2:require('../../../img/u7422_2.png'),
                 },
                 {
                     name:'推荐详情',
                     path:'/account/recommend',
                     hideTitle:true,
-                    icon:require('../../../img/u3692.png')
+                    icon:require('../../../img/u3692.png'),
+                    icon2:require('../../../img/u3692_2.png'),
                 },
                 {
                     name:'重新绑定邮箱',
                     path:'/account/email',
-                    icon:require('../../../img/u7673.png')
+                    icon:require('../../../img/u7673.png'),
+                    icon2:require('../../../img/u7673_2.png'),
                 },
                 {
                     name:'资料管理',
                     path:'/account/management',
-                    icon:require('../../../img/u3697.png')
+                    icon:require('../../../img/u3697.png'),
+                    icon2:require('../../../img/u3697_2.png'),
                 },
                 {
                     name:'邀请码',
                     path:'/account/code',
-                    icon:require('../../../img/u3703.png')
+                    icon:require('../../../img/u3703.png'),
+                    icon2:require('../../../img/u3703_2.png'),
                 }
             ],
             role:'',
@@ -96,57 +109,72 @@ export default {
 </script>
 <style lang="scss" scoped>
     .account_content{
-        width:1200px;
+        width:1160px;
         margin:0 auto;
         display: flex;
-        padding: 52px 0px;
+        box-sizing: border-box;
+        padding: 20px 0px 128px 0px;
         .account_left{
-            width:202px;
+            width:264px;
             box-sizing: border-box;
-            background: #fff;
-            height:340px;
-            text-align: center;
-            border: 1px solid rgba(201,201,201,0.2);
-            box-shadow: 0 0 2px rgba(201,201,201,0.4);
-            color: #292B2C;
             font-size:14px;
-            margin-right: 15px;
-            &.high{
-                height:440px;
+            margin-right: 20px;
+            .account_left_content{
+                 background: #fff;
+                border-radius:6px;
+                text-align: center;
             }
             .account_icon{
-                width:170px;
-                height: 166px;
                 margin-left:16px;
-                border-bottom: 1px solid rgba(201,201,201,0.2);
                 .icon{
-                    width:100px;
-                    height:100px;
-                    margin:19px 0 5px 0;
+                    width:88px;
+                    height:88px;
+                    margin:52px 0 30px 0;
                     border-radius: 50%;
                 }
                 .title{
-                    font-size: 15px;
+                    padding-bottom: 30px;
                 }
             }
             .router_list{
-                padding-top:22px;
+                padding-bottom:15px;
             }
             .item{
-                display: flex;
-                line-height: 25px;
-                margin-bottom: 22px;
+                padding:0 12px;
+                cursor: pointer;
+                .link_box{
+                    display: flex;
+                    align-items: center;
+                    line-height: 56px;
+                    border-left:4px solid transparent;
+                }
+                &:hover,&.router-link-active{
+                    .link_box{
+                        border-left:4px solid rgb(242, 159, 51);
+                    }
+                    .icon_img_active{
+                        display: block;
+                    }
+                    .icon_img_defalut{
+                        display: none;
+                    }
+                    color: rgb(242, 159, 51);
+                }
+                &.router-link-active{
+                    .link_box{
+                        background:rgba(244,244,244,1);
+                    }
+                }
                 .icon_img{
-                    width:25px;
-                    height:25px;
+                    width:19px;
+                    height:19px;
                     margin:0 10px 0 43px;
                 }
+                .icon_img_active{
+                    display: none;
+                }
                 .link{
-                    color: #292B2C;
-                    font-size: 14px;
-                    &:hover,&.router-link-active{
-                        color: rgb(242, 159, 51);
-                    }
+                    // font-size: 14px;
                 }
             }
         }
@@ -154,16 +182,13 @@ export default {
             flex: 1;
             min-height: 300px;
             background: #fff;
-            border: 1px solid rgba(201,201,201,0.2);
-            box-shadow: 0 0 1px rgba(201,201,201,0.4);
-            border-bottom: 1px solid rgba(201,201,201,0.4);
+            border-radius:6px;
+            border: 1px solid rgba(237, 237, 237, 1);
             .title{
-                line-height: 52px;
-                // background: #FAFAF9;
-                font-size: 16px;
-                color: rgb(41, 43, 44);
-                padding-left:33px;
-                border-bottom: 1px solid rgba(201,201,201,0.2);
+                line-height: 64px;
+                font-size: 18px;
+                padding-left:21px;
+                border-bottom: 1px solid rgba(237, 237, 237, 1);
             }
         }
     }

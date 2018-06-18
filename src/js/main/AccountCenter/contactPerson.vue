@@ -18,7 +18,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .contact_container{
-        padding-left:60px;
+        padding-left:43px;
     }
 </style>
 

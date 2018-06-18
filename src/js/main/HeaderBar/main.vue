@@ -81,14 +81,14 @@
             height:100%;
             align-items: center;
             img{
-                width:28px;
-                height:28px;
+                // width:28px;
+                // height:28px;
             }
             .text{
                 cursor: pointer;
                 margin-left:5px;
                 &:hover{
-                    color:  rgba(255, 255,255, 0.75);
+                    color:  rgba(255, 255,255, 0.7);
                 }
             }
         }

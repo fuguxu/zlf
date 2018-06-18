@@ -6,27 +6,33 @@
             </div>
             <div class="home_rent_pic">
                 <div class="item">
-                   <img class="img" src="../../../img/sofa_nor_icon.png" alt="">
+                   <img class="img defalut" src="../../../img/sofa_nor_icon.png" alt="">
+                   <img class="img hover" src="../../../img/sofa_sel_icon.png" alt="">
                    <span class="text">家具</span> 
                 </div>
                 <div class="item">
-                    <img class="img" src="../../../img/device_nor_icon.png" alt="">
+                    <img class="img defalut" src="../../../img/device_nor_icon.png" alt="">
+                    <img class="img hover" src="../../../img/device_sel_icon.png" alt="">                   
                     <span class="text">家电</span> 
                 </div>
                 <div class="item">
-                    <img class="img" src="../../../img/material_nor_icon.png" alt="">
+                    <img class="img defalut" src="../../../img/material_nor_icon.png" alt="">
+                    <img class="img hover" src="../../../img/material_sel_icon.png" alt="">
                      <span class="text">主材</span>
                 </div>
                 <div class="item">
-                    <img class="img" src="../../../img/machine_nor_icon.png" alt="">
+                    <img class="img defalut" src="../../../img/machine_nor_icon.png" alt="">
+                    <img class="img hover" src="../../../img/machine_sel_icon.png" alt="">
                     <span class="text">机电设备</span>
                 </div>
                 <div class="item">
-                    <img class="img" src="../../../img/system_nor_icon.png" alt="">
+                    <img class="img defalut" src="../../../img/system_nor_icon.png" alt="">
+                    <img class="img hover" src="../../../img/system_sel_icon.png" alt="">
                     <span class="text">弱电系统</span>
                 </div>
                 <div class="item">
-                    <img class="img" src="../../../img/intelligent_nor_icon.png" alt="">
+                    <img class="img defalut" src="../../../img/intelligent_nor_icon.png" alt="">
+                    <img class="img hover" src="../../../img/intelligent_sel_icon.png" alt="">
                     <span class="text">智能系统</span>
                 </div>
             </div>
@@ -75,10 +81,24 @@ export default {
                         display: inline-block;
                         left:0px;
                     }
+                    &:hover{
+                        .text{
+                            color:#fff;
+                        }
+                        .defalut{
+                            display: none;
+                        }
+                        .hover{
+                            display: inline-block;
+                        }
+                    }
                 }
                 .img{
                     width:372px;
                     height:290px;
+                }
+                .hover{
+                    display: none;
                 }
             }
         }

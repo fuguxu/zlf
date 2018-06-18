@@ -109,7 +109,16 @@ export const customerModule={
     getCustomerContact:params => { return customerAxios.get('/supplier/getCustomerContact', {params:params}).then(res => res.data); },
     //获取项目大客户代表
     getPlatformContact:params => { return customerAxios.get('/supplier/getPlatformContact', {params:params}).then(res => res.data); },
-
+    //保存合同进度
+    saveContract:params => { return customerAxios.post('/supplier/saveContract', params).then(res => res.data); },
+    //获取合同列表
+    getMainLease:params => { return customerAxios.get('/supplier/getMainLease', {params:params}).then(res => res.data); },
+    //保存供应商售后对接人信息
+    saveAfterSaleMan:params => { return customerAxios.post('/supplier/saveAfterSaleMan', params).then(res => res.data); },
+    //获取供应商售后对接人信息
+    getAfterSaleMan:params => { return customerAxios.get('/supplier/getAfterSaleMan', {params:params}).then(res => res.data); },
+    
+    
     //获取消息接口
     getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },
     getMsgDetail:params => { return customerAxios.get('/msg/getMsgDetail', {params:params}).then(res => res.data); },

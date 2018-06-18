@@ -103,6 +103,9 @@ export default {
                 top:0px;
                 left: 0px;
                 z-index: 1000;
+                &:hover{
+                    color:rgba(255,255,255,0.7);
+                }
             }
             &.qq{
                 background:rgba(255,166,50,1);

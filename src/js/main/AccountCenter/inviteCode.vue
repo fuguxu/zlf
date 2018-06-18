@@ -20,7 +20,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .inviteCode{
-        padding-left:60px;
+        padding-left:43px;
         padding-top:50px;
         .title{
             color: #292B2C;

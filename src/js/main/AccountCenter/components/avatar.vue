@@ -1,6 +1,6 @@
 <template>
     <div class="avatar_container">
-        <span class="avatar_text">头像</span>
+        <span class="avatar_text font16">头像</span>
         <img class="icon" :src="user.userHeadimg" alt="">
         <div>
             <label for="fileId" class="label-file">
@@ -110,33 +110,31 @@ export default {
     .avatar_container{
         display: flex;
         align-items: center;
-        padding:15px 0 25px;
+        padding:70px 0 60px;
     }
     .avatar_text{
-        color: #292B2C;
-        font-size:14px;
     }
     .icon{
-        width:150px;
-        height:150px;
+        width:88px;
+        height:88px;
         border-radius: 50%;
-        margin:0px 10px 0px 40px;
+        margin:0px 50px 0px 45px;
     }
     .label-file{
-        width:126px;
+        width:148px;
         height:40px;
         cursor: pointer;
         display: inline-block;
         position: relative;
         overflow: hidden;
-        background: #ed9f34;
-        border-radius: 5px;
+        background: rgba(255,166,50,1);
+        border-radius: 4px;
         text-align: center;
         line-height: 40px;
-        font-size:14px;
+        font-size:16px;
         color:#fff;
         &:hover{
-            background: #f1b255;
+            background: rgba(255,166,50,0.8);
         }
     }
     .label-file input[type="file"]{
@@ -147,9 +145,8 @@ export default {
         height:100%;
     }
     .tips{
-        font-family: 'SimHei';
-        font-size: 16px;
-        color: #868686;
+        font-size: 14px;
+        color: rgba(153,153,153,1);
         margin-top:18px;
     }
 </style>

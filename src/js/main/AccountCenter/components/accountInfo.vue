@@ -165,14 +165,14 @@ export default {
             font-size:0px;
           /deep/ .label{
                width: 90px;
-                color: #292B2C;
+                color: rgba(102,102,102,1);
                 font-size:14px;
                 display: inline-block;
            }
            /deep/ .el-input__inner{
                height:30px;
                line-height: 30px;
-               font-size:13px;
+            //    font-size:13px;
                cursor: pointer;
            }
            /deep/ .select_box{
@@ -185,14 +185,13 @@ export default {
       }
     }
     @import '../../../../css/formItem.scss';
+    .el-select{
+        width:148px;
+    }
    .item_content .el-input-person.el-input{
-       width:122px;
+       width:148px;
        /deep/ .el-input__inner{
            padding:0px;
        }
-   }
-   .sub{
-       font-size: 12px;
-        color: rgba(41, 43, 44, 0.70);
    }
 </style>

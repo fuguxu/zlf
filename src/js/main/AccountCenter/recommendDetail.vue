@@ -272,7 +272,8 @@ export default {
                     padding-right: 25px;
                 }
                 .desc_box{
-                    width:790px;
+                    // width:790px;
+                    flex:1;
                     border: 1px solid rgba(201,201,201,0.2);
                     border-radius: 5px;
                     padding-right: 10px;
@@ -295,7 +296,7 @@ export default {
         }
         .product_info{
             .content_container{
-                width:932px;
+                // width:932px;
                 background: #fafafa;
                 border-radius: 10px;
                 margin-top:20px;
@@ -323,7 +324,7 @@ export default {
             }
         }
         .addarea{
-            width:932px;
+            // width:932px;
             background: #fafafa;
             height:42px;
             line-height: 42px;

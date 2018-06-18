@@ -34,6 +34,8 @@ import TradeList from '../TradeCenter/tradeList.vue';
 import TradeDetail from '../TradeCenter/tradeDetail.vue';
 import TradeProgress from '../TradeCenter/TradeProgress.vue';
 import contract from '../TradeCenter/contract.vue';
+import contractDetail from '../TradeCenter/contractDetail.vue';
+import contractList from '../TradeCenter/contractList.vue';
 import saleService from '../TradeCenter/saleService.vue';
 
 import RentCenter from '../RentCenter/main.vue';
@@ -215,6 +217,19 @@ const routesMap = [
                                 path:'/trade/detail/contract',
                                 name:'合同执行',
                                 component:contract,
+                                redirect:'/trade/detail/contract/list',
+                                children:[
+                                    {
+                                        path:'/trade/detail/contract/list',
+                                        name:'合同执行列表',
+                                        component:contractList,
+                                    },
+                                    {
+                                        path:'/trade/detail/contract/detail',
+                                        name:'合同执行详情',
+                                        component:contractDetail,
+                                    }
+                                ]
                             },
                             {
                                 path:'/trade/detail/service',
