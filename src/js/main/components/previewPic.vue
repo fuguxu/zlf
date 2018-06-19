@@ -13,25 +13,9 @@
 </template>
 <script>
 export default {
+    props:['imgList'],
     data(){
       return{
-            imgList:[
-                {
-                    url:require('../../../img/p8.jpg')
-                },
-                {
-                    url:require('../../../img/p10.jpg')
-                },
-                {
-                    url:require('../../../img/p13.jpg')
-                },
-                {
-                    url:require('../../../img/u319.png')
-                },
-                {
-                    url:require('../../../img/u10.png')
-                }
-            ],
             activeUrl:'',
             activeIndex:0
         }
@@ -43,7 +27,12 @@ export default {
         }
     },
     mounted(){
-        this.changeImg(this.imgList[0],0);
+        // this.changeImg(this.imgList[0],0);
+    },
+    watch:{
+        imgList(){
+            this.changeImg(this.imgList[0],0);
+        }
     }
 }
 </script>
@@ -59,10 +48,10 @@ export default {
             border: 2px solid transparent;
             position: relative;
             &.active{
-                border: 2px solid #ed9f36;
+                border: 2px solid rgba(255,166,50,1);
             }
             .icon{
-                color: #ffa632;
+                color: rgba(255,166,50,1);
                 font-size:18px;
                 position: absolute;
                 bottom: 0;
@@ -72,13 +61,14 @@ export default {
             }
         }
         .img{
-            width:110px;
-            height:75px;
+            width:125px;
+            height:88px;
             cursor: pointer;
         }
     }
     .bigImg{
-        width:640px;
-        height:410px;
+        width:678px;
+        height:372px;
+        border: 2px solid rgba(255,166,50,1);
     }
 </style>

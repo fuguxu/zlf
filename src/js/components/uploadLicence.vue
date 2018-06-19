@@ -22,7 +22,8 @@
                 <p class="tip">3.营业执照要清晰可见</p>
             </div>
             <div>
-                <span @click="uploadFile" class="button" :class="{hsaFile:hasFile}">提交</span>
+                <span @click="uploadFile" class="button" :class="{hsaFile:hasFile}">{{!isSubmited?'提交':'提交成功'}}</span>
+                <i v-if="loading" class="icon-loading color8 font18 el-icon-loading"></i>
             </div>
         </div>
     </div>
@@ -50,7 +51,9 @@ export default {
         fileList:[],
         tipMessage:'',
         formData:'',
-        // imgUrl:''
+        // imgUrl:'',
+        loading:false,
+        isSubmited:false
       }
   },
   methods:{
@@ -68,7 +71,7 @@ export default {
       },
       valiateSize(file){
           let size=file.size;
-          if(size>10*1024*1024){
+          if(size>5*1024*1024){
               this.tipMessage='文件超过限制大小！';
               return false
           }else{
@@ -103,19 +106,23 @@ export default {
 
        },
       uploadFile(){//调接口函数
-    //    this.$router.push('/submited')
-        if(!this.hasFile) return;
+        if(!this.hasFile||this.isSubmited) return;
+        this.loading=true;
         customerModule.upload(this.formData).then(res=>{
-        //    console.log(res)
-           if(res.error==0&&!this.orderNo){
-            //    this.imgUrl=res.url;
-            this.$router.push('/submited')
+           if(res.error==0){
+               this.isSubmited=true;
+               this.loading=false;
+               if(!this.orderNo){
+                   this.$router.push('/submited')
+               }else{
+
+               }
            }
         });
       },
       emitHandleRemove(){//删除
-            // this.imgUrl='';
             this.fileList=[];
+            this.isSubmited=false;
       },
       previewImg(){//预览图片
           window.open(this.imgUrl);
@@ -129,7 +136,7 @@ export default {
           return this.fileList.length!=0;
       },
       tipText(){
-          return this.fileList.length==0?'选择文件，支持jpg、bmp、png格式，不超过10M':'点击左侧，预览图片'
+          return this.fileList.length==0?'选择文件，支持jpg、bmp、png格式，不超过5M':'点击左侧，预览图片'
       },
       imgUrl(){
           return window.URL.createObjectURL(this.fileList[0]);
@@ -150,26 +157,27 @@ export default {
         margin-right:20px;
     }
     .file_container{
-        width:456px;
-        height: 55px;
-        border: 1px dashed #cfd0d0;
-        border-radius: 5px;
+        width:396px;
+        height: 40px;
+        border: 1px dashed rgba(224, 224, 224, 1);
+        border-radius: 2px;
         background: #fff;
         display: flex;
+        box-sizing: border-box;
         align-items: center;
         margin-bottom: 20px;
         position: relative;
         &.hsaFile{
-            border: 1px solid #cfd0d0;
-            box-shadow: 0 0 5px #d7d7d7;
+            // border: 1px solid #cfd0d0;
+            // box-shadow: 0 0 5px #d7d7d7;
             .tip_text{
-                color: #868686;
+                // color: #868686;
             }
         }
     }
     .tip{
         margin-bottom: 5px;
-        font-size: 13px;
+        font-size: 14px;
         color: #797979;
         line-height: 22px;
         text-align: left;
@@ -178,8 +186,8 @@ export default {
         }
     }
     .label-file{
-        width:30px;
-        height:30px;
+        width:16px;
+        height:14px;
         cursor: pointer;
         display: inline-block;
         position: relative;
@@ -189,29 +197,30 @@ export default {
         margin-left:10px;
     }
     .preview{
-        width:37px;
-        height:52px;
+        width:34px;
+        height:34px;
         margin-left:2px;
         cursor: pointer;
     }
     .tip_text{
         margin-left:10px;
-        font-size: 16px;
-        color: #cfd0d0;
-        font-family: 'SimHei';
+        // font-size: 16px;
+        color:rgba(153,153,153,1);
+        // font-family: 'SimHei';
         flex: 1;
         text-align: left;
     }
     .close_icon{
-        font-family: 'SimHei';
+        // font-family: 'SimHei';
         font-size: 24px;
-        color: rgba(107, 107, 107, 0.66);
+        color: rgba(153,153,153,1);
         width: 40px;
         height: 100%;
-        line-height: 54px;
+        line-height: 40px;
+        text-align: center;
         cursor: pointer;
         &:hover{
-            background: rgb(229,229,229);
+            // background: rgb(229,229,229);
         }
     }
     .error_message{
@@ -232,17 +241,17 @@ export default {
         margin-top:50px;
         // display: inline-block;
         // cursor: pointer;
-        background: rgb(161, 161, 161);
+        background: #aeaeae;
         // border-radius: 5px;
-        width:118px;
+        width:100px;
         line-height: 40px;
         font-size: 18px;
-        color: rgba(255, 255, 255, 0.90);
+        color: rgba(255, 255, 255, 1);
         // text-align: center;
         &.hsaFile{
-            background: rgb(237, 159, 52);
+            background: rgba(255,166,50,1);
             &:hover{
-                background: rgb(240, 173, 79);
+                background: rgba(255,166,50,0.8);
             }
         }
     }

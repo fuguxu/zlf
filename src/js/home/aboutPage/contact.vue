@@ -24,7 +24,7 @@
                       <div class="text_box">
                           <div class="title">联系方式</div>
                           <div class="text">电话 400-880-4604</div>
-                          <div class="text">邮箱 service@zulifang.co</div>
+                          <div class="text">邮箱 service@zucube.cn</div>
                       </div>
                   </div>
                   <div class="item item3">

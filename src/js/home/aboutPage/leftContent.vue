@@ -32,7 +32,7 @@
                 </div>
                 <div>
                     <div class="font14">联系方式</div>
-                    <p class="font12 text">电话 400-880-4604<br />邮箱 service@zulifang.co</p>
+                    <p class="font12 text">电话 400-880-4604<br />邮箱 service@zucube.cn</p>
                 </div>
             </div>
             <div class="contact_item">

@@ -44,7 +44,7 @@
             </div>
             <div class="form_item footer">
                 <span v-if="isEdit" @click="saveAfterSaleMan" class="button edit">提交</span>
-                <i v-if="loading" class="icon-loading font18 el-icon-loading"></i>
+                <i v-if="loading" class="icon-loading font18 color8 el-icon-loading"></i>
                 <span v-if="!isEdit" class="button disabled success">
                    <i class="icon el-icon-circle-check"></i> 提交成功
                 </span>
@@ -213,9 +213,6 @@ export default {
         &.success{
             width:120px;
         }
-    }
-    .icon-loading{
-        color:rgba(153,153,153,1);
     }
     .el-select /deep/ .el-input.is-disabled .el-input__inner{
         background: #fff;

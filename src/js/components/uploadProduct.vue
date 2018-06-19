@@ -1,11 +1,13 @@
 <template>
     <div class="file-upload-container">
-        <div class="label_text">
-            <span v-if="isEdit">上传图片</span>
+        <div class="label_text" v-if="isEdit">
+            <span >上传图片</span>
         </div>
-        <div class="file_box">
+        <div class="file_box" v-if="isEdit">
             <div class="imgs_box">
-                <img v-for="(item,index) in fileList" :key="index" class="img_item" :src="item.url" alt="">
+                <div v-for="(item,index) in fileList" :key="index" class="img_item_wrap">
+                    <img class="img_item" :src="item.url" alt="">
+                </div>
                 <div v-if="loading" class="loading"><i class="el-icon-loading"></i></div>
             </div>
             <div v-if="isEdit" class="file_container">
@@ -22,10 +24,12 @@
             </div>
             <div v-if="isEdit"  class="tip_text">最多上传 <span class="sub">5</span>张，每张图片大小不超过{{limitSize}}M，支持jpg、bmp、png格式</div>
         </div>
+        <previewPic v-if="!isEdit" :imgList="data"></previewPic>
     </div>
 </template>
 <script>
-import {customerModule} from '../api/main'
+import {customerModule} from '../api/main';
+import previewPic from '../main/components/previewPic';
 export default {
     props:{
         multiple:{
@@ -50,7 +54,8 @@ export default {
         fileList:[],
         tipMessage:'',
         limitSize:2,
-        loading:false
+        loading:false,
+        activeItem:{}
       }
   },
   methods:{
@@ -135,7 +140,8 @@ export default {
       },
       previewImg(){//预览图片
         //   window.open(this.imgUrl);
-      }
+      },
+      
     }, 
   mounted(){
     if(this.data){
@@ -159,6 +165,9 @@ export default {
       data(n,o){
           console.log(n)
       }
+  },
+  components:{
+      previewPic
   }
 }
 </script>
@@ -183,11 +192,28 @@ export default {
                 color:rgba(153,153,153,1);
             }
         }
-        .img_item,.loading{
-            width:128px;
-            height: 90px;
+        .img_item_wrap{
+            font-size: 0px;
             margin-bottom:10px;
-            margin-right:10px;
+            margin-right:13px;
+            position: relative;
+        }
+        .loading{
+            margin-bottom:10px;
+        }
+        .img_item,.loading{
+            width:125px;
+            height:88px;
+            cursor: pointer;
+        }
+    }
+    .big_img_wrap{
+        text-align: center;
+        font-size: 0px;
+        .big_img{
+            width:678px;
+            height:372px;
+            border:2px solid rgba(255, 166, 50, 1);
         }
     }
     .label_text{

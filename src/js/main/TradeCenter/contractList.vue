@@ -1,12 +1,12 @@
 <template>
     <div class="contract_list">
         <ul>
-            <router-link tag="li"  v-for="(item,index) in list" :key="index"  :to="`/trade/detail/contract/detail?id=${$route.query.id}&leaseType=${$route.query.leaseType}&listNo=${$route.query.listNo}`">
+            <router-link tag="li"  v-for="(item,index) in list" :key="index"  :to="`/trade/detail/contract/detail?id=${$route.query.id}&leaseType=${$route.query.leaseType}&listNo=${$route.query.listNo}&leaseContractNo=${item.leaseContractNo}`">
                 <div class="item" @mouseenter="mouseEnter(index)" @mouseleave="mouseLeave(index)">
                      <div class="icon_wrap">
                         <img ref="hand" class="hand_icon" src="../../../img/hand.png" alt="">
                     </div>
-                    <span>{{item.name}}</span>
+                    <span>{{item.leaseName}}</span>
                 </div>
             </router-link>  
         </ul>
@@ -17,7 +17,7 @@ import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            list:[{name:'我是一个大好人'},{name:'江湖上的事看看是否的说法是'}]
+            list:[]
         }
     },
     methods:{
@@ -26,7 +26,7 @@ export default {
                 orderNo:this.$route.query.id
             }).then(res=>{
                 if(res.statusCode=="1"){
-
+                    this.list=res.data;
                 }
             })
         },

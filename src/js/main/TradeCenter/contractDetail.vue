@@ -4,21 +4,21 @@
             <el-tab-pane label="家具生产启动" name="first">
                 <transition name="slide-fade">
                     <div v-if="activeName=='first'" class="item">
-                        <progressItem :leaseType="id" :type="0"></progressItem>
+                        <progressItem :leaseType="id" :leaseContractNo="leaseContractNo" :type="0"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
             <el-tab-pane label="家具生产进行中" name="second">
                 <transition name="slide-fade">
                     <div v-if="activeName=='second'" class="item">
-                        <progressItem :leaseType="id" :type="1"></progressItem>
+                        <progressItem :leaseType="id" :leaseContractNo="leaseContractNo" :type="1"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
             <el-tab-pane label="家具生产完成" name="third">
                <transition name="slide-fade">
                     <div v-if="activeName=='third'" class="item">
-                        <progressItem :leaseType="id" :type="2"></progressItem>
+                        <progressItem :leaseType="id" :leaseContractNo="leaseContractNo" :type="2"></progressItem>
                     </div>
                 </transition>
                 
@@ -26,7 +26,7 @@
             <el-tab-pane label="运输包装" name="fourth">
                 <transition name="slide-fade">
                     <div v-if="activeName=='fourth'" class="item">
-                        <progressItem :leaseType="id" :type="leaseType=='1'?3:5"></progressItem>
+                        <progressItem :leaseType="id" :leaseContractNo="leaseContractNo" :type="leaseType=='1'?3:5"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
@@ -40,11 +40,11 @@
                             <el-form-item label="手机号码">
                                 <el-input placeholder="请输入跟车负责人常用手机号" v-model="form.phone"></el-input>
                             </el-form-item>
-                            <el-form-item label="车辆车牌号">
+                            <el-form-item class="car" label="车辆车牌号">
                                 <el-input placeholder="选填，输入运输车辆车牌号" v-model="form.car_num"></el-input>
                             </el-form-item>
                         </el-form>
-                        <progressItem :transferInfo="form"  class="transfer" :leaseType="id" :type="leaseType=='1'?4:6"></progressItem>
+                        <progressItem :transferInfo="form" :leaseContractNo="leaseContractNo"  class="transfer" :leaseType="id" :type="leaseType=='1'?4:6"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
@@ -71,7 +71,8 @@ export default {
                 car_num:''
             },
             id:this.$route.query.id,
-            leaseType:this.$route.query.leaseType
+            leaseType:this.$route.query.leaseType,
+            leaseContractNo:this.$route.query.leaseContractNo
         }
     },
     methods:{
@@ -80,7 +81,7 @@ export default {
         }
     },
     mounted(){
-        console.log(this.leaseType)
+        
     },
     components:{
         progressItem,
@@ -91,7 +92,7 @@ export default {
 <style lang="scss" scoped>
     .contract{
         padding:0 21px;
-        padding-bottom:40px;
+        padding-bottom:25px;
         box-sizing: border-box;
     }
     .el-tabs{
@@ -123,18 +124,22 @@ export default {
         }
         .item{
             min-height: 300px;
-            background: rgba(244,244,244,1);
-            padding-right: 14px;
+            // background: rgba(244,244,244,1);
+            // padding-right: 14px;
             // border-radius: 7px;
         }
     }
     .el-form{
         padding-top:30px;
+        background:rgba(244,244,244,1);
         .el-form-item{
             margin-bottom: 20px;
+            &.car{
+                margin-bottom: 0px;
+            }
         }
         /deep/ .el-form-item__content{
-            margin-left:103px !important;
+            margin-left:98px !important;
             width:336px;
         }
         /deep/ .el-form-item__label{

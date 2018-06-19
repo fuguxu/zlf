@@ -10,7 +10,7 @@
             <div class="extend" v-if="start">
                 <div class="extend_title">了解您的项目详情，以便开展下一步融资服务，请您：</div>
                 <p class="text"><span> a. 下载《项目信息收集表》</span><a class="link" href="">（点此下载）</a></p>
-                <p class="text"><span> b. 线下填写《项目信息收集表》，并将该表及表中要求的附件，一起打包邮件至</span><span class="link">service@zulifang.co</span></p>
+                <p class="text"><span> b. 线下填写《项目信息收集表》，并将该表及表中要求的附件，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
                 <!-- <div class="next_step">审核通过，将开启下一步</div> -->
             </div>
         </div>
@@ -40,16 +40,26 @@
             <div v-if="finish" class="extend">
                 <div class="extend_title">授信清单要求的风控资料准备越齐全，租赁年化率将越低！</div>
                 <p class="text"><span> a. 下载《租立方融资租赁授信清单》</span><a class="link" href="">（点此下载）</a></p>
-                <p class="text"><span> b. 请将清单内要求的资料准备齐全，一起打包邮件至</span><span class="link">service@zulifang.co</span></p>
+                <p class="text"><span> b. 请将清单内要求的资料准备齐全，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
                 <p class="text"><span> c.务必填写<span class="link">“{{orderName}}”</span>项目负责人信息，以便租立方大客户代表与您即刻取得联系！</span></p>
                 <rentMoneyInfo :orderNo="orderNo" :cusType="0" placeholderPerson="请输入负责人姓名" placeholderJob="请输入负责人在贵司所担任职位"></rentMoneyInfo>
-                <div class="next_step">审核通过，将开启下一步</div>
+                <!-- <div class="next_step">审核通过，将开启下一步</div> -->
+                <div class="next_step_desc">
+                    <div class="circle_wrap">
+                        在您将“<div class="circel">1</div> 、<div class="circel">2</div> 、<div class="circel">3</div> ”要求的资料提交后，
+                    </div>
+                    <div>
+                        我们将在3个工作日内审核，并系统消息或者邮件通知您，请留意：
+                    </div>
+                    <div> 审核通过，将开启下一步！</div>
+                </div>
             </div>
         </div>
         <div class="item">
             <div class="item_sub">
                 <div class="circel">4</div>
                 <span>产品清单沟通</span>
+                <img v-if="data.length>0&&data[3].isOperation=='0'" class="lock" src="../../../../img/lock.png" alt="">
                 <i class="icon" :class="{'el-icon-caret-bottom':!transfer,'el-icon-caret-top':transfer}"  @click="clickExtend(3,'transfer')"></i>
             </div>
             <div v-if="transfer" class="extend">
@@ -124,6 +134,7 @@
             <div class="item_sub">
                 <div class="circel">5</div>
                 <span>签署租赁合同与付款</span>
+                <img v-if="data.length>0&&data[4].isOperation=='0'" class="lock" src="../../../../img/lock.png" alt="">
                 <i class="icon" :class="{'el-icon-caret-bottom':!logistics,'el-icon-caret-top':logistics}"  @click="clickExtend(4,'logistics')"></i>
             </div>
             
@@ -218,45 +229,70 @@ export default {
             height: 60px;
             align-items: center;
             font-size: 16px;
-            color: #363636;
+            // color: #363636;
             position: relative;
-            background: #f6f5f5;
+            background: rgba(244,244,244,1);
             padding:0 20px 0px 16px;
-            .circel{
-                width:26px;
-                height: 26px;
-                border-radius: 50%;
-                background: rgb(237, 159, 52);
-                font-size: 16px;
-                color:#fff;
-                text-align: center;
-                line-height: 26px;
-                margin-right: 20px;
-            }
+            
+        }
+        .circel{
+            width:18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(255,166,50,1);
+            font-size: 14px;
+            color:#fff;
+            text-align: center;
+            line-height: 18px;
+            margin-right: 16px;
         }
         .extend{
             padding:0px 28px;
-            padding-bottom:20px;
+            padding-bottom:40px;
             border:1px solid rgba(231, 231, 231, 1);
+            .el-form{
+                padding-top:20px;
+                /deep/ .el-form-item__label{
+                    width:0px !important;
+                }
+                /deep/ .el-form-item__content{
+                    margin-left:0px !important;
+                }
+            }
             .extend_title{
-                font-size: 15px;
-                color: rgba(54, 54, 54, 0.75);
+                // font-size: 15px;
+                color: rgba(136,136,136,1);
                 padding-bottom: 10px;
+                padding-top: 28px;
             }
             .text{
-                color: #363636;
+                // color: #363636;
                 font-size:14px;
-                line-height: 22px;
+                line-height: 30px;
                 .link{
-                    color:rgb(237, 159, 52);
+                    color:rgba(50,146,255,1);
                 }
             }
             .file-upload-container{
                 justify-content: flex-start;
-                padding-left:20px;
+                // padding-left:20px;
                 padding-top:10px;
                 /deep/ .button{
                     margin-top:0px;
+                }
+            }
+            .next_step_desc{
+                display: inline-block;
+                color:rgba(102,102,102,1);
+                font-size: 12px;
+                background:rgba(244,244,244,1);
+                padding:20px 20px 20px 13px;
+                line-height: 18px;
+                .circle_wrap{
+                    display: flex;
+                    .circel{
+                        margin-right:0px;
+                    }
                 }
             }
             .next_step{
@@ -362,6 +398,12 @@ export default {
             margin-top: -6px;
             cursor: pointer;
             z-index: 1000;
+        }
+        .lock{
+            position: absolute;
+            right: 63px;
+            top: 50%;
+            margin-top: -8px;
         }
     }
 </style>
