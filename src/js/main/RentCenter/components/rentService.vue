@@ -228,7 +228,7 @@ export default {
             display: flex;
             height: 60px;
             align-items: center;
-            font-size: 16px;
+            font-size: 14px;
             // color: #363636;
             position: relative;
             background: rgba(244,244,244,1);

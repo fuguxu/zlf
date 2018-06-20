@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="preview_box">
         <div class="small_pic">
             <div class="item_img_box" v-for="(item,index) in imgList" :key="index" @click="changeImg(item,index)" :class="{active:activeIndex==index}">
                 <img class="img" :src="item.url" alt="">
@@ -27,11 +27,15 @@ export default {
         }
     },
     mounted(){
-        // this.changeImg(this.imgList[0],0);
+        if(this.imgList.length>0){
+            this.changeImg(this.imgList[0],0);
+        }
     },
     watch:{
-        imgList(){
-            this.changeImg(this.imgList[0],0);
+        imgList(n,o){
+            if(n.length>0){
+                this.changeImg(this.imgList[0],0);
+            }
         }
     }
 }

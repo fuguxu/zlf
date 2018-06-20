@@ -28,11 +28,11 @@ export default {
         align-items: center;
         padding-left:34px;
         img{
-            width:25px;
-            height:25px;
+            // width:25px;
+            // height:25px;
         }
         .cityName{
-            margin-left:5px;
+            margin-left:12px;
         }
     }
 </style>

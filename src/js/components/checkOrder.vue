@@ -1,13 +1,15 @@
 <template>
-    <div class="">
-        <!-- <div class="line"></div> -->
+    <div class="judgement_wrap">
         <div class="check_img">
             <div class="title">
                 <span class="line"></span>
                 <span>验收函</span>
             </div>
             <div class="img_box">
-                <img class="img" @click="previewImg(item)" v-for="(item,index) in imgLists" :key="index" :src="item.url" alt="">
+                <div v-for="(item,index) in imgLists" :key="index" class="img_item">
+                    <img class="img" @click="previewImg(item)"  :src="item.url" alt="">
+                    <div class="clickTip">点击预览</div>
+                </div>
             </div>
         </div>
         <div class="judgement">
@@ -167,12 +169,27 @@ export default {
     .img_box{
         display: flex;
         flex-wrap: wrap;
-        padding-bottom: 48px;
+        padding-bottom: 0px;
+        .img_item{
+            font-size: 0px;
+            position: relative;
+            margin-right: 29px;
+            margin-bottom: 23px;
+            .clickTip{
+                position: absolute;
+                line-height: 20px;
+                width:100%;
+                left: 0px;
+                bottom: 0px;
+                background:rgba(0,0,0,0.5);
+                font-size: 12px;
+                color:#fff;
+                text-align: center;
+            }
+        }
         .img{
             width:126px;
             height:90px;
-            margin-right: 7px;
-            margin-bottom: 20px;
             cursor: pointer;
         }
     }
@@ -236,14 +253,14 @@ export default {
         }
     }
     .title{
-        font-size: 16px;
-        margin:7px 0 24px 0px;
+        // font-size: 16px;
+        margin:25px 0;
         align-items: center;
         display: flex;
         .line{
             width: 6px;
             height: 12px;
-            background: #ffa632;
+            background: rgba(255,166,50,1);
             border-radius: 3px;
             margin-right: 14px;
         }

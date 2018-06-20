@@ -1,6 +1,6 @@
 <template>
     <div class="item_content" :class="{show:!isEdit}">
-        <div v-if="!isEdit" class="title">
+        <div v-if="!isEdit" class="title color6">
             <span class="line"></span><span>简单描述</span>
         </div>
         <div class="content">
@@ -13,7 +13,8 @@
             </div>
         </div>
         <div class="upload_box">
-            <uploadProduct saveType="logistics" :isEdit="isEdit" :data="fileList" @updatePic="updatePic"  id="product"></uploadProduct>
+            <uploadProduct v-if="isEdit" saveType="logistics" :isEdit="isEdit" :data="fileList" @updatePic="updatePic"  id="product"></uploadProduct>
+            <previewPic v-if="!isEdit" :imgList="fileList"></previewPic>
         </div>
         <div class="footer">
             <span v-if="fileList.length>0&&isEdit" @click="submit" class="button edit">提交</span>
@@ -22,6 +23,7 @@
 </template>
 <script>
 import uploadProduct from '../../../components/uploadProduct';
+import previewPic from '../../components/previewPic';
 import {customerModule} from '../../../api/main';
 export default {
     props:['type','leaseType','transferInfo','leaseContractNo'],
@@ -34,7 +36,7 @@ export default {
             },
             fileObj:{},
             fileList:[],
-            isEdit:false,
+            isEdit:true,
             maxLength:100
         }
     },
@@ -47,8 +49,8 @@ export default {
             });
             this.fileObj=fileObj;
         },
-        saveContract(){
-            customerModule.saveContract({...this.form,...this.fileObj,...this.transferInfo}).then(res=>{
+        saveContract(){//保存接口
+            customerModule.saveContract({...this.fileObj,...this.transferInfo,...this.form}).then(res=>{
                 if(res.statusCode=='1'){
                     this.isEdit=false;
                     this.getContractProgress();
@@ -61,6 +63,7 @@ export default {
                 type:this.type
             }).then(res=>{
                 if(res.statusCode=='1'){
+                    this.fileList=[];
                     let result= res.data||{};
                     this.form=Object.assign(this.form,result);
                     for(var i=1;i<=5;i++){
@@ -73,18 +76,24 @@ export default {
                     }else{
                         this.isEdit=true;
                     }
+                    this.$emit('updateStatus',this.isEdit,this.isEdit?false:this.form);
                 }
             })
         },
-        submit(){
-            this.saveContract();
+        submit(){//提交按钮
+            if(this.transferInfo){
+                this.$emit('valiate');//先验证必填信息 又父组件来调接口
+            }else{
+                this.saveContract();
+            }
         }
     },
     mounted(){
         this.getContractProgress();
     },
     components:{
-        uploadProduct
+        uploadProduct,
+        previewPic
     }
 }
 </script>
@@ -154,13 +163,20 @@ export default {
              min-height:70px !important;
         }
     }
-    .upload_box .file-upload-container{
-        padding-top:25px;
+    .upload_box {
+        display: flex;
         justify-content: center;
-        /deep/ .label_text{
-            width:98px;
-            padding-left:21px;
-            padding-right: 0px;
+        .preview_box{
+            display: inline-block;
+        }
+        .file-upload-container{
+            padding-top:25px;
+            // justify-content: center;
+            /deep/ .label_text{
+                width:98px;
+                padding-left:21px;
+                padding-right: 0px;
+            }
         }
     }
     .footer{

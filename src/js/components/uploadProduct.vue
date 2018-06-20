@@ -7,6 +7,9 @@
             <div class="imgs_box">
                 <div v-for="(item,index) in fileList" :key="index" class="img_item_wrap">
                     <img class="img_item" :src="item.url" alt="">
+                    <div class="delete">
+                        <img class="delete_icon" @click="emitHandleRemove(index)" src="../../img/del.png" alt="">
+                    </div>
                 </div>
                 <div v-if="loading" class="loading"><i class="el-icon-loading"></i></div>
             </div>
@@ -24,12 +27,10 @@
             </div>
             <div v-if="isEdit"  class="tip_text">最多上传 <span class="sub">5</span>张，每张图片大小不超过{{limitSize}}M，支持jpg、bmp、png格式</div>
         </div>
-        <previewPic v-if="!isEdit" :imgList="data"></previewPic>
     </div>
 </template>
 <script>
 import {customerModule} from '../api/main';
-import previewPic from '../main/components/previewPic';
 export default {
     props:{
         multiple:{
@@ -108,18 +109,12 @@ export default {
       },
       //生成上传附件参数的函数
       uploadParams(file){
-         let form = new FormData(); // FormData 对象
-        //  if (this.fileList.length > 0) {
+            let form = new FormData(); // FormData 对象
             for(var i=1;i<=file.length;i++){
                 form.append("file"+i, file[i-1]);// 文件对象
             }
-             
             form.append("saveType", this.saveType); // 文件对象
             this.formData=form;
-        //  }
-       },
-       progressFile(){
-
        },
       uploadFile(postFiles){//调接口函数
         customerModule.mulUploadFile(this.formData).then(res=>{
@@ -137,6 +132,7 @@ export default {
       },
       emitHandleRemove(index){//删除
             this.fileList.splice(index,1);
+            this.$emit('updatePic',this.fileList,this.id);
       },
       previewImg(){//预览图片
         //   window.open(this.imgUrl);
@@ -151,23 +147,14 @@ export default {
   computed:{
       hasFile(){
           return this.fileList.length!=0;
-      },
-    //   showFileList(){
-    //      return this.fileList.map(v=>{
-    //           return {
-    //               ...v,
-    //               url:window.URL.createObjectURL(v)
-    //           }
-    //       }) 
-    //   }
+      }
   },
   watch:{
       data(n,o){
-          console.log(n)
+        //   console.log(n)
       }
   },
   components:{
-      previewPic
   }
 }
 </script>
@@ -197,6 +184,30 @@ export default {
             margin-bottom:10px;
             margin-right:13px;
             position: relative;
+            .delete{
+                position: absolute;
+                font-size: 0px;
+                height: 20px;
+                width:100%;
+                left: 0px;
+                bottom: 0px;
+                background: rgba(0,0,0,0.5);
+                line-height: 20px;
+                text-align: right;
+                box-sizing: border-box;
+                padding-right: 8px;
+                opacity: 0;
+                transition: all 0.5s;
+                .delete_icon{
+                    cursor: pointer;
+                    margin-top:3px;
+                }
+            }
+            &:hover{
+                .delete{
+                    opacity: 1;
+                }
+            }
         }
         .loading{
             margin-bottom:10px;
@@ -230,6 +241,7 @@ export default {
         background: #fff;
         margin-bottom: 17px;
         position: relative;
+        box-sizing: border-box;
         .local_img{
             color:rgba(153,153,153,1);
         }
@@ -248,8 +260,6 @@ export default {
         .error_message{
             position: absolute;
             left: 100%;
-            font-size: 13px;
-            color: #FF6C72;
             bottom: 40px;
             width:210px;
             display: flex;

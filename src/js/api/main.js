@@ -74,8 +74,14 @@ export const customerModule={
     getAppointSupplier:params => { return customerAxios.get('/customers/getAppointSupplier', {params:params}).then(res => res.data); },
     //获取推荐供应商
     getRecommendSupplier:params => { return customerAxios.get('/customers/getRecommendSupplier', {params:params}).then(res => res.data); },
-    
-    
+    //获取客户合同列表
+    getCustomerstMainLease:params => { return customerAxios.get('/customers/getMainLease', {params:params}).then(res => res.data); },
+    //获取客户合同详情
+    getMainLeaseDetail:params => { return customerAxios.get('/customers/getMainLeaseDetail', {params:params}).then(res => res.data); },
+    //获取验收信息
+    getAcceptanceVO:params => { return customerAxios.get('/customers/getAcceptanceVO', {params:params}).then(res => res.data); },
+
+
     //供应商注册
     registerSupplier:params => { return customerAxios.post('/supplier/register', params).then(res => res.data); },
 

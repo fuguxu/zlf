@@ -27,7 +27,7 @@
                     <div class="first_title">
                         <span class="title_text">{{title}}</span>
                     </div>
-                    <div class="second_title">
+                    <div class="second_title" @click="clickSecondTitle" :class="{detail:!!leaseNo}">
                         <i class="icon el-icon-caret-right"></i>
                         <span class="title_text">{{subTitle}}</span>
                     </div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <components v-if="isCp" :orderName="title" :orderNo="orderNo" :data="itemData" :is="isCp" @updateCp="updateCp"></components>
+                    <components v-if="isCp" :orderName="title" :leaseNo="leaseNo" :orderNo="orderNo" :data="itemData" :is="isCp" @updateCp="updateCp"></components>
                 </div>
             </div>
         </div>
@@ -81,6 +81,7 @@ export default {
             thirdTitle:'',
             activeIndex:'',
             orderNo:'',
+            leaseNo:'',
             isCp:'',
             visible:false
         }
@@ -88,6 +89,7 @@ export default {
     methods:{
         choiceCp(item){
             this.isCp='';//让组件重新渲染
+            this.leaseNo='';
             this.$nextTick(()=>{
                 if(this.activeIndex==0){
                     this.isCp=rentService;
@@ -110,8 +112,15 @@ export default {
             this.choiceCp(this.data[+p[0]]);
         },
         updateCp(item){//到合同执行的详情
+            this.thirdTitle=item.leaseName;
+            this.leaseNo=item.leaseContractNo;
             this.isCp=contractDetail;
-            this.thirdTitle='公寓固装家具';
+        },
+        clickSecondTitle(){//点击合同详情面包削
+            if(this.leaseNo){
+                this.isCp=contractList;
+                this.leaseNo='';
+            }
         },
         getRentService(item){//获取租赁服务
             customerModule.getRentService({orderNo:item.orderNo}).then(res=>{
@@ -238,12 +247,17 @@ export default {
                         border-radius: 3px ;
                         margin-right:5px;
                     }
+                    .second_title{
+                        &.detail{
+                            cursor: pointer;
+                        }
+                    }
                     .icon{
                         color:rgba(255,166,50,1);
                     }
                     .title_text{
                         font-size: 16px;
-                        color: #363636;
+                        color: #333;
                     }
                 }
             }

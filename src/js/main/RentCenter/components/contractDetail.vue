@@ -1,77 +1,64 @@
 <template>
     <div class="contract_detail">
-        <div class="item">
+        <div class="item" v-for="(item,index) in data" :key="index">
             <div class="item_sub">
-                <div class="circel">1</div>
-                <span>家具生产启动</span>
+                <div class="circel">{{index+1}}</div>
+                <span>{{item.title}}</span>
+                <i class="icon" :class="{'el-icon-caret-bottom':!item.showMore,'el-icon-caret-top':item.showMore}" @click="item.showMore=!item.showMore"></i>
             </div>
-            <i class="icon" :class="{'el-icon-arrow-down':!start,'el-icon-arrow-up':start}" @click="start=!start"></i>
-            <progressImg v-if="start"></progressImg>
+            <progressImg :data="item" v-if="item.showMore"></progressImg>
         </div>
         <div class="item">
             <div class="item_sub">
-                <div class="circel">2</div>
-                <span>家具生产进行中</span>
-            </div>
-            <i class="icon" :class="{'el-icon-arrow-down':!doing,'el-icon-arrow-up':doing}" @click="doing=!doing"></i>
-            <progressImg v-if="doing"></progressImg>
-        </div>
-        <div class="item">
-            <div class="item_sub">
-                <div class="circel">3</div>
-                <span>家具生产完成</span>
-            </div>
-            <i class="icon" :class="{'el-icon-arrow-down':!finish,'el-icon-arrow-up':finish}" @click="finish=!finish"></i>
-            <progressImg v-if="finish"></progressImg>
-        </div>
-        <div class="item">
-            <div class="item_sub">
-                <div class="circel">4</div>
-                <span>运输包装</span>
-            </div>
-            <i class="icon" :class="{'el-icon-arrow-down':!transfer,'el-icon-arrow-up':transfer}"  @click="transfer=!transfer"></i>
-            <progressImg v-if="transfer"></progressImg>
-        </div>
-        <div class="item">
-            <div class="item_sub">
-                <div class="circel">5</div>
-                <span>物流信息</span>
-            </div>
-            <i class="icon" :class="{'el-icon-arrow-down':!logistics,'el-icon-arrow-up':logistics}"  @click="logistics=!logistics"></i>
-            <progressImg v-if="logistics">
-                <template slot-scope="scope" slot="logistics">
-                    <div class="logistics">
-                        <div class="title">其他物流信息</div>
-                        <div>跟车负责人信息：梁绍辉</div>
-                        <div>联系手机号码：13710353888</div>
-                        <div>运输车辆车牌号：粤A··R5678</div>
-                    </div>
-                </template>
-            </progressImg>
-        </div>
-        <div class="item">
-            <div class="item_sub">
-                <div class="circel">5</div>
+                <div class="circel">6</div>
                 <span>验收完成</span>
+                <i class="icon" :class="{'el-icon-caret-bottom':!check,'el-icon-caret-top':check}"  @click="check=!check"></i>
             </div>
-            <i class="icon" :class="{'el-icon-arrow-down':!check,'el-icon-arrow-up':check}"  @click="check=!check"></i>
-            <checkOrder v-if="check"></checkOrder>
+            <checkOrder class="check_wrap" v-if="check"></checkOrder>
         </div>
     </div>
 </template>
 <script>
 import progressImg from '../../components/progressImg';
 import checkOrder from '../../../components/checkOrder';
+import {customerModule} from '../../../api/main';
 export default {
+    props:['leaseNo'],
     data(){
         return {
-            start:false,
-            doing:false,
-            finish:false,
-            transfer:false,
-            logistics:false,
-            check:false
+            check:false,
+            data:[]
         }
+    },
+    methods:{
+        getMainLeaseDetail(){//获取合同详情
+            customerModule.getMainLeaseDetail({
+                leaseNo:this.leaseNo
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.data=res.data.map(item=>{
+                        return {
+                            ...item,
+                            showMore:false
+                        }
+                    });
+                }
+            })
+        },
+        getAcceptanceVO(){//获取验收信息
+            customerModule.getAcceptanceVO({
+                leaseContractNo:this.leaseNo
+            }).then(res=>{
+                if(res.statusCode=='1'){
+
+                }
+            })
+        }
+    },
+    mounted(){
+        this.getMainLeaseDetail();
+        this.getAcceptanceVO();
+        
     },
     components:{
         progressImg,
@@ -81,43 +68,36 @@ export default {
 </script>
 <style lang="scss" scoped>
     .item{
-        padding:0 20px;
-        background: #f6f5f5;
-        position: relative;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
+        .check_wrap{
+            border:1px solid rgba(231, 231, 231, 1);
+            padding:0 33px;
+        }
         .item_sub{
             display: flex;
             height: 60px;
             align-items: center;
-            font-size: 16px;
-            color: #363636;
+            background: rgba(244,244,244,1);
+            position: relative;
             .circel{
-                width:26px;
-                height: 26px;
+                width:18px;
+                height: 18px;
                 border-radius: 50%;
-                background: rgb(237, 159, 52);
-                font-size: 16px;
+                background: rgba(255,166,50,1);
                 color:#fff;
                 text-align: center;
-                line-height: 26px;
-                margin-right: 20px;
+                line-height: 18px;
+                margin:0px 16px;
             }
         }
         .icon{
-            font-size:20px;
-            color:#888;
+            font-size:12px;
+            color:rgba(153,153,153,1);
             position: absolute;
             right: 20px;
             top: 50%;
-            margin-top: -10px;
+            margin-top: -6px;
             cursor: pointer;
-        }
-        .logistics{
-            line-height:30px;
-            .title{
-                color:#000;
-            }
-            font-size:14px;
         }
     }
 </style>
