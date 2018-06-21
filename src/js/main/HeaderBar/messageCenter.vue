@@ -25,6 +25,7 @@ export default {
     },
     mounted(){
         this.getNotReadNum();
+        Bus.$on('updateUnreadNum',this.getNotReadNum);//读消息中心时更新条数
     }
 }
 </script>

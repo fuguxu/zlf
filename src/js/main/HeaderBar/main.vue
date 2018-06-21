@@ -5,7 +5,7 @@
                <img src="../../../img/logo.png" alt="">
             </div>
             <positionCity></positionCity>
-            <accountCenter></accountCenter>
+            <accountCenter @loginOut="loginOut"></accountCenter>
             <clientRight v-if="role=='client'"></clientRight>
             <supplierRight v-if="role=='supplier'"></supplierRight>
             <messageCenter></messageCenter>

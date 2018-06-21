@@ -6,7 +6,7 @@
                 <img class="user_icon" src="../../../img/user.png" alt="">
                 <a class="account_text" :href="renderHref()">账号中心</a>
                 <span class="line"></span>
-                <a class="account_text" href="javascript:;">退出</a>
+                <a class="account_text" @click="loginOut" href="javascript:;">退出</a>
             </div>
         </div>        
     </div>
@@ -26,6 +26,9 @@ export default {
            AppUtil.getCurrentUserInfo(user=>{
                 this.user=user;
             });
+        },
+        loginOut(){
+            this.$emit('loginOut');
         }
     },
     created(){

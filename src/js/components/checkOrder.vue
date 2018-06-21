@@ -18,7 +18,10 @@
                 <span v-if="!isEdit">客户评价结果</span>
                 <span v-if="isEdit">评价供应商</span>
             </div>
-            <div class="subtitle" v-if="isEdit">您的评价，是对租立方平台最大的肯定！期待您的评价</div>
+            <div class="subtitle" v-if="isEdit">
+                <span>您的评价，是对租立方平台最大的肯定！期待您的评价</span>
+                <img src="../../img/smile.png" alt="">
+            </div>
             <div class="rate">
                 <div class="item" v-for="(item,index) in judgementList" :key="index">
                     <span class="desc_text" v-html="item.desc"></span>
@@ -206,7 +209,7 @@ export default {
                 color: #363636;
                 font-size: 14px;
                 margin-right: 20px;
-                width:500px;
+                width:440px;
             }
             /deep/ .el-rate__text{
                 margin-left:20px;

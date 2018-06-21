@@ -1,17 +1,23 @@
 <template>
     <div class="message_list">
         <ul class="message">
-            <li class="item title">{{title}}</li>
+            <li class="item title font18">{{title}}</li>
             <li v-for="(item,index) in messageList" :key="index" class="item message_item">
-                <span class="dot" v-if="item.readed=='0'"></span>
-                <a class="title_text" :href="renderHref(item)" :class="{unread:item.readed=='0'}">{{item.msgTitle}}</a>
-                <span class="time">{{renderTime(item)}}</span>
+                <div class="item_content">
+                    <span class="dot" v-if="item.readed=='0'"></span>
+                    <a class="title_text" :href="renderHref(item)" :class="{unread:item.readed=='0'}">{{item.msgTitle}}</a>
+                    <span class="time">{{renderTime(item)}}</span>
+                </div>
             </li>
-            <li class="item foot" v-if="total">
-                <span>共有{{total}}条，每页显示：15条</span>
+            <li class="foot" v-if="total">
+                <span class="total_text">共有{{total}}条，每页显示：15条</span>
                 <pagination @currentChange="currentChange" :pageSize="pageSize" :total="total"></pagination>
             </li>
         </ul>
+        <div class="no_content" v-if="messageList.length==0&&ajaxDone">
+            <i class="icon colorYellow font18 el-icon-warning"></i>
+            <span>当前没有{{!status?'消息内容':title}}</span>
+        </div>
     </div>
 </template>
 <script>
@@ -24,7 +30,8 @@ export default {
             title:'全部消息',
             pageSize:15,
             pageNo:1,
-            total:0
+            total:0,
+            ajaxDone:false
         }
     },
     methods:{
@@ -36,6 +43,7 @@ export default {
           return  AppUtil.transferTimeToString(item.sentTime,'-',true)
         },
         getMsg(type){
+            this.ajaxDone=false;
             customerModule.getMsg({
                 pageNo:this.pageNo,
                 pageSize:this.pageSize,
@@ -44,6 +52,7 @@ export default {
                 if(res.statusCode=='1'){
                     this.messageList=res.data.records;
                     this.total=res.data.total;
+                    this.ajaxDone=true;
                 }
             })
         },
@@ -78,77 +87,71 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .message_list{
-        // padding-bottom: 60px;
-    }
-    .message{
-        border: 1px solid rgba(201,201,201,0.2);
-        box-shadow: 0 0 1px rgba(201,201,201,0.4);
-        border-bottom: 1px solid rgba(201,201,201,0.4);
-    }
     .item{
-        line-height:40px;
-        border-top: 1px solid rgb(241,241,241);
-        box-shadow: 0 1px 1px rgba(201,201,201,0.4);
-        display: flex;
-        align-items: center;
         &.message_item{
-            position: relative;
+            padding:0 22px;
             &:hover{
-            background: rgb(242,242,242);
+                background: rgb(242,242,242);
+            }
         }
+        .item_content{
+            border-bottom: 1px solid rgba(244,244,244,1);
+            position: relative;
+            line-height: 50px;
+            display: flex;
+            align-items: center;
+            color: rgba(153, 153, 153, 1);
         }
         &.title{
-            line-height: 50px;
-            border:none;
-            // background: rgb(250,250,250);
-            font-size: 16px;
-            color: #292B2C;
-            padding-left:35px;
+            line-height: 64px;
+            border-bottom: 1px solid rgba(237, 237, 237, 1);
+            padding-left:20px;
         }
         .dot{
             display: inline-block;
             width:6px;
             height: 6px;
-            background: rgb(80,159,217);
+            background: rgba(255, 166, 50, 1);
             border-radius: 50%;
             position: absolute;
-            left: 25px;
         }
         .title_text{
-            font-size:13px;
-            padding-left:45px;
-            color: rgba(41, 43, 44, 0.6);
+            padding-left:20px;
+            
+            font-size: 14px;
             &.unread{
-                color: rgba(41, 43, 44, 0.90);
+                color: #333;
             }
             &:hover{
-                color: rgba(242, 159, 51, 0.8);
+                color: rgba(255, 166, 50, 1);
                 text-decoration: underline;
-                background: #fff;
-                &+.time{
-                    background:#fff;
-                }
+                // background: #fff;
+                // &+.time{
+                //     background:#fff;
+                // }
             }
         }
         .time{
             flex: 1;
             text-align: right;
-            padding-right:60px;
-            font-size: 13px;
-            color: rgba(41, 43, 44, 0.6);
         }
-        &.foot{
-            font-size: 13px;
-            color: rgba(41, 43, 44, 0.8);
-            justify-content: flex-end;
-            .el-pagination{
-                padding: 0px 30px 0 20px;
-                display: flex;
-                /deep/ .el-pager{
-                    line-height: normal;
-                }
-            }
+    }
+    .foot{
+        color: rgba(102, 102, 102, 1);
+        justify-content: flex-end;
+        display: flex;
+        align-items: center;
+        padding:70px 22px;
+        .total_text{
+            margin-right: 20px;
+        }
+    }
+    .no_content{
+        display: flex;
+        justify-content: center;
+        padding-top:100px;
+        .icon{
+            margin-right: 10px;
         }
     }
 </style>

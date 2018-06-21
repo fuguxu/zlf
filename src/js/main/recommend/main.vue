@@ -11,48 +11,50 @@
                 </div>
             </div>
             <div class="recommend_right">
-                <div class="title">推荐值</div>
-                <div class="recommend_value">
-                    <div class="value">
-                        <p class="sub">当前推荐值：<span class="time">更新于{{data.lastUpdateTime}}</span> </p>
-                        <p class="number">{{data.recommValue}}<span class="union">分</span></p>
-                    </div>
-                    <div class="line"></div>
-                    <div class="rate">
-                        <div class="circle">{{data.recommPercent}}</div>
-                        <p class="text">超过平台{{data.recommPercent}}的同类供应商</p>
-                    </div>
-                </div>
-                <div class="result">
-                    <div class="title_sub">推荐结果</div>
-                    <div v-if="!switchValue" class="close_recommend">当前推荐处于关闭状态，如您有足够的产能，请手动开启</div>
-                    <div v-else class="open_recommend">
-                        <div class="open_time"><span>开启推荐时间：</span><span class="time">{{data.startRecommTime}}</span></div>
-                        <div class="circle">
-                            {{data.recommNum}}
-                            <div class="circle_img"></div>
+                <div class="title font18">推荐值</div>
+                <div class="content">
+                    <div class="recommend_value">
+                        <div class="value">
+                            <p class="title_sub"><span class="line"></span><span>当前推荐值：</span><span class="time font14">更新于{{data.lastUpdateTime}}</span> </p>
+                            <p class="number">{{data.recommValue}}<span class="union">分</span></p>
                         </div>
-                        <div class="open_text">截至当前，租立方已已将您推荐给<span class="number">{{data.recommNum}}</span>名客户。</div>
+                        <div class="rate">
+                            <div class="circle">{{data.recommPercent}}</div>
+                            <p class="text color6">超过平台{{data.recommPercent}}的同类供应商</p>
+                        </div>
                     </div>
-                </div>
-                <div class="rise_up">
-                    <div class="title_sub">提高推荐值攻略</div>
-                    <p class="desc sub">租立方根据每一个供应商的推荐值分数，优先向客户推荐更高分值的供应商；推荐值是您获取客源的基础和</br >
-                        前提条件，推荐值越高，您获得客户数量将越多。可以通过以下途径提高推荐值：
-                    </p>
-                    <p class="desc sub"></p>
-                    <p class="desc">1.“公司信息”（基本信息与联系信息）填写越完善，推荐值越高；如发现填写与实际不符，根据失实程度扣取对应分值。</p>
-                    <p class="desc">2.“推荐详情”填写越完善，推荐值越高；如发现填写与实际不符，酌情扣取分值。</p>
-                    <p class="desc">3.在与客户沟通过程中，请保持积极的态度，若发现存在态度恶劣、沟通不积极等情况，酌情扣取分值。</p>
-                    <p class="desc">4.您在租立方平台成功交易的累积金额越高，推荐越高。</p>
-                    <p class="desc">5.复单数越多，推荐值越高。</p>
-                    <p class="desc">6.请保持良好的企业信用记录。</p>
-                    <p class="desc">7.以下协议或资料，您签署或提交得越齐全，推荐值越高。</p>
-                    <p class="desc sub subfile">《平台入驻协议》</p>
-                    <p class="desc sub subfile">《一般纳税人认定通知书》</p>
-                    <p class="desc sub subfile">《售后回购协议》</p>
-                    <p class="desc sub subfile">《企业股东架构》</p>
-                    <p class="desc sub subfile">《企业财报》</p>
+                    <div class="result">
+                        <div class="title_sub"><span class="line"></span><span>推荐结果</span></div>
+                        <div v-if="!switchValue" class="close_recommend font16">
+                            <i class="icon colorYellow font18 el-icon-warning"></i>
+                            <span class="color6 font16">当前推荐处于关闭状态，如您有足够的产能，请手动开启</span>
+                        </div>
+                        <div v-else class="open_recommend">
+                            <div>
+
+                            </div>
+                            <div class="open_time color6"><span>开启推荐时间：</span><span class="time">{{data.startRecommTime}}</span></div>
+                            <div class="circle_wrap colorYellow">
+                                {{data.recommNum}}
+                                <div class="circle_img"></div>
+                            </div>
+                            <div class="open_text color6">截至当前，租立方已已将您推荐给<span class="number">{{data.recommNum}}</span>名客户。</div>
+                        </div>
+                    </div>
+                    <div class="rise_up">
+                        <div class="title_sub"><span class="line"></span><span>提高推荐值攻略</span></div>
+                        <p class="desc sub color6">租立方根据每一个供应商的推荐值分数，优先向客户推荐更高分值的供应商；推荐值是您获取客源的基础和</br >
+                            前提条件，推荐值越高，您获得客户数量将越多。可以通过以下途径提高推荐值：
+                        </p>
+                        <p class="desc">1.“公司信息”（基本信息与联系信息）填写越完善，推荐值越高；如发现填写与实际不符，根据失实程度扣取对应分值。</p>
+                        <p class="desc">2.“推荐详情”填写越完善，推荐值越高；如发现填写与实际不符，酌情扣取分值。</p>
+                        <p class="desc">3.在与客户沟通过程中，请保持积极的态度，若发现存在态度恶劣、沟通不积极等情况，酌情扣取分值。</p>
+                        <p class="desc">4.您在租立方平台成功交易的累积金额越高，推荐越高。</p>
+                        <p class="desc">5.复单数越多，推荐值越高。</p>
+                        <p class="desc">6.请保持良好的企业信用记录。</p>
+                        <p class="desc">7.以下协议或资料，您签署或提交得越齐全，推荐值越高。</p>
+                        <p class="desc sub subfile">《平台入驻协议》《一般纳税人认定通知书》《售后回购协议》《企业股东架构》《企业财报》</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,12 +127,11 @@ export default {
             .recommend_desc{
                 color: rgba(255,166,50,1);
                 cursor: pointer;
-                font-size: 15px;
                 height: 26px;
                 line-height: 26px;
                 margin-top:14px;
-                background: url('../../../img/u4148.png') no-repeat 45px center;
-                background-size: 26px;
+                background: url('../../../img/u4148.png') no-repeat 70px center;
+                background-size: 19px;
             }
         }
         .recommend_right{
@@ -140,26 +141,25 @@ export default {
             border-radius:6px;
             .title{
                 line-height: 64px;
-                font-size: 18px;
-                color: rgb(41, 43, 44);
-                padding-left:21px;
+                padding-left:20px;
                 border-bottom: 1px solid rgba(237, 237, 237, 1);
             }
              .circle{
-                color: rgb(242, 159, 51);
-                width:143px;
-                height: 143px;
+                color: rgba(255,166,50,1);
+                width:130px;
+                height: 130px;
                 box-sizing: border-box;
-                border:9px solid rgb(242, 159, 51);
+                border:4px solid rgba(255,166,50,1);
                 border-radius: 50%;
                 text-align: center;
-                line-height: 134px;
+                line-height: 130px;
+                font-size: 40px;
+            }
+            .content{
+                padding:0 22px;
             }
             .recommend_value{
-                // width:908px;
-                margin:0 auto;
-                height:190px;
-                border-bottom: 1px solid rgba(237, 237, 237, 1);
+                border-bottom: 1px solid rgba(244,244,244,1);
                 display: flex;
                 .value{
                     flex: 1;
@@ -168,66 +168,63 @@ export default {
                         color: rgb(41, 43, 44);
                         padding:37px 0;
                         padding-left:75px;
-                        .time{
-                            font-size: 13px;
-                            color: rgba(41, 43, 44, 0.6);
-                        }
+                        
                     }
                     .number{
-                        font-size:38px;
-                        color: rgb(242, 159, 51);
-                        padding-left:75px;
+                        font-size:50px;
+                        color: rgba(255,166,50,1);
+                        padding-left:20px;
+                        padding-top:42px;
                         .union{
-                            font-size:28px;
+                            font-size:20px;
                         }
                     }
-                }
-                .line{
-                    height: 108px;
-                    width:1px;
-                    background:rgba(237, 237, 237, 1);
-                    margin-top:41px; 
                 }
                 .rate{
                     flex: 1;
                     display: flex;
+                    align-items: center;
+                    padding:6px 0px;
+                    border-left:1px solid rgba(244,244,244,1);
+                    margin:48px 0px;
                     .circle{
-                        font-size:30px;
-                        margin:14px 20px 0 80px;
-                    }
-                    .text{
-                        line-height: 180px;
-                        font-size: 16px;
-                        color: rgb(41, 43, 44);
+                        margin-left:50px;
+                        margin-right:14px;
                     }
                 }
             }          
             .result{
-                // width:908px;
                 margin:0 auto;
-                padding-bottom: 102px;
+                padding-bottom: 55px;
                 .close_recommend{
-                    font-size: 16px;
-                    color: rgba(41, 43, 44, 0.8);
-                    background: url('../../../img/u4372.png') no-repeat 12px center;
-                    background-size: 30px;
-                    line-height: 30px;
-                    padding-left:50px;
+                    padding-top:75px;
+                    display: flex;
+                    align-items: center;
+                    padding-left:20px;
+                    .icon{
+                        margin-right:15px;
+                    }
                 }
                 .open_recommend{
-                    padding-left:80px;
-                    .circle{
-                        margin:35px 0px;
-                        font-size:42px;
+                    text-align: center;
+                    padding-top:32px;
+                    .circle_wrap{
+                        margin:20px 0px 34px 0px;
                         position: relative;
+                        width:130px;
+                        height:130px;
+                        line-height: 130px;
+                        text-align: center;
+                        font-size: 40px;
+                        display: inline-block;
                         .circle_img{
                             position: absolute;
-                            width:128px;
-                            height:128px;
+                            width:130px;
+                            height:130px;
                             background: url('../../../img/u4170.png') no-repeat center;
                             background-size: 128px;
-                            top:-1px;
-                            left:-1px;
+                            top:0px;
+                            left:0px;
                             animation: rotatefresh 2s;
                             animation-iteration-count: infinite;
                             animation-timing-function: linear;
@@ -240,42 +237,36 @@ export default {
                         }
                     }
                     .open_time{
-                        font-size: 15px;
-                        color: #292B2C;
-                        .time{
-                            font-size: 20px;
-                            color: rgba(41, 43, 44, 0.8);
-                        }
                     }
                     .open_text{
-                        font-size: 16px;
-                        color: #292B2C;
-                        .number{
-                            color: #F29F33;
-                        }
                     }
                 }
             }
             .title_sub{
-                color: rgb(41, 43, 44);
+                display: flex;
+                align-items: center;
                 font-size: 16px;
-                padding-left:8px;
-                margin:35px 0 20px;
-                border-left: 3px solid rgb(242, 159, 51);;
+                padding-top:35px;
+                .line{
+                    width:6px;
+                    height:12px;
+                    background:rgba(255,166,50,1);
+                    border-radius:3px;
+                    margin-right: 14px;
+                }
+                .time{
+                    color:rgba(153,153,153,1);
+                }
             }
             .rise_up{
-                height: 578px;
-                // width:908px;
                 margin:0 auto;
-                border-top: 1px solid rgba(201,201,201,0.2);
+                border-top: 1px solid rgba(244,244,244,1);
+                padding-bottom: 75px;
                 .desc{
-                    padding-left: 12px;
-                    color: rgba(41, 43, 44, 0.90);
-                    font-size:14px;
+                    padding-left: 20px;
                     margin-top:15px;
                     &.sub{
-                        color: rgba(41, 43, 44, 0.70);
-                        line-height: 24px;
+                        line-height: 30px;
                     }
                     &.subfile{
                         margin-top:5px;
