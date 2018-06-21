@@ -1,5 +1,5 @@
 <template>
-    <div class="preview_box">
+    <div class="preview_box" v-if="imgList.length>0">
         <div class="small_pic">
             <div class="item_img_box" v-for="(item,index) in imgList" :key="index" @click="changeImg(item,index)" :class="{active:activeIndex==index}">
                 <img class="img" :src="item.url" alt="">

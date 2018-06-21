@@ -1,10 +1,10 @@
 <template>
-    <div class="recommend_detail">
+    <div class="recommend_detail" :class="{readonly:!isEdit}">
         <div class="title_box">
             <span class="title font18">推荐详情</span>
             <span class="desc color6 font12">以下信息在把您推荐给客户的同时呈现给客户，是您与客户的首次接触，展现产品实力的机会，祝您脱颖而出。</span>
             <span class="button edit" @click="clickEdit">编辑</span>
-            <span class="button preview" @click="preview">推荐预览</span>
+            <span class="button preview" v-if="this.form.isEdit=='1'" @click="preview">推荐预览</span>
         </div>
         <div class="company_info item_info">
             <div class="title_item">
@@ -14,7 +14,7 @@
             <div class="content">
                 <div class="sub_title">详细介绍</div>
                 <div class="desc_box company">
-                    <el-input class="company_textarea" resize="none" :maxlength="companyNumber" type="textarea" :rows="4" autosize placeholder="展示公司实力，示例：**家具成立于2004年，主要从事酒店家具的生产制造，目前设有深圳、惠州两个生产基地，员工800余人，月产值2000万，致力于打造最具优秀的产品和服务，推动家具制造商的文明发展。" v-model="form.briefIntro">
+                    <el-input class="company_textarea" :readonly="!isEdit" resize="none" :maxlength="companyNumber" type="textarea" :rows="4" autosize placeholder="展示公司实力，示例：**家具成立于2004年，主要从事酒店家具的生产制造，目前设有深圳、惠州两个生产基地，员工800余人，月产值2000万，致力于打造最具优秀的产品和服务，推动家具制造商的文明发展。" v-model="form.briefIntro">
                     </el-input>
                     <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':companyNumber-form.briefIntro.length<=10}">{{companyNumber-form.briefIntro.length}}</span>字</div>
                 </div>
@@ -29,13 +29,14 @@
             <div class="content">
                 <div class="sub_title">简单描述</div>
                 <div class="desc_box equiment">
-                    <el-input class="equipment_textarea" resize="none" v-model="form.equipment[0].content" :maxlength="equipmentNumber" type="textarea" :rows="4" autosize placeholder="简单描述生产设备的流水线生产、自动化程度等~" >
+                    <el-input class="equipment_textarea" :readonly="!isEdit" resize="none" v-model="form.equipment[0].content" :maxlength="equipmentNumber" type="textarea" :rows="4" autosize placeholder="简单描述生产设备的流水线生产、自动化程度等~" >
                     </el-input>
                     <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':equipmentNumber-form.equipment[0].content.length<=10}">{{equipmentNumber-form.equipment[0].content.length}}</span>字</div>
                 </div>
             </div>
             <div class="upload_box">
-                <uploadProduct id="equipment" :data="form.equipment[0].fileList" @updatePic="updatePic" saveType="equipment" :isEdit="isEdit"></uploadProduct>
+                <uploadProduct v-if="isEdit" id="equipment" :data="form.equipment[0].fileList" @updatePic="updatePic" saveType="equipment" :isEdit="isEdit"></uploadProduct>
+                <previewPic :imgList="form.equipment[0].fileList" v-if="!isEdit"></previewPic>
             </div>
         </div>
         <div class="sprite_line"></div>
@@ -48,20 +49,21 @@
                 <div class="content">
                     <div class="sub_title">产品{{numbers[index]}}</div>
                     <div class="desc_box sub_desc_box">
-                        <el-input v-model="item.keywords"  :placeholder="`请输入产品${numbers[index]}名称`" >
+                        <el-input v-model="item.keywords"  :readonly="!isEdit" :placeholder="`请输入产品${numbers[index]}名称`" >
                         </el-input>
                     </div>
                 </div>
                 <div class="content">
                     <div class="sub_title">简单描述</div>
                     <div class="desc_box">
-                        <el-input class="equipment_textarea" resize="none" v-model="item.content" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍产品${numbers[index]}，包括特点、优势...`" >
+                        <el-input class="equipment_textarea" :readonly="!isEdit" resize="none" v-model="item.content" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍产品${numbers[index]}，包括特点、优势...`" >
                         </el-input>
                         <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':item.maxLength-item.content.length<=10}">{{item.maxLength-item.content.length}}</span>字</div>
                     </div>
                 </div>
                 <div class="upload_box">
-                    <uploadProduct :isEdit="isEdit" :data="item.fileList" @updatePic="updatePic" saveType="product" :id="'product'+index"></uploadProduct>
+                    <uploadProduct v-if="isEdit" :isEdit="isEdit" :data="item.fileList" @updatePic="updatePic" saveType="product" :id="'product'+index"></uploadProduct>
+                    <previewPic :imgList="item.fileList" v-if="!isEdit"></previewPic>
                 </div>
             </div>
             <div v-if="isEdit" class="addarea">
@@ -82,20 +84,21 @@
                 <div class="content">
                     <div class="sub_title">案例{{numbers[index]}}</div>
                     <div class="desc_box sub_desc_box">
-                        <el-input v-model="item.keywords"  :placeholder="`请输入案例${numbers[index]}名称`" >
+                        <el-input v-model="item.keywords" :readonly="!isEdit" :placeholder="`请输入案例${numbers[index]}名称`" >
                         </el-input>
                     </div>
                 </div>
                 <div class="content">
                     <div class="sub_title">简单描述</div>
                     <div class="desc_box">
-                        <el-input class="equipment_textarea" resize="none" v-model="item.content" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍案例${numbers[index]}`" >
+                        <el-input class="equipment_textarea" :readonly="!isEdit" resize="none" v-model="item.content" :maxlength="item.maxLength" type="textarea" :rows="4" autosize :placeholder="`简单介绍案例${numbers[index]}`" >
                         </el-input>
                         <div v-if="isEdit" class="rest_numbers">还可输入<span :class="{'rest_ten':item.maxLength-item.content.length<=10}">{{item.maxLength-item.content.length}}</span>字</div>
                     </div>
                 </div>
                 <div class="upload_box">
-                    <uploadProduct :isEdit="isEdit" :data="item.fileList" @updatePic="updatePic" saveType="case" :id="'case'+index"></uploadProduct>
+                    <uploadProduct v-if="isEdit" :isEdit="isEdit" :data="item.fileList" @updatePic="updatePic" saveType="case" :id="'case'+index"></uploadProduct>
+                    <previewPic :imgList="item.fileList" v-if="!isEdit"></previewPic>
                 </div>
             </div>
             <div v-if="isEdit" class="addarea">
@@ -117,6 +120,7 @@
 <script>
 import uploadProduct from '../../components/uploadProduct';
 import {customerModule} from '../../api/main';
+import previewPic from '../components/previewPic';
 export default {
     data(){
         return {
@@ -187,7 +191,7 @@ export default {
         saveRecommend(){//提交接口
             customerModule.saveRecommend(this.form).then(res=>{
                 if(res.statusCode=='1'){
-
+                    this.getRecommend();
                 }
             });
         },
@@ -214,6 +218,7 @@ export default {
                 if(res.statusCode=='1'){
                     if(res.data.isEdit=='1'){
                         this.form=res.data;
+                        this.form.briefIntro=this.form.briefIntro||'';
                         this.form.equipment=this.handleFile(this.form.equipment);
                         this.form.cases=this.handleFile(this.form.cases);
                         this.form.product=this.handleFile(this.form.product);
@@ -242,17 +247,21 @@ export default {
         }
     },
     mounted(){
-        // this.getRecommend();
-        this.initData();
+        this.getRecommend();
+        // this.initData();
     },
     components:{
-        uploadProduct
+        uploadProduct,
+        previewPic
     }
 }
 </script>
 <style lang="scss" scoped>
     .recommend_detail{
         padding-bottom: 40px;
+        .preview_box{
+            padding-left:80px;
+        }
         .title_box{
             display: flex;
             line-height: 64px;
@@ -313,6 +322,10 @@ export default {
                     }
                     /deep/ .el-textarea__inner{
                         min-height:44px !important;
+                        &.el-textarea__inner[readonly]{
+                            min-height:80px !important;
+                            background:rgba(244,244,244,1);
+                        }
                     }
                     &.company,&.equiment{
                         background:rgba(244,244,244,1);
@@ -321,6 +334,9 @@ export default {
                         /deep/ .el-textarea__inner{
                             min-height:160px !important;
                             background:rgba(244,244,244,1);
+                            &.el-textarea__inner[readonly]{
+                                min-height:170px !important;
+                            }
                         }
                     }
                     &.equiment{
@@ -335,6 +351,23 @@ export default {
             .upload_box{
                 padding-left:11px;
                 padding-top:50px;
+            }
+        }
+        &.readonly{
+            .product_info{
+                .content_container{
+                    background:#fff;
+                    .sub_desc_box{
+                        background: #fff;
+                    }
+                    /deep/ .el-input__inner{
+                            min-width:148px;
+                            width:148px;
+                    }
+                }
+            }
+           .content .desc_box{
+                background:rgba(244,244,244,1);
             }
         }
         .product_info{

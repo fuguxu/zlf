@@ -5,15 +5,15 @@
             width:90px;
             color: rgba(102,102,102,1);
             &.label_input{
-                line-height: 30px;
+                line-height: 40px;
             }
         }
         .item_content{
             // color: rgba(41, 43, 44, 0.8);
             margin-bottom: 22px;
             /deep/ .el-input__inner{
-                height: 30px !important;
-                line-height: 30px;
+                height: 40px !important;
+                line-height: 40px;
                 border: 1px solid #dbd8d3;
                 &:focus{
                     box-shadow: 0 0 5px #d7d7d7;
@@ -21,7 +21,7 @@
             }
             /deep/ .el-input.is-disabled{
                 .el-input__inner{
-                    height: 30px !important;
+                    height: 40px !important;
                     background: #fff;
                     cursor: inherit;
                     color: #333;
@@ -42,13 +42,9 @@
         .button{
             width:70px;
             height: 30px;
-            // cursor: pointer;
-            // display: inline-block;
             font-size: 14px;
             color: #fff;
             line-height:30px;
-            // text-align: center;
-            // border-radius: 5px;
             background: rgba(255,166,50,1);
             &:hover{
                 background: rgba(255,166,50,0.8);
