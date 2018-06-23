@@ -9,7 +9,7 @@
             <div class="line"></div>
             <div>请留存我司租金对接人信息</div>
         </div>
-        <div class="my_person">
+        <div class="my_person" v-if="projectInfo.platFinancerName">
             <div class="form_item">
                 <div class="label">姓名：</div>
                 <div class="text">{{projectInfo.platFinancerName}}</div>
@@ -27,6 +27,10 @@
                 <div class="text">{{projectInfo.platFinancerTel}}</div>
             </div>
         </div>
+        <div class="no_content" v-if="!projectInfo.platFinancerName&&ajaxDone">
+            <div class="colorYellow">温馨提示：</div>
+            <div class="font12 text">联系人信息未提交，<br />请耐心等候~</div>
+        </div>
     </div>
 </template>
 <script>
@@ -36,7 +40,8 @@ export default {
     props:['orderNo'],
     data(){
         return {
-            projectInfo:{}
+            projectInfo:{},
+            ajaxDone:false
         }
     },
     methods:{
@@ -46,6 +51,7 @@ export default {
             }).then(res=>{
                 if(res.statusCode=='1'){
                     this.projectInfo=res.data;
+                    this.ajaxDone=true;
                 }
             })
         }
@@ -88,6 +94,15 @@ export default {
                 }
                 .text{
                 }
+            }
+        }
+        .no_content{
+            width: 200px;
+            text-align: center;
+            line-height: 40px;
+            padding-bottom: 30px;
+            .text{
+                line-height: 20px;
             }
         }
     }
