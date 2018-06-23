@@ -1,7 +1,6 @@
 <template>
-    <div v-if="visible" class="dialog">
+    <div v-if="visible" class="dialog city_dialog">
         <div class="city_container">
-            <div class="border"></div>
             <div class="head">
                 选择城市<span class="sub">（最多只能选1项）</span>
                 <span @click="close" class="close">×</span>
@@ -12,7 +11,10 @@
             </div>
             <div class="citylistContainer">
                 <ul class="pinyin">
-                    <li class="pinyinItem" @click="changePinYin(item,index)" :class="{active:activeItem==index}" v-for="(item,index) in cityData" :key="index">{{item.name}}</li>
+                    <li class="pinyinItem" @click="changePinYin(item,index)" :class="{active:activeItem==index}" v-for="(item,index) in cityData" :key="index">
+                        <span class="line"></span>
+                        <span>{{item.name}}</span>
+                    </li>
                 </ul>
                 <div class="cityNameBox">
                     <span class="name" @click="choiceCity(item)" :class="{longClass:item.longClass}" v-for="(item,index) in itemCity" :key="index">{{item.name}}</span>
@@ -67,50 +69,46 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+    .city_dialog{
+        z-index: 10000;
+        min-height: 100%;
+    }
     .city_container{
         width:800px;
         background: #fff;
+        border-radius:4px;
         position: absolute;
         left: 50%;
         margin-left:-400px;
-        top:100px;
+        top:50px;
         box-sizing: border-box;
-        .border{
-            border-bottom: 4px solid #ff9829;
-            border-bottom-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-        }
         .head,.choiceCity{
-            border-bottom: 1px solid #dddbd7;
-            padding-left:20px;
-            color: #292B2C;
-            font-size:14px;
+            border-bottom: 1px solid rgba(238,238,238,1);
         }
         .head{
-            line-height: 40px;
-            .sub{
-                font-size: 12px;
-            }
+            line-height: 60px;
+            text-align: center;
+            font-size:16px;
             .close{
-                margin-right: 10px;
+                margin-right: 16px;
                 float: right;
-                font-family: 'SimSun';
-                font-size: 22px;
+                font-size: 12px;
                 cursor: pointer;
-                color: rgba(107, 107, 107, 0.6);
+                color: rgba(102,102,102,1);
             }
         }
         .choiceCity{
             line-height: 44px;
+            padding-left:15px;
             .cityName{
                 display: inline-block;
-                line-height: 26px;
-                background: #f9a533;
-                font-family: 'SimHei';
-                font-size: 15px;
+                line-height: 38px;
+                background:rgba(255,166,50,1);
+                font-size: 16px;
                 color: #ffffff;
                 margin-left: 15px;
-                padding:0 5px;
+                border-radius:2px;
+                padding:0 10px;
                 .close{
                     font-size: 12px;
                     margin-left:5px;
@@ -122,19 +120,26 @@ export default {
             display: flex;
             .pinyin{
                 width:120px;
-                padding-bottom: 54px;
-                background: #e7e6e3;
+                // padding-bottom: 54px;
+                background: rgba(240,240,240,1);
                 box-sizing: border-box;
                 .pinyinItem{
-                    line-height: 35px;
-                    padding-left:20px;
-                    font-size: 13px;
-                    color: rgba(41, 43, 44, 0.8);
+                    line-height: 44px;
+                    // padding-left:20px;
+                    text-indent: 15px;
+                    display: flex;
                     cursor: pointer;
+                    .line{
+                        background:transparent;
+                        border-radius:0px 2px 2px 0px;
+                        width:4px;
+                    }
                     &.active{
-                        color: rgb(249, 165, 51);
+                        color: rgba(255,166,50,1);
                         background: #fff;
-                        border-left:2px solid #ff9829;
+                        .line{
+                            background:rgba(255,166,50,1);
+                        }
                     }
                 }
             }
@@ -143,10 +148,7 @@ export default {
                 padding-left:60px;
                 padding-top:15px;
                 .name{
-                     font-family: 'SimHei';
                      cursor: pointer;
-                    font-size: 15px;
-                    color: rgba(41, 43, 44, 0.8);
                     display: inline-block;
                     min-width: 103px;
                     line-height: 36px;
@@ -154,37 +156,32 @@ export default {
                         min-width: 206px;
                     }
                     &:hover{
-                        color: rgb(249, 165, 51);
+                        color: rgba(255, 166, 50, 1);
                     }
                 }
             }
         }
         .footer{
             height:56px;
-            background: #f7f7f6;
-            font-size:14px;
+            // background: #f7f7f6;
+            font-size:16px;
             display: flex;
             justify-content: center;
             align-items: center;
             .button{
-                line-height: 26px;
-                width:60px;
-                // text-align: center;
-                // cursor: pointer;
+                line-height: 40px;
+                width:140px;
+
                 &.sure{
-                   color: rgba(255, 255, 255, 0.90);
-                   background: #feb152;
+
                    &:hover{
-                     background:#ff9f29;
+ 
                    }
                 }
                 &.cancel{
-                    background: #fff;
-                    color: rgba(174, 174, 174, 0.90);
-                    border: 1px solid rgba(228, 226, 223, 1);
                     margin-left:50px;
                     &:hover{
-                        background:rgba(228, 226, 223, 1);
+
                     }
                 }
             }

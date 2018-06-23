@@ -178,7 +178,7 @@ export default {
             })
         },
         updateStep(){//注册到此处 需要判断是什么角色注册的
-            // this.submitedAfter()
+            this.submitedAfter()
             if(this.blurContactName()&&this.blurPositionJob()&&this.blurSex()&&this.blurPhone()&&this.blurEmail()){
                 if(this.role=='client'){
                     this.saveOrderCustomerInfo();
@@ -212,38 +212,25 @@ export default {
         padding-top:50px;
     }
     .input_box{
-        width:284px;
-        margin-left: calc(50% - 142px);
+        width:296px;
+        margin-left: calc(50% - 148px);
         display: flex;
         height: 40px;
         align-items: center;
-        border-radius: 5px;
-        margin-bottom: 25px;
+        margin-bottom: 16px;
         &.sex_box{
-            width:108px;
+            width:111px;
         }
         .label{
-            font-size: 16px;
-            color: #515151;
             position: absolute;
             margin-left: -160px;
             width: 160px;
             text-align: right;
-            padding-right: 15px;
+            padding-right: 17px;
             box-sizing: border-box;
         }
         .input{
             flex: 1;
-            font-size: 15px;
-            .icon{
-                width:40px;
-                height:40px;
-                line-height: 40px;
-                cursor: pointer;
-                background: #edebe9;
-                font-size:20px;
-                color:#86837e;
-            }
             /deep/ .el-input__suffix{
                 right:0; 
             }
@@ -251,36 +238,10 @@ export default {
                 line-height: 40px;
                 margin-right:10px;
             }
-            .identifyCode{
-                font-style: normal;
-                width:115px;
-                line-height: 28px;
-                color: #F29F33;
-                font-size:14px;
-                display: inline-block;
-                margin-top: 5px;
-                cursor: pointer;
-                box-sizing: border-box;
-                border:1px solid #ffe9d3;
-                &:hover{
-                    background: #ffe9d3;
-                }
-                &.getCoded{
-                    color:#ff6c72;
-                }
-                &.getCoding{
-                    color:rgb(174,174,174);
-                    &:hover{
-                        background: #fff;
-                    }
-                }
-            }
         }
         .error_message{
             position: absolute;
             left: 100%;
-            font-size: 13px;
-            color: #FF6C72;
             height:100%;
             display: flex;
             align-items: center;
@@ -290,24 +251,20 @@ export default {
                 margin-right: 5px;
             }
             &.sex_error_message{
-                margin-left: 190px;
+                margin-left: 202px;
             }
         }
     }
     .footer{
         text-align: center;
-        padding:20px 0px 50px;
+        padding:32px 0px 50px;
         .button{
             cursor: pointer;
-            display: inline-block;
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.9);
-            width:110px;
-            line-height: 36px;
-            background: #ff9829;
-            border-radius: 5px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 1);
+            width:296px;
+            line-height: 40px;
             &:hover{
-                background:  #ffa64c;
             }
         }
     }

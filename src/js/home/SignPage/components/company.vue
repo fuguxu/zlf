@@ -1,11 +1,12 @@
 <template>
     <div class="company_container">
         <!-- 您要为哪家公司开通账号？ -->
-        <div class="company"></div>
+        <!-- <div class="company"></div> -->
+        <div class="content">
         <div class="input_box city_box" :class="{active:activeCity}" v-if="role=='client'">
-            <div class="label">城&nbsp;&nbsp;&nbsp;&nbsp;市</div>
+            <div class="label">城市</div>
             <el-input class="input" v-model="cityName" @focus="foucsCity" @blur="blurCity" placeholder="请选择公司所在城市，如：深圳">
-                <i slot="suffix" @click="visible=true" class="icon el-icon-menu"></i>
+                <i slot="suffix" @click="visible=true" class="icon el-icon-caret-bottom"></i>
             </el-input>
             <div class="error_message" v-if="cityNameErrorMessage">
                 <i class="icon el-icon-error"></i>
@@ -33,7 +34,8 @@
             </div>
         </div>
         <div class="next_step">
-            <span class="next_text" @click="nextStep">下一步</span>
+            <span class="next_text button" @click="nextStep">下一步</span>
+        </div>
         </div>
         <city :visible.sync="visible" @updateCity="updateCity"></city>
     </div>
@@ -147,77 +149,66 @@ export default {
 </script>
 <style lang="scss" scoped>
     .company_container{
-        padding-left:350px;
-        .company{
-            line-height: 28px;
-            font-size: 18px;
-            color: rgba(0, 0, 0, 0.92);
-            padding:48px 0 28px;;
+        padding-top:185px;
+        display: flex;
+        justify-content: center;
+        .content{
+            display: inline-block;
         }
         .city_box{
-            margin-bottom: 33px;
         }
         .code_box{
-            margin-top:33px;
         }
         .input_box{
             display: flex;
-            width:470px;
             height: 40px;
             align-items: center;
-            border-radius: 5px;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 16px;
             .label{
-                font-size: 16px;
-                color: #515151;
                 width:86px;
-                line-height: 36px;
-                text-align: center;
-                // border-right: 1px solid #dbd8d3;
+                line-height: 40px;
+                box-sizing: border-box;
+                padding-right: 17px;
+                text-align: right;
             }
             .input{
-                flex: 1;
+                width:296px;
                 font-size: 15px;
                 .icon{
-                    width:40px;
-                    height:40px;
                     line-height: 40px;
                     cursor: pointer;
-                    background: #edebe9;
                     font-size:12px;
-                    color:#86837e;
+                    color:rgba(153,153,153,1);
                 }
                 /deep/ .el-input__suffix{
-                    right:0; 
+                    right:17px; 
                 }
                 .icon-close{
                     line-height: 40px;
-                    margin-right:10px;
                 }
             }
             .error_message{
                 position: absolute;
-                left:86px;
-                font-size: 13px;
-                color: #FF6C72;
-                top:100%;
-                line-height: 24px;
+                display: flex;
+                align-items: center;
+                left:100%;
+                min-width:66%;
+                .icon{
+                    margin:0 10px 0 22px;
+                }
             }
         }
         .next_step{
-            width:470px;
-            text-align: center;
-            padding:40px 0 60px;
+            text-align: right;
+            padding-top:33px;
             .next_text{
                 cursor: pointer;
                 display: inline-block;
+                width:296px;
                 line-height: 40px;
-                width:128px;
-                background: rgb(255,152,41);
-                font-size: 18px;
-                color: rgba(255, 255, 255, 0.92);
-                &:hover{
-                    background: rgb(255,166,76);
-                }
+                font-size: 16px;
             }
         }
     }

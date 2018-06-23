@@ -4,9 +4,9 @@
         <div class="img_box">
             <img src="../../../../img/u1340.png" alt="">
         </div>
-        <p class="tip_success">{{user.userAbbr}}，您已成功注册！</p>
-        <p class="tip_success">通过营业执照审核，开始使用账号！</p>
-        <uploadLicence ></uploadLicence>
+        <p class="tip_success">{{user.userAbbr}}，您已成功注册</p>
+        <p class="tip_success">通过营业执照审核后，开始使用账号</p>
+        <uploadLicence class="supplier_upload_licence"></uploadLicence>
     </div>
 </template>
 <script>
@@ -44,19 +44,19 @@ export default {
     }
     .img_box{
         font-size: 0px;
+        padding-top:83px;
+        padding-bottom:10px;
         img{
-            width:305px;
-            height:158px;
+            width:97px;
+            height:66px;
         }
     }
     .tip_success,.tip_rent{
         font-size: 18px;
-        color: rgba(41, 43, 44, 0.8);
-        padding-bottom: 30px;
+        line-height: 28px;
     }
-    .rent_text{
-       font-size: 22px;
-       color: rgba(41, 43, 44, 0.8);
+    .supplier_upload_licence{
+        margin-top:45px;
     }
     .button_box{
         padding-bottom: 50px;

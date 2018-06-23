@@ -7,7 +7,7 @@
         <p class="tip_success">深圳市中租借科技有限公司，您已成功注册！</p>
         <p class="tip_rent">是否开始<span class="rent_text">租赁测算体验？</span></p>
         <div class="button_box">
-            <span @click="nextStep" class="button">跳过</span>
+            <span @click="nextStep" class="button jump">跳过</span>
             <span class="button" @click="startRent">开始测算</span>
         </div>
         <rentCalculation v-if="visible" :visible.sync="visible"></rentCalculation>
@@ -47,36 +47,33 @@ export default {
     }
     .img_box{
         font-size: 0px;
+        padding-top:83px;
+        padding-bottom:10px;
         img{
-            width:305px;
-            height:158px;
+            width:97px;
+            height:66px;
         }
     }
     .tip_success,.tip_rent{
         font-size: 18px;
-        color: rgba(41, 43, 44, 0.8);
-        padding-bottom: 30px;
+        line-height: 34px;
     }
     .rent_text{
        font-size: 22px;
-       color: rgba(41, 43, 44, 0.8);
     }
     .button_box{
         padding-bottom: 50px;
-        padding-top: 10px;
+        padding-top: 90px;
         .button{
-            // display: inline-block;
-            width:100px;
-            line-height: 36px;
+            width:170px;
+            line-height: 40px;
             font-size: 16px;
-            color: #F29F33;
-            border: 1px solid #F29F33;
-            // border-radius: 5px;
-            // cursor: pointer;
-            margin:0 35px;
-            &:hover{
-                color:#fff;
-                background: #ffaa50;
+            color: #fff;
+            margin:0 16px;
+            &.jump{
+                border:1px solid rgba(255,166,50,1);
+                background: #fff;
+                color:rgba(255,166,50,1);
             }
         }
     }

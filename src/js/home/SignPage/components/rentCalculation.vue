@@ -5,23 +5,26 @@
                 <div class="head">
                     <div class="title">租赁测算体验，了解我的租赁方案</div>
                     <div class="tip">（以下测算结果仅供参考）</div>
-                    <img @click="cancel" class="close" src="../../../../img/u1284.png" alt="">
+                    <span @click="cancel" class="close">×</span>
                 </div>
                 <div class="form_item">
                     <div class="label">您的租赁预算总金额<span class="sub">（单位：元）</span></div>               
                     <div class="input_box" :class="{active:activeRentPrice}">
-                        <el-input class="input" v-model="rentPrice" @focus="activeRentPrice=true" @blur="blurRentPrice" >
+                        <el-input class="input" v-model="rentPrice" placeholder="请输入预算总金额" @focus="activeRentPrice=true" @blur="blurRentPrice" >
                         </el-input>
                         <div class="error_message" v-if="rentPriceErrorMessage">
-                            <i class="icon el-icon-remove"></i>
+                            <i class="icon el-icon-error"></i>
                             <span>{{rentPriceErrorMessage}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="form_item">
-                    <div class="label">选择租赁年化率</div>               
+                    <div class="label">
+                        <span>选择租赁年化率</span>
+                        <span class="tips">风控资料提交越齐全，您的年化率将越低。</span>
+                    </div>               
                     <div class="input_box" >
-                        <el-select class="input" v-model="rentRate" placeholder="">
+                        <el-select class="input" v-model="rentRate" placeholder="" placeholder="请选择年化率">
                             <el-option
                             v-for="item in rentRateOptions"
                             :key="item.value"
@@ -30,16 +33,16 @@
                             </el-option>
                         </el-select>
                         <div class="error_message" v-if="rentRateErrorMessage">
-                            <i class="icon el-icon-remove"></i>
+                            <i class="icon el-icon-error"></i>
                             <span>{{rentRateErrorMessage}}</span>
                         </div>
                     </div>
-                    <div class="tips">tip:风控资料提交越齐全，您的年化率将越低。</div>
+                    
                 </div>
                 <div class="form_item">
                     <div class="label">您的租赁周期</div>               
                     <div class="input_box" >
-                        <el-select class="input" v-model="rentTime" placeholder="">
+                        <el-select class="input" v-model="rentTime" placeholder="请选择周期">
                             <el-option
                             v-for="item in rentTimeOptions"
                             :key="item.value"
@@ -48,13 +51,13 @@
                             </el-option>
                         </el-select>
                         <div class="error_message" v-if="rentTimeErrorMessage">
-                            <i class="icon el-icon-remove"></i>
+                            <i class="icon el-icon-error"></i>
                             <span>{{rentTimeErrorMessage}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="footer">
-                    <span @click="nextStep" class="button">跳过</span>
+                    <span @click="nextStep" class="button cancel">跳过</span>
                     <span class="button" @click="clickCalcuate">计算</span>
                 </div>
             </div>
@@ -62,20 +65,24 @@
         <div class="dialog rent_result" v-if="visibleResult" @click.stop="cancelResult">
             <div class="result_container" @click.stop="1+1">
                 <div class="result_content" :class="{showClass:showResult}">
-                    <div class="title before">按照银行现行标准，租赁前期费用如下：</div>
-                    <div class="item">
-                        保证金：<span class="number">{{data.quarterlyRent}}</span>元
-                    </div>
-                    <div class="item">
-                        融资服务费：<span class="number">{{data.financingServiceFee}}</span>元
-                    </div>
-                    <div class="title">《融资租赁合同》签署后，您须缴付租金，按月份预付：</div>
-                    <div class="item">
-                        每月租金：<span class="number">{{data.marginAmount}}</span>元
-                    </div>
-                    <div class="footer">
-                        <span @click="cancelResult" class="button">再算一次</span>
-                        <span @click="nextStep" class="button">下一步</span>
+                    <img class="background_img" src="../../../../img/u1293.png" alt="">
+                    <div class="title_header">计算结果</div>
+                    <div class="content">
+                        <div class="title">按照银行现行标准，租赁前期费用如下：</div>
+                        <div class="item">
+                            保证金：<span class="number">{{data.quarterlyRent||0.0}}</span>元
+                        </div>
+                        <div class="item">
+                            融资服务费：<span class="number">{{data.financingServiceFee||0.0}}</span>元
+                        </div>
+                        <div class="title before">《融资租赁合同》签署后，您须缴付租金，按月份预付：</div>
+                        <div class="item">
+                            每月租金：<span class="number">{{data.marginAmount||0.0}}</span>元
+                        </div>
+                        <div class="footer">
+                            <span @click="cancelResult" class="button agin">再算一次</span>
+                            <span @click="nextStep" class="button">下一步</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -184,39 +191,40 @@ export default {
        position: absolute;
        width:100%;
        top:58px;
-       height: 620px;
+       height: 568px;
        overflow: hidden;
+
    }
     .rent_form{
-        width:700px;
-        height: 620px;
+        width:460px;
+        height: 568px;
         background: #fff;
         position: absolute;
         left: 50%;
-        margin-left:-350px;
-        top:-620px;
+        margin-left:-230px;
+        top:-568px;
+        border-radius:4px;
         &.showClass{
            top: 0px;
            transition: top 1s;
        }
        .head{
            position: relative;
-           height: 133px;
+           height: 110px;
            background: url('../../../../img/u1218.png') center no-repeat;
            background-size: cover;
            text-align: center;
+           margin-bottom: 10px;
+           color: #fff;
            .title{
                font-size: 20px;
-               color: rgba(13, 13, 13, 0.898039215686275);
                padding:35px 0 20px;
            }
            .tip{
-               font-size: 14px;
-             color:  rgba(54, 54, 54, 0.898039215686275);
+               font-size: 12px;
            }
            .close{
-               width:30px;
-               height:30px;
+              font-size: 18px;
                cursor: pointer;
                position: absolute;
                top:10px;
@@ -224,14 +232,12 @@ export default {
            }
        }
        .form_item{
-           width:284px;
-           margin-left: calc(50% - 142px);
-           margin-bottom: 20px;
+           padding:0 45px;
+           margin-bottom: 45px;
        }
        .label{
-            font-size: 18px;
+            // font-size: 18px;
             line-height: 34px;
-            color:rgba(41, 43, 44, 0.8);
             text-align: left;
             .sub{
                 font-size: 12px;
@@ -239,101 +245,104 @@ export default {
         }
        .input_box{
             position: relative;
-            border-radius: 5px;
+            // border-radius: 5px;
             .input{
-                font-size: 15px;
+                // font-size: 15px;
                 height: 40px;
                 width:100%;
             }
             .error_message{
                 position: absolute;
-                left: 100%;
-                font-size: 13px;
-                color: #FF6C72;
-                height:100%;
+                top:100%;
                 display: flex;
                 align-items: center;
-                width: 88%;
-                margin-left: 15px;
-                top:0px;
+                line-height: 30px;
                 .icon{
                     margin-right: 5px;
                 }
             }
         }
         .tips{
-            padding-top:5px;
-            font-size: 13px;
-            color: rgba(41, 43, 44, 0.6);
+            font-size: 12px;
+            color:rgba(136,136,136,1);
         }
     }
     .footer{
-        padding-bottom: 50px;
-        padding-top: 10px;
+        padding-bottom: 30px;
+        padding-top: 5px;
+        display: flex;
+        padding:0 45px;
+        justify-content: space-between;
         .button{
-            display: inline-block;
-            width:84px;
-            line-height: 36px;
+            width:176px;
+            line-height: 40px;
             font-size: 16px;
-            color: #F29F33;
-            border: 1px solid #F29F33;
-            border-radius: 5px;
-            cursor: pointer;
-            margin:0 20px;
-            &:hover{
-                color:#fff;
-                background: #ffaa50;
-            }
         }
     }
+    .rent_result{
+        z-index: 10002;
+    }
     .result_container{
-        width:500px;
-        height: 280px;
+        width:460px;
+        height: 360px;
         position: absolute;
         top:50%;
         left:50%;
-        margin-left:-250px;
-        margin-top:-140px;
+        margin-left:-230px;
+        margin-top:-180px;
         overflow: hidden;
     }
     .result_content{
-        background: url('../../../../img/u1293.png') 292px 10px no-repeat #fff;
-        background-size: 100px;
-        border-radius: 10px;
-        width:500px;
-        height: 280px;
+        background: #fff;
+        border-radius:4px;
+        width:460px;
+        height: 360px;
         position: absolute;
         left:0px;
-        top:-280px;
+        top:-360px;
         text-align: left;
         box-sizing: border-box;
         &.showClass{
             top:0px;
             transition: all 0.5s;
         }
+        .background_img{
+            position: absolute;
+            top:55px;
+            right:20px
+        }
+        .title_header{
+            text-align: center;
+            border-bottom: 1px solid rgba(238,238,238,1);
+            line-height: 60px;
+            font-size:18px;
+        }
+        .content{
+            padding:0 44px;
+        }
         .title{
-            font-size: 16px;
-            color: rgb(41, 43, 44);
-            padding: 20px 20px 10px;
+            font-size: 12px;
+            color:rgba(102,102,102,1);
+            padding: 25px 0px 10px 0px;
             &.before{
-                padding-left:27px;
+                text-indent: -5px;
             }
         }
         .item{
-            font-size: 14px;
-            color: rgba(41, 43, 44, 0.8);
-            padding-left: 27px;
+            margin-bottom: 10px;
             .number{
-                color: #F29F33;
-                font-size:16px;
+                color: rgba(255, 166, 50, 1);
             }
         }
         .footer{
-            padding-bottom: 20px;
-            padding-top: 40px;
-            text-align: center;
+            padding: 40px 0px 20px 0px;
             .button{
-                width:100px;
+                width:176px;
+                &.agin{
+                    background: #fff;
+                    color:rgba(255,166,50,1);
+                    border:1px solid rgba(255,166,50,1);
+                }
             }
         }
     }

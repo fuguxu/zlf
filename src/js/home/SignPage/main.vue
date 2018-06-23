@@ -1,5 +1,5 @@
 <template>
-    <div style="padding-top:85px;">
+    <div style="padding-top:20px;">
         <div class="sign_container">
             <div class="sign_role">
                 <a class="client" :class="{active:$route.path=='/sign/client'}"  href="home.html#/sign/client">客户注册</a>
@@ -26,34 +26,32 @@ export default {
     .sign_container{
         width:1160px;
         margin:0 auto;
-        border:1px solid rgb(227,225,223);
-        border-top: none;
         background: #fff;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        min-height: 300px;
+        padding:25px 81px 0px 81px;
+        border-radius: 6px;
+        min-height: 700px;
         box-sizing: border-box;
         margin-bottom: 75px;
         .sign_role{
             display: flex;
-            line-height: 42px;
+            line-height: 50px;
             a{
                 flex:1;
                 font-size: 18px;
-                color: #868686;
+                color: rgba(153,153,153,1);
                 text-align: center;
-                background: linear-gradient(to right,#D7D7D7,rgba(215, 215, 215, 0.9),#D7D7D7);
+                background:rgba(240,240,240,1);
                 &.client{
-                    border-top-left-radius: 8px;
-                    border-bottom-left-radius: 8px;
+                    border-top-left-radius: 6px;
+                    border-bottom-left-radius: 6px;
                 }
                 &.supplior{
-                    border-top-right-radius: 8px;
-                    border-bottom-right-radius: 8px;
+                    border-top-right-radius: 6px;
+                    border-bottom-right-radius: 6px;
                 }
                 &.active{
                     color:#fff;
-                    background: linear-gradient(to right,rgba(242,159,51, 0.7),rgba(242,159,51, 1),rgba(242,159,51, 0.7));
+                    background: rgba(255,166,50,1);
                 }
             }
         }

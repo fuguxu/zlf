@@ -26,7 +26,7 @@ export default {
                 },
                 {
                     step:2,
-                    text:'完善联系信息'
+                    text:'完善联系人信息'
                 },
                 {
                     step:3,
@@ -41,7 +41,7 @@ export default {
     .step_bar{
         display: flex;
         justify-content: center;
-        padding-top: 40px;
+        padding-top: 60px;
         .step{
             position: relative;
             text-align: center;
@@ -49,40 +49,40 @@ export default {
             align-items: center;
             flex-flow: column;
             margin-right: 250px;
-            width:34px;
+            width:40px;
             &:last-child{
                 margin-right: 0px;
             }
             &.currentStep{
                 .circle,.line{
-                    background: #ff9829;
+                    background: rgba(255,166,50,1);
+                    color: #FFFFFF;
                 }
                 .text{
-                    color: rgb(242, 159, 51);
+                    color: rgba(255,166,50,1);
                 }
             }
             .circle{
-                width:34px;
-                height: 34px;
-                line-height: 34px;
+                width:40px;
+                height: 40px;
+                line-height: 40px;
                 border-radius: 50%;
-                background: #b1ada7;
-                font-size: 20px;
-                color: #FFFFFF;
+                background: rgba(240,240,240,1);
+                font-size: 16px;
+                color:rgba(153,153,153,1);
             }
             .text{
-                font-size: 15px;
-                color: rgba(0, 0, 0, 0.9);
                 word-break: keep-all;
+                color:rgba(153,153,153,1);
                 padding-top: 10px;
             }
             .line{
                 position: absolute;
                 width:250px;
-                height: 3px;
-                background: #b1ada7;
-                top:15.5px;
-                left:calc(50% + 17px)
+                height: 8px;
+                background:rgba(240,240,240,1);
+                top: 17px;
+                left: calc(50% + 20px);
             }
         }
     }

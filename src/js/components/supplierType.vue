@@ -2,11 +2,11 @@
     <div class="supplier_type">
         <span class="label">供应商类型</span>
         <div class="select_box" :class="{active:activeBox}">
-            <el-select class="el-input-box" @change="changeType" v-model="rootValue" placeholder="请选择">
+            <el-select class="el-input-box el-input-root" @change="changeType" v-model="rootValue" placeholder="请选择">
                 <el-option v-for="item in options" :key="item.id" :label="item.catName" :value="item.id">
                 </el-option>
             </el-select>
-            <br />
+            <!-- <br /> -->
             <!-- <div > -->
                 <el-select v-if="furnitureTypeOption.length>0"  class="el-input-box" @change="changfurnitureType" v-model="furnitureType" placeholder="再次选择">
                     <el-option v-for="item in furnitureTypeOption" :key="item.id" :label="item.catName" :value="item.id">
@@ -19,7 +19,7 @@
             </div>
             <div class="item_box" >
                 <div v-if="childenOptions.length>0"   :class="{show:showSelect}" class="item" v-left>
-                    <span class="label_sub">请进一步选择：</span>
+                    <span class="label_sub colorYellow">请进一步选择：</span>
                     <el-checkbox-group v-model="checkList">
                         <el-checkbox v-for="(it,i) in childenOptions" :label="it.id" :key="i">{{it.catName}}</el-checkbox>
                     </el-checkbox-group>
@@ -158,6 +158,12 @@ export default {
         position: relative;
         transition-delay: 300;
         transition: all 0.3s;
+        .el-input-box{
+            display: block;
+            &.el-input-root{
+                margin-bottom: 16px;
+            }
+        }
         &.active{
             margin-bottom:20px;
         }
@@ -176,10 +182,9 @@ export default {
             }
             line-height: 40px;
             .label_sub{
-                width:122px;
+                // width:122px;
                 display: inline-block;
-                font-size: 16px;
-                color: #F29F33;
+                text-align: left;
             }
             .el-checkbox-group{
                 display:flex;

@@ -7,8 +7,6 @@
             <div class="footer">
                 <span class="button" @click="nextStep">下一步</span>
             </div>
-            
-            
         </div>
     </div>
 </template>
@@ -38,7 +36,9 @@ export default {
         nextStep(){
            let type= this.$refs.type.valiate();
            let province= this.$refs.province.valiate();
-            type&&province&&this.$emit('updateStep',this.stepComponent,this.sullpierType);
+        //    if(type&&province){
+               this.$emit('updateStep',this.stepComponent,this.sullpierType);
+        //    }
         },
         updateArea(area){//接受覆盖范围
             this.sullpierType.leaseArea=area;
@@ -57,49 +57,57 @@ export default {
 </script>
 <style lang="scss" scoped>
     .kind_content{
-        padding-left:390px;
+        text-align: center;
         /deep/ .label{
-            font-size: 16px;
-            color: #515151;
             width: 110px;
             display: inline-block;
+            text-align: right;
+            box-sizing: border-box;
+            padding-right: 15px;
         }
         /deep/ .el-input__inner{
-            width:122px;
+            width:282px;
             cursor: pointer;
         }
         /deep/ .error_message{
             position: absolute;
             left: 100%;
-            width:200%;
+            width:80%;
             top:0px;
             line-height: 40px;
+            text-align: left;
             .icon{
                 margin:0 5px 0 20px;
             }
         }
         .supplier_type{
             margin-top:50px;
+            display: flex;
+            justify-content: center;
+            /deep/ .label{
+                line-height: 40px;
+            }
         }
         .bussiness_province{
-            margin-top:40px;
+            margin-top:50px;
+        }
+        /deep/ .el-checkbox__input.is-checked .el-checkbox__inner{
+            background: rgba(255,166,50,1);
+            &:after{
+                border: 1px solid #fff;
+                border-left: 0;
+                border-top: 0;
+            }
         }
     }
     .footer{
         padding:50px 0px 100px;
     }
     .button{
-        // cursor: pointer;
-        // display: inline-block;
-        // text-align: center;
-        font-size: 18px;
-        color: rgba(255, 255, 255, 0.9);
-        width:110px;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 1);
+        width:282px;
         line-height: 36px;
-        background: #ff9829;
-        // border-radius: 5px;
-        // &:hover{
-        //     background:  #ffa64c;
-        // }
+        margin-left: 110px;
     }
 </style>

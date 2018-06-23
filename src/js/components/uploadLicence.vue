@@ -12,7 +12,7 @@
                 <div class="tip_text">{{tipText}}</div>
                 <div @click="emitHandleRemove" class="close_icon" v-if="hasFile">×</div>
                 <div class="error_message" v-if="tipMessage">
-                    <i class="icon el-icon-remove"></i>
+                    <i class="icon el-icon-error"></i>
                     <span>{{tipMessage}}</span>
                 </div>
             </div>
@@ -151,9 +151,7 @@ export default {
         justify-content: center;
     }
     .text{
-        font-size: 15px;
-        color: rgba(41, 43, 44, 0.90);
-        line-height: 55px;
+        line-height: 40px;
         margin-right:20px;
     }
     .file_container{
@@ -177,12 +175,12 @@ export default {
     }
     .tip{
         margin-bottom: 5px;
-        font-size: 14px;
-        color: #797979;
+        font-size: 12px;
+        color:rgba(102,102,102,1);
         line-height: 22px;
         text-align: left;
         &.tip2{
-            color: #F29F33;
+            // color: #F29F33;
         }
     }
     .label-file{
@@ -226,8 +224,6 @@ export default {
     .error_message{
         position: absolute;
         left: 100%;
-        font-size: 13px;
-        color: #FF6C72;
         height:100%;
         width:210px;
         display: flex;
@@ -239,15 +235,11 @@ export default {
     }
     .button{
         margin-top:50px;
-        // display: inline-block;
-        // cursor: pointer;
         background: #aeaeae;
-        // border-radius: 5px;
-        width:100px;
+        width:140px;
         line-height: 40px;
-        font-size: 18px;
+        font-size: 16px;
         color: rgba(255, 255, 255, 1);
-        // text-align: center;
         &.hsaFile{
             background: rgba(255,166,50,1);
             &:hover{

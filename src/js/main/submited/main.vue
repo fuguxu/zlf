@@ -40,24 +40,24 @@ export default {
 </script>
 <style lang="scss" scoped>
     .sumbited_container{
-        background-color: rgba(250, 250, 250, 1);
+        // background-color: rgba(250, 250, 250, 1);
         height:764px;
         .content{
-            width:1200px;
+            width:1160px;
             margin:0 auto;
             text-align: center;
             padding-top:104px;
             box-sizing: border-box;
             img{
-                width:130px;
-                height:130px;
+                // width:130px;
+                // height:130px;
             }
             .tip_text{
                 padding-top:42px;
-                font-size: 16px;
-                color: rgba(41, 43, 44, 0.8);
-                text-align: left;
-                line-height: 30px;
+                font-size: 18px;
+                // color: rgba(41, 43, 44, 0.8);
+                text-align: center;
+                line-height: 40px;
                 display: inline-block;
             }
         }

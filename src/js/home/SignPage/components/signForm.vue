@@ -3,8 +3,8 @@
         <stepBar :step="1" :role="role"></stepBar>
         <div class="form">
             <div class="input_box" :class="{active:activeMember}">
-                <div class="label">会员名</div>
-                <el-input class="input" v-model="form.userAbbr" @focus="activeMember=true" @blur="blurmemberName" placeholder="请输入公司简称作为用户名">
+                <div class="label">昵称</div>
+                <el-input class="input" v-model="form.userAbbr" @focus="activeMember=true" @blur="blurmemberName" placeholder="请输入公司简称作为昵称">
                     <i slot="suffix" class="iconfont icon-close" @click="form.userAbbr=''" v-if="form.userAbbr"></i>
                 </el-input>
                 <div class="error_message" v-if="memberNameErrorMessage">
@@ -23,9 +23,9 @@
                 </div>
             </div>
             <div class="input_box" :class="{active:activeIdentifyCode}">
-                <div class="label">手机验证码</div>
+                <div class="label">验证码</div>
                 <el-input class="input" :maxlength="6" v-model="form.code" @focus="activeIdentifyCode=true" @blur="blurIdentifyCode" placeholder="请输入验证码">
-                    <i slot="suffix" @click="getCode" class="code" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
+                    <i slot="suffix" @click="getCode" class="code button" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
                 </el-input>
                 <div class="error_message" v-if="identifyCodeErrorMessage">
                     <i class="icon el-icon-error"></i>
@@ -44,7 +44,7 @@
             </div>
             <div class="input_box" :class="{active:activepassWord2}">
                 <div class="label">确认密码</div>
-                <el-input class="input" type="password"  v-model="passWord2" @focus="activepassWord2=true" @blur="blurpassWord2" placeholder="请输入你的密码">
+                <el-input class="input" type="password"  v-model="passWord2" @focus="activepassWord2=true" @blur="blurpassWord2" placeholder="请再次输入密码">
                     <i slot="suffix" class="iconfont icon-close" @click="passWord2=''" v-if="passWord2"></i>
                 </el-input>
                 <div class="error_message" v-if="passWordErrorMessage2">
@@ -210,7 +210,7 @@ export default {
           }
       },
       submitSign(){//点击注册
-    //   this.nextStep();
+      this.nextStep();
     //   console.log(this.companyInfo)
     //   this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
@@ -274,19 +274,18 @@ export default {
             display: flex;
             height: 40px;
             align-items: center;
-            border-radius: 5px;
-            margin-bottom: 25px;
+            margin-bottom: 16px;
             .label{
-                font-size: 16px;
-                color: #515151;
-                width:86px;
-                line-height: 36px;
-                text-align: center;
+                width:80px;
+                line-height: 40px;
+                text-align: right;
+                padding-right: 17px;
+                box-sizing: border-box;
                 // border-right: 1px solid #dbd8d3;
             }
             .input{
                 flex: 1;
-                font-size: 15px;
+                // font-size: 15px;
                 .icon{
                     width:40px;
                     height:40px;
@@ -305,25 +304,20 @@ export default {
                 }
                 .code{
                     font-style: normal;
-                    width:115px;
-                    line-height: 28px;
-                    color: #F29F33;
-                    font-size:14px;
-                    display: inline-block;
-                    margin-top: 5px;
+                    width:124px;
+                    line-height: 40px;
+                    color: #fff;
                     cursor: pointer;
                     box-sizing: border-box;
-                    border:1px solid #ffe9d3;
                     &:hover{
-                        background: #ffe9d3;
                     }
                     &.getCoded{
-                        color:#ff6c72;
                     }
                     &.getCoding{
-                        color:rgb(174,174,174);
+                        color:rgba(102,102,102,1);
+                        background:rgba(240,240,240,1);
                         &:hover{
-                            background: #fff;
+                            background:rgba(240,240,240,1);
                         }
                     }
                 }
@@ -331,8 +325,6 @@ export default {
             .error_message{
                 position: absolute;
                 left: 100%;
-                font-size: 13px;
-                color: #FF6C72;
                 height:100%;
                 display: flex;
                 align-items: center;
@@ -347,17 +339,11 @@ export default {
             text-align: center;
             padding:20px 0px 50px;
             .button{
-                // cursor: pointer;
-                // display: inline-block;
-                font-size: 18px;
-                color: rgba(255, 255, 255, 0.9);
-                width:130px;
+                font-size: 16px;
+                color: rgba(255, 255, 255, 1);
+                width:296px;
                 line-height: 40px;
-                background: #ff9829;
-                // border-radius: 5px;
-                &:hover{
-                //   background:  #ffa64c;
-                }
+                margin-left: 80px;
             }
         }
     }

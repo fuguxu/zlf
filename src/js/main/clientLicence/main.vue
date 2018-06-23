@@ -23,23 +23,22 @@ export default {
 </script>
 <style lang="scss" scoped>
     .licence_container{
-        background-color: rgba(250, 250, 250, 1);
+        background-color: rgba(255, 255, 255, 1);
         min-height:764px;
         .content{
-            width:1200px;
+            width:1160px;
             margin:0 auto;
             text-align: center;
             padding-top:92px;
             .text{
-                line-height: 42px;
-                font-size: 28px;
-                color: rgba(41, 43, 44, 0.898);
+                line-height: 24px;
+                font-size: 18px;
             }
             .jangle{
                 display: inline-block;
-                border-left: 8px solid transparent;
-                border-top: 16px solid rgb(237, 159, 52); 
-                border-right: 8px solid transparent;
+                border-left: 4px solid transparent;
+                border-top: 8px solid rgba(242,159,50,1); 
+                border-right: 4px solid transparent;
                 margin-top:15px;
                 margin-bottom: 50px;
             }
