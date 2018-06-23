@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <components v-if="isCp" :orderName="title" :leaseNo="leaseNo" :orderNo="orderNo" :data="itemData" :is="isCp" @updateCp="updateCp"></components>
+                    <components v-if="isCp" :orderName="title" :proCommNo="proCommNo" :leaseNo="leaseNo" :orderNo="orderNo" :data="itemData" :is="isCp" @updateCp="updateCp"></components>
                 </div>
             </div>
         </div>
@@ -82,6 +82,7 @@ export default {
             activeIndex:'',
             orderNo:'',
             leaseNo:'',
+            proCommNo:'',
             isCp:'',
             visible:false
         }
@@ -90,6 +91,7 @@ export default {
         choiceCp(item){
             this.isCp='';//让组件重新渲染
             this.leaseNo='';
+            this.proCommNo='';
             this.$nextTick(()=>{
                 if(this.activeIndex==0){
                     this.isCp=rentService;
@@ -114,6 +116,7 @@ export default {
         updateCp(item){//到合同执行的详情
             this.thirdTitle=item.leaseName;
             this.leaseNo=item.leaseContractNo;
+            this.proCommNo=item.proCommNo;
             this.isCp=contractDetail;
         },
         clickSecondTitle(){//点击合同详情面包削

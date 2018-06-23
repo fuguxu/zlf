@@ -6,19 +6,20 @@
                 <span>验收函</span>
             </div>
             <div class="img_box">
-                <div v-for="(item,index) in imgLists" :key="index" class="img_item">
-                    <img class="img" @click="previewImg(item)"  :src="item.url" alt="">
+                <div v-for="(item,index) in imgLists" :key="index" class="img_item" :class="{five:(index+1)%5==0}">
+                    <img class="img" @click="previewImg(item)"  :src="item.imgAddr" alt="">
                     <div class="clickTip">点击预览</div>
                 </div>
+                <noUpload :role="role" v-if="imgLists.length==0"></noUpload>
             </div>
         </div>
         <div class="judgement">
             <div class="title" >
                 <span class="line"></span>
-                <span v-if="!isEdit">客户评价结果</span>
-                <span v-if="isEdit">评价供应商</span>
+                <span v-if="role=='1'">客户评价结果</span>
+                <span v-if="role=='0'">评价供应商</span>
             </div>
-            <div class="subtitle" v-if="isEdit">
+            <div class="subtitle" v-if="role=='0'">
                 <span>您的评价，是对租立方平台最大的肯定！期待您的评价</span>
                 <img src="../../img/smile.png" alt="">
             </div>
@@ -34,51 +35,32 @@
             <span>{{shareWhoText}}</span>
         </div>
         <div class="share">
-            <el-input type="textarea" :readonly="!isEdit" resize="none" v-model="shareText" autosize :maxlength="maxlength" placeholder="分享您的体验心得~"></el-input>
-            <div v-if="isEdit" class="restWord">还可输入<span :class="{lessTen:maxlength-shareText.length<=10}">{{maxlength-shareText.length}}</span>字</div>
+            <el-input type="textarea" :readonly="!isEdit" resize="none" v-model="evaluationDesc" autosize :maxlength="maxlength" :placeholder="isEdit?'分享您的体验心得~':''"></el-input>
+            <div v-if="isEdit" class="restWord">还可输入<span :class="{lessTen:maxlength-evaluationDesc.length<=10}">{{maxlength-evaluationDesc.length}}</span>字</div>
         </div>
-        <div class="footer" v-if="isEdit">
-            <span class="button"  @click="submitJudement">提交</span>
-            <span class="none">公开发布为{{publishName}}   |  <span @click="clearButton" class="clear">清除</span></span>
+        <div class="footer" :class="{cancel:!isEdit}" v-if="role=='0'">
+            <span class="button" :class="{cancel:!isEdit}"  @click="submitJudement">{{buttonText}}</span>
+            <span v-if="isEdit" class="none">公开发布为{{publishName}}   |  <span @click="clearButton" class="clear">清除</span></span>
         </div>
         <resizeImg :visible.sync="visible" :url="activeUrl"></resizeImg>
+        <div class="dialog" v-if="visibleTip">
+            <div class="tip_content">
+                <div class="header font16">温馨提示</div>
+                <div class="text">请对9个小问题给出您的评价~</div>
+                <span @click="visibleTip=false;" class="button">好的</span>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import resizeImg from './resizeImg';
+import {customerModule} from '../api/main';
+import noUpload from './noUpload';
 export default {
-    props:{
-        // isEdit:{
-        //     default:true
-        // }
-    },
+    props:['data','leaseNo','orderNo','proCommNo','role'],
     data(){
         return {
-            imgLists:[
-                {
-                    url:require('../../img/step_icon.png')
-                },
-                {
-                    url:require('../../img/step_icon.png')
-                },
-                {
-                    url:require('../../img/step_icon.png')
-                },
-                {
-                    url:require('../../img/u225.png')
-                },{
-                    url:require('../../img/step_icon.png')
-                },
-                {
-                    url:require('../../img/step_icon.png')
-                },
-                {
-                    url:require('../../img/step_icon.png')
-                },
-                {
-                    url:require('../../img/step_icon.png')
-                }
-            ],
+            imgLists:this.data.checks||[],
             judgementList:[
                 {
                     desc:'供应商对沟通的响应是否积极处理？',
@@ -88,83 +70,140 @@ export default {
                 {
                     desc:'您对供应商商务沟通时的态度是否满意？',
                     texts:['很不满意，1分','不满意，2分','一般，3分','满意，4分','很满意，5分'],
-                    value:5
+                    value:null
                 },
                 {
                     desc:'供应商商务沟通时是否专业？',
                     texts:['很不专业，1分','不专业，2分','一般，3分','专业，4分','很专业，5分'],
-                    value:3
+                    value:null
                 },
                 {
                     desc:'供应商在“家具生产启动/进行中/完成/、运输包装<br />、物流运输”中，信息反馈是否积极？',
                     texts:['很不积极，1分','不积极，2分','一般，3分','积极，4分','很积极，5分'],
-                    value:4
+                    value:null
                 },
                 {
                     desc:'您对供应商的运输包装是否满意？',
                     texts:['很不满意，1分','不满意，2分','一般，3分','满意，4分','很满意，5分'],
-                    value:5
+                    value:null
                 },
                 {
                     desc:'您对供应商的物流运输是否满意？',
                     texts:['很不满意，1分','不满意，2分','一般，3分','满意，4分','很满意，5分'],
-                    value:4
+                    value:null
                 },
                 {
                     desc:'供应商的交期是否及时？',
                     texts:['严重延误，1分','不及时，2分','还可以，3分','及时，4分','十分及时，5分'],
-                    value:5
+                    value:null
                 },
                 {
                     desc:'您对供应商提供的产品安装是否满意？',
                     texts:['很不满意，1分','不满意，2分','一般，3分','满意，4分','很满意，5分'],
-                    value:4
+                    value:null
                 },
                 {
                     desc:'您对供应商提供的产品质量是否满意？',
                     texts:['很不满意，1分','不满意，2分','一般，3分','满意，4分','很满意，5分'],
-                    value:3
+                    value:null
                 }
             ],
             maxlength:500,
-            shareText:'',
+            evaluationDesc:'',
+            showNameStatus:1,
             visible:false,
             activeUrl:'',
             isEdit:'',
-            isSubmited:false,
-            publishName:'中租借科技'
+            publishName:'中租借科技',
+            visibleTip:false
         }
     },
     mounted(){
-        if(localStorage.getItem('role')=='client'){
-            this.isEdit=true
+        if(this.data.zlfEvaluation&&this.data.zlfEvaluation.question1){
+            let zlfEvaluation=this.data.zlfEvaluation;
+            this.isEdit=false;
+            this.evaluationDesc=zlfEvaluation.evaluationDesc;
+            this.showNameStatus=zlfEvaluation.showNameStatus;
+            for(var i=0;i<this.judgementList.length;i++){
+                this.judgementList[i].value=+zlfEvaluation['question'+(i+1)];
+            }
         }else{
-            this.isEdit=false
+            if(this.role=='0'){
+                this.isEdit=true;
+            }else{
+                this.isEdit=false;//供应商看的话不能编辑
+            }
+            
         }
     },
     methods:{
         previewImg(item){
-            this.activeUrl=item.url;
+            this.activeUrl=item.imgAddr;
             this.visible=true;
         },
+        valiate(){//验证是否都评价了
+            let flag=true;
+            for(var val of this.judgementList){
+                if(!val.value){
+                    flag=false;
+                    return false;
+                }
+            } 
+            return flag;
+        },
         submitJudement(){
-            this.isSubmited=true;
+            if(!this.isEdit) return;
+            if(this.valiate()){
+                this.acceptance();
+            }else{
+                this.visibleTip=true;
+            }
         },
         clearButton(){
             this.publishName='匿名用户';
+            this.showNameStatus=0;
+        },
+        acceptance(){
+            let obj={
+                zlfEvaluation:{
+                    evaluationDesc:'',
+                    orderNo:this.orderNo,
+                    leaseContractNo:this.leaseNo,
+                    proCommNo:this.proCommNo,
+                    showNameStatus:this.showNameStatus
+                },
+            };
+            obj.zlfEvaluation.evaluationDesc=this.evaluationDesc;
+            for(var i=0;i<this.judgementList.length;i++){
+                obj.zlfEvaluation['question'+(i+1)]=this.judgementList[i].value+'';
+            }
+            customerModule.acceptance(obj).then(res=>{
+                if(res.statusCode=='1'){
+                    this.isEdit=false;
+                }
+            })
         }
     },
     computed:{
         shareWhoText(){
-            if(this.isEdit){
+            if(this.role=='0'){
                 return '您的体验心得'
-            }else if(!this.isEdit){
+            }else if(this.role=='1'){
                 return '客户的体验心得'
             }
+        },
+        buttonText(){
+            return this.isEdit?'提交':'感谢您的评论!'
         }
     },
     components:{
-        resizeImg
+        resizeImg,
+        noUpload
+    },
+    watchs:{
+        data(n,o){
+            // if()
+        }
     }
 }
 </script>
@@ -178,6 +217,9 @@ export default {
             position: relative;
             margin-right: 29px;
             margin-bottom: 23px;
+            &.five{
+                margin-right: 0px;
+            }
             .clickTip{
                 position: absolute;
                 line-height: 20px;
@@ -238,6 +280,12 @@ export default {
     .footer{
         text-align: right;
         padding:20px 0 40px 0px;
+        &.cancel{
+            text-align: center;
+            .button{
+                color:#666;
+            }
+        }
         .button{
             width:200px;
             height: 40px;
@@ -277,6 +325,32 @@ export default {
         padding-left:20px;
         padding-bottom: 10px;
         margin-top: -10px;
-        
+        display: flex;
+        align-items: center;
+        img{
+            margin-left:7px;
+        }
+    }
+    .tip_content{
+        width:430px;
+        height:250px;
+        background:rgba(255,255,255,1);
+        position: absolute;
+        left: 50%;
+        top:50%;
+        margin-top:-125px;
+        margin-left:-215px;
+        text-align: center;
+        .header{
+            line-height: 46px;
+            border-bottom: 1px solid rgba(234,234,234,1);
+        }
+        .text{
+            line-height: 120px;
+        }
+        .button{
+            width:284px;
+            line-height: 40px;
+        }
     }
 </style>

@@ -1,21 +1,21 @@
 <template>
     <div class="contract">
         <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="家具生产启动" name="first">
+            <el-tab-pane label="家具生产启动" name="first" v-if="this.leaseType=='1'">
                 <transition name="slide-fade">
                     <div v-if="activeName=='first'" class="item">
                         <progressItem :leaseType="id" :leaseContractNo="leaseContractNo" :type="0"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
-            <el-tab-pane label="家具生产进行中" name="second">
+            <el-tab-pane label="家具生产进行中" name="second" v-if="this.leaseType=='1'">
                 <transition name="slide-fade">
                     <div v-if="activeName=='second'" class="item">
                         <progressItem :leaseType="id" :leaseContractNo="leaseContractNo" :type="1"></progressItem>
                     </div>
                 </transition>
             </el-tab-pane>
-            <el-tab-pane label="家具生产完成" name="third">
+            <el-tab-pane label="家具生产完成" name="third" v-if="this.leaseType=='1'">
                <transition name="slide-fade">
                     <div v-if="activeName=='third'" class="item">
                         <progressItem :leaseType="id" :leaseContractNo="leaseContractNo" :type="2"></progressItem>
@@ -68,7 +68,7 @@
             <el-tab-pane label="验收完成" name="six">
                 <transition name="slide-fade">
                     <div v-if="activeName=='six'" class="">
-                        <checkOrder></checkOrder>
+                        <checkOrder role="1" :data="acceptanceData"></checkOrder>
                     </div>
                 </transition>
             </el-tab-pane>
@@ -78,6 +78,7 @@
 <script>
 import progressItem from './components/progressItem';
 import checkOrder from '../../components/checkOrder';
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
@@ -92,7 +93,8 @@ export default {
             id:this.$route.query.id,
             leaseType:this.$route.query.leaseType,
             leaseContractNo:this.$route.query.leaseContractNo,
-            isEdit:true
+            isEdit:true,
+            acceptanceData:''
         }
     },
     methods:{
@@ -129,10 +131,22 @@ export default {
             if(form){
                 this.form=Object.assign(this.form,form);
             }
+        },
+        getSupplierAcceptanceVO(){//获取验收信息
+            customerModule.getSupplierAcceptanceVO({
+                leaseContractNo:this.leaseContractNo
+            }).then(res=>{
+                if(res.statusCode=='1'){
+                    this.acceptanceData=res.data;
+                }
+            })
         }
     },
     mounted(){
-        
+        this.getSupplierAcceptanceVO();
+        if(this.leaseType=='0'){
+            this.activeName='fourth'
+        }
     },
     components:{
         progressItem,

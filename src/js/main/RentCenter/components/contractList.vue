@@ -6,10 +6,15 @@
                      <div class="icon_wrap">
                         <img ref="hand" class="hand_icon" src="../../../../img/hand.png" alt="">
                     </div>
-                    <span>{{item.leaseName}}</span>
+                    <span>{{item.leaseName+'合同执行详情'}}</span>
                 </div>
             </li>  
         </ul>
+        <div class="no_content font16" v-if="list.length==0&&ajaxDone">
+            <img src="../../../../img/no_step.png" alt="">
+            <div class="text">温馨提示：</div>
+            <div class="text">交易还未进行到这一步，请耐心等候～</div>
+        </div>
     </div>
 </template>
 <script>
@@ -18,16 +23,19 @@ export default {
     props:['orderNo'],
     data(){
         return {
-            list:[]
+            list:[],
+            ajaxDone:false
         }
     },
     methods:{
         getMainLease(){
+            this.ajaxDone=false;
             customerModule.getCustomerstMainLease({
                 orderNo:this.orderNo
             }).then(res=>{
                 if(res.statusCode=="1"){
                     this.list=res.data;
+                    this.ajaxDone=true;
                 }
             })
         },
@@ -86,6 +94,14 @@ export default {
                 width:16px;
                 height:16px;
                 
+            }
+        }
+        .no_content{
+            text-align: center;
+            width:300px;
+            padding:30px 0px;
+            .text{
+                line-height: 40px;
             }
         }
     }

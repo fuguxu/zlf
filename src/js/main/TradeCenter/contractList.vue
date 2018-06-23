@@ -6,7 +6,7 @@
                      <div class="icon_wrap">
                         <img ref="hand" class="hand_icon" src="../../../img/hand.png" alt="">
                     </div>
-                    <span>{{item.leaseName}}</span>
+                    <span>{{item.leaseName+'合同执行详情'}}</span>
                 </div>
             </router-link>  
         </ul>

@@ -31,9 +31,9 @@
                 </div>
                 <div class="td perInfo">
                     <div>
-                        <p>梁朝晖</p>
-                        <p>市场总监</p>
-                        <p>13710353879</p>
+                        <p>{{item.productJoinMan}}</p>
+                        <p>{{item.position}}</p>
+                        <p>{{item.mobile}}</p>
                     </div>
                 </div>
                 <div class="td status">{{renderStatus(item)}}</div>

@@ -6,7 +6,10 @@
                 <span>{{item.title}}</span>
                 <i class="icon" :class="{'el-icon-caret-bottom':!item.showMore,'el-icon-caret-top':item.showMore}" @click="item.showMore=!item.showMore"></i>
             </div>
-            <progressImg :data="item" v-if="item.showMore"></progressImg>
+            <div v-if="item.showMore">
+                <progressImg :data="item" v-if="item.imgAddr1"></progressImg>
+                <noUpload v-else></noUpload>
+            </div>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -14,20 +17,22 @@
                 <span>验收完成</span>
                 <i class="icon" :class="{'el-icon-caret-bottom':!check,'el-icon-caret-top':check}"  @click="check=!check"></i>
             </div>
-            <checkOrder class="check_wrap" v-if="check"></checkOrder>
+            <checkOrder class="check_wrap" role="0" :orderNo="orderNo" :proCommNo="proCommNo" :leaseNo="leaseNo" :data="acceptanceData" v-if="check"></checkOrder>
         </div>
     </div>
 </template>
 <script>
 import progressImg from '../../components/progressImg';
 import checkOrder from '../../../components/checkOrder';
+import noUpload from '../../../components/noUpload';
 import {customerModule} from '../../../api/main';
 export default {
-    props:['leaseNo'],
+    props:['leaseNo','orderNo','proCommNo'],
     data(){
         return {
             check:false,
-            data:[]
+            data:[],
+            acceptanceData:''
         }
     },
     methods:{
@@ -45,12 +50,12 @@ export default {
                 }
             })
         },
-        getAcceptanceVO(){//获取验收信息
+        getAcceptanceVO(){//获取验收信息 有验收含就显示第六步
             customerModule.getAcceptanceVO({
                 leaseContractNo:this.leaseNo
             }).then(res=>{
                 if(res.statusCode=='1'){
-
+                    this.acceptanceData=res.data;
                 }
             })
         }
@@ -62,7 +67,8 @@ export default {
     },
     components:{
         progressImg,
-        checkOrder
+        checkOrder,
+        noUpload
     }
 }
 </script>

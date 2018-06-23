@@ -78,6 +78,8 @@ export const customerModule={
     getCustomerstMainLease:params => { return customerAxios.get('/customers/getMainLease', {params:params}).then(res => res.data); },
     //获取客户合同详情
     getMainLeaseDetail:params => { return customerAxios.get('/customers/getMainLeaseDetail', {params:params}).then(res => res.data); },
+    //保存验收信息
+    acceptance:params => { return customerAxios.post('/customers/acceptance', params).then(res => res.data); },
     //获取验收信息
     getAcceptanceVO:params => { return customerAxios.get('/customers/getAcceptanceVO', {params:params}).then(res => res.data); },
 
@@ -121,11 +123,16 @@ export const customerModule={
     getContractProgress:params => { return customerAxios.get('/supplier/getContractProgress', {params:params}).then(res => res.data); },
     //获取合同列表
     getMainLease:params => { return customerAxios.get('/supplier/getMainLease', {params:params}).then(res => res.data); },
+    //获取验收完成接口
+    getSupplierAcceptanceVO:params => { return customerAxios.get('/supplier/getAcceptanceVO', {params:params}).then(res => res.data); },
     //保存供应商售后对接人信息
     saveAfterSaleMan:params => { return customerAxios.post('/supplier/saveAfterSaleMan', params).then(res => res.data); },
     //获取供应商售后对接人信息
     getAfterSaleMan:params => { return customerAxios.get('/supplier/getAfterSaleMan', {params:params}).then(res => res.data); },
-    
+    //获取交易进展接口
+    getProductListComm:params => { return customerAxios.get('/supplier/getProductListComm', {params:params}).then(res => res.data); },
+    //获取客户联系人信息
+    getCustomerContact:params => { return customerAxios.get('/supplier/getCustomerContact', {params:params}).then(res => res.data); },
     
     //获取消息接口
     getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },
