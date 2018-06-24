@@ -208,13 +208,13 @@ export default {
             this.saveProductComm();
         },
         submit(){//出现弹窗
-            console.log(this.data)
-            console.log(this.furniture)
+            // console.log(this.data)
+            // console.log(this.furniture)
             if(this.disabled) return;
             this.selectData=[];
             let data=[...this.furniture,...this.data];
             this.handlerData(data);
-            console.log(this.selectData)
+            // console.log(this.selectData)
             this.visible=true;
         },
         handlerData(data){
@@ -242,7 +242,8 @@ export default {
                     this.loading=false;
                     this.visible=false;
                     this.disabled=true;
-                    this.buttonText='提交成功，推荐结果请见下方'
+                    this.buttonText='提交成功，推荐结果请见下方';
+                    this.$emit('updateRecommend');
                 }
             })
         }

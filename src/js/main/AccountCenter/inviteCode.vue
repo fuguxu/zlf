@@ -2,18 +2,49 @@
     <div class="inviteCode">
         <div class="title">请输入邀请码，关联订单</div>
         <div class="input_code_box">
-            <el-input placeholder="请输入您的专属邀请码"></el-input>
+            <el-input @blur="valiateCode" :maxlength="6" v-model="inviteCode" placeholder="请输入您的专属邀请码"></el-input>
+            <div class="error_message" v-if="errorMessage">
+                <i class="icon el-icon-error"></i>
+                <span>{{errorMessage}}</span>
+            </div>
         </div>
         <div>
-            <span class="button">提交</span>
+            <span @click="relationOrder" class="button">提交</span>
         </div>
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            
+            inviteCode:'',
+            errorMessage:''
+        }
+    },
+    methods:{
+        valiateCode(){
+            if(!this.inviteCode){
+                this.errorMessage='请输入您的专属邀请码！';
+                return false;
+            }else{
+                this.errorMessage='';
+                return true;
+            }
+        },
+        relationOrder(){
+            if(this.valiateCode()){
+                customerModule.relationOrder({
+                    code:this.inviteCode
+                }).then(res=>{
+                    if(res.statusCode=='1'){
+                        let data=res.data;
+                        this.$router.push(`/trade/detail/progress?id=${data.orderNo}&leaseType=${data.leaseType}&listNo=${data.proListCommNo}`)
+                    }else{
+                        this.errorMessage=res.message;
+                    }
+                })
+            }
         }
     }
 }
@@ -23,32 +54,38 @@ export default {
         padding-left:43px;
         padding-top:50px;
         .title{
-            color: #292B2C;
-            font-size:14px;
+            // color: #292B2C;
+            // font-size:14px;
             padding-bottom: 20px;
         }
         .input_code_box{
-            width:250px;
-        }
-        .el-input /deep/ .el-input__inner{
-            border: 1px solid #dbd8d3;
-            height:32px;
-            &:focus{
-                box-shadow: 0 0 5px #d7d7d7;
+            display: flex;
+            .error_message{
+                display: flex;
+                align-items: center;
+                .icon{
+                    margin:0 5px 0 15px;
+                }
             }
         }
+        .el-input{
+            width:296px;
+        }
+        .el-input /deep/ .el-input__inner{
+            height:40px;
+        }
         .button{
-            width:70px;
-            height: 30px;
+            width:148px;
+            height: 40px;
             margin-top:30px;
             // cursor: pointer;
             // display: inline-block;
-            font-size: 14px;
+            // font-size: 14px;
             color: #fff;
-            line-height:30px;
+            line-height:40px;
             // text-align: center;
             // border-radius: 5px;
-            background: #ed9f34;
+            // background: #ed9f34;
             &:hover{
                 // background: #f1b255;
             }

@@ -73,7 +73,7 @@
                     </ul>
                 </div>
                 <div class="step font16"><span class="line"></span><span>a.开始选择您的租赁物以及对应的供应商来源</span></div>
-                <choiceRent :orderNo="orderNo"></choiceRent>
+                <choiceRent @updateRecommend="updateRecommend" :orderNo="orderNo"></choiceRent>
                 <div class="recommend_supplier">
                     <div class="step font16"><span class="line"></span><span>b.与供应商产品沟通进展</span></div>
                     <div class="detail">
@@ -112,18 +112,22 @@
                         </div>
                         <div class="detail_item">
                             <div class="detail_title"><span class="dot"></span><span>指定合作供应商产品清单沟通进展</span></div>
-                            <ul>
-                                <li class="title">公寓固装家具产品清单沟通进展</li>
-                                <li><span>1. 该供应商已与您取得联系</span><span>2018/04/23 15:21</span></li>
-                                <li><span>2. 当前沟通基本顺利。</span><span>2018/04/23 15:21</span></li>
+                            <ul class="progress" v-for="(item,index) in appointProgress" :key="index">
+                                <li class="title">{{item.name}}产品清单沟通进展</li>
+                                <li v-for="(it,i) in item.list" :key="i">
+                                    <span>{{i+1}}. {{it.progressDesc}}</span>
+                                    <span>{{it.createTime}}</span>
+                                </li>
                             </ul>
                         </div>
                         <div class="detail_item">
                             <div class="detail_title"><span class="dot"></span><span>推荐供应商产品清单沟通进展</span></div>
-                            <ul>
-                                <li class="title">公寓固装家具产品清单沟通进展</li>
-                                <li><span>1. 该供应商已与您取得联系</span><span>2018/04/23 15:21</span></li>
-                                <li><span>2. 当前沟通基本顺利。</span><span>2018/04/23 15:21</span></li>
+                            <ul class="progress" v-for="(item,index) in recommendProgress" :key="index">
+                                <li class="title">{{item.name}}产品清单沟通进展</li>
+                                <li v-for="(it,i) in item.list" :key="i">
+                                    <span>{{i+1}}. {{it.progressDesc}}</span>
+                                    <span>{{it.createTime}}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -137,7 +141,32 @@
                 <img v-if="data.length>0&&data[4].isOperation=='0'" class="lock" src="../../../../img/lock.png" alt="">
                 <i class="icon" :class="{'el-icon-caret-bottom':!logistics,'el-icon-caret-top':logistics}"  @click="clickExtend(4,'logistics')"></i>
             </div>
-            
+            <div class="extend logistics" v-if="logistics">
+                <ul v-for="(item,index) in contractAndPay" :key="index" class="logistics_item">
+                    <li class="logistics_title">{{item.name}}</li>
+                    <ul v-for="(it,i) in item.list" :key="i" class="second_item">
+                        <li >
+                            <span v-if="it.ext1" class="colorYellow">{{it.ext1}}></span>
+                            <span class="color6">签署购销合同与付款</span>
+                        </li>
+                        <li>
+                            <span>a.线下签署</span>
+                            <span class="colorBlue">《购销合同》</span>
+                            <img v-if="it.financLeaseContractStatus==1" src="../../../../img/pass_icon.png" alt="">
+                        </li>
+                        <li>
+                            <span>b.依照合同约定期限，请您线下缴付该租赁物</span>
+                            <span class="colorBlue">“保证金及平台服务费”</span>
+                            <img v-if="it.marginLeaseholdStatus==1" src="../../../../img/pass_icon.png" alt="">
+                        </li>
+                        <li>
+                            <span>c.依照合同约定期限，请您线下缴付该租赁物</span>
+                            <span class="colorBlue">“第一次月付租金”</span>
+                            <img v-if="it.firstRentStatus==1" src="../../../../img/pass_icon.png" alt="">
+                        </li>
+                    </ul>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -157,7 +186,10 @@ export default {
             logistics:false,
             projectDetail:{},
             appointSupplier:[],
-            recommendSupplier:[]
+            recommendSupplier:[],
+            appointProgress:[],
+            recommendProgress:[],
+            contractAndPay:[]
         }
     },
     methods:{
@@ -168,7 +200,12 @@ export default {
                     this.getProjectInfo();
                     this.getAppointSupplier();
                     this.getRecommendSupplier();
+                    this.getAppointProgress();
+                    this.getRecommendProgress();
+                }else if(this.logistics){
+                    this.getContractAndPay();
                 }
+
             }
         },
         getProjectInfo(){//获得大客户联系人
@@ -189,6 +226,50 @@ export default {
             customerModule.getRecommendSupplier({orderNo:this.orderNo}).then(res=>{
                 if(res.statusCode=='1'){
                     this.recommendSupplier=res.data;
+                }
+            })
+        },
+        getAppointProgress(){//获取指定合作供应商产品列表
+            customerModule.getAppointProgress({orderNo:this.orderNo}).then(res=>{
+                if(res.statusCode=='1'){
+                    this.appointProgress=res.data.map(item=>{
+                        item.list=item.list.map(it=>{
+                            return {
+                                ...it,
+                                createTime:AppUtil.transferTimeToString(it.createTime,'/',true)
+                            }
+                        })
+                        return item;
+                    });
+                }
+            })
+        },
+        getRecommendProgress(){//获取指定合作供应商产品列表
+            customerModule.getRecommendProgress({orderNo:this.orderNo}).then(res=>{
+                if(res.statusCode=='1'){
+                    this.recommendProgress=res.data.map(item=>{
+                        item.list=item.list.map(it=>{
+                            return {
+                                ...it,
+                                createTime:AppUtil.transferTimeToString(it.createTime,'/',true)
+                            }
+                        })
+                        return item;
+                    });
+                }
+            })
+        },
+        updateRecommend(){//点击提交租赁物后 更新推荐结果
+            this.getProjectInfo();
+            this.getAppointSupplier();
+            this.getRecommendSupplier();
+            this.getAppointProgress();
+            this.getRecommendProgress();
+        },
+        getContractAndPay(){//获取合同与付款
+            customerModule.getContractAndPay({orderNo:this.orderNo}).then(res=>{
+                if(res.statusCode=='1'){
+                    this.contractAndPay=res.data;
                 }
             })
         }
@@ -250,6 +331,32 @@ export default {
             padding:0px 28px;
             padding-bottom:40px;
             border:1px solid rgba(231, 231, 231, 1);
+            &.logistics{
+                padding:0px 0px 0px 50px;
+                .logistics_item{
+                    margin-top:20px;
+                }
+                .second_item{
+                    margin:20px 0px;
+                    line-height: 34px;
+                }
+                li{
+                    display: flex;
+                    align-items: center;
+                    img{
+                        margin-left:10px;
+                    }
+                }
+                .colorBlue{
+                    color:rgba(75, 155, 255, 1);
+                }
+                .logistics_title{
+                    line-height: 34px;
+                    background: rgba(255,166,50,1);
+                    color:#fff;
+                    padding-left:13px;
+                }
+            }
             .el-form{
                 padding-top:20px;
                 /deep/ .el-form-item__label{
@@ -371,6 +478,9 @@ export default {
                             color:rgba(75,168,255,1);
                             text-decoration: underline;
                         }
+                    }
+                    .progress{
+                        margin-bottom: 20px;
                     }
                     ul{
                         border:1px solid rgba(244,244,244,1);

@@ -170,8 +170,8 @@ export default {
                 display: inline-block;
            }
            /deep/ .el-input__inner{
-               height:30px;
-               line-height: 30px;
+               height:40px;
+               line-height: 40px;
             //    font-size:13px;
                cursor: pointer;
            }
@@ -190,7 +190,7 @@ export default {
     }
    .item_content .el-input-person.el-input{
        width:148px;
-       /deep/ .el-input__inner{
+       /deep/ .el-input__inner[disabled]{
            padding:0px;
        }
    }

@@ -260,7 +260,9 @@ export default {
     .recommend_detail{
         padding-bottom: 40px;
         .preview_box{
-            padding-left:80px;
+            // padding-left:80px;
+            position: relative;
+            left: 80px;
         }
         .title_box{
             display: flex;
@@ -351,6 +353,7 @@ export default {
             .upload_box{
                 padding-left:11px;
                 padding-top:50px;
+                overflow-x: hidden;
             }
         }
         &.readonly{

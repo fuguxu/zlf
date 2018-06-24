@@ -74,6 +74,14 @@ export const customerModule={
     getAppointSupplier:params => { return customerAxios.get('/customers/getAppointSupplier', {params:params}).then(res => res.data); },
     //获取推荐供应商
     getRecommendSupplier:params => { return customerAxios.get('/customers/getRecommendSupplier', {params:params}).then(res => res.data); },
+    //获取指定合作供应商产品列表
+    getAppointProgress:params => { return customerAxios.get('/customers/getAppointProgress', {params:params}).then(res => res.data); },
+    //获取推荐供应商产品列表
+    getRecommendProgress:params => { return customerAxios.get('/customers/getRecommendProgress', {params:params}).then(res => res.data); },
+    //获取合同与付款
+    getContractAndPay:params => { return customerAxios.get('/customers/getContractAndPay', {params:params}).then(res => res.data); },
+
+
     //获取客户合同列表
     getCustomerstMainLease:params => { return customerAxios.get('/customers/getMainLease', {params:params}).then(res => res.data); },
     //获取客户合同详情
@@ -133,7 +141,10 @@ export const customerModule={
     getProductListComm:params => { return customerAxios.get('/supplier/getProductListComm', {params:params}).then(res => res.data); },
     //获取客户联系人信息
     getCustomerContact:params => { return customerAxios.get('/supplier/getCustomerContact', {params:params}).then(res => res.data); },
-    
+    //邀请码
+    relationOrder:params => { return customerAxios.get('/supplier/relationOrder', {params:params}).then(res => res.data); },
+
+
     //获取消息接口
     getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },
     getMsgDetail:params => { return customerAxios.get('/msg/getMsgDetail', {params:params}).then(res => res.data); },

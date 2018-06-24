@@ -9,7 +9,7 @@
             <div class="form_item">
                 <div class="item_content">
                     <el-input :maxlength="6" @blur="blurIdentifyCode"  v-model="code" placeholder="输入验证码">
-                        <i slot="suffix" @click="getCode" class="identifyCode" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
+                        <i slot="suffix" @click="getCode" class="identifyCode button" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
                     </el-input>
                     <div class="error_message" v-if="codeErrorMessage">
                         <i class="icon el-icon-error"></i>
@@ -158,34 +158,30 @@ export default {
         }
         .identifyCode{
             font-style: normal;
-            width:115px;
-            line-height: 24px;
-            color: #F29F33;
-            font-size:14px;
-            display: inline-block;
-            border-radius: 5px;
-            margin-top: 2px;
+            width:120px !important;
+            line-height: 40px;
+            height:40px;
+            color: #fff;
             cursor: pointer;
             box-sizing: border-box;
-            border:1px solid #ffe9d3;
             &:hover{
-                background: #ffe9d3;
             }
             &.getCoded{
-                color:#ff6c72;
             }
             &.getCoding{
-                color:rgb(174,174,174);
+                color:rgba(102,102,102,1);
+                background:rgba(240,240,240,1);
                 &:hover{
-                    background: #fff;
+                    background:rgba(240,240,240,1);
                 }
             }
+        }
+        /deep/ .el-input__suffix{
+            right:0px;
         }
         .error_message{
             position: absolute;
             left: 100%;
-            font-size: 13px;
-            color: #FF6C72;
             top:0;
             height:100%;
             display: flex;
@@ -197,24 +193,18 @@ export default {
             }
         }
         .item_content .el-input{
-            width:250px;
+            width:296px;
         }
         .label{
             width:120px;
         }
         .button{
-            width:80px;
-            // opacity:1;
-            // transition: all 1s;
-            // &.hide{
-            //     opacity:0;
-            //     // height:0px ;
-            //     // overflow: hidden;
-            // }
+            width:148px;
+            line-height: 40px;
         }
         .tel_text{
-            font-size:14px;
-            color: #292B2C;
+            // font-size:14px;
+            // color: #292B2C;
             line-height: 40px;
         }
         .edit_item{
