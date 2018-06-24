@@ -5,7 +5,7 @@
             <div class="item_content">{{form.userFullname}}</div>
         </div>
         <div class="form_item">
-            <div class="label">会员名</div>
+            <div class="label">昵称</div>
             <div class="item_content">{{form.userAbbr}}</div>
         </div>
         <div class="form_item">

@@ -1,7 +1,7 @@
 <template>
     <div class="dialog dialog_wrap" @click="cancel">
         <div class="content" @click.stop="1">
-            <div class="header font18 color6">您选择了如下租赁物以及对应的供应商来源，<br />请再次确认！</div>
+            <div class="header font18 color6">您选择了以下租赁物以及对应的供应商来源，<br />请再次确认！</div>
             <div class="table-wrap">
                 <table>
                     <tr>

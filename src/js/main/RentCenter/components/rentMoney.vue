@@ -7,7 +7,7 @@
         <rentMoneyInfo :orderNo="orderNo" :cusType="1"></rentMoneyInfo>
         <div class="title">
             <div class="line"></div>
-            <div>请留存我司租金对接人信息</div>
+            <div>请留存我司财务对接人信息</div>
         </div>
         <div class="my_person" v-if="projectInfo.platFinancerName">
             <div class="form_item">

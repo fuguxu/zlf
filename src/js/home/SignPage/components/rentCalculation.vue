@@ -21,7 +21,7 @@
                 <div class="form_item">
                     <div class="label">
                         <span>选择租赁年化率</span>
-                        <span class="tips">风控资料提交越齐全，您的年化率将越低。</span>
+                        <span class="tips">认证资料提交越齐全，您的年化率将越低。</span>
                     </div>               
                     <div class="input_box" >
                         <el-select class="input" v-model="rentRate" placeholder="" placeholder="请选择年化率">
@@ -73,9 +73,9 @@
                             保证金：<span class="number">{{data.quarterlyRent||0.0}}</span>元
                         </div>
                         <div class="item">
-                            融资服务费：<span class="number">{{data.financingServiceFee||0.0}}</span>元
+                            平台服务费：<span class="number">{{data.financingServiceFee||0.0}}</span>元
                         </div>
-                        <div class="title before">《融资租赁合同》签署后，您须缴付租金，按月份预付：</div>
+                        <div class="title before">《购销合同》签署后，您须缴付租金，按月份预付：</div>
                         <div class="item">
                             每月租金：<span class="number">{{data.marginAmount||0.0}}</span>元
                         </div>

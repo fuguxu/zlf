@@ -8,7 +8,7 @@
           <div class="role_img font0">
             <img class="img1" src="../../../img/u3152.png" alt="">
           </div>
-          <div class="role_coorperation">我们已与金凤凰家具、森源家具、长江家具、华日家居、全友家居、比特家具等优质供应商达成战略供应合作</div>
+          <!-- <div class="role_coorperation">我们已与金凤凰家具、森源家具、长江家具、华日家居、全友家居、比特家具等优质供应商达成战略供应合作</div> -->
           <div @click="go" class="role_link">供应商限时进驻</div>
       </div>
       <div class="banner banner2"></div>

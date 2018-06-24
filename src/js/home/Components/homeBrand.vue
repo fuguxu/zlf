@@ -14,7 +14,7 @@
         <div class="gif_container">
             <div class="pic_gif1">
                 <div class="pic_text" :class="{showPic:showPic1}">
-                    <p class="text text1">融资租赁，看得见的优势</p>
+                    <p class="text text1">家居租赁，看得见的优势</p>
                     <p class="text text2">解决项目前期70%采购投入</p>
                     <p class="text text3">盘活最大资金流</p>
                     <p class="text text3">加速规模扩张，减税增收</p>

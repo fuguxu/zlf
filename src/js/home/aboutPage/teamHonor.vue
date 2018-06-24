@@ -5,7 +5,7 @@
           <leftContent></leftContent>
           <div class="content_right">
                 <div class="font18 title_text">团队荣誉</div>
-                <div class="font16 title_en">TEAM GLORY</div>
+                <div class="font16 title_en">TEAM HONOR</div>
                 <div class="font0" style="margin-bottom:20px;">
                     <img src="../../../img/lbs_frame.png" alt="">
                 </div>

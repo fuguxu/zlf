@@ -14,8 +14,8 @@
                     <li class="item">
                         <img src="../../../img/program_icon.png" alt="">
                         <p class="text">租赁期限 : 1、2、3、5年</p>
-                        <p class="text">保证金：融资总额20%</p>
-                        <p class="text">服务费：融资总额5%</p>
+                        <p class="text">保证金：租赁总额20%</p>
+                        <p class="text">服务费：租赁总额5%</p>
                     </li>
                     <li class="item">
                         <img src="../../../img/execute_icon.png" alt="">

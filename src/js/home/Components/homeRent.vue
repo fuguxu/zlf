@@ -28,7 +28,7 @@
                 <div class="item">
                     <img class="img defalut" src="../../../img/system_nor_icon.png" alt="">
                     <img class="img hover" src="../../../img/system_sel_icon.png" alt="">
-                    <span class="text">弱电系统</span>
+                    <span class="text">弱电</span>
                 </div>
                 <div class="item">
                     <img class="img defalut" src="../../../img/intelligent_nor_icon.png" alt="">

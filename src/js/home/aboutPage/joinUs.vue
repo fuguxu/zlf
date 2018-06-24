@@ -5,7 +5,7 @@
       <div class="header">
           <!-- <p class="chance">职 业 机 会</p>
           <p class="career">Careers</p> -->
-          <p class="email font20">简历投递至：hr@zulifang.co</p>
+          <p class="email font20">简历投递至：hr@zucube.cn</p>
           <p class="line"></p>
       </div>
       <div class="content">

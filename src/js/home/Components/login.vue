@@ -128,7 +128,7 @@ export default {
     },
     computed:{
         roleText(){
-            return this.role==1?'客户会员登录':'供应商会员登录'
+            return this.role==1?'客户登录':'供应商登录'
         }
     }
 }

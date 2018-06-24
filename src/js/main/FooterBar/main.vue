@@ -4,7 +4,7 @@
            <div class="foot-logo">
                <img class="img" src="../../../img/u714.png" alt="">
            </div>
-           <p class="title text">招商局集团旗下互联网金融租赁平台</p>
+           <p class="title text">招商局集团旗下互联网家居租赁平台</p>
             <p class="desc text">依托招商局集团海外港口资源优势，立足全球采购，整合优势资源，建立了以商流、物流、信息流、资金流四位一体的全球酒店、公寓等住宿行业供应链管理平台；为企业提供设计研发建议、生产品质把控、交付周期保证等一站式服务。</p>           
         </div>
     </div>

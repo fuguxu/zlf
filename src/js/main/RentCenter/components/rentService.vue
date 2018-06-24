@@ -17,14 +17,14 @@
         <div class="item">
             <div class="item_sub">
                 <div class="circel">2</div>
-                <span>签署《融资服务合作框架协议》</span>
+                <span>签署《平台服务协议》</span>
                 <!-- <i v-if="data[1].isOperation=='0'" class="el-icon-setting"></i> -->
                 <i class="icon" :class="{'el-icon-caret-bottom':!doing,'el-icon-caret-top':doing}" @click="clickExtend(1,'doing')"></i>
             </div>
             
             <div v-if="doing" class="extend" >
                 <div class="extend_title">建立双方互信、良好的合作前提，请您：</div>
-                <p class="text"><span> a. 下载《融资服务合作框架协议》</span><a class="link" href="">（点此下载）</a></p>
+                <p class="text"><span> a. 下载《平台服务协议》</span><a class="link" href="">（点此下载）</a></p>
                 <p class="text"><span> b. 线下签署并加盖公司红章，上传清晰可见的扫描件</span></p>
                 <uploadLicence saveType="cooperationAgreement" :orderNo="orderNo" :showMore="false"></uploadLicence>
                 <!-- <div class="next_step">审核通过，将开启下一步</div> -->
@@ -33,13 +33,13 @@
         <div class="item">
             <div class="item_sub">
                 <div class="circel">3</div>
-                <span>提交风控资料</span>
+                <span>提交认证资料</span>
                 <i class="icon" :class="{'el-icon-caret-bottom':!finish,'el-icon-caret-top':finish}" @click="clickExtend(2,'finish')"></i>
             </div>
             
             <div v-if="finish" class="extend">
-                <div class="extend_title">授信清单要求的风控资料准备越齐全，租赁年化率将越低！</div>
-                <p class="text"><span> a. 下载《租立方融资租赁授信清单》</span><a class="link" href="">（点此下载）</a></p>
+                <div class="extend_title">认证清单要求的认证资料准备越齐全，租赁年化率将越低！</div>
+                <p class="text"><span> a. 下载《租立方认证资料清单》</span><a class="link" href="">（点此下载）</a></p>
                 <p class="text"><span> b. 请将清单内要求的资料准备齐全，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
                 <p class="text"><span> c.务必填写<span class="link">“{{orderName}}”</span>项目负责人信息，以便租立方大客户代表与您即刻取得联系！</span></p>
                 <rentMoneyInfo :orderNo="orderNo" :cusType="0" placeholderPerson="请输入负责人姓名" placeholderJob="请输入负责人在贵司所担任职位"></rentMoneyInfo>
@@ -65,7 +65,7 @@
             <div v-if="transfer" class="extend">
                 <div class="big_custorm">
                     <p class="font16">此环节，请您与供应商针对产品清单沟通产品需求、报价等相关事宜。</p>
-                    <p class="font16">我们将指派租立方大客户代表，撮和供应商与您之间的沟通，监督供应商发挥应用的作用。</p>
+                    <p class="font16">我们将指派租立方大客户代表，负责该项目的租赁服务。</p>
                     <ul>
                         <li class="title">租立方大客户代表</li>
                         <li class="name"><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span><span>{{projectDetail.platBigCustomerName}}</span></li>
@@ -133,7 +133,7 @@
         <div class="item">
             <div class="item_sub">
                 <div class="circel">5</div>
-                <span>签署租赁合同与付款</span>
+                <span>签署购销合同与付款</span>
                 <img v-if="data.length>0&&data[4].isOperation=='0'" class="lock" src="../../../../img/lock.png" alt="">
                 <i class="icon" :class="{'el-icon-caret-bottom':!logistics,'el-icon-caret-top':logistics}"  @click="clickExtend(4,'logistics')"></i>
             </div>

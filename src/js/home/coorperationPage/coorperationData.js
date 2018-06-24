@@ -11,7 +11,7 @@
         itemAbout:'酒店规模9层，大堂空间100平米；客房72套，直梯配套，客房平均面积从25~45平米，带9套LOFT空间客房。',
         type:'酒店',
         keyWord:'生活主题、公寓式酒店、有温度、家',
-        area:'海南三亚',
+        area:'海南·三亚',
         url:require('../../../img/sanwuqiwu/sanwuqiwu.png'),
         bannerUrl:require('../../../img/sanwuqiwu/banner.png'),
         children:[
@@ -44,7 +44,7 @@
         itemAbout:'酒店总投资约4900万元人民币，家具采购总额980万元。',
         type:'酒店',
         keyWord:'新中式、禅意、轻奢、智能、环保',
-        area:'广东广州',
+        area:'广东·广州',
         url:require('../../../img/guangzhouhuaxuanli/guangzhouhuaxuanli.png'),
         bannerUrl:require('../../../img/guangzhouhuaxuanli/banner.png'),
         children:[
@@ -77,7 +77,7 @@
         itemAbout:'酒店总投资约2500万元人民币；有健身房，会议室，餐吧，书吧配套设施；一楼大堂1000平米左右  23-28层客房面积8600平米左右。',
         type:'酒店',
         keyWord:'新中式、禅意、轻奢、智能、环保',
-        area:'广东佛山',
+        area:'广东·佛山',
         url:require('../../../img/shundehuaxuanli/shundehuaxuanli.png'),
         bannerUrl:require('../../../img/shundehuaxuanli/banner.png'),
         children:[
@@ -110,7 +110,7 @@
         itemAbout:'酒店总投资约1800万元人民币，客房单价在260-360左右。',
         type:'公寓',
         keyWord:'舒适、轻奢、有温度、家',
-        area:'湖南长沙',
+        area:'湖南·长沙',
         url:require('../../../img/ruisibao/ruisibao.png'),
         bannerUrl:require('../../../img/ruisibao/banner.png'),
         children:[
@@ -143,7 +143,7 @@
         itemAbout:'酒店总投资约1500万元人民币，有健身房、泳池、会议、餐吧、书吧配套设施，面对高端商务客、商端长租居家。',
         type:'公寓',
         keyWord:'高端、商务、温度、居家、智能、环保',
-        area:'广东深圳',
+        area:'广东·深圳',
         url:require('../../../img/xizhixing/xizhixing.png'),
         bannerUrl:require('../../../img/xizhixing/banner.png'),
         children:[
@@ -176,7 +176,7 @@
         itemAbout:'配套咖啡吧、书吧、餐厅，客房单价在350元/天/间。',
         type:'公寓',
         keyWord:'新中式、禅意',
-        area:'广东深圳',
+        area:'广东·深圳',
         url:require('../../../img/hualiliyu/hualiliyu.png'),
         bannerUrl:require('../../../img/hualiliyu/banner.png'),
         children:[
@@ -275,7 +275,7 @@
         itemAbout:'项目总投资约324万。',
         type:'公寓',
         keyWord:'现代简约、商务、高级灰',
-        area:'湖南长沙',
+        area:'湖南·长沙',
         url:require('../../../img/bubugao/bubugao.png'),
         bannerUrl:require('../../../img/bubugao/banner.png'),
         children:[
@@ -308,7 +308,7 @@
         itemAbout:'loft房、飘窗房、衣帽间房、阳台房、一房一厅等满足不同需求。会议厅、办公厅、茶歇区、观影区、健身房、瑜伽房、娱乐区、中央厨房、洗衣房等公区设施。房屋租金2000~4500不等。',
         type:'公寓',
         keyWord:'简约、现代、工业风',
-        area:'广东广州',
+        area:'广东·广州',
         url:require('../../../img/guangzhouyou/guangzhouyou.png'),
         bannerUrl:require('../../../img/guangzhouyou/banner.png'),
         children:[
@@ -341,7 +341,7 @@
         itemAbout:'项目租赁周期10年，面对客户：创客、周边中小企业管理层。增值服务：可共享园区的相关配套（如停车场、便利店、咖啡厅、屋顶花园等）；另外，项目落成后，新派将寻求外部合作，如洗衣、巴士服务等，为顾客提供增值服务。华南地区，深圳第一个项目，预计开业时间2018年7月11日。',
         type:'公寓',
         keyWord:'融合、包容、注重人文交流、自然',
-        area:'广东深圳',
+        area:'广东·深圳',
         url:require('../../../img/xinpaigongyu/xinpaigongyu.png'),
         bannerUrl:require('../../../img/xinpaigongyu/banner.png'),
         children:[
@@ -374,7 +374,7 @@
         itemAbout:'该项目首期为办公室自用办公家具，总共8层楼，每层约3000平方，总面积超24000平方。合同额212万人民币。项目二期为自用高档公寓，总共6层，每层10套公寓+一套领导公寓，总共66套公寓，活动家私合同额137万人民币。三期补充工程正在进行中，两层楼，每层3000平方，共6000平方。',
         type:'办公场所',
         keyWord:'传统、实用、稳重',
-        area:'广东韶关',
+        area:'广东·韶关',
         url:require('../../../img/ehuadianli/ehuadianli.png'),
         bannerUrl:require('../../../img/ehuadianli/banner.png'),
         children:[
@@ -407,7 +407,7 @@
         itemAbout:'该项目位于深圳市福田区NEO大厦，绿景总部大楼。55--62层，每层2500平方，总共8层。每层约2500平方楼面面积。全部办公家具从签订合同到交付使用，持续一年时间。',
         type:'办公场所',
         keyWord:'时尚、实用、高档',
-        area:'广东深圳',
+        area:'广东·深圳',
         url:require('../../../img/lvjing/lvjing.png'),
         bannerUrl:require('../../../img/lvjing/banner.png'),
         children:[
@@ -440,7 +440,7 @@
         itemAbout:'基伍国际有限公司总部位于深圳市龙岗区坂田，香港分公司位于香港特别行政区荃湾区海盛路9号有线电视大楼19F。整体办公家具高档豪华。客户反映很好，目前零返修。',
         type:'办公场所',
         keyWord:'时尚、实用、高档',
-        area:'香港荃湾区',
+        area:'香港·荃湾区',
         url:require('../../../img/jiwu/jiwu.png'),
         bannerUrl:require('../../../img/jiwu/banner.png'),
         children:[
