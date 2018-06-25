@@ -32,7 +32,7 @@
                            <li class="title"><a href="javascript:;">帮助中心</a></li>
                            <li class="item"><a href="#/about/qs">常见问题</a></li>
                            <!-- <li class="item"><a href="#/about/contact">联系我们</a></li> -->
-                           <li class="item"><a href="https://www.baidu.com" target="_blank">建议&反馈</a></li>
+                           <li class="item"><a href="http://cn.mikecrm.com/HQFz0Wp" target="_blank">建议&反馈</a></li>
                        </ul>
                        <ul class="link_right_ul">
                            <li class="title"><a href="javascript:;">关于租立方</a></li>

@@ -1,7 +1,8 @@
 <template>
     <div class="contract_list">
         <ul>
-            <router-link tag="li"  v-for="(item,index) in list" :key="index"  :to="`/trade/detail/contract/detail?id=${$route.query.id}&leaseType=${$route.query.leaseType}&listNo=${$route.query.listNo}&leaseContractNo=${item.leaseContractNo}`">
+            <router-link tag="li"  v-for="(item,index) in list" :key="index" 
+            :to="renderHerf(item)">
                 <div class="item" @mouseenter="mouseEnter(index)" @mouseleave="mouseLeave(index)">
                      <div class="icon_wrap">
                         <img ref="hand" class="hand_icon" src="../../../img/hand.png" alt="">
@@ -17,7 +18,7 @@ import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            list:[]
+            list:[],
         }
     },
     methods:{
@@ -29,6 +30,10 @@ export default {
                     this.list=res.data;
                 }
             })
+        },
+        renderHerf(item){
+            let leaseName=item.leaseName;
+            return `/trade/detail/contract/detail?id=${this.$route.query.id}&leaseType=${this.$route.query.leaseType}&listNo=${this.$route.query.listNo}&leaseContractNo=${item.leaseContractNo}&leaseName=${leaseName}`
         },
         mouseEnter(index){
            var el=this.$refs.hand[index];

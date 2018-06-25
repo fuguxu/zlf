@@ -1,21 +1,18 @@
 <template>
     <div class="recommend_preview">
         <div class="recommend_content">
-            <div class="title" >华日家居</div>
-            <div class="title_sub" >廊坊华日家具股份有限公司</div>
-            <p class="content">华日家具是中国驰名商标，华日家具股份有限公司旗下品牌。华日家具股份有限公司坐落于京津塘高速公路中段---廊坊经济技术开发区（距北京36公里），是中国家具的
-                一颗明珠！经历四十多年的发展，现已拥有多种风格民用、沙发软体、床垫、家居饰品、木门、橱柜、儿童、办公、宾馆等系列产品；公司生产基地占地1300多亩，建筑
-                    面积50多万平方米，员工5000多人，高等设计、管理。
-            </p>
+            <div class="title" >{{form.userAbbr}}</div>
+            <div class="title_sub" >{{form.userFullname}}</div>
+            <p class="content">{{form.briefIntro}}</p>
             <div class="equiment item">
                 <div class="item_title">
                     <div class="line"></div>
                     <div>生产设备</div>
                 </div>
-                <div class="content_item">
-                    <div class="desc">紧落实中。虽然获得一些其他城市同行的加盟意向，但罗森柏表示，每个区域对产品的需求不同。</div>
+                <div class="content_item" v-for="(item,index) in form.equipment" :key="index">
+                    <div class="desc">{{item.content}}</div>
                     <div class="img_box">
-                        <fadeIn></fadeIn>
+                        <fadeIn :list="item.fileList"></fadeIn>
                     </div>
                 </div>
             </div>
@@ -24,24 +21,70 @@
                     <div class="line"></div>
                     <div>产品介绍</div>
                 </div>
-                <div class="content_item">
-                    <div class="desc">产品一：新中式整装</div>
-                    <div class="desc">紧落实中。虽然获得一些其他城市同行的加盟意向，但罗森柏表示，每个区域对产品的需求不同。</div>
+                <div class="content_item" v-for="(item,index) in form.product" :key="index">
+                    <div class="desc">{{`产品${numbers[index]}：${item.keywords}`}}</div>
+                    <div class="desc">{{item.content}}</div>
                     <div class="img_box">
-                        <fadeIn></fadeIn>
+                        <fadeIn :list="item.fileList"></fadeIn>
                     </div>
                 </div>
-            </div>     
+            </div>
+            <div class="equiment item">
+                <div class="item_title">
+                    <div class="line"></div>
+                    <div>案例介绍</div>
+                </div>
+                <div class="content_item" v-for="(item,index) in form.cases" :key="index">
+                    <div class="desc">{{`案例${numbers[index]}：${item.keywords}`}}</div>
+                    <div class="desc">{{item.content}}</div>
+                    <div class="img_box">
+                        <fadeIn :list="item.fileList"></fadeIn>
+                    </div>
+                </div>
+            </div>       
         </div>
     </div>
 </template>
 <script>
 import fadeIn from './fadeIn';
+import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-
+            form:{},
+            numbers:['一','二','三','四','五'],
         }
+    },
+    methods:{
+        handleFile(attrList){//处理附件
+          return  attrList.map(item=>{
+                    let fileList=[];
+                    for(var i=1;i<=5;i++){
+                        if(item['imgAddr'+i]){
+                            fileList.push({url:item['imgAddr'+i]});
+                        }
+                    }
+                    return {
+                        ...this.commonObj,
+                        ...item,
+                        fileList:fileList
+                    }
+                })
+        },
+        getRecommend(){//获取详情
+            customerModule.getRecommend({userNo:this.$route.query.id}).then(res=>{
+                if(res.statusCode=='1'){
+                    this.form=res.data;
+                    this.form.briefIntro=this.form.briefIntro||'';
+                    this.form.equipment=this.handleFile(this.form.equipment);
+                    this.form.cases=this.handleFile(this.form.cases);
+                    this.form.product=this.handleFile(this.form.product);
+                }
+            })
+        },
+    },
+    mounted(){
+        this.getRecommend();
     },
     components:{
         fadeIn
@@ -98,6 +141,7 @@ export default {
         }
         .content_item{
             padding:0 22px;
+            margin-bottom: 20px;
             .desc{
                 font-size:14px;
                 color:rgba(51,51,51,1);

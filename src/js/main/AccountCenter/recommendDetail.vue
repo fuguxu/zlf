@@ -4,7 +4,7 @@
             <span class="title font18">推荐详情</span>
             <span class="desc color6 font12">以下信息在把您推荐给客户的同时呈现给客户，是您与客户的首次接触，展现产品实力的机会，祝您脱颖而出。</span>
             <span class="button edit" @click="clickEdit">编辑</span>
-            <a class="button preview" :href="`#/case?id=33`" target="_blank" v-if="this.form.isEdit=='1'" >推荐预览</a>
+            <a class="button preview" :href="`#/case?id=${user.userNo}`" target="_blank" v-if="this.form.isEdit=='1'" >推荐预览</a>
         </div>
         <div class="company_info item_info">
             <div class="title_item">
@@ -144,7 +144,8 @@ export default {
             showProductErrorMessage:false,
             showCaseErrorMessage:false,
             numbers:['一','二','三','四','五'],
-            isEdit:true
+            isEdit:true,
+            user:{}
         }
     },
     methods:{
@@ -214,7 +215,7 @@ export default {
                 })
         },
         getRecommend(){//获取详情
-            customerModule.getRecommend().then(res=>{
+            customerModule.getRecommend({userNo:this.user.userNo}).then(res=>{
                 if(res.statusCode=='1'){
                     if(res.data.isEdit=='1'){
                         this.form=res.data;
@@ -244,8 +245,10 @@ export default {
         }
     },
     mounted(){
-        this.getRecommend();
-        // this.initData();
+        AppUtil.getCurrentUserInfo((user=>{
+            this.user=user;
+            this.getRecommend();
+        }))
     },
     components:{
         uploadProduct,

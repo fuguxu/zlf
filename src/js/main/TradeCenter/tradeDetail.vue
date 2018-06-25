@@ -14,7 +14,11 @@
             </ul>
         </div>
         <div class="right">
-            <div class="item_title font18">{{activeText}}</div>
+            <div class="item_title font18">
+                <span @click="goBack" :class="{back:$route.query.leaseName}">{{activeText}}</span>
+                <i v-if="$route.query.leaseName" class="icon el-icon-caret-right"></i>
+                <span v-if="$route.query.leaseName">{{$route.query.leaseName}}</span>
+            </div>
             <div>
                 <router-view></router-view>
             </div>
@@ -51,7 +55,15 @@ export default {
     methods:{
         changeRoute(item){
             this.activeText=item.name;
+        },
+        goBack(){
+            if(this.$route.query.leaseName){
+                this.$router.go(-1);
+            }
         }
+    },
+    mounted(){
+       
     }
 }
 </script>
@@ -114,6 +126,13 @@ export default {
                line-height: 64px;
                padding-left:21px;
                border-bottom: 1px solid rgba(237, 237, 237, 1);
+               .icon{
+                   font-size: 12px;
+                   color:#ffa632;
+               }
+               .back{
+                   cursor: pointer;
+               }
            }
        }
     }

@@ -20,7 +20,7 @@
             <img class="img2" src="../../../img/u3164.png" alt="">
           </div>
           <div class="role_coorperation">我们已接受了网易新闻、凤凰网、新浪乐居、腾讯家居、迈点、今日头条、财经网、36Kr、铅笔道、创业邦等媒体的报道</div>
-          <div class="role_link">媒体合作</div>
+          <div @click="openMidea" class="role_link">媒体合作</div>
       </div>
   </div>
 </template>
@@ -34,6 +34,9 @@ export default {
   methods:{
     go(){
       this.$router.push('/sign/supplier');
+    },
+    openMidea(){
+      window.open('http://cn.mikecrm.com/Jjs0ub');
     }
   }
 }

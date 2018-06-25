@@ -23,21 +23,21 @@
                 </div>
                 <div class="item">
                      <div class="label font16">请输入新密码</div>
-                    <el-input v-model="form.password" @blur="blurpassWord" placeholder="请输入你的密码"></el-input>
+                    <el-input type="password" v-model="form.password" @blur="blurpassWord" placeholder="请输入你的密码"></el-input>
                     <div class="error_message" v-if="passWordErrorMessage">
                         <i class="icon el-icon-error"></i>
                         <span>{{passWordErrorMessage}}</span>
                     </div>
                 </div>
                  <div class="item">
-                    <el-input v-model="form.password2" @blur="blurpassWord2"  placeholder="请再次输入你的密码"></el-input>
+                    <el-input type="password" v-model="form.password2" @blur="blurpassWord2"  placeholder="请再次输入你的密码"></el-input>
                     <div class="error_message" v-if="passWordErrorMessage2">
                         <i class="icon el-icon-error"></i>
                         <span>{{passWordErrorMessage2}}</span>
                     </div>
                 </div>
                 <div class="item">
-                    <span class="button confirm font16">确认</span>
+                    <span @click="changePwd" class="button confirm font16">确认</span>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@ export default {
           }
         },
         getVerification(){//获取验证码接口
-            customerModule.getVerification({
+            customerModule.verificationPass({
                 mobile:this.form.mobile
             }).then(res=>{
                 if(res.statusCode=='1'){
@@ -96,9 +96,11 @@ export default {
       },
       getCode(){//获取验证码
           if(this.codeTime<120&&this.codeTime>0) return;
-          this.getVerification();
-          if(this.codeTime<=0){
-              this.codeTime=120;
+          if(this.blurMobile()){
+                this.getVerification();
+                if(this.codeTime<=0){
+                    this.codeTime=120;
+                }
           }
       },
         blurCode(){
@@ -138,6 +140,23 @@ export default {
               return true;
           }
       },
+      valate(){
+          return this.blurMobile()&&this.blurCode()&&this.blurpassWord()&&this.blurpassWord2()
+      },
+      changePwd(){
+          if(this.valate()){
+              customerModule.changePwd(this.form).then(res=>{
+                  if(res.statusCode=='1'){
+                      AppUtil.message(this,'修改成功','success');
+                      setTimeout(()=>{
+                          this.$router.push('/home');
+                      },1500)
+                  }else{
+                      AppUtil.message(this,res.message,'error');
+                  }
+              })
+          } 
+      }
     }
 }
 </script>

@@ -20,7 +20,7 @@ var TIME_OUT=50000;
 var zlf_base_prefix
 
 if(__DEV__){
-    zlf_base_prefix = 1?'https://api.zulifangs.com':'http://ming849358679.imwork.net:12625/api-zlf';
+    zlf_base_prefix = 0?'https://api.zulifangs.com':'http://ming849358679.imwork.net:12625/api-zlf';
 }else if(__PROD__){
     
 }
@@ -46,6 +46,8 @@ export const customerModule={
     getVerification:params => { return customerAxios.get('/verification', {params:params}).then(res => res.data); },
     //重新绑定邮箱时 获取验证码
     verificationMail:params => { return customerAxios.get('/verificationMail', {params:params}).then(res => res.data); },
+    //修改密码 获取验证码
+    verificationPass:params => { return customerAxios.get('/verificationPass', {params:params}).then(res => res.data); },
     //绑定邮箱接口
     changeMail:params => { return customerAxios.get('/changeMail', {params:params}).then(res => res.data); },
     //保存客户信息联系人
@@ -118,7 +120,7 @@ export const customerModule={
     //保存推荐详情
     saveRecommend:params => { return customerAxios.post('/supplier/saveRecommend', params).then(res => res.data); },
     //获取推荐详情
-    getRecommend:params => { return customerAxios.get('/supplier/getRecommend').then(res => res.data); },
+    getRecommend:params => { return customerAxios.get('/supplier/getRecommend', {params:params}).then(res => res.data); },
     //获取交易中心列表
     getRecommDetail:params => { return customerAxios.get('/supplier/getRecommDetail', {params:params}).then(res => res.data); },
     //获取项目客户信息
@@ -149,6 +151,10 @@ export const customerModule={
     getMsg:params => { return customerAxios.get('/msg/getMsg', {params:params}).then(res => res.data); },
     getMsgDetail:params => { return customerAxios.get('/msg/getMsgDetail', {params:params}).then(res => res.data); },
     getNotReadNum:params => { return customerAxios.get('/msg/getNotReadNum', {params:params}).then(res => res.data); },
+    //找回密码
+    changePwd:params => { return customerAxios.post('/changePwd?'+ qs.stringify(params)).then(res => res.data); },
+    //获取营业执照审核状态
+    getLicenseStatus:params => { return customerAxios.get('/msg/getNotReadNum', {params:params}).then(res => res.data); },
 }
 
 export const multipleAxios=(postArray,cb)=>{

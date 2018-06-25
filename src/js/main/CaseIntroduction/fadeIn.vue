@@ -10,7 +10,7 @@
 <script>
 export default {
     props:{
-        data:{
+        list:{
             default(){
                 return []
             }
@@ -18,18 +18,18 @@ export default {
     },
     data(){
         return {
-            list:[
-                {
-                    url:require('../../../img/p8.jpg')
-                },
+            // list:[
+            //     {
+            //         url:require('../../../img/p8.jpg')
+            //     },
                 
-                {
-                    url:require('../../../img/p13.jpg')
-                },
-                {
-                    url:require('../../../img/p10.jpg')
-                },
-            ],
+            //     {
+            //         url:require('../../../img/p13.jpg')
+            //     },
+            //     {
+            //         url:require('../../../img/p10.jpg')
+            //     },
+            // ],
         }
     },
     methods:{

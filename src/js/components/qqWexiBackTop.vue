@@ -4,7 +4,7 @@
             <img class="top_icon" src="../../img/arrow_up.png" @click="toTop" :class="{show:showBackTop}" alt="">
         </div>
         <div class="qq square">
-            <div class="text">在线<br />客服</div>
+            <div @click="openQQ" class="text">在线<br />客服</div>
         </div>
         <div class="wexin square">
             <div class="text" @mouseenter="mouseenter" @mouseleave="mouseleave">关注<br />微信</div>
@@ -50,6 +50,9 @@ export default {
                }
                document.documentElement.scrollTop=document.body.scrollTop=this.scrollTop;
            },10)
+       },
+       openQQ(){
+           window.open('http://wpa.qq.com/msgrd?v=3&uin=1686417629&site=qq&menu=yes');
        }
     },
     mounted(){
