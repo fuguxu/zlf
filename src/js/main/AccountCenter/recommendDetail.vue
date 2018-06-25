@@ -4,7 +4,7 @@
             <span class="title font18">推荐详情</span>
             <span class="desc color6 font12">以下信息在把您推荐给客户的同时呈现给客户，是您与客户的首次接触，展现产品实力的机会，祝您脱颖而出。</span>
             <span class="button edit" @click="clickEdit">编辑</span>
-            <span class="button preview" v-if="this.form.isEdit=='1'" @click="preview">推荐预览</span>
+            <a class="button preview" :href="`#/case?id=33`" target="_blank" v-if="this.form.isEdit=='1'" >推荐预览</a>
         </div>
         <div class="company_info item_info">
             <div class="title_item">
@@ -235,9 +235,6 @@ export default {
         },
         clickCancel(){//点击取消
             this.isEdit=false;
-        },
-        preview(){
-            this.$router.push('/case')
         },
         initData(){
             for(var i=0;i<3;i++){

@@ -20,7 +20,7 @@ var TIME_OUT=50000;
 var zlf_base_prefix
 
 if(__DEV__){
-    zlf_base_prefix = 0?'https://api.zulifangs.com':'http://ming849358679.imwork.net:12625/api-zlf';
+    zlf_base_prefix = 1?'https://api.zulifangs.com':'http://ming849358679.imwork.net:12625/api-zlf';
 }else if(__PROD__){
     
 }
@@ -151,12 +151,18 @@ export const customerModule={
     getNotReadNum:params => { return customerAxios.get('/msg/getNotReadNum', {params:params}).then(res => res.data); },
 }
 
+export const multipleAxios=(postArray,cb)=>{
+    return axios.all(postArray).then(axios.spread(function(){
+        cb(...arguments);
+    }));
+}
+
 customerAxios.interceptors.response.use( (response)=> {
     // 对响应数据做点什么
     if(response.data.statusCode=='401'){
-        // localStorage.removeItem('role');
-        // localStorage.removeItem('zlfuserInfo');
-        // window.location.href='/home.html';
+        localStorage.removeItem('role');
+        localStorage.removeItem('zlfuserInfo');
+        window.location.href='/home.html';
     }
     return response;
   },  (error)=>{

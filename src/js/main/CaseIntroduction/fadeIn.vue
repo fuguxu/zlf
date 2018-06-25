@@ -1,9 +1,10 @@
 <template>
     <div class="box">
-        <img class="img" v-if="active==index" v-for="(item,index) in list" :key="index" :src="item.url" alt="">
-        <div class="slide_button">
-            <span v-for="(it,i) in list" @click="changeImg(i)" :key="i" class="dot" :class="{active:active==i}"></span>
-        </div>
+        <el-carousel :interval="3000" arrow="never" height="100%" trigger="click">
+            <el-carousel-item v-for="(item,index) in list" :key="index">
+                <img class="img"  :src="item.url" alt="">
+            </el-carousel-item>
+        </el-carousel>
     </div>
 </template>
 <script>
@@ -29,26 +30,13 @@ export default {
                     url:require('../../../img/p10.jpg')
                 },
             ],
-            active:0,
-            show:false
         }
     },
     methods:{
-        changeImg(i){
-            this.active=i;
-        }
+      
     },
     mounted(){
-        setInterval(()=>{
-            this.active++;
-            if(this.active>this.list.length-1){
-                this.active=0;
-            }
-            // this.show=false;
-            // setTimeout(()=>{
-            //     this.show=true;
-            // }, 500);
-        },1500)
+        
     }
 }
 </script>
@@ -59,31 +47,38 @@ export default {
         position: relative;
         display: flex;
         justify-content: center;
+        overflow: hidden;
+        .el-carousel{
+            width:100%;
+            height:100%;
+            .el-carousel-item{
+                height:477px;
+            }
+        }
         .img{
             width:100%;
             height:100%;
-            position: absolute;
-            left:0px;
-            top:0px;
         }
-        .slide_button{
-            position: absolute;
+        /deep/ .el-carousel__indicators{
             padding:3px 8px 3px 5px;
             border-radius: 17px;
             background: rgba(255,255,255,0.5);
             display: flex;
-            bottom: 40px;
-            .dot{
+            bottom: 20px;
+            .el-carousel__button{
+                display: none;
+            }
+            .el-carousel__indicator{
                 width:11px;
                 height:11px;
                 background: #fff;
                 border-radius: 50%;
                 margin-left:3px;
-                cursor: pointer;
-                &.active{
+                padding: 0px;
+                &.is-active{
                     background:#ffd700;
                 }
             }
-        }
-    }
+        } 
+    }   
 </style>

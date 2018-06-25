@@ -104,7 +104,7 @@
                                     </tr>
                                     <tr v-for="(it,i) in item.list" :key="i"><td>{{i+1}}</td>
                                         <td>{{it.userAbbr}}</td>
-                                        <td><a href="">点击查看详情</a></td>
+                                        <td><a :href="`#/case?id=${item.id}`" target="_blank">点击查看详情</a></td>
                                         <td>{{it.ext}}</td>
                                     </tr>
                                 </table>

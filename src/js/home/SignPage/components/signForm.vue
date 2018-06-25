@@ -210,7 +210,7 @@ export default {
           }
       },
       submitSign(){//点击注册
-      this.nextStep();
+    //   this.nextStep();
     //   console.log(this.companyInfo)
     //   this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){

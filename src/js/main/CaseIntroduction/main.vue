@@ -54,11 +54,11 @@ export default {
         padding-bottom: 53px;
     }
     .recommend_content{
-        width:1200px;
+        width:1160px;
         background: #fff;
         margin:0 auto;
         min-height: 400px;
-        padding:0 52px;
+        padding:0 52px 40px 52px;
         box-sizing: border-box;
         .title{
             font-size:24px;

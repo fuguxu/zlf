@@ -22,6 +22,8 @@ import questionAnswer from '../aboutPage/qs.vue';
 import contact from '../aboutPage/contact.vue';
 import joinUs from '../aboutPage/joinUs.vue';
 
+import findPassword from '../findPassword/main.vue';
+
 import sign from '../SignPage/main.vue';
 import client from '../SignPage/client.vue';
 import supplier from '../SignPage/supplier.vue';
@@ -162,6 +164,16 @@ const routesMap = [
                     }
                 ]
             },
+            {
+                path: '/password',
+                name:'找回密码',
+                hidden:true,
+                hideBackTop:true,
+                component:findPassword,
+                meta:{
+                    hideBackTop:true,
+                },
+            }
         ]
     }
 ];

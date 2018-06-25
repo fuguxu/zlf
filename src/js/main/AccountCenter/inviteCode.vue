@@ -54,8 +54,6 @@ export default {
         padding-left:43px;
         padding-top:50px;
         .title{
-            // color: #292B2C;
-            // font-size:14px;
             padding-bottom: 20px;
         }
         .input_code_box{
@@ -78,16 +76,10 @@ export default {
             width:148px;
             height: 40px;
             margin-top:30px;
-            // cursor: pointer;
-            // display: inline-block;
-            // font-size: 14px;
             color: #fff;
             line-height:40px;
-            // text-align: center;
-            // border-radius: 5px;
-            // background: #ed9f34;
             &:hover{
-                // background: #f1b255;
+                
             }
         }
     }

@@ -119,7 +119,7 @@ export default {
             })
         },
         nextStep(){
-            this.goNext();
+            // this.goNext();
            let c= this.valiteCompany();
             if(this.role=='client'){
                 let valiteCity= this.valiteCity();

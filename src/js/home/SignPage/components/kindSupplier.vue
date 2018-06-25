@@ -36,9 +36,9 @@ export default {
         nextStep(){
            let type= this.$refs.type.valiate();
            let province= this.$refs.province.valiate();
-        //    if(type&&province){
+           if(type&&province){
                this.$emit('updateStep',this.stepComponent,this.sullpierType);
-        //    }
+           }
         },
         updateArea(area){//接受覆盖范围
             this.sullpierType.leaseArea=area;
