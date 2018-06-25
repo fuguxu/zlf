@@ -34,7 +34,7 @@
         <div class="login_button" :class="{buttonGong:role==2}" @click="submit">登录</div>
         <div class="sign_forget" :class="{activeRole:role==2}">
             <a class="sign" :href="role==1?'#/sign/client':'#/sign/supplier'">免费注册</a>
-            <a class="forget" href="">忘记密码</a>
+            <a class="forget" href="#/password">忘记密码</a>
         </div>
     </div>
 </template>
