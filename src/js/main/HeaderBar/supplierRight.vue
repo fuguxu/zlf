@@ -1,8 +1,9 @@
 <template>
     <div class="supplier_right">
-        <router-link to="/trade" class="text">交易中心</router-link>
-        <router-link to="/recommend" class="recommend text">推荐值</router-link>
+        <span @click="tradeCenter" to="/trade" :class="{'router-link-active':$route.path.indexOf('/trade')>-1}" class="text">交易中心</span>
+        <span @click="recommend" to="/recommend" class="recommend text">推荐值</span>
         <el-switch
+            @change="changeSwitch"
             :width="36"
             style="display: block"
             v-model="switchValue"
@@ -41,6 +42,31 @@ export default {
         setSwitchValue(val){
             Bus.$emit('recommendSwitch',val);
             localStorage.setItem('recommendSwitch',val);
+        },
+        changeSwitch(value){
+            this.switchValue=!value;
+            AppUtil.getLicenseStatus(status=>{
+                if(status=='1'){//营业执照通过
+                    this.switchValue=value;
+                }else{
+                    Bus.$emit('sendLicenseStatus',status);
+                }
+            })
+        },
+        changeRoute(path){
+            AppUtil.getLicenseStatus(status=>{
+                if(status=='1'){//营业执照通过
+                    this.$router.push(path);
+                }else{
+                    Bus.$emit('sendLicenseStatus',status);
+                }
+            })
+        },
+        tradeCenter(){
+            this.changeRoute('/trade');
+        },
+        recommend(){
+            this.changeRoute('/recommend');
         }
     },
     mounted(){
@@ -53,6 +79,7 @@ export default {
     },
     watch:{
         switchValue(n,o){
+            console.log(55)
             if(o!==''){
                 this.openRecom(n);
             }else{
@@ -71,6 +98,7 @@ export default {
         justify-content: flex-end;
         .text{
             font-size: 14px;
+            cursor: pointer;
             &:hover,&.router-link-active{
                 color: rgba(255, 255,255, 0.75);
             }

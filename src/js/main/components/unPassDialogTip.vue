@@ -50,6 +50,9 @@ export default {
         &.supplier{
             .text{
                 margin-bottom: 10px;
+                &.userAbbr{
+                    margin-top:10px;
+                }
             }
         }
         .text{

@@ -173,7 +173,7 @@ export default {
                 ...this.kindTypeInfo
             }).then(res=>{
                 if(res.statusCode==1){
-                    // this.submitedAfter();
+                    this.submitedAfter();
                 }
             })
         },
