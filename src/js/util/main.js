@@ -59,3 +59,11 @@ s.getCurrentUserInfo=function(cb){
 s.setCurrentUserInfo=function(data){
     localStorage.setItem('zlfuserInfo',JSON.stringify(data))
  }
+
+ s.getLicenseStatus=function(cb){//获取营业执照审核状态 0：待审核; 1：审核通过; 2: 审核不通过; 3：未提交
+    customerModule.getLicenseStatus().then(res=>{
+        if(res.statusCode=='1'){
+            cb(res.data)
+        }
+    })
+ }

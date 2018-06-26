@@ -97,21 +97,36 @@ export default {
             }).then(res=>{
                 if(res.statusCode==1){
                     let data =res.data;
-                    if(data.type==0){
-                        localStorage.setItem('role','client');
-                        // AppUtil.setCurrentUserInfo(data);
-                        AppUtil.getCurrentUserInfo((user)=>{
-                            window.location.href='main.html#/rent';
-                        })
-                        
-                    }else if(data.type==1){
-                        localStorage.setItem('role','supplier');
-                        // AppUtil.setCurrentUserInfo(data);
-                        AppUtil.getCurrentUserInfo((user)=>{
-                            window.location.href='main.html#/trade';
-                        })
-                    }
-                    
+                    AppUtil.getLicenseStatus(status=>{
+                        if(data.type==0){
+                            localStorage.setItem('role','client');
+                            AppUtil.getCurrentUserInfo((user)=>{
+                                if(status=='0'){//待审核
+                                    window.location.href='main.html#/submited';
+                                }else if(status=='1'){//审核通过
+                                    window.location.href='main.html#/account/information';
+                                }else if(status=='2'){//审核不通过
+                                    window.location.href='main.html#/submited';
+                                }else if(status=='3'){//未提交
+                                    window.location.href='main.html#/licence';
+                                }
+                                
+                            })
+                        }else if(data.type==1){
+                            localStorage.setItem('role','supplier');
+                            AppUtil.getCurrentUserInfo((user)=>{
+                                if(status=='0'){
+                                    window.location.href='main.html#/submited';
+                                }else if(status=='1'){
+                                    window.location.href='main.html#/account/company';
+                                }else if(status=='2'){
+                                    window.location.href='main.html#/submited';
+                                }else if(status=='3'){
+                                    window.location.href='main.html#/sign/supplier?cp=startUse';
+                                }
+                            })
+                        }
+                    })
                 }else{
                     this.errorMessage='账号名或密码错误';
                     this.$refs.user.focus();

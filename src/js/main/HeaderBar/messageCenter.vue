@@ -1,8 +1,8 @@
 <template>
     <div class="message_center">
         <img class="message_icon" src="../../../img/u1405.png" alt="">
-        <!-- <span class="message_text">消息</span> -->
-        <router-link class="message_text" to="/message">消息</router-link>
+        <span @click="changeRoute" :class="{'router-link-active':$route.path.indexOf(route)>-1}" class="message_text">消息</span>
+        <!-- <router-link class="message_text" to="/message">消息</router-link> -->
         <span v-if="number" class="number">{{number}}</span>
     </div>
 </template>
@@ -11,7 +11,8 @@ import {customerModule} from '../../api/main';
 export default {
     data(){
         return {
-            number:''
+            number:'',
+            route:'/message'
         }
     },
     methods:{
@@ -19,6 +20,15 @@ export default {
             customerModule.getNotReadNum().then(res=>{
                 if(res.statusCode=='1'){
                     this.number=res.data;
+                }
+            })
+        },
+        changeRoute(){
+            AppUtil.getLicenseStatus(status=>{
+                if(status=='3'){//未上传营业执照
+                    Bus.$emit('sendLicenseStatus',status);
+                }else{
+                    this.$router.push(this.route);
                 }
             })
         }

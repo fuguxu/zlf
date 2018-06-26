@@ -6,11 +6,9 @@
             </div>
             <p class="tip_text" v-html="tipText"></p>
         </div>
-        <dialogTip></dialogTip>
     </div>
 </template>
 <script>
-import dialogTip from './dialogTip';
 export default {
     data(){
         return {
@@ -34,7 +32,6 @@ export default {
       }
     },
     components:{
-        dialogTip
     }
 }
 </script>

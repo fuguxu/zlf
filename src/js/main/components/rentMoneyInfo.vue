@@ -167,9 +167,9 @@ export default {
                 cusType:this.cusType,
                 orderNo:this.orderNo,
             }).then(res=>{
-                if(res.statusCode=='1'&&res.data){
-                    this.form={...this.form,...res.data};
-                    if(res.data.name){//有值的话
+                if(res.statusCode=='1'){
+                    this.form={...this.form,...(res.data||{})};
+                    if(this.form.name){//有值的话
                         this.isEdit=false;
                     }else{
                         this.isEdit=true;

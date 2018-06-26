@@ -154,7 +154,7 @@ export const customerModule={
     //找回密码
     changePwd:params => { return customerAxios.post('/changePwd?'+ qs.stringify(params)).then(res => res.data); },
     //获取营业执照审核状态
-    getLicenseStatus:params => { return customerAxios.get('/msg/getNotReadNum', {params:params}).then(res => res.data); },
+    getLicenseStatus:params => { return customerAxios.get('/getLicenseStatus', {params:params}).then(res => res.data); },
 }
 
 export const multipleAxios=(postArray,cb)=>{

@@ -4,7 +4,7 @@
         <div class="center_box">
             <div class="center">
                 <img class="user_icon" src="../../../img/user.png" alt="">
-                <a class="account_text" :href="renderHref()">账号中心</a>
+                <a class="account_text" @click="changeRoute" href="javascript:;">账号中心</a>
                 <span class="line"></span>
                 <a class="account_text" @click="loginOut" href="javascript:;">退出</a>
             </div>
@@ -19,8 +19,17 @@ export default {
         }
     },
     methods:{
+        changeRoute(){
+            AppUtil.getLicenseStatus(status=>{
+                if(status=='3'){//未上传营业执照
+                    Bus.$emit('sendLicenseStatus',status);
+                }else{
+                    this.$router.push(this.renderHref());
+                }
+            })
+        },
         renderHref(){
-          return  localStorage.getItem('role')=='client'?'#/account/information':'#/account/company'
+          return  localStorage.getItem('role')=='client'?'/account/information':'/account/company'
         },
         getCurrentUser(){
            AppUtil.getCurrentUserInfo(user=>{

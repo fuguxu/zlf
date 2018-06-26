@@ -52,7 +52,7 @@ export default {
            },10)
        },
        openQQ(){
-           window.open('http://wpa.qq.com/msgrd?v=3&uin=1686417629&site=qq&menu=yes');
+           window.open('http://wpa.qq.com/msgrd?v=3&uin=2609333398&site=qq&menu=yes');
        }
     },
     mounted(){

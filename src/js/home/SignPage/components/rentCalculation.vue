@@ -165,7 +165,7 @@ export default {
         },
         calculationHttp(){//计算接口
             customerModule.calculation({
-                leaseContractTotalAmt:this.rentPrice,
+                leaseTotalAmount:this.rentPrice,
                 annualRate:this.rentRate,
                 leaseholdCycle:this.rentTime
             }).then(res=>{

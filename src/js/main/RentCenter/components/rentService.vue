@@ -179,7 +179,7 @@ export default {
     props:['data','orderNo','orderName'],
     data(){
         return {
-            start:false,
+            start:true,
             doing:false,
             finish:false,
             transfer:false,

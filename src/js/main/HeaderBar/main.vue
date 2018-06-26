@@ -6,7 +6,7 @@
             </div>
             <positionCity></positionCity>
             <accountCenter @loginOut="loginOut"></accountCenter>
-            <clientRight v-if="role=='client'"></clientRight>
+            <clientRight :user="user" v-if="role=='client'"></clientRight>
             <supplierRight v-if="role=='supplier'"></supplierRight>
             <messageCenter></messageCenter>
             <div class="login_out">
@@ -14,6 +14,8 @@
                 <span @click="loginOut" class="text">退出</span>
             </div>
         </div>
+        <unPassDialogTip :flag.sync="unPassFlag" :user="user"></unPassDialogTip>
+        <unUploadDialogTip :flag.sync="unUploadFlag" :user="user"></unUploadDialogTip>
     </div>
 </template>
 <script>
@@ -23,15 +25,30 @@
     import clientRight from './clientRight.vue';
     import supplierRight from './supplierRight.vue';
     import {customerModule} from '../../api/main';
+    import unPassDialogTip from '../components/unPassDialogTip';
+    import unUploadDialogTip from '../components/unUploadDialogTip';
     export default{
         data(){
             return{
                 menus:[],
-                role:0
+                role:0,
+                user:{},
+                unPassFlag:false,
+                unUploadFlag:false,
             }
         },
         mounted(){
            this.role=localStorage.getItem('role');
+           AppUtil.getCurrentUserInfo(user=>{
+                this.user=user;
+            });
+            Bus.$on('sendLicenseStatus',status=>{
+                if(status=='3'){
+                    this.unUploadFlag=true;
+                }else if(status=='0'||status=='2'){
+                    this.unPassFlag=true;
+                }
+            });
         },
         methods:{
             loginOut(){
@@ -50,7 +67,9 @@
             accountCenter,
             messageCenter,
             clientRight,
-            supplierRight
+            supplierRight,
+            unPassDialogTip,
+           unUploadDialogTip
         }
     }
 </script>

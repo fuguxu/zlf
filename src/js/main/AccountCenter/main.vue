@@ -104,6 +104,8 @@ export default {
             this.user=user;
         });
         Bus.$on('updateHeaderImg',this.updateHeaderImg);
+    },
+    components:{
     }
 }
 </script>

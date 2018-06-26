@@ -3,32 +3,85 @@
         <div class="new_rent item">
             <!-- <img src="../../../img/u1374.png" alt=""> -->
             <i class="icon el-icon-circle-plus"></i>
-            <span class="account_text">发起新租赁</span>
+            <span @click="changeRoute(false)" class="account_text">发起新租赁</span>
         </div>
         <div class="account_center item">
-            <span @click="goRent" class="user_name">租赁中心 <i class="icon el-icon-arrow-down"></i></span>
+            <span @click="goRoute('0')" class="user_name">租赁中心 <i class="icon el-icon-arrow-down"></i></span>
             <div class="center_box">
                 <ul class="center">
-                    <li class="account_text">租赁服务</li>
-                    <li class="account_text">合同执行</li>
-                    <li class="account_text">后续租金</li>
-                    <li class="account_text">售后服务</li>
+                    <li @click="goRoute('0')" class="account_text">租赁服务</li>
+                    <li @click="goRoute('1')" class="account_text">合同执行</li>
+                    <li @click="goRoute('2')" class="account_text">后续租金</li>
+                    <li @click="goRoute('3')" class="account_text">售后服务</li>
                 </ul>
             </div>        
         </div>
+        <unSetProject :user="user" @setProject="setProject" :flag.sync="unSetFlag"></unSetProject>
+        <rentNameDialog @updateItem="updateItem" :visible.sync="rentNameFlag"></rentNameDialog>
     </div>
 </template>
 <script>
+import {customerModule} from '../../api/main';
+import unSetProject from '../components/unSetProject';
+import rentNameDialog from '../RentCenter/components/rentNameDialog';
 export default {
+    props:['user'],
     data(){
         return {
-
+            isHasProject:true,
+            unSetFlag:false,
+            rentNameFlag:false
         }
     },
     methods:{
-        goRent(){
-            this.$router.push('/rent')
-        }
+        goRent(id){
+            if(id){
+                this.$router.push('/rent?id='+id);
+            }else{
+                this.$router.push('/rent');
+            }
+        },
+        setProject(){
+            this.rentNameFlag=true;
+        },
+        updateItem(){//新建项目成功后
+            this.goRent();
+        },
+        goRoute(id){//点击租赁中心
+            this.changeRoute(id);
+        },
+        changeRoute(flag){//点击新建项目 
+            AppUtil.getLicenseStatus(status=>{
+                if(status=='1'){//审核通过
+                    this.getOrderInfoList(flag);
+                }else{
+                    Bus.$emit('sendLicenseStatus',status);
+                }
+            })
+        },
+        getOrderInfoList(flag){//获取项目列表 判断是否已经新建过项目
+            customerModule.getOrderInfoList().then(res=>{
+                if(res.statusCode=='1'){
+                    this.isHasProject=res.data.length>0;
+                    if(this.isHasProject){
+                        if(flag){//此情况是点击租赁中心
+                            this.goRent(flag);
+                        }else{//此情况是点击新建项目
+                            this.rentNameFlag=true;
+                        }
+                    }else{
+                        this.unSetFlag=true;
+                    }
+                }
+            })
+        },
+    },
+    mounted(){
+        
+    },
+    components:{
+        unSetProject,
+        rentNameDialog
     }
 }
 </script>

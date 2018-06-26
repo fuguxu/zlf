@@ -75,7 +75,7 @@ export default {
                 }
             ],
             itemData:'',
-            defaultActive:'0-0',
+            defaultActive:'0-'+(this.$route.query.id||'0'),
             title:'',
             subTitle:'',
             thirdTitle:'',
@@ -112,6 +112,7 @@ export default {
             this.subTitle=this.subData[+p[1].split('-')[1]].name;
             this.activeIndex=this.subData[+p[1].split('-')[1]].id;
             this.choiceCp(this.data[+p[0]]);
+            this.$router.push('/rent?id='+this.activeIndex);//刷新的时候 保持在当前菜单
         },
         updateCp(item){//到合同执行的详情
             this.thirdTitle=item.leaseName;
