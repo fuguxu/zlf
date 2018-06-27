@@ -4,34 +4,42 @@
             <div class="label">重新绑定邮箱</div>
             <div class="item_content">{{form.email}}</div>
         </div>
-        <div class="edit_item" :class="{show:isEdit}" v-if="isEdit">
-            <p class="tel_text">请获取{{form.loginName}}手机验证码</p>
-            <div class="form_item">
-                <div class="item_content">
-                    <el-input :maxlength="6" @blur="blurIdentifyCode"  v-model="code" placeholder="输入验证码">
-                        <i slot="suffix" @click="getCode" class="identifyCode button" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
-                    </el-input>
-                    <div class="error_message" v-if="codeErrorMessage">
-                        <i class="icon el-icon-error"></i>
-                        <span>{{codeErrorMessage}}</span>
+        <transition name="fade" @before-enter="beforeEnter">
+            <div class="edit_item"  v-if="isEdit">
+                <p class="tel_text">请获取{{form.loginName}}手机验证码</p>
+                <div class="form_item">
+                    <div class="item_content">
+                        <el-input :maxlength="6" @blur="blurIdentifyCode"  v-model="code" placeholder="输入验证码">
+                            <i slot="suffix" @click="getCode" class="identifyCode button" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
+                        </el-input>
+                        <div class="error_message" v-if="codeErrorMessage">
+                            <i class="icon el-icon-error"></i>
+                            <span>{{codeErrorMessage}}</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="tel_text">请输入新邮箱地址</p>
+                <div class="form_item">
+                    <div class="item_content">
+                        <el-input @blur="blurEmail"  v-model="newEmail" placeholder="输入正确的邮箱地址"></el-input>
+                        <div class="error_message" v-if="emailErrorMessage">
+                            <i class="icon el-icon-error"></i>
+                            <span>{{emailErrorMessage}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <p class="tel_text">请输入新邮箱地址</p>
-            <div class="form_item">
-                <div class="item_content">
-                    <el-input @blur="blurEmail"  v-model="newEmail" placeholder="输入正确的邮箱地址"></el-input>
-                    <div class="error_message" v-if="emailErrorMessage">
-                        <i class="icon el-icon-error"></i>
-                        <span>{{emailErrorMessage}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </transition>
         <div class="form_item">
-            <span  v-if="isEdit" @click="cancel" class="button cancel">取消</span>
-            <span  v-if="isEdit" @click="sureBind" class="button sure">确认绑定</span>
-            <span  v-if="!isEdit" @click="clickEdit" class="button bind" :class="{hide:isEdit}">重新绑定</span>
+            <transition name="fade" @before-enter="beforeEnterButton">
+                <span v-if="isEdit">
+                    <span  @click="cancel" class="button cancel">取消</span>
+                    <span  @click="sureBind" class="button sure">确认绑定</span>
+                </span>
+             </transition>
+             <transition name="fade">
+                <span  v-if="!isEdit" @click="clickEdit" class="button bind" >重新绑定</span>
+             </transition>
         </div>
     </div>
 </template>
@@ -53,6 +61,18 @@ export default {
         }
     },
     methods:{
+        beforeEnter(el){
+            el.style.height=0+'px';
+            setTimeout(()=>{
+                el.style.height='auto';
+            },800)
+        },
+        beforeEnterButton(el){
+            el.style.width=0+'px';
+            setTimeout(()=>{
+                el.style.width='auto';
+            },800)
+        },
         initData(){
             this.newEmail='';
             this.code='';
@@ -203,21 +223,20 @@ export default {
             line-height: 40px;
         }
         .tel_text{
-            // font-size:14px;
-            // color: #292B2C;
             line-height: 40px;
         }
         .edit_item{
-            // opacity: 0;
-            // height:0px;
-            // overflow: hidden;
-            // transition-delay: 1s;
-            // &.show{
-            //     transition: all 1s;
-            //     opacity: 1;
-            //     height:auto;
-            // }
+            
         }
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: all 0.8s;
+    }
+    .fade-enter-active{
+        transition-delay: 0.8s;
+    }
+    .fade-enter, .fade-leave-to{
+        opacity: 0;
     }
     
 </style>

@@ -6,10 +6,12 @@
                 <span>{{item.title}}</span>
                 <i class="icon" :class="{'el-icon-caret-bottom':!item.showMore,'el-icon-caret-top':item.showMore}" @click="item.showMore=!item.showMore"></i>
             </div>
-            <div v-if="item.showMore">
-                <progressImg :data="item" v-if="item.imgAddr1"></progressImg>
-                <noUpload v-else></noUpload>
-            </div>
+            <el-collapse-transition>
+                <div v-if="item.showMore">
+                    <progressImg :data="item" v-if="item.imgAddr1"></progressImg>
+                    <noUpload v-else></noUpload>
+                </div>
+            </el-collapse-transition>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -17,7 +19,9 @@
                 <span>验收完成</span>
                 <i class="icon" :class="{'el-icon-caret-bottom':!check,'el-icon-caret-top':check}"  @click="check=!check"></i>
             </div>
-            <checkOrder class="check_wrap" role="0" :orderNo="orderNo" :proCommNo="proCommNo" :leaseNo="leaseNo" :data="acceptanceData" v-if="check"></checkOrder>
+            <el-collapse-transition>
+                <checkOrder class="check_wrap" role="0" :orderNo="orderNo" :proCommNo="proCommNo" :leaseNo="leaseNo" :data="acceptanceData" v-if="check"></checkOrder>
+            </el-collapse-transition>
         </div>
     </div>
 </template>

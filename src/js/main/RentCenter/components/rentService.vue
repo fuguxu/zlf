@@ -7,14 +7,14 @@
                 <!-- <i v-if="data[0].isOperation=='0'" class="el-icon-setting"></i> -->
                 <i class="icon" :class="{'el-icon-caret-bottom':!start,'el-icon-caret-top':start}" @click="clickExtend(0,'start')"></i>
             </div>
-            <transition  name="collapse">
-            <div class="extend"  v-if="start">
-                <div class="extend_title">了解您的项目详情，以便开展下一步融资服务，请您：</div>
-                <p class="text"><span> a. 下载《项目信息收集表》</span><a class="link" href="">（点此下载）</a></p>
-                <p class="text"><span> b. 线下填写《项目信息收集表》，并将该表及表中要求的附件，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
-                <!-- <div class="next_step">审核通过，将开启下一步</div> -->
-            </div>
-            </transition>
+            <el-collapse-transition>
+                <div class="extend"  v-if="start">
+                    <div class="extend_title">了解您的项目详情，以便开展下一步融资服务，请您：</div>
+                    <p class="text"><span> a. 下载《项目信息收集表》</span><a class="link" href="">（点此下载）</a></p>
+                    <p class="text"><span> b. 线下填写《项目信息收集表》，并将该表及表中要求的附件，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
+                    <!-- <div class="next_step">审核通过，将开启下一步</div> -->
+                </div>
+            </el-collapse-transition>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -23,14 +23,15 @@
                 <!-- <i v-if="data[1].isOperation=='0'" class="el-icon-setting"></i> -->
                 <i class="icon" :class="{'el-icon-caret-bottom':!doing,'el-icon-caret-top':doing}" @click="clickExtend(1,'doing')"></i>
             </div>
-            
-            <div v-if="doing" class="extend" >
-                <div class="extend_title">建立双方互信、良好的合作前提，请您：</div>
-                <p class="text"><span> a. 下载《平台服务协议》</span><a class="link" href="">（点此下载）</a></p>
-                <p class="text"><span> b. 线下签署并加盖公司红章，上传清晰可见的扫描件</span></p>
-                <uploadLicence saveType="cooperationAgreement" :orderNo="orderNo" :showMore="false"></uploadLicence>
-                <!-- <div class="next_step">审核通过，将开启下一步</div> -->
-            </div>
+            <el-collapse-transition>
+                <div v-if="doing" class="extend" >
+                    <div class="extend_title">建立双方互信、良好的合作前提，请您：</div>
+                    <p class="text"><span> a. 下载《平台服务协议》</span><a class="link" href="">（点此下载）</a></p>
+                    <p class="text"><span> b. 线下签署并加盖公司红章，上传清晰可见的扫描件</span></p>
+                    <uploadLicence saveType="cooperationAgreement" :orderNo="orderNo" :showMore="false"></uploadLicence>
+                    <!-- <div class="next_step">审核通过，将开启下一步</div> -->
+                </div>
+            </el-collapse-transition>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -38,24 +39,25 @@
                 <span>提交认证资料</span>
                 <i class="icon" :class="{'el-icon-caret-bottom':!finish,'el-icon-caret-top':finish}" @click="clickExtend(2,'finish')"></i>
             </div>
-            
-            <div v-if="finish" class="extend">
-                <div class="extend_title">认证清单要求的认证资料准备越齐全，租赁年化率将越低！</div>
-                <p class="text"><span> a. 下载《租立方认证资料清单》</span><a class="link" href="">（点此下载）</a></p>
-                <p class="text"><span> b. 请将清单内要求的资料准备齐全，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
-                <p class="text"><span> c.务必填写<span class="link">“{{orderName}}”</span>项目负责人信息，以便租立方大客户代表与您即刻取得联系！</span></p>
-                <rentMoneyInfo :orderNo="orderNo" :cusType="0" placeholderPerson="请输入负责人姓名" placeholderJob="请输入负责人在贵司所担任职位"></rentMoneyInfo>
-                <!-- <div class="next_step">审核通过，将开启下一步</div> -->
-                <div class="next_step_desc">
-                    <div class="circle_wrap">
-                        在您将“<div class="circel">1</div> 、<div class="circel">2</div> 、<div class="circel">3</div> ”要求的资料提交后，
+            <el-collapse-transition>
+                <div v-if="finish" class="extend">
+                    <div class="extend_title">认证清单要求的认证资料准备越齐全，租赁年化率将越低！</div>
+                    <p class="text"><span> a. 下载《租立方认证资料清单》</span><a class="link" href="">（点此下载）</a></p>
+                    <p class="text"><span> b. 请将清单内要求的资料准备齐全，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
+                    <p class="text"><span> c.务必填写<span class="link">“{{orderName}}”</span>项目负责人信息，以便租立方大客户代表与您即刻取得联系！</span></p>
+                    <rentMoneyInfo :orderNo="orderNo" :cusType="0" placeholderPerson="请输入负责人姓名" placeholderJob="请输入负责人在贵司所担任职位"></rentMoneyInfo>
+                    <!-- <div class="next_step">审核通过，将开启下一步</div> -->
+                    <div class="next_step_desc">
+                        <div class="circle_wrap">
+                            在您将“<div class="circel">1</div> 、<div class="circel">2</div> 、<div class="circel">3</div> ”要求的资料提交后，
+                        </div>
+                        <div>
+                            我们将在3个工作日内审核，并系统消息或者邮件通知您，请留意：
+                        </div>
+                        <div> 审核通过，将开启下一步！</div>
                     </div>
-                    <div>
-                        我们将在3个工作日内审核，并系统消息或者邮件通知您，请留意：
-                    </div>
-                    <div> 审核通过，将开启下一步！</div>
                 </div>
-            </div>
+            </el-collapse-transition>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -64,77 +66,79 @@
                 <img v-if="data.length>0&&data[3].isOperation=='0'" class="lock" src="../../../../img/lock.png" alt="">
                 <i class="icon" :class="{'el-icon-caret-bottom':!transfer,'el-icon-caret-top':transfer}"  @click="clickExtend(3,'transfer')"></i>
             </div>
-            <div v-if="transfer" class="extend">
-                <div class="big_custorm">
-                    <p class="font16">此环节，请您与供应商针对产品清单沟通产品需求、报价等相关事宜。</p>
-                    <p class="font16">我们将指派租立方大客户代表，负责该项目的租赁服务。</p>
-                    <ul>
-                        <li class="title">租立方大客户代表</li>
-                        <li class="name"><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span><span>{{projectDetail.platBigCustomerName}}</span></li>
-                        <li class="contact"><span>联系方式：</span><span>{{projectDetail.platBigCustomerMobile}}</span></li>
-                    </ul>
-                </div>
-                <div class="step font16"><span class="line"></span><span>a.开始选择您的租赁物以及对应的供应商来源</span></div>
-                <choiceRent @updateRecommend="updateRecommend" :orderNo="orderNo"></choiceRent>
-                <div class="recommend_supplier">
-                    <div class="step font16"><span class="line"></span><span>b.与供应商产品沟通进展</span></div>
-                    <div class="detail">
-                        <div class="detail_item">
-                            <div class="detail_title"><span class="dot"></span><span>指定合作供应商</span></div>
-                            <p class="color6 desc">请将以下租赁物对应的进驻邀请码，发送给您所指定合作的供应商；供应商只有进驻到租立方平台，您后面的租赁服务，包括租赁物生产、运输、验收、售后等才能得到更好的保障</p>
-                            <table>
-                                <tr>
-                                    <th>租赁物体</th>
-                                    <th>进驻邀请码</th>
-                                    <th>供应商</th>
-                                </tr>
-                                <tr v-for="(item,index) in appointSupplier" :key="index">
-                                    <td>{{item.leaseTypeName}}</td>
-                                    <td>{{item.invitationCode}}</td>
-                                    <td>发送至"{{item.leaseTypeName}}"供应商</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="detail_item">
-                            <div class="detail_title"><span class="dot"></span><span>推荐供应商</span></div>
-                            <p class="color6 desc">租立方根据您的租赁需求，推荐以下优质供应商，优先次序排列如下。</p>
-                            <div class="recommend_supplier_item" v-for="(item,index) in recommendSupplier" :key="index">
-                                <div class="supplier_item_title font16">{{item.name}}</div>
+            <el-collapse-transition>
+                <div v-if="transfer" class="extend">
+                    <div class="big_custorm">
+                        <p class="font16">此环节，请您与供应商针对产品清单沟通产品需求、报价等相关事宜。</p>
+                        <p class="font16">我们将指派租立方大客户代表，负责该项目的租赁服务。</p>
+                        <ul>
+                            <li class="title">租立方大客户代表</li>
+                            <li class="name"><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span><span>{{projectDetail.platBigCustomerName}}</span></li>
+                            <li class="contact"><span>联系方式：</span><span>{{projectDetail.platBigCustomerMobile}}</span></li>
+                        </ul>
+                    </div>
+                    <div class="step font16"><span class="line"></span><span>a.开始选择您的租赁物以及对应的供应商来源</span></div>
+                    <choiceRent @updateRecommend="updateRecommend" :orderNo="orderNo"></choiceRent>
+                    <div class="recommend_supplier">
+                        <div class="step font16"><span class="line"></span><span>b.与供应商产品沟通进展</span></div>
+                        <div class="detail">
+                            <div class="detail_item">
+                                <div class="detail_title"><span class="dot"></span><span>指定合作供应商</span></div>
+                                <p class="color6 desc">请将以下租赁物对应的进驻邀请码，发送给您所指定合作的供应商；供应商只有进驻到租立方平台，您后面的租赁服务，包括租赁物生产、运输、验收、售后等才能得到更好的保障</p>
                                 <table>
                                     <tr>
-                                        <th>次序</th><th>供应商</th><th>供应商简介</th><th>联系人</th>
+                                        <th>租赁物体</th>
+                                        <th>进驻邀请码</th>
+                                        <th>供应商</th>
                                     </tr>
-                                    <tr v-for="(it,i) in item.list" :key="i"><td>{{i+1}}</td>
-                                        <td>{{it.userAbbr}}</td>
-                                        <td><a :href="`#/case?id=${it.userNo}`" target="_blank">点击查看详情</a></td>
-                                        <td>{{it.ext}}</td>
+                                    <tr v-for="(item,index) in appointSupplier" :key="index">
+                                        <td>{{item.leaseTypeName}}</td>
+                                        <td>{{item.invitationCode}}</td>
+                                        <td>发送至"{{item.leaseTypeName}}"供应商</td>
                                     </tr>
                                 </table>
                             </div>
-                        </div>
-                        <div class="detail_item">
-                            <div class="detail_title"><span class="dot"></span><span>指定合作供应商产品清单沟通进展</span></div>
-                            <ul class="progress" v-for="(item,index) in appointProgress" :key="index">
-                                <li class="title">{{item.name}}产品清单沟通进展</li>
-                                <li v-for="(it,i) in item.list" :key="i">
-                                    <span>{{i+1}}. {{it.progressDesc}}</span>
-                                    <span>{{it.createTime}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="detail_item">
-                            <div class="detail_title"><span class="dot"></span><span>推荐供应商产品清单沟通进展</span></div>
-                            <ul class="progress" v-for="(item,index) in recommendProgress" :key="index">
-                                <li class="title">{{item.name}}产品清单沟通进展</li>
-                                <li v-for="(it,i) in item.list" :key="i">
-                                    <span>{{i+1}}. {{it.progressDesc}}</span>
-                                    <span>{{it.createTime}}</span>
-                                </li>
-                            </ul>
+                            <div class="detail_item">
+                                <div class="detail_title"><span class="dot"></span><span>推荐供应商</span></div>
+                                <p class="color6 desc">租立方根据您的租赁需求，推荐以下优质供应商，优先次序排列如下。</p>
+                                <div class="recommend_supplier_item" v-for="(item,index) in recommendSupplier" :key="index">
+                                    <div class="supplier_item_title font16">{{item.name}}</div>
+                                    <table>
+                                        <tr>
+                                            <th>次序</th><th>供应商</th><th>供应商简介</th><th>联系人</th>
+                                        </tr>
+                                        <tr v-for="(it,i) in item.list" :key="i"><td>{{i+1}}</td>
+                                            <td>{{it.userAbbr}}</td>
+                                            <td><a :href="`#/case?id=${it.userNo}`" target="_blank">点击查看详情</a></td>
+                                            <td>{{it.ext}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="detail_item">
+                                <div class="detail_title"><span class="dot"></span><span>指定合作供应商产品清单沟通进展</span></div>
+                                <ul class="progress" v-for="(item,index) in appointProgress" :key="index">
+                                    <li class="title">{{item.name}}产品清单沟通进展</li>
+                                    <li v-for="(it,i) in item.list" :key="i">
+                                        <span>{{i+1}}. {{it.progressDesc}}</span>
+                                        <span>{{it.createTime}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="detail_item">
+                                <div class="detail_title"><span class="dot"></span><span>推荐供应商产品清单沟通进展</span></div>
+                                <ul class="progress" v-for="(item,index) in recommendProgress" :key="index">
+                                    <li class="title">{{item.name}}产品清单沟通进展</li>
+                                    <li v-for="(it,i) in item.list" :key="i">
+                                        <span>{{i+1}}. {{it.progressDesc}}</span>
+                                        <span>{{it.createTime}}</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </el-collapse-transition>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -143,32 +147,34 @@
                 <img v-if="data.length>0&&data[4].isOperation=='0'" class="lock" src="../../../../img/lock.png" alt="">
                 <i class="icon" :class="{'el-icon-caret-bottom':!logistics,'el-icon-caret-top':logistics}"  @click="clickExtend(4,'logistics')"></i>
             </div>
-            <div class="extend logistics" v-if="logistics">
-                <ul v-for="(item,index) in contractAndPay" :key="index" class="logistics_item">
-                    <li class="logistics_title">{{item.name}}</li>
-                    <ul v-for="(it,i) in item.list" :key="i" class="second_item">
-                        <li >
-                            <span v-if="it.ext1" class="colorYellow">{{it.ext1}}></span>
-                            <span class="color6">签署购销合同与付款</span>
-                        </li>
-                        <li>
-                            <span>a.线下签署</span>
-                            <span class="colorBlue">《购销合同》</span>
-                            <img v-if="it.financLeaseContractStatus==1" src="../../../../img/pass_icon.png" alt="">
-                        </li>
-                        <li>
-                            <span>b.依照合同约定期限，请您线下缴付该租赁物</span>
-                            <span class="colorBlue">“保证金及平台服务费”</span>
-                            <img v-if="it.marginLeaseholdStatus==1" src="../../../../img/pass_icon.png" alt="">
-                        </li>
-                        <li>
-                            <span>c.依照合同约定期限，请您线下缴付该租赁物</span>
-                            <span class="colorBlue">“第一次月付租金”</span>
-                            <img v-if="it.firstRentStatus==1" src="../../../../img/pass_icon.png" alt="">
-                        </li>
+            <el-collapse-transition>
+                <div class="extend logistics" v-if="logistics">
+                    <ul v-for="(item,index) in contractAndPay" :key="index" class="logistics_item">
+                        <li class="logistics_title">{{item.name}}</li>
+                        <ul v-for="(it,i) in item.list" :key="i" class="second_item">
+                            <li >
+                                <span v-if="it.ext1" class="colorYellow">{{it.ext1}}></span>
+                                <span class="color6">签署购销合同与付款</span>
+                            </li>
+                            <li>
+                                <span>a.线下签署</span>
+                                <span class="colorBlue">《购销合同》</span>
+                                <img v-if="it.financLeaseContractStatus==1" src="../../../../img/pass_icon.png" alt="">
+                            </li>
+                            <li>
+                                <span>b.依照合同约定期限，请您线下缴付该租赁物</span>
+                                <span class="colorBlue">“保证金及平台服务费”</span>
+                                <img v-if="it.marginLeaseholdStatus==1" src="../../../../img/pass_icon.png" alt="">
+                            </li>
+                            <li>
+                                <span>c.依照合同约定期限，请您线下缴付该租赁物</span>
+                                <span class="colorBlue">“第一次月付租金”</span>
+                                <img v-if="it.firstRentStatus==1" src="../../../../img/pass_icon.png" alt="">
+                            </li>
+                        </ul>
                     </ul>
-                </ul>
-            </div>
+                </div>
+            </el-collapse-transition>
         </div>
     </div>
 </template>

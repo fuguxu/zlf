@@ -2,13 +2,17 @@
     <div class="avatar_container">
         <span class="avatar_text font16">头像</span>
         <img class="icon" :src="user.userHeadimg" alt="">
-        <div>
+        <div class="file_box">
             <label for="fileId" class="label-file">
                 <span>修改头像</span>
                 <form ref="form">
                     <input ref="fileInput" @change="changeFile" id="fileId"  type="file" />
                 </form>
             </label>
+            <div class="error_message" v-if="tipMessage">
+                <i class="error-icon el-icon-error"></i>
+                <span>{{tipMessage}}</span>
+            </div>
             <div class="tips">支持jpg、bmp、png格式，不超过5M</div>
         </div>  
     </div>
@@ -148,6 +152,21 @@ export default {
         font-size: 14px;
         color: rgba(153,153,153,1);
         margin-top:18px;
+    }
+    .file_box{
+        position: relative;
+    }
+    .error_message{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        left:148px;
+        min-width:100%;
+        height: 40px;
+        top:0px;
+        .error-icon{
+            margin:0 10px 0 22px;
+        }
     }
 </style>
 
