@@ -39,7 +39,7 @@
             </div>
             <div class="input_box" :class="{active:activeEmail}">
                 <div class="label">手机号</div>
-                <el-input class="input" v-model="form.phone" @focus="activePhone=true" @blur="blurPhone" placeholder="请输入联系人常用手机号码">
+                <el-input class="input" :maxlength="11" v-model="form.phone" @focus="activePhone=true" @blur="blurPhone" placeholder="请输入联系人常用手机号码">
                     <i slot="suffix" class="iconfont icon-close" @click="form.phone=''" v-if="form.phone"></i>
                 </el-input>
                 <div class="error_message" v-if="phoneErrorMessage">
@@ -135,6 +135,12 @@ export default {
             if(!this.form.phone){
                this.phoneErrorMessage= '请输入联系人常用手机号码！';
                return false
+            }else if(''+(+this.form.phone.length)=='NaN'){
+                this.phoneErrorMessage='请输入数字！';
+                return false;
+            }else if(this.form.phone.length<11){
+                this.phoneErrorMessage='您输入的手机号码长度不够！';
+                return false;
             }else{
                 this.phoneErrorMessage='';
                 return true

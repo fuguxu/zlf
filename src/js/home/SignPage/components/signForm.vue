@@ -62,7 +62,7 @@
 <script>
 import stepBar from './stepBar';
 // import stepDialog from './stepDialog';
-import {customerModule} from '../../../api/main';
+import {customerModule,multipleAxios} from '../../../api/main';
 export default {
     props:{
         stepComponent:{
@@ -104,7 +104,6 @@ export default {
               loginPwd:'',
           },
 
-        //   visible:false,
           setTime:null
       }
   },
@@ -119,27 +118,26 @@ export default {
               return true
           }
       },
-      checkMemberName(cb){//校验会员名 不能重复
-            customerModule.checkInfo({
-                userAbbr:this.form.userAbbr
-            }).then(res=>{
-                if(res.data){
-                    this.memberNameErrorMessage='该简称已存在，请重新输入！';
-                }else{
-                    cb();
-                }
-            })
+      checkInfo(cb){
+          multipleAxios([this.checkKey('userAbbr'),this.checkKey('loginName')],cb)
+      },
+      checkKey(key){//校验会员名 用户名 不能重复
+          let par={};
+          par[key]=this.form[key];
+          return  customerModule.checkInfo(par);
       },
       bluruserName(){
           this.activeUserName=false;
           if(!this.form.loginName){
               this.userNameErrorMessage='请输入常用手机号！';
               return false;
+          }else if(''+(+this.form.loginName.length)=='NaN'){
+              this.userNameErrorMessage='请输入数字！';
+              return false;
           }else if(this.form.loginName.length<11){
               this.userNameErrorMessage='您输入的手机号码长度不够！';
               return false;
-          }
-          else{
+          }else{
               this.userNameErrorMessage='';
               return true
           }
@@ -159,28 +157,30 @@ export default {
           }
       },
       getVerification(){//获取验证码接口
-            customerModule.getVerification({
-                mobile:this.form.loginName
-            }).then(res=>{
-                if(res.statusCode=='1'){
-                    this.setTime= setInterval(()=>{
-                        if(this.codeTime==0){
-                            this.codeText='重新获取验证码';
-                            clearInterval(this.setTime);
-                        }else{
-                            this.codeTime--;
-                            this.codeText=this.codeTime+'秒后可重发';
-                        }
-                    },1000)
-                }
-            })
+            if(this.bluruserName()){
+                customerModule.getVerification({
+                    mobile:this.form.loginName
+                }).then(res=>{
+                    if(res.statusCode=='1'){
+                        this.setTime= setInterval(()=>{
+                            if(this.codeTime==0){
+                                this.codeText='重新获取验证码';
+                                clearInterval(this.setTime);
+                            }else{
+                                this.codeTime--;
+                                this.codeText=this.codeTime+'秒后可重发';
+                            }
+                        },1000)
+                    }
+                })
+            }
       },
       getCode(){//获取验证码
-        if(this.codeTime<120&&this.codeTime>0) return;
-        this.getVerification();
-        if(this.codeTime<=0){
-            this.codeTime=120;
-        }
+            if(this.codeTime<120&&this.codeTime>0) return;
+            this.getVerification();
+            if(this.codeTime<=0){
+                this.codeTime=120;
+            }
       },
       blurpassWord(){
           this.activepassWord=false;
@@ -210,26 +210,36 @@ export default {
           }
       },
       submitSign(){//点击注册
-    //   this.nextStep();
-    //   console.log(this.companyInfo)
-    //   this.visible=true;
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
-               this.checkMemberName(this.postData);
+               this.checkInfo(this.postData);
         }
       },
-      postData(){//发送请求
-        if(this.role=='client'){
-            this.registerCustorm({...this.companyInfo,...this.form});
-        }else{
-            this.registerSupplier({...this.companyInfo,...this.form});
+      postData(...checkResult){//发送请求
+        let flag =true;
+        checkResult.forEach((v,k)=>{//判断对字段校验结果
+            if(v.data=='1'){
+                flag=false;
+                if(k==0){
+                    this.memberNameErrorMessage='该简称已存在，请重新输入！';
+                }else if(k==1){
+                    this.userNameErrorMessage='该用户名已注册，请直接登陆！'
+                }
+            }
+        })
+        if(flag){
+            if(this.role=='client'){
+                this.registerCustorm({...this.companyInfo,...this.form});
+            }else{
+                this.registerSupplier({...this.companyInfo,...this.form});
+            }
         }
+        
       },
       registerCustorm(parmars){//客户注册
          customerModule.registerCustorm(parmars).then(res=>{
              if(res.statusCode=='1'){
                  localStorage.setItem('role',this.role);
                  this.nextStep();
-                //  this.visible=true;
              }else{
                  AppUtil.message(this,res.message,'warning');
              }
@@ -240,10 +250,8 @@ export default {
              if(res.statusCode=='1'){
                  localStorage.setItem('role',this.role);
                  this.nextStep();
-                //  this.visible=true;
              }else{
                  AppUtil.message(this,res.message,'warning');
-                 
              }
          })  
       },
