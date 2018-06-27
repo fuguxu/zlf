@@ -4,13 +4,19 @@
             <avatar></avatar>
         </div>
         <div class="information">
-            <div class="title">基本信息</div>
+            <div class="title">
+                <span class="line"></span>
+                <span>基本信息</span>
+            </div>
             <div class="account">
                 <accountInfo role="supplier"></accountInfo>
             </div>
         </div>
         <div class="contact">
-            <div class="title">联系信息</div>
+            <div class="title">
+                <span class="line"></span>
+                <span>联系信息</span>
+            </div>
             <div class="contactInfo">
                 <contactInfo></contactInfo>
             </div>
@@ -50,10 +56,17 @@ export default {
         }
         .title{
             font-size: 16px;
-            color: #292B2C;
-            border-left:3px solid #ed9f34;
             padding-left:10px;
             margin:23px 0px 23px 10px;
+            display: flex;
+            align-items: center;
+            .line{
+                width: 6px;
+                height: 12px;
+                background: #ffa632;
+                border-radius: 3px;
+                margin-right: 14px;
+            }
         }
     }
 </style>

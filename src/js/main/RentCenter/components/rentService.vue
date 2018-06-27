@@ -7,12 +7,14 @@
                 <!-- <i v-if="data[0].isOperation=='0'" class="el-icon-setting"></i> -->
                 <i class="icon" :class="{'el-icon-caret-bottom':!start,'el-icon-caret-top':start}" @click="clickExtend(0,'start')"></i>
             </div>
-            <div class="extend" v-if="start">
+            <transition  name="collapse">
+            <div class="extend"  v-if="start">
                 <div class="extend_title">了解您的项目详情，以便开展下一步融资服务，请您：</div>
                 <p class="text"><span> a. 下载《项目信息收集表》</span><a class="link" href="">（点此下载）</a></p>
                 <p class="text"><span> b. 线下填写《项目信息收集表》，并将该表及表中要求的附件，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
                 <!-- <div class="next_step">审核通过，将开启下一步</div> -->
             </div>
+            </transition>
         </div>
         <div class="item">
             <div class="item_sub">
@@ -515,5 +517,17 @@ export default {
             top: 50%;
             margin-top: -8px;
         }
+    }
+    .collapse-enter-active,.collapse-leave-active {
+        // transition: all 0.3s;
+        // height:auto;
+    }
+    .collapse-enter,.collapse-leave-to{
+        // height:0px;
+        // overflow: hidden;
+    }
+    .collapse-leave,.collapse-enter-to{
+        // height:auto;
+        // overflow: visible;
     }
 </style>
