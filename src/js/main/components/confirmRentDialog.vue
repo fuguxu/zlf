@@ -1,5 +1,6 @@
 <template>
     <div class="dialog dialog_wrap" @click="cancel">
+        <!-- <el-collapse-transition> -->
         <div class="content" @click.stop="1">
             <div class="header font18 color6">您选择了以下租赁物以及对应的供应商来源，<br />请再次确认！</div>
             <div class="table-wrap">
@@ -19,6 +20,7 @@
                 </div>
             </div>
         </div>
+        <!-- </el-collapse-transition> -->
         <div class="dialog" v-if="loading" @click.stop="1">
             <div class="loading-content">
                 <div>
@@ -34,7 +36,7 @@ export default {
     props:['data','visible','loading'],
     data(){
         return {
-
+            show:false
         }
     },
     methods:{
@@ -46,7 +48,9 @@ export default {
         }
     },
     mounted(){
-        // console.log(this.data)
+    },
+    watch:{
+        
     }
 }
 </script>

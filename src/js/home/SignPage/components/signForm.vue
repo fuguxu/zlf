@@ -210,6 +210,7 @@ export default {
           }
       },
       submitSign(){//点击注册
+    //   this.nextStep();
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
                this.checkInfo(this.postData);
         }

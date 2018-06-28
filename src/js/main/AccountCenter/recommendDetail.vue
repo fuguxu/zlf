@@ -220,9 +220,9 @@ export default {
                     if(res.data.isEdit=='1'){
                         this.form=res.data;
                         this.form.briefIntro=this.form.briefIntro||'';
-                        this.form.equipment=this.handleFile(this.form.equipment);
-                        this.form.cases=this.handleFile(this.form.cases);
-                        this.form.product=this.handleFile(this.form.product);
+                        this.form.equipment=this.handleFile(this.form.equipment||[{}]);
+                        this.form.cases=this.handleFile(this.form.cases||[{}]);
+                        this.form.product=this.handleFile(this.form.product||[{}]);
                         this.isEdit=false;
                     }else{
                         this.isEdit=true;

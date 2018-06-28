@@ -136,6 +136,7 @@ export default {
             this.$emit('updateType',checklist.map(item=>{
                 return {
                     ...item,
+                    userTypeNo:item.id,
                     catFullname:item.fullName
                 }
             }))
