@@ -201,7 +201,7 @@ export default {
                 height: 40px;
                 width:85%;
                 .icon{
-                    margin:0 5px 0 15px;
+                    // margin:0 5px 0 15px;
                 }
             }
         }

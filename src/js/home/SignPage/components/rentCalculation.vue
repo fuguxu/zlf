@@ -24,7 +24,7 @@
                         <span class="tips">认证资料提交越齐全，您的年化率将越低。</span>
                     </div>               
                     <div class="input_box" >
-                        <el-select class="input" v-model="rentRate" placeholder="" placeholder="请选择年化率">
+                        <el-select class="input" @change="blurRentRate" v-model="rentRate" placeholder="" placeholder="请选择年化率">
                             <el-option
                             v-for="item in rentRateOptions"
                             :key="item.value"
@@ -42,7 +42,7 @@
                 <div class="form_item">
                     <div class="label">您的租赁周期</div>               
                     <div class="input_box" >
-                        <el-select class="input" v-model="rentTime" placeholder="请选择周期">
+                        <el-select class="input" @change="blurRentTime" v-model="rentTime" placeholder="请选择周期">
                             <el-option
                             v-for="item in rentTimeOptions"
                             :key="item.value"
@@ -254,11 +254,11 @@ export default {
             .error_message{
                 position: absolute;
                 top:100%;
-                display: flex;
-                align-items: center;
+                // display: flex;
+                // align-items: center;
                 line-height: 30px;
                 .icon{
-                    margin-right: 5px;
+                    margin-left: 0px;
                 }
             }
         }

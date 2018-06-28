@@ -10,7 +10,7 @@
             </div>
         </el-form-item>
         <el-form-item label=" ">
-            <el-select :disabled="!isEdit" v-model="form.sex" placeholder="请选择性别">
+            <el-select :disabled="!isEdit" v-model="form.sex" @change="valiateSex" placeholder="请选择性别">
                 <el-option :value="1" label="男"></el-option>
                 <el-option :value="0" label="女"></el-option>
             </el-select>
@@ -216,14 +216,15 @@ export default {
             left: 282px;
             width:100%;
             top:0px;
-            line-height: 40px;
-            font-size: 13px;
+            height: 40px;
+            line-height: normal;
+            // font-size: 13px;
             // color: #FF6C72;
             display: flex;
             align-items: center;
-            margin-left: 15px;
+            // margin-left: 15px;
             .icon{
-                margin-right: 5px;
+                // margin-right: 5px;
             }
         }
          .button{

@@ -426,7 +426,7 @@ export default {
                     font-size:12px;
                     left:100%;
                     .error{
-                        margin-right: 6px;
+                        margin-right: 13px;
                     }
                 }
             }

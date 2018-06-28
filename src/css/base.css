@@ -336,6 +336,11 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
 .el-input-box .el-input__inner,.el-input-box .el-input__inner:hover,.el-input-box .el-input.is-focus .el-input__inner,.el-input-box .el-input__inner:focus{
     /* border: 1px solid #dbd8d3; */
 }
+.el-input__inner[type="password"]:-webkit-autofill{
+    -webkit-box-shadow:0 0 0px 1000px rgba(241,241,241,1) inset;
+    background-color: rgba(241,241,241,1);
+    background-image: none;
+}
 .el-input__inner::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
     color:rgba(153,153,153,1) !important;
 }
@@ -412,6 +417,25 @@ textarea{border:1px solid #CBCED8;border-radius: 3px;resize: none;}
 }
 .error_message .icon{
     font-size: 16px;
+    margin:0px 13px 0px 15px;
+}
+.error_message span{
+    padding:2px 3px;
+    background: rgba(255,242,242,1);
+    position: relative;
+}
+.error_message span:before{
+    display: inline-block;
+    content: '';
+    width:0;
+    height:0;
+    border-width:10px 10px 10px 0;
+    border-style:solid;
+    border-color:transparent rgba(255,242,242,1) transparent transparent;
+    position: absolute;
+    left:-10px;
+    top:50%;
+    margin-top:-10px;
 }
 .button{
     display: inline-block;

@@ -207,9 +207,9 @@ export default {
             display: flex;
             align-items: center;
             width: 160%;
-            margin-left: 15px;
+            // margin-left: 15px;
             .icon{
-                margin-right: 5px;
+                // margin-right: 5px;
             }
         }
         .item_content .el-input{

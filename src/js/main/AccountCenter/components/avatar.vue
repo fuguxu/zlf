@@ -165,7 +165,7 @@ export default {
         height: 40px;
         top:0px;
         .error-icon{
-            margin:0 10px 0 22px;
+            // margin:0 10px 0 22px;
         }
     }
 </style>

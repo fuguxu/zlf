@@ -264,9 +264,9 @@ export default {
             width:210px;
             display: flex;
             align-items: center;
-            margin-left: 15px;
+            // margin-left: 15px;
             .icon{
-                margin-right: 5px;
+                // margin-right: 5px;
             }
         }
     }

@@ -62,7 +62,7 @@ export default {
                 display: flex;
                 align-items: center;
                 .icon{
-                    margin:0 5px 0 15px;
+                    // margin:0 5px 0 15px;
                 }
             }
         }

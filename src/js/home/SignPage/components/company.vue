@@ -196,7 +196,7 @@ export default {
                 left:100%;
                 min-width:66%;
                 .icon{
-                    margin:0 10px 0 22px;
+                    // margin:0 10px 0 22px;
                 }
             }
         }

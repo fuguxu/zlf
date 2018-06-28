@@ -77,7 +77,7 @@ export default {
             line-height: 40px;
             text-align: left;
             .icon{
-                margin:0 5px 0 20px;
+                // margin:0 5px 0 20px;
             }
         }
         .supplier_type{

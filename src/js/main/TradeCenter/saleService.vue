@@ -190,12 +190,12 @@ export default {
                 position: absolute;
                 left: 282px;
                 top:0px;
-                line-height: 40px;
+                height: 40px;
                 display: flex;
                 align-items: center;
-                margin-left: 15px;
+                // margin-left: 15px;
                 .icon{
-                    margin-right: 5px;
+                    // margin-right: 5px;
                 }
             }
         }

@@ -252,9 +252,9 @@ export default {
             display: flex;
             align-items: center;
             width: 88%;
-            margin-left: 15px;
+            // margin-left: 15px;
             .icon{
-                margin-right: 5px;
+                // margin-right: 5px;
             }
             &.sex_error_message{
                 margin-left: 202px;

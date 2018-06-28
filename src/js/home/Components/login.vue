@@ -26,7 +26,7 @@
                     <i slot="suffix" class="iconfont icon-close" @click="password=''" v-if="password"></i>
                 </el-input>
             </div>
-            <div class="error_message" v-if="errorMessage">
+            <div class="error_message_login" v-if="errorMessage">
                 <i class="icon el-icon-warning"></i>
                 <span>{{errorMessage}}</span>
             </div>
@@ -300,7 +300,7 @@ export default {
                 margin-left:20px;
             }
         }
-        .error_message{
+        .error_message_login{
             font-size: 14px;
             color: rgba(255, 68, 68, 1);
             line-height: 34px;
@@ -310,6 +310,7 @@ export default {
             .icon{
                 // margin-left: 20px;
                 margin-right: 7px;
+                font-size: 16px;
             }
         }
     }

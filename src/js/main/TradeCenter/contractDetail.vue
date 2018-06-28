@@ -207,11 +207,13 @@ export default {
             display: flex;
             align-items: center;
             position: absolute;
+            line-height: normal;
+            height:40px;
             left:100%;
             top:0px;
             width:80%;
             .icon{
-                margin:0px 5px;
+                // margin:0px 5px;
             }
         }
         /deep/ .el-form-item__content{
