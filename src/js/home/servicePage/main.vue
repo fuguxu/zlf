@@ -75,7 +75,7 @@ export default {
               styleTitle:'欧式风格',
               text1:'以手工雕刻见长，以镶嵌细工见长',
               text2:`轮廓和转折部分由对称而富有节奏感的曲线或曲面构成，并装饰镀金<br />铜饰、仿皮等，结构简练，线条流畅，色彩富丽，艺术感强`,
-              designer:'待定'
+              designer:'英国设计师Sert'
             },
             {
               url:require('../../../img/u171.png'),
@@ -117,7 +117,7 @@ export default {
               styleTitle:'欧式古典风格',
               text1:'融入浓厚的欧洲古典文化，已然成为一种经典',
               text2:`以华丽的装饰、浓烈的色彩、精美的造型达到雍容华贵的装饰效果，<br />通常给人以高档气派、尊贵典雅的视觉冲击`,
-              designer:'待定'
+              designer:'美国设计师Suzanne'
             },
             {
               url:require('../../../img/u193.png'),
@@ -125,7 +125,7 @@ export default {
               styleTitle:'地中海风格',
               text1:'享受碧海蓝天的清爽，地中海风格独特的美学特点',
               text2:`选择自然的柔和色彩,在组合设计上注意空间搭配,在组合搭配上避免<br />琐碎,显得大方、自然,散发出古老尊贵的田园气息和文化品位`,
-              designer:'待定'
+              designer:'西班牙设计师Jaime Hayon'
             },
           ],
           logoData:[
