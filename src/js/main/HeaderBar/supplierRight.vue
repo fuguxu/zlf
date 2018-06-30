@@ -79,7 +79,6 @@ export default {
     },
     watch:{
         switchValue(n,o){
-            console.log(55)
             if(o!==''){
                 this.openRecom(n);
             }else{

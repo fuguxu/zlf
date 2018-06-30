@@ -9,8 +9,8 @@
                 <p class="title_text font18">{{data.msgTitle}}</p>
                 <p class="time">{{data.sentTime}}</p>
             </div>
-            <div class="content_text">
-                {{data.msgContent}}
+            <div class="content_text" v-html="data.msgContent">
+                <!-- {{data.msgContent}} -->
             </div>
         </div>
     </div>
