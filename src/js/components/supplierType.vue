@@ -107,6 +107,9 @@ export default {
                         this.options=res.data;
                     }else{
                         this.childenOptions=res.data;
+                        if(this.childenOptions.length==0){//窗帘是此处情况
+                           this.checkList=[id];
+                        }
                         setTimeout(()=> {
                             this.showSelect=true;
                         }, 300);
@@ -130,7 +133,7 @@ export default {
     },
     watch:{
         checkList(n,o){
-           let checklist= this.childenOptions.filter(item=>{
+           let checklist= (this.childenOptions.length>0?this.childenOptions:this.options).filter(item=>{
                 return n.indexOf(item.id)>-1;
             })
             this.$emit('updateType',checklist.map(item=>{
