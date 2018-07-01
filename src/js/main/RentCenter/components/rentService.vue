@@ -10,7 +10,7 @@
             <el-collapse-transition>
                 <div class="extend"  v-if="start">
                     <div class="extend_title">了解您的项目详情，以便开展下一步融资服务，请您：</div>
-                    <p class="text"><span> a. 下载《项目信息收集表》</span><a class="link" href="">（点此下载）</a></p>
+                    <p class="text"><span> a. 下载《项目信息收集表》</span><a class="link" target="_blank" href="https://zlfoss.oss-cn-shenzhen.aliyuncs.com/pub_doc/%E7%A7%9F%E7%AB%8B%E6%96%B9%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E8%A1%A8.xlsx">（点此下载）</a></p>
                     <p class="text"><span> b. 线下填写《项目信息收集表》，并将该表及表中要求的附件，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
                     <!-- <div class="next_step">审核通过，将开启下一步</div> -->
                 </div>
@@ -42,7 +42,7 @@
             <el-collapse-transition>
                 <div v-if="finish" class="extend">
                     <div class="extend_title">认证清单要求的认证资料准备越齐全，租赁年化率将越低！</div>
-                    <p class="text"><span> a. 下载《租立方认证资料清单》</span><a class="link" href="">（点此下载）</a></p>
+                    <p class="text"><span> a. 下载《租立方认证资料清单》</span><a class="link" target="_blank" href="https://zlfoss.oss-cn-shenzhen.aliyuncs.com/pub_doc/%E7%A7%9F%E7%AB%8B%E6%96%B9%E8%AE%A4%E8%AF%81%E8%B5%84%E6%96%99%E6%B8%85%E5%8D%95.doc">（点此下载）</a></p>
                     <p class="text"><span> b. 请将清单内要求的资料准备齐全，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
                     <p class="text"><span> c.务必填写<span class="link">“{{orderName}}”</span>项目负责人信息，以便租立方大客户代表与您即刻取得联系！</span></p>
                     <rentMoneyInfo :orderNo="orderNo" :cusType="0" placeholderPerson="请输入负责人姓名" placeholderJob="请输入负责人在贵司所担任职位"></rentMoneyInfo>
