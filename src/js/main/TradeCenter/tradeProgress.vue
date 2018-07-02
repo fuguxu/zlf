@@ -67,7 +67,7 @@
             </div>
             <ul class="progress_content">                                                                                                                                                                                               
                 <li v-for="(item,index) in tradeList" :key="index">
-                    <span>{{index+1+'.'+item.progressDesc}}</span>
+                    <span>{{index+1+'.'+item.remark+item.progressDesc}}</span>
                     <span>{{item.createTime}}</span>
                 </li>
             </ul>

@@ -17,7 +17,7 @@
             <div class="item_content">
                 <el-select :disabled="!isEdit" v-model="form.sex"  placeholder="">
                     <el-option :key="1" label="男" :value="1"></el-option>
-                    <el-option :key="0" label="女" :value="0"></el-option>
+                    <el-option :key="0" label="女" :value="2"></el-option>
                 </el-select>
             </div>
         </div>

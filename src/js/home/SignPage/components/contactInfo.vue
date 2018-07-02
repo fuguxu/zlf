@@ -83,7 +83,7 @@ export default {
                     label:'男'
                 },
                 {
-                    value:'0',
+                    value:'2',
                     label:'女'
                 }
             ],

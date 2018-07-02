@@ -128,7 +128,7 @@ export default {
                         }
                     })
                 }else{
-                    this.errorMessage='账号名或密码错误';
+                    this.errorMessage=res.message;
                     this.$refs.user.focus();
                 }
             })

@@ -231,6 +231,7 @@ export default {
             customerModule.saveProductComm(this.selectData.map(item=>{
                 return {
                     // ...item,
+                    ext1:item.fullName,
                     supplierSource:item.supplierSource,
                     leaseType:item.ext,
                     leaseTypeNo:item.id,

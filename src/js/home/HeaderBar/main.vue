@@ -119,7 +119,7 @@
             }
             font-size:14px;
             display: inline-block;
-            height:52px;
+            height:53px;
             box-sizing: border-box;
             position: relative;
             .bar{

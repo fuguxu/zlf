@@ -80,7 +80,7 @@ export default {
         position: absolute;
         left: 50%;
         margin-left:-400px;
-        top:50px;
+        top:20px;
         box-sizing: border-box;
         .head,.choiceCity{
             border-bottom: 1px solid rgba(238,238,238,1);

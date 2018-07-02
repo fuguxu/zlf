@@ -12,7 +12,7 @@
         <el-form-item label=" ">
             <el-select :disabled="!isEdit" v-model="form.sex" @change="valiateSex" placeholder="请选择性别">
                 <el-option :value="1" label="男"></el-option>
-                <el-option :value="0" label="女"></el-option>
+                <el-option :value="2" label="女"></el-option>
             </el-select>
             <div class="error_message" v-if="sexErrorMessage">
                 <i class="icon el-icon-circle-close"></i>
