@@ -76,12 +76,16 @@ export default {
         },
         submit(){
             if(!this.userName&&!this.password){
-                this.errorMessage='请输入账号名和密码';
+                this.errorMessage='请输入账号和密码';
                 this.$refs.user.focus();
             }else if(!this.userName){
-                this.errorMessage='请输入账号名';
+                this.errorMessage='请输入账号';
                 this.$refs.user.focus();
-            }else if(!this.password){
+            }else if(''+(+this.userName)=='NaN'){
+                this.errorMessage='手机号格式不正确';
+                this.$refs.user.focus();
+            }
+            else if(!this.password){
                 this.errorMessage='请输入密码';
                 this.$refs.password.focus();
             }else{
@@ -213,12 +217,12 @@ export default {
             position: relative;
             .user_item{
                 height: 40px;
-                // border: 1px solid rgb(219,216,211);
+                border: 1px solid rgba(201,201,201,0.4);
                 display: flex;
                 border-radius: 4px;
                 
                 &.userActive{
-                    box-shadow: 0 0 5px #D7D7D7;
+                    box-shadow: 0 0 3px rgba(201,201,201,0.4);
                 }
                 &.user_name{
                     margin-bottom: 30px;

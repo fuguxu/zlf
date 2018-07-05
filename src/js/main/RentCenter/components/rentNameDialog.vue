@@ -8,7 +8,7 @@
                 </div>
                 <el-form :rules="rules" :model="form" ref="form"  class="demo-ruleForm">
                     <el-form-item prop="projectName">
-                        <el-input  v-model="form.projectName" placeholder="请输入您的项目名称"></el-input>
+                        <el-input :maxlength="12"  v-model="form.projectName" placeholder="请输入您的项目名称"></el-input>
                         <div class="error_message" v-if="tipMessage">
                             <i class="icon el-icon-error"></i>
                             <span>{{tipMessage}}</span>
@@ -70,6 +70,8 @@ export default {
     watch:{
         visible(n,o){
             if(n){
+                this.form.projectName='';
+                this.tipMessage='';
                 setTimeout(()=>{
                     this.show=true;
                 },100)

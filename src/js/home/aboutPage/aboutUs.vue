@@ -40,7 +40,7 @@
                       </div>
                       <div class="item_text item_text2">
                           <div class="item_text_title">如家人般呵护，如管家式极致</div>
-                          <p class="item_bottom_text">如家人般呵护，如管家式极致</p>
+                          <p class="item_bottom_text">聆听，知您所需；保障，享受服务；养护，长久陪伴</p>
                       </div>
                       <div class="item_text item_text2">
                           <div class="item_text_title">服务不分国界，服务不分群体</div>

@@ -153,18 +153,23 @@ export default {
                             color:rgba(255,255,255,0.6);
                         }
                     }
+                    .item{
+                        &:hover{
+                            color: rgba(255, 255, 255, 0.6);
+                        }
+                    }
                 }
                 .item{
                     // line-height: 20px;
                     margin-bottom: 16px;
                     &:hover{
-                        color: rgba(255, 255, 255, 0.6);
+                        // color: rgba(255, 255, 255, 0.6);
                     }
                 }
             }
             .copy_right{
                 .item:hover{
-                    color: rgba(255, 255, 255, 0.6);
+                    // color: rgba(255, 255, 255, 0.6);
                 }
             }
         }

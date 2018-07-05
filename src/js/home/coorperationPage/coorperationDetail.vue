@@ -32,7 +32,7 @@
                     <span>项目背景</span>
                     <span class="line"></span>
                     </div>
-                  <p class="text">{{data.itemBackground}}</p>
+                  <p class="text background">{{data.itemBackground}}</p>
                 </div>
                 <div class="item">
                   <div class="title">
@@ -192,6 +192,9 @@ export default {
             font-size: 14px;
             // color: rgba(51, 51, 51, 0.9);
             line-height: 36px;
+            &.background{
+              text-align: left;
+            }
           }
         }
       }

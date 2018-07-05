@@ -13,7 +13,7 @@
                     </div>
                     <p class="contentRes font14">{{item.contentRes}}......</p>
                     <div class="readDetail">
-                      <a :href="'#/news/detail?pageNo='+(pageSize*(pageNo-1)+index+1)">阅读详情</a>
+                      <a target="_blank" :href="'#/news/detail?pageNo='+(pageSize*(pageNo-1)+index+1)">阅读详情</a>
                     </div>
               </div>
           </div>
@@ -93,7 +93,7 @@ export default {
               flex-flow:row-reverse;
             }
             &:hover{
-              box-shadow: 5px 5px 5px rgba(174,174,174,0.4);
+              box-shadow: 5px 5px 5px rgba(174,174,174,0.5);
             }
             .img{
               width:372px;

@@ -9,7 +9,7 @@
             </div>
             <el-collapse-transition>
                 <div class="extend"  v-if="start">
-                    <div class="extend_title">了解您的项目详情，以便开展下一步融资服务，请您：</div>
+                    <div class="extend_title">了解您的项目详情，以便开展下一步租赁服务，请您：</div>
                     <p class="text"><span> a. 下载《项目信息收集表》</span><a class="link" target="_blank" href="https://zlfoss.oss-cn-shenzhen.aliyuncs.com/pub_doc/%E7%A7%9F%E7%AB%8B%E6%96%B9%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E8%A1%A8.xlsx">（点此下载）</a></p>
                     <p class="text"><span> b. 线下填写《项目信息收集表》，并将该表及表中要求的附件，一起打包邮件至</span><span class="link">service@zucube.cn</span></p>
                     <!-- <div class="next_step">审核通过，将开启下一步</div> -->
@@ -26,7 +26,7 @@
             <el-collapse-transition>
                 <div v-if="doing" class="extend" >
                     <div class="extend_title">建立双方互信、良好的合作前提，请您：</div>
-                    <p class="text"><span> a. 下载《平台服务协议》</span><a class="link" href="">（点此下载）</a></p>
+                    <p class="text"><span> a. 下载《平台服务协议》</span><a class="link" target="_blank" href="https://zlfoss.oss-cn-shenzhen.aliyuncs.com/pub_doc/%E5%B9%B3%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%8D%8F%E8%AE%AE.pdf">（点此下载）</a></p>
                     <p class="text"><span> b. 线下签署并加盖公司红章，上传清晰可见的扫描件</span></p>
                     <uploadLicence saveType="cooperationAgreement" :orderNo="orderNo" :showMore="false"></uploadLicence>
                     <!-- <div class="next_step">审核通过，将开启下一步</div> -->
@@ -386,6 +386,9 @@ export default {
                 line-height: 30px;
                 .link{
                     color:rgba(50,146,255,1);
+                }
+                a.link:hover{
+                    text-decoration: underline;
                 }
             }
             .file-upload-container{

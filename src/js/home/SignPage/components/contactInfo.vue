@@ -135,8 +135,8 @@ export default {
             if(!this.form.phone){
                this.phoneErrorMessage= '请输入联系人常用手机号码！';
                return false
-            }else if(''+(+this.form.phone.length)=='NaN'){
-                this.phoneErrorMessage='请输入数字！';
+            }else if(''+(+this.form.phone)=='NaN'){
+                this.phoneErrorMessage='您输入的手机号码格式不正确！';
                 return false;
             }else if(this.form.phone.length<11){
                 this.phoneErrorMessage='您输入的手机号码长度不够！';

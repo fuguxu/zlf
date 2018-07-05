@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <el-input class="input" @blur="blurCode" v-model="form.code" :maxlength="6"   placeholder="请输入手机验证码">
+                    <el-input class="input"  @blur="blurCode" v-model="form.code" :maxlength="6"   placeholder="请输入手机验证码">
                         <i slot="suffix"  class="code button" @click="getCode" :class="{getCoding:codeTime>0&&codeTime<120,getCoded:codeTime==0}">{{codeText}}</i>
                     </el-input>
                     <div class="error_message" v-if="codeErrorMessage">
@@ -66,10 +66,14 @@ export default {
     methods:{
         blurMobile(){//验证手机号
             if(!this.form.mobile){
-              this.mobileErrorMessage='请输入手机号！';
+              this.mobileErrorMessage='请输入手机号!';
               return false;
-          }else if(this.form.mobile.length<11){
-              this.mobileErrorMessage='手机号长度不够！';
+          }else if(''+(+this.form.mobile)=='NaN'){
+              this.mobileErrorMessage='您输入的手机号码格式不正确!';
+              return false;
+          }
+          else if(this.form.mobile.length<11){
+              this.mobileErrorMessage='手机号长度不够!';
               return false;
           }
           else{

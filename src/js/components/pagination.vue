@@ -69,10 +69,11 @@ export default {
                 border-right: none;
                 color: #666;
                 &.disabled{
-                cursor: pointer;
+                    cursor: pointer;
+                    display: none;
                 }
                 &:hover{
-                    // border-color:#0099ff;
+                    color:rgba(255, 166, 50, 1);
                 }
                 &.btn-prev{
                     border-top-left-radius: 3px;

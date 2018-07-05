@@ -16,8 +16,9 @@
           </div>
         </div>
         <div class="pre_next">
-            <span>上一篇：<a class="littleTitle" :href="'#/news/detail?pageNo='+(+pageNo-1||1)" target="_blank">{{pre.title}}</a></span>
-            <span>下一篇：<a class="littleTitle" :href="'#/news/detail?pageNo='+(+pageNo+1)" target="_blank">{{next.title}}</a></span>
+            <span v-if="data.id!=pre.id">上一篇：<a class="littleTitle" :href="'#/news/detail?pageNo='+(+pageNo-1||1)" >{{pre.title}}</a></span>
+            <span style="width:10px;"></span>
+            <span v-if="data.id!=next.id">下一篇：<a class="littleTitle" :href="'#/news/detail?pageNo='+(+pageNo+1)" >{{next.title}}</a></span>
         </div>  
       </div>
   </div>
@@ -45,11 +46,19 @@ export default {
       },
       toBack(){
         this.$router.go(-1);
+      },
+      init(){
+        this.pageNo=this.$route.query.pageNo;
+        this.getNewsDetail();
       }
   },
   mounted(){
-    this.pageNo=this.$route.query.pageNo;
-    this.getNewsDetail();
+    this.init();
+  },
+  watch:{
+    '$route.query.pageNo'(n,o){
+        this.init();
+    }
   }
 }
 </script>
@@ -114,7 +123,7 @@ export default {
           display: flex;
           justify-content: space-between;
           font-size: 14px;
-          color: #888;
+          color: #999;
           .littleTitle{
             &:hover{
               color: #797979;

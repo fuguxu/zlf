@@ -137,7 +137,7 @@
             }
             &.router-link-active{
                 // border-bottom: 2px solid #fff;
-                color: rgba(255, 255, 255, 0.75);
+                // color: rgba(255, 255, 255, 0.75);
                 .bar{
                     display: block;
                 }

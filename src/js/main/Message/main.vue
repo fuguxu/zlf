@@ -95,7 +95,6 @@ export default {
                     cursor: pointer;
                     &:hover,&.router-link-active{
                         color: rgba(255,166,50,1);
-                        border-left:4px solid rgba(255,166,50,1);
                         .img2{
                             display: block;
                         }
@@ -105,6 +104,7 @@ export default {
                     }
                     &.router-link-active{
                         background:rgba(244,244,244,1);
+                        border-left:4px solid rgba(255,166,50,1);
                     }
                     .img{
                         width:18px;

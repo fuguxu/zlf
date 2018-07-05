@@ -75,7 +75,7 @@ export default {
                 }
             ],
             itemData:'',
-            defaultActive:'0-'+(this.$route.query.id||'0'),
+            defaultActive:this.$route.query.id,
             title:'',
             subTitle:'',
             thirdTitle:'',
@@ -112,7 +112,7 @@ export default {
             this.subTitle=this.subData[+p[1].split('-')[1]].name;
             this.activeIndex=this.subData[+p[1].split('-')[1]].id;
             this.choiceCp(this.data[+p[0]]);
-            this.$router.push('/rent?id='+this.activeIndex);//刷新的时候 保持在当前菜单
+            this.$router.push('/rent?id='+p[1]);//刷新的时候 保持在当前菜单
         },
         updateCp(item){//到合同执行的详情
             this.thirdTitle=item.leaseName;
@@ -152,8 +152,14 @@ export default {
     },
     mounted(){
         this.getOrderInfoList();
+        Bus.$on('updateRentId',()=>{
+            this.selectMenu('',[this.$route.query.id.split('-')[0],this.$route.query.id]);
+        })
     },
     watch:{
+        '$route.query.id'(n,o){
+            this.defaultActive=n;
+        }
     },
     computed:{
     },
@@ -240,6 +246,7 @@ export default {
             }
             .right{
                 flex: 1;
+                padding-bottom: 50px;
                 .bread_crumb{
                     display: flex;
                     align-items: center;

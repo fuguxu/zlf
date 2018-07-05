@@ -4,7 +4,7 @@
         <div class="form">
             <div class="input_box" :class="{active:activeMember}">
                 <div class="label">昵称</div>
-                <el-input class="input" v-model="form.userAbbr" @focus="activeMember=true" @blur="blurmemberName" placeholder="请输入公司简称作为昵称">
+                <el-input class="input" :maxlength="12" v-model="form.userAbbr" @focus="activeMember=true" @blur="blurmemberName" placeholder="请输入公司简称作为昵称">
                     <i slot="suffix" class="iconfont icon-close" @click="form.userAbbr=''" v-if="form.userAbbr"></i>
                 </el-input>
                 <div class="error_message" v-if="memberNameErrorMessage">
@@ -131,8 +131,8 @@ export default {
           if(!this.form.loginName){
               this.userNameErrorMessage='请输入常用手机号！';
               return false;
-          }else if(''+(+this.form.loginName.length)=='NaN'){
-              this.userNameErrorMessage='请输入数字！';
+          }else if(''+(+this.form.loginName)=='NaN'){
+              this.userNameErrorMessage='您输入的手机号码格式不正确！';
               return false;
           }else if(this.form.loginName.length<11){
               this.userNameErrorMessage='您输入的手机号码长度不够！';

@@ -98,8 +98,12 @@ export default {
             if(!this.companyName){
                 this.companyErrorMessage='请输入公司名！';
                 return false;
-            }else if(this.companyName.length>=1&&this.companyName.length<14){
-                this.companyErrorMessage='公司名称不能少于14个字符！';
+            }else if(!/^[\u4e00-\u9fa5]+$/.test(this.companyName)){
+                 this.companyErrorMessage='请输入正确的公司名称！';
+                return false;
+            }
+            else if(this.companyName.length>=1&&this.companyName.length<5){
+                this.companyErrorMessage='公司名称不能少于5个汉字！';
                 return false;
             }else{
                 this.companyErrorMessage='';

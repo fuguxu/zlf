@@ -3,7 +3,7 @@
         <ul class="message">
             <li class="item title font18">{{title}}</li>
             <li v-for="(item,index) in messageList" :key="index" class="item message_item">
-                <div class="item_content">
+                <div class="item_content" :class="{first:index==0,last:index==messageList.length-1}">
                     <span class="dot" v-if="item.readed=='0'"></span>
                     <a class="title_text" :href="renderHref(item)" :class="{unread:item.readed=='0'}">{{item.msgTitle}}</a>
                     <span class="time">{{renderTime(item)}}</span>
@@ -91,16 +91,25 @@ export default {
         &.message_item{
             padding:0 22px;
             &:hover{
-                background: rgb(242,242,242);
+                background: rgb(244,244,244);
+            }
+            &:hover+.message_item .item_content{
+                border-top: 1px solid transparent;
             }
         }
         .item_content{
-            border-bottom: 1px solid rgba(244,244,244,1);
+            border-top: 1px solid rgba(244,244,244,1);
             position: relative;
             line-height: 50px;
             display: flex;
             align-items: center;
             color: rgba(153, 153, 153, 1);
+            &.first{
+                border-top: 1px solid transparent;
+            }
+            &.last{
+                border-bottom: 1px solid rgba(244,244,244,1);
+            }
         }
         &.title{
             line-height: 64px;

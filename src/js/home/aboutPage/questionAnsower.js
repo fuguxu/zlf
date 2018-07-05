@@ -66,7 +66,7 @@ export default [
             },
             {
                 question:'认证资料审核不通过，怎么办',
-                answer:`请注意查收账号消息通知，或者邮件通知；根据通知中不通过理由，重新准备认证资料，再次邮件至service@zucube.co。`
+                answer:`请注意查收账号消息通知，或者邮件通知；根据通知中不通过理由，重新准备认证资料，再次邮件至service@zucube.cn。`
             },
             {
                 question:'平台所推荐的供应商，联系方式失效',

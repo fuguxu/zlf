@@ -92,6 +92,9 @@ const routesMap = [
                 dropMenu:[
                     {
                         path:'/business',
+                        query:{
+                            herf:'supplierGoIn'
+                        },
                         name:'供应商进驻',
                         // component:newsList,
                     },

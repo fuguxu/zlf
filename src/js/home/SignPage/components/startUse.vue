@@ -4,7 +4,7 @@
         <div class="img_box">
             <img src="../../../../img/u1340.png" alt="">
         </div>
-        <p class="tip_success">深圳市中租借科技有限公司，您已成功注册！</p>
+        <p class="tip_success">{{user.userAbbr}}，您已成功注册！</p>
         <p class="tip_rent">是否开始<span class="rent_text">租赁测算体验？</span></p>
         <div class="button_box">
             <span @click="nextStep" class="button jump">跳过</span>
@@ -24,7 +24,8 @@ export default {
     },
     data(){
         return {
-            visible:false
+            visible:false,
+            user:{}
         }
     },
     methods:{
@@ -32,8 +33,13 @@ export default {
             this.visible=true;
         },
         nextStep(){
-            this.$router.push('/licence')
+            this.$router.push('/licence');
         }
+    },
+    mounted(){
+        AppUtil.getCurrentUserInfo((user)=>{
+            this.user=user;
+        })
     },
     components:{
         stepBar,

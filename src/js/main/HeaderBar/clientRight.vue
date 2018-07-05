@@ -30,13 +30,18 @@ export default {
         return {
             isHasProject:true,
             unSetFlag:false,
-            rentNameFlag:false
+            rentNameFlag:false,
         }
     },
     methods:{
         goRent(id){
             if(id){
-                this.$router.push('/rent?id='+id);
+                // let rid='';
+                // if(this.$route.path=='/rent'){
+                //     rid=this.$route.query.id.split('-')[0]
+                // }
+                this.$router.push('/rent?id='+'0'+'-'+id);
+                Bus.$emit('updateRentId');
             }else{
                 this.$router.push('/rent');
             }

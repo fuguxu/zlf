@@ -121,7 +121,11 @@ export default {
             if(!this.form.mobile){
                 this.telErrorMessage='请输入常用手机号！';
                 return false
-            }else if(this.form.mobile.length<11){
+            }else if(''+(+this.form.mobile)=='NaN'){
+                 this.telErrorMessage='您输入的手机号码格式不正确！';
+                return false
+            }
+            else if(this.form.mobile.length<11){
                 this.telErrorMessage='您输入的手机号码长度不够！';
                 return false
             }

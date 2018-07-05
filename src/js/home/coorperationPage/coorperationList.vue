@@ -21,7 +21,7 @@
                           </ul>
                           <ul class="info">
                             <li class="nu">{{item.roomNumber}}</li>
-                            <li class="it">房间数</li>
+                            <li class="it">{{item.roomNumberDesc||'房间数'}}</li>
                           </ul>
                           <ul class="info">
                             <li class="nu">{{item.productStyle}}</li>
@@ -87,6 +87,7 @@ export default {
 <style lang="scss" scoped>
     .coorperation_list{
         background: rgba(244, 244, 244, 1);
+        padding-bottom: 50px;
     }
     .banner{
       height:600px;
@@ -147,7 +148,7 @@ export default {
           box-shadow: 0 0 8px rgba(215, 215, 215, 0.6);
           border-radius: 7px;
           &:hover,&:hover img{
-            box-shadow: 0 0 10px rgba(255,192,46, 0.3);
+            box-shadow: 0 0 8px rgba(255,166,50, 0.7);
           }
           img{
             border-top-left-radius: 7px;

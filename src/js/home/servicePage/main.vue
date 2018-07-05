@@ -233,6 +233,7 @@ export default {
 <style lang="scss" scoped>
     .service_container{
         background: #fff;
+        padding-bottom: 50px;
         .banner{
           height: 600px;
           background: url('../../../img/product_banner.png') center no-repeat;
