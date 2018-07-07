@@ -8,7 +8,7 @@
                         <input ref="fileInput" @change="changeFile" id="fileId" :multiple="multiple" type="file" />
                     </form>
                 </label>
-                <img @click="previewImg"  v-else class="preview" :src="imgUrl" alt="">
+                <img @click="previewImg"  v-else class="preview" :src="busLicenseImgAddr||imgUrl" alt="">
                 <div class="tip_text">{{tipText}}</div>
                 <div @click="emitHandleRemove" class="close_icon" v-if="hasFile">×</div>
                 <div class="error_message" v-if="tipMessage">
@@ -22,7 +22,7 @@
                 <p class="tip">3.营业执照要清晰可见</p>
             </div>
             <div>
-                <span @click="uploadFile" class="button" :class="{hsaFile:hasFile}">{{!isSubmited?'提交':'提交成功'}}</span>
+                <span @click="uploadFile" class="button" :class="{hsaFile:hasFile&&!this.busLicenseImgAddr}">{{!isSubmited?'提交':'提交成功'}}</span>
                 <i v-if="loading" class="icon-loading color8 font18 el-icon-loading"></i>
             </div>
         </div>
@@ -53,7 +53,9 @@ export default {
         formData:'',
         // imgUrl:'',
         loading:false,
-        isSubmited:false
+        isSubmited:false,
+        status:this.$route.query.status,
+        busLicenseImgAddr:''
       }
   },
   methods:{
@@ -106,7 +108,7 @@ export default {
 
        },
       uploadFile(){//调接口函数
-        if(!this.hasFile||this.isSubmited) return;
+        if(!this.hasFile||this.isSubmited||this.busLicenseImgAddr) return;
         this.loading=true;
         customerModule.upload(this.formData).then(res=>{
            if(res.error==0){
@@ -123,20 +125,27 @@ export default {
       emitHandleRemove(){//删除
             this.fileList=[];
             this.isSubmited=false;
+            this.busLicenseImgAddr='';
       },
       previewImg(){//预览图片
-          window.open(this.imgUrl);
+          window.open(this.busLicenseImgAddr||this.imgUrl);
       }
     }, 
   mounted(){
-    
+     AppUtil.getCurrentUserInfo(user=>{
+        this.form=user;
+        if(this.status=='2'){//营业执照审核不通过时 跳转到此页面 默认显示之前提交的营业执照
+            this.busLicenseImgAddr=this.form.busLicenseImgAddr;
+            this.tipMessage='请选择文件'
+        }
+    });
   },
   computed:{
       hasFile(){
-          return this.fileList.length!=0;
+          return this.fileList.length!=0||this.busLicenseImgAddr;
       },
       tipText(){
-          return this.fileList.length==0?'选择文件，支持jpg、bmp、png格式，不超过5M':'点击左侧，预览图片'
+          return this.fileList.length==0&&!this.busLicenseImgAddr?'选择文件，支持jpg、bmp、png格式，不超过5M':'点击左侧，预览图片'
       },
       imgUrl(){
           return window.URL.createObjectURL(this.fileList[0]);

@@ -101,19 +101,24 @@ export default {
       bottom:24px;
       width:48px;
       height:21px;
-      background: rgba(255, 255, 255,0.3);
+      background-color: rgba(255, 255, 255,0.3);
       border-radius: 10px;
       display: flex;
       align-items: center;
-      justify-content:space-around;
+      // justify-content:space-around;
       .banner_button{
         width:12px;
         height: 12px;
         border-radius: 50%;
-        background: rgba(255, 255, 255,0.8);
+        background-color: rgba(255, 255, 255,0.8);
         cursor: pointer;
+        margin-top:-1px;
+        margin-left:14px;
+        &:first-child{
+          margin-left:4px;
+        }
         &.current_button{
-          background: rgba(255, 166, 50, 1)
+          background-color: rgba(255, 166, 50, 1)
         }
       }
     }

@@ -75,3 +75,8 @@ s.setCurrentUserInfo=function(data){
         }
     })
  }
+ s.checkVerificationCode=function(phone,code,cb){
+    customerModule.checkVerificationCode({phone:phone,code:code}).then(res=>{
+        cb(res)
+    })
+ }

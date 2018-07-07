@@ -53,7 +53,6 @@ export default {
         },
         changeType(value){//选择第一级
             let item=AppUtil.findWhere(this.options,'id',value);
-            console.log(item)
             if(item.catName.indexOf('机电')>-1){//机电只能单选
                 this.max=1;
             }else{
@@ -87,7 +86,12 @@ export default {
                         parentId:op2[0].id
                     }).then(res=>{
                         if(res.statusCode=='1'){
-                            this.childenOptions=[...op1,...res.data];
+                            this.childenOptions=[...op1,...res.data.map(item=>{
+                                return {
+                                    ...item,
+                                    catName:'活动'+item.catName
+                                }
+                            })];
                             setTimeout(()=> {
                                 this.showSelect=true;
                             }, 300);

@@ -155,6 +155,8 @@ export const customerModule={
     changePwd:params => { return customerAxios.post('/changePwd?'+ qs.stringify(params)).then(res => res.data); },
     //获取营业执照审核状态
     getLicenseStatus:params => { return customerAxios.get('/getLicenseStatus', {params:params}).then(res => res.data); },
+    //检验验证码的状态
+    checkVerificationCode:params => { return customerAxios.get('/checkVerificationCode', {params:params}).then(res => res.data); },
 }
 
 export const multipleAxios=(postArray,cb)=>{

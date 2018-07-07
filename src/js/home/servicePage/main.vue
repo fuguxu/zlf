@@ -227,7 +227,7 @@ export default {
       mouseenter(item){
         item.showTitle=false;
       }
-    }
+    },
 }
 </script>
 <style lang="scss" scoped>

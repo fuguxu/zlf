@@ -139,20 +139,20 @@ export default {
               return false;
           }else{
               if(value){//区分失去焦点和点击注册 点击获取验证码
-                  AppUtil.checkUserLoginName(this.form.mobile,(data=>{
+                  AppUtil.checkUserLoginName(this.form.loginName,data=>{
                         if(data){
                             this.userNameErrorMessage='该手机号已注册，请直接登陆!';
                         }else{
                             this.userNameErrorMessage='';
                         }
-                    }))
+                    })
               }else{
                   this.userNameErrorMessage='';
                   return true
               }
           }
       },
-      blurIdentifyCode(){
+      blurIdentifyCode(value){
           this.activeIdentifyCode=false;
           if(!this.form.code){
               this.identifyCodeErrorMessage='请输入验证码!';
@@ -165,8 +165,18 @@ export default {
               return false;
           }
           else{
-              this.identifyCodeErrorMessage='';
-              return true
+              if(value){//区分失去焦点和点击注册
+                  AppUtil.checkVerificationCode(this.form.loginName,this.form.code,data=>{
+                        if(data.statusCode=='-1'){
+                            this.identifyCodeErrorMessage=data.message;
+                        }else{
+                            this.identifyCodeErrorMessage='';
+                        }
+                    })
+              }else{
+                  this.identifyCodeErrorMessage='';
+                  return true
+              }
           }
       },
       getVerification(){//获取验证码接口
@@ -232,7 +242,6 @@ export default {
       },
       postData(...checkResult){//发送请求
         let flag =true;
-        console.log(checkResult);
         checkResult.forEach((v,k)=>{//判断对字段校验结果
             if(v.data=='1'){
                 flag=false;
@@ -243,13 +252,22 @@ export default {
                 }
             }
         })
-        if(flag){
-            if(this.role=='client'){
-                this.registerCustorm({...this.companyInfo,...this.form});
-            }else{
-                this.registerSupplier({...this.companyInfo,...this.form});
-            }
-        }
+        // if(flag){
+            AppUtil.checkVerificationCode(this.form.loginName,this.form.code,data=>{//校验验证码
+                if(data.statusCode=='-1'){
+                    this.identifyCodeErrorMessage=data.message;
+                }else{
+                    this.identifyCodeErrorMessage='';
+                    if(flag){
+                        if(this.role=='client'){
+                            this.registerCustorm({...this.companyInfo,...this.form});
+                        }else{
+                            this.registerSupplier({...this.companyInfo,...this.form});
+                        }
+                    }
+                }
+            })
+        // }
         
       },
       registerCustorm(parmars){//客户注册

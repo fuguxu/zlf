@@ -89,14 +89,14 @@ export default {
                 this.errorMessage='请输入密码';
                 this.$refs.password.focus();
             }else{
-                AppUtil.checkUserLoginName(this.userName,(data=>{
+                AppUtil.checkUserLoginName(this.userName,data=>{
                     if(data){
                         this.errorMessage='';
                         this.login();
                     }else{
                         this.errorMessage='该账号不存在';
                     }
-                }))
+                })
                 
             }
         },
@@ -117,7 +117,7 @@ export default {
                                 }else if(status=='1'){//审核通过
                                     window.location.href='main.html#/account/information';
                                 }else if(status=='2'){//审核不通过
-                                    window.location.href='main.html#/licence';//之前上传的也要显示出来
+                                    window.location.href='main.html#/licence?status=2';//之前上传的也要显示出来
                                 }else if(status=='3'){//未提交
                                     window.location.href='main.html#/licence';
                                 }
@@ -131,7 +131,7 @@ export default {
                                 }else if(status=='1'){
                                     window.location.href='main.html#/account/company';
                                 }else if(status=='2'){
-                                    window.location.href='main.html#/sign/supplier?cp=startUse';//之前上传的也要显示出来
+                                    window.location.href='main.html#/sign/supplier?cp=startUse&status=2';//之前上传的也要显示出来
                                 }else if(status=='3'){
                                     window.location.href='main.html#/sign/supplier?cp=startUse';
                                 }

@@ -109,7 +109,7 @@ export default {
                 }
             })
         },
-        blurIdentifyCode(){
+        blurIdentifyCode(value){
           if(!this.code){
               this.codeErrorMessage='请输入验证码！';
               return false;
@@ -118,8 +118,18 @@ export default {
               this.codeErrorMessage='验证码长度不够！'||'验证码不正确！';
               return false;
           } else{
-              this.codeErrorMessage='';
-              return true
+              if(value){//区分失去焦点和点击绑定
+                  AppUtil.checkVerificationCode(this.form.loginName,this.code,data=>{
+                        if(data.statusCode=='-1'){
+                            this.codeErrorMessage=data.message;
+                        }else{
+                            this.codeErrorMessage='';
+                        }
+                    })
+              }else{
+                  this.codeErrorMessage='';
+                  return true
+              }
           }
         },
         blurEmail(){
@@ -134,7 +144,14 @@ export default {
         },
         sureBind(){//确认绑定
             if(this.blurIdentifyCode()&&this.blurEmail()){
-                this.changeMail();
+                AppUtil.checkVerificationCode(this.form.loginName,this.code,data=>{
+                    if(data.statusCode=='-1'){
+                        this.codeErrorMessage=data.message;
+                    }else{
+                        this.changeMail();
+                        this.codeErrorMessage='';
+                    }
+                })
             }
         },
         changeMail(){//重新绑定接口

@@ -101,7 +101,7 @@ export default {
       getCode(){//获取验证码
           if(this.codeTime<120&&this.codeTime>0) return;
           if(this.blurMobile()){
-                AppUtil.checkUserLoginName(this.form.mobile,(data=>{
+                AppUtil.checkUserLoginName(this.form.mobile,data=>{
                     if(data){
                         this.mobileErrorMessage='';
                         this.getVerification();
@@ -111,7 +111,7 @@ export default {
                     }else{
                        this.mobileErrorMessage= '该手机号还未注册!';
                     }
-                }))
+                })
 
           }
       },
@@ -157,7 +157,7 @@ export default {
       },
       changePwd(){
           if(this.valate()){
-              AppUtil.checkUserLoginName(this.form.mobile,(data=>{
+              AppUtil.checkUserLoginName(this.form.mobile,data=>{
                     if(data){
                         this.mobileErrorMessage='';
                         customerModule.changePwd(this.form).then(res=>{
@@ -168,12 +168,13 @@ export default {
                                 },1500)
                             }else{
                                 AppUtil.message(this,res.message,'error');
+                                this.codeErrorMessage=res.message;
                             }
                         })
                     }else{
                        this.mobileErrorMessage= '该手机号还未注册!';
                     }
-                }))
+                })
               
           } 
       }

@@ -3,7 +3,7 @@
         <div class="box">
             <div class="content" :class="{show:show}" @click.stop="1">
                 <div class="header">
-                    <span class="font18">请输入项目名称</span>
+                    <span class="font18 color3">请输入项目名称</span>
                     <span @click="close" class="close font18">×</span>
                 </div>
                 <el-form :rules="rules" :model="form" ref="form"  class="demo-ruleForm">
@@ -110,6 +110,7 @@ export default {
             text-align: center;
             border-bottom: 1px solid rgba(238,238,238,1);
             position: relative;
+            color:#333;
             .close{
                 color:rgba(102,102,102,1);
                 position: absolute;
