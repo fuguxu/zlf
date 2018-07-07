@@ -101,10 +101,18 @@ export default {
       getCode(){//获取验证码
           if(this.codeTime<120&&this.codeTime>0) return;
           if(this.blurMobile()){
-                this.getVerification();
-                if(this.codeTime<=0){
-                    this.codeTime=120;
-                }
+                AppUtil.checkUserLoginName(this.form.mobile,(data=>{
+                    if(data){
+                        this.mobileErrorMessage='';
+                        this.getVerification();
+                        if(this.codeTime<=0){
+                            this.codeTime=120;
+                        }
+                    }else{
+                       this.mobileErrorMessage= '该手机号还未注册!';
+                    }
+                }))
+
           }
       },
         blurCode(){
@@ -149,16 +157,24 @@ export default {
       },
       changePwd(){
           if(this.valate()){
-              customerModule.changePwd(this.form).then(res=>{
-                  if(res.statusCode=='1'){
-                      AppUtil.message(this,'修改成功','success');
-                      setTimeout(()=>{
-                          this.$router.push('/home');
-                      },1500)
-                  }else{
-                      AppUtil.message(this,res.message,'error');
-                  }
-              })
+              AppUtil.checkUserLoginName(this.form.mobile,(data=>{
+                    if(data){
+                        this.mobileErrorMessage='';
+                        customerModule.changePwd(this.form).then(res=>{
+                            if(res.statusCode=='1'){
+                                AppUtil.message(this,'修改成功','success');
+                                setTimeout(()=>{
+                                    this.$router.push('/home');
+                                },1500)
+                            }else{
+                                AppUtil.message(this,res.message,'error');
+                            }
+                        })
+                    }else{
+                       this.mobileErrorMessage= '该手机号还未注册!';
+                    }
+                }))
+              
           } 
       }
     }

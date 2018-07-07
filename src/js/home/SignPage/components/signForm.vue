@@ -171,6 +171,8 @@ export default {
                                 this.codeText=this.codeTime+'秒后可重发';
                             }
                         },1000)
+                    }else{
+
                     }
                 })
             }
@@ -217,6 +219,7 @@ export default {
       },
       postData(...checkResult){//发送请求
         let flag =true;
+        console.log(checkResult);
         checkResult.forEach((v,k)=>{//判断对字段校验结果
             if(v.data=='1'){
                 flag=false;

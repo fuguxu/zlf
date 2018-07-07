@@ -67,3 +67,11 @@ s.setCurrentUserInfo=function(data){
         }
     })
  }
+
+ s.checkUserLoginName=function(loginName,cb){
+    customerModule.checkInfo({loginName:loginName}).then(res=>{
+        if(res.statusCode=='1'){
+            cb(res.data)
+        }
+    })
+ }

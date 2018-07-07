@@ -14,7 +14,7 @@
                 <!-- <div class="icon_before">
 
                 </div> -->
-                <el-input type="text" ref="user"  @focus="userActive=true" @blur="userActive=false" class="input user_input" v-model="userName" placeholder="请输入您的手机号">
+                <el-input type="text" :maxlength="11" ref="user"  @focus="userActive=true" @blur="userActive=false" class="input user_input" v-model="userName" placeholder="请输入您的手机号">
                     <i slot="suffix" class="iconfont icon-close" @click="userName=''" v-if="userName"></i>
                 </el-input>
             </div>
@@ -81,7 +81,7 @@ export default {
             }else if(!this.userName){
                 this.errorMessage='请输入账号';
                 this.$refs.user.focus();
-            }else if(''+(+this.userName)=='NaN'){
+            }else if(''+(+this.userName)=='NaN'||this.userName.length<11){
                 this.errorMessage='手机号格式不正确';
                 this.$refs.user.focus();
             }
@@ -89,8 +89,15 @@ export default {
                 this.errorMessage='请输入密码';
                 this.$refs.password.focus();
             }else{
-                this.errorMessage='';
-                this.login();
+                AppUtil.checkUserLoginName(this.userName,(data=>{
+                    if(data){
+                        this.errorMessage='';
+                        this.login();
+                    }else{
+                        this.errorMessage='该账号不存在';
+                    }
+                }))
+                
             }
         },
         login(){//登录接口

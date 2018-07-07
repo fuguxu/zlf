@@ -8,7 +8,7 @@
                   <div class="font18 title_text">品牌精神</div>
                   <div class="font16 title_en">BRAND SPIRIT</div>
                   <div class="logo_box">
-                      <img style="width:38px;height:34px;" src="../../../img/u3372.png" alt="">
+                      <img style="height:34px;margin-left: -13px;" src="../../../img/u3372.png" alt="">
                       <span style="font-size:24px;">租立方</span>
                   </div>
               </div>
