@@ -19,8 +19,8 @@
                    <div class="link_right">
                        <ul class="link_right_ul">
                            <li class="title"><a href="javascript:;">商业合作</a></li>
-                           <li class="item"><a href="#/business">供应商进驻</a></li>
-                           <li class="item"><a href="#/business">媒体合作</a></li>
+                           <li class="item"><a href="#/business?id=0">供应商进驻</a></li>
+                           <li class="item"><a href="#/business?id=1">媒体合作</a></li>
                        </ul>
                        <ul class="link_right_ul">
                            <li class="title"><a href="javascript:;" >产品&案例</a></li>

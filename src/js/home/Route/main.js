@@ -92,14 +92,13 @@ const routesMap = [
                 dropMenu:[
                     {
                         path:'/business',
-                        query:{
-                            herf:'supplierGoIn'
-                        },
+                        id:'0',
                         name:'供应商进驻',
                         // component:newsList,
                     },
                     {
                         path:'/business',
+                        id:'1',
                         name:'媒体合作',
                         // component:newsDetail,
                     }
@@ -110,6 +109,7 @@ const routesMap = [
                 name:'关于我们',
                 redirect:'/about/us',
                 component:aboutPage,
+                id:'0',
                 showChildren:true,
                 children:[
                     {

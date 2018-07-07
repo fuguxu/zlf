@@ -71,7 +71,7 @@
                     <i class="icon el-icon-circle-plus-outline"></i>
                     <span>新增产品介绍</span>
                     <span v-if="showProductErrorMessage" class="error_message">
-                       <i class="font16 error el-icon-error"></i> <span>只能新增2个产品介绍</span>
+                       <i class="font16 error el-icon-error"></i> <span>至多能有5个产品介绍!</span>
                     </span>
                 </span>
             </div>
@@ -106,7 +106,7 @@
                     <i class="icon el-icon-circle-plus-outline"></i>
                     <span>新增案例介绍</span>
                     <span v-if="showCaseErrorMessage" class="error_message">
-                        <i class="font16 error el-icon-error"></i><span>只能新增2个案例介绍</span>
+                        <i class="font16 error el-icon-error"></i><span>至多能有5个案例介绍!</span>
                     </span>
                 </span>
             </div>
@@ -236,6 +236,7 @@ export default {
         },
         clickCancel(){//点击取消
             this.isEdit=false;
+            this.getRecommend();
         },
         initData(){
             for(var i=0;i<3;i++){

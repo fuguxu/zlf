@@ -6,12 +6,13 @@
            </div>
            <div class="router_container">
                <router-link v-for="(item,index) in menus" :key="index" :class="{hoverClass:item.hoverClass}" 
-               :to="{path:item.path}">
+               :to="{path:item.path,query:{id:item.id}}">
                    <span>{{item.name}}</span>
                    <span v-if="item.showChildren" class="icon el-icon-caret-bottom"></span>
                    <div v-if="item.showChildren" class="drop_menus" :class="{'drop_menu_out':item.dropMenu}">
                        <ul class="drop_li" :class="{scroll:scrollTop<=5&&$route.path=='/home'}">
-                            <router-link tag="li"  v-if="!it.hide" v-for="(it,i) in (item.children||item.dropMenu)" :key="i" :to="{path:it.path}">
+                            <router-link tag="li"  v-if="!it.hide" v-for="(it,i) in (item.children||item.dropMenu)" :key="i" 
+                            :to="{path:it.path,query:{id:it.id}}">
                                 {{it.name}}
                             </router-link>
                         </ul>

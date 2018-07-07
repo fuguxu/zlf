@@ -37,6 +37,32 @@ export default {
     },
     openMidea(){
       window.open('http://cn.mikecrm.com/Jjs0ub');
+    },
+     scroll(){
+        var scrollTop=0;
+        var toTop=this.$route.query.id=='0'?600:1634;
+        var step=toTop==600?10:25
+        var st= setInterval(()=>{
+          scrollTop+=step;
+          if(scrollTop>=toTop){
+              scrollTop=toTop;
+              clearInterval(st);
+          }
+          document.body.scrollTop=scrollTop;
+          document.documentElement.scrollTop=scrollTop;
+      },10)
+    }
+  },
+  mounted(){
+    if(this.$route.query.id){
+        this.scroll();
+    }
+  },
+  watch:{
+    '$route.query.id'(n,o){
+      if(n){
+        this.scroll();
+      }
     }
   }
 }

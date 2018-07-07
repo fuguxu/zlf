@@ -20,7 +20,7 @@
             <div class="item_box" >
                 <div v-if="childenOptions.length>0"   :class="{show:showSelect}" class="item" v-left>
                     <span class="label_sub colorYellow">请进一步选择：</span>
-                    <el-checkbox-group v-model="checkList">
+                    <el-checkbox-group v-model="checkList" :max="max">
                         <el-checkbox v-for="(it,i) in childenOptions" :label="it.id" :key="i">{{it.catName}}</el-checkbox>
                     </el-checkbox-group>
                 </div> 
@@ -41,7 +41,8 @@ export default {
             checkList:[],
             showSelect:'',
             activeBox:false,
-            errorMessage:''
+            errorMessage:'',
+            max:99//机电只能选一个
         }
     },
     methods:{
@@ -52,6 +53,12 @@ export default {
         },
         changeType(value){//选择第一级
             let item=AppUtil.findWhere(this.options,'id',value);
+            console.log(item)
+            if(item.catName.indexOf('机电')>-1){//机电只能单选
+                this.max=1;
+            }else{
+                this.max=99;
+            }
             this.furnitureTypeOption=[];
             this.furnitureType='';
             this.initData();

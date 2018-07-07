@@ -2,6 +2,7 @@
     <div class="supplier_right">
         <span @click="tradeCenter" to="/trade" :class="{'router-link-active':$route.path.indexOf('/trade')>-1}" class="text">交易中心</span>
         <span @click="recommend" to="/recommend" class="recommend text">推荐值</span>
+        <span style="margin-right:5px;">{{activeText}}</span>
         <el-switch
             @change="changeSwitch"
             :width="36"
@@ -9,7 +10,7 @@
             v-model="switchValue"
             active-color="#fff"
             inactive-color="#fff"
-            :inactive-text="activeText"
+            
             >
         </el-switch>
     </div>

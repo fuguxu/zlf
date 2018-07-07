@@ -62,21 +62,35 @@ export default {
           
       }
   },
+  methods:{
+    scroll(){
+        var scrollTop=0;
+        var st= setInterval(()=>{
+          scrollTop+=10;
+          if(scrollTop>=600){
+              scrollTop=600;
+              clearInterval(st);
+          }
+          document.body.scrollTop=scrollTop;
+          document.documentElement.scrollTop=scrollTop;
+      },10)
+    }
+  },
   mounted(){
-    var scrollTop=0;
-      var st= setInterval(()=>{
-        scrollTop+=10;
-        if(scrollTop>=600){
-            scrollTop=600;
-            clearInterval(st);
-        }
-        document.body.scrollTop=scrollTop;
-       document.documentElement.scrollTop=scrollTop;
-    },10)
+    if(!this.$route.query.id){
+        this.scroll();
+    }
   },
   components:{
       banner,
       leftContent
+  },
+  watch:{
+    '$route.query.id'(n,o){
+      if(!n){
+        this.scroll();
+      }
+    }
   }
 }
 </script>
