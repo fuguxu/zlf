@@ -31,7 +31,7 @@
             <bussinessProvince :defaultData="form.leaseArea" @updateArea="updateArea" v-if="isEdit"></bussinessProvince>
         </div>
         <div class="form_item">
-            <div class="label">邮箱</div>
+            <div class="label">账号邮箱</div>
             <div class="item_content">{{form.email}}</div>
         </div>
         <div class="form_item">
@@ -106,6 +106,10 @@ export default {
             this.initData();
         },
         initData(){
+            AppUtil.getCurrentUserInfo(user=>{
+                this.form=user;
+                this.changProvicen(this.form.province,true);
+            });
         },
         updateArea(area){//选择覆盖范围
             this.form.leaseArea=area.map(item=>{
@@ -143,13 +147,10 @@ export default {
         },
     },
     mounted(){
-        this.changProvicen(this.form.province,true);
-        // this.initData();
+        this.initData();
     },
     created(){
-        AppUtil.getCurrentUserInfo(user=>{
-            this.form=user;
-        });
+        
     },
     components:{
         supplierType,

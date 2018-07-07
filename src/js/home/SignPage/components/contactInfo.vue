@@ -4,7 +4,7 @@
         <div class="form">
             <div class="input_box" :class="{active:activeContactName}">
                 <div class="label">联系人</div>
-                <el-input class="input" v-model="form.contacts" @focus="activeContactName=true" @blur="blurContactName" placeholder="请输入联系人姓名">
+                <el-input class="input" v-model="form.contacts" @focus="activeContactName=true" @blur="blurContactName" placeholder="请输入账号联系人姓名">
                     <i slot="suffix" class="iconfont icon-close" @click="form.contacts=''" v-if="form.contacts"></i>
                 </el-input>
                 <div class="error_message" v-if="contactNameErrorMessage">
@@ -39,7 +39,7 @@
             </div>
             <div class="input_box" :class="{active:activeEmail}">
                 <div class="label">手机号</div>
-                <el-input class="input" :maxlength="11" v-model="form.phone" @focus="activePhone=true" @blur="blurPhone" placeholder="请输入联系人常用手机号码">
+                <el-input class="input" :maxlength="11" v-model="form.phone" @focus="activePhone=true" @blur="blurPhone" placeholder="请输入账号联系人常用手机号码">
                     <i slot="suffix" class="iconfont icon-close" @click="form.phone=''" v-if="form.phone"></i>
                 </el-input>
                 <div class="error_message" v-if="phoneErrorMessage">
@@ -49,7 +49,7 @@
             </div>
             <div class="input_box" :class="{active:activeEmail}">
                 <div class="label">邮箱</div>
-                <el-input class="input" v-model="form.email" @focus="activeEmail=true" @blur="blurEmail" placeholder="请务必输入正确的邮箱地址">
+                <el-input class="input" v-model="form.email" @focus="activeEmail=true" @blur="blurEmail" placeholder="请输入账号联系人正确邮箱地址">
                     <i slot="suffix" class="iconfont icon-close" @click="form.email=''" v-if="form.email"></i>
                 </el-input>
                 <div class="error_message" v-if="emailErrorMessage">
@@ -149,10 +149,19 @@ export default {
         blurEmail(){
             this.activeEmail=false;
             var reg=/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-            if(!reg.test(this.form.email)){
-               this.emailErrorMessage= '该邮箱将作为租赁服务的重要联系工具，请务必正确输入！';
+            if(!this.form.email){
+                if(this.role=='client'){
+                    this.emailErrorMessage= '该邮箱将作为租赁服务的重要联系工具，请务必正确输入！';
+                }else{
+                    this.emailErrorMessage= '该邮箱是重要的联系工具，请务必正确输入！';
+                }
+               
                return false
-            }else{
+            }else if(!reg.test(this.form.email)){
+                this.emailErrorMessage= '请输入正确的邮箱地址！';
+                return false;
+            }
+            else{
                 this.emailErrorMessage='';
                 return true
             }
@@ -251,7 +260,7 @@ export default {
             height:100%;
             display: flex;
             align-items: center;
-            width: 88%;
+            width: 100%;
             // margin-left: 15px;
             .icon{
                 // margin-right: 5px;

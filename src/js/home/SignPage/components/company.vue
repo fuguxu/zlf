@@ -25,7 +25,7 @@
         </div>
         <div class="input_box code_box" :class="{active:activeInviteCode}" v-if="role=='supplier'">
             <div class="label">邀请码</div>
-            <el-input class="input" v-model="inviteCode" @focus="activeInviteCode=true" @blur="blurInviteCode" placeholder="如果您有进驻邀请码，请务必输入">
+            <el-input class="input" :maxlength="8" v-model="inviteCode" @focus="activeInviteCode=true" @blur="blurInviteCode" placeholder="如果您有进驻邀请码，请务必输入">
                 <i slot="suffix" class="iconfont icon-close" @click="inviteCode=''" v-if="inviteCode"></i>
             </el-input>
             <div class="error_message" v-if="inviteCodeErrorMessage">
@@ -80,6 +80,13 @@ export default {
         },
         blurInviteCode(){
             this.activeInviteCode=false;
+            if(this.inviteCode&&this.inviteCode.length<8){
+                this.inviteCodeErrorMessage="邀请码长度不够!";
+                return false;
+            }else{
+                this.inviteCodeErrorMessage="";
+                return true;
+            }
         },
         updateCity(cityName){
             this.cityName=cityName;

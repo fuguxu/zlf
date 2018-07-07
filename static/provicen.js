@@ -1574,14 +1574,20 @@ export default [{
     },
     {
         name:'香港',
-        city:[]
+        city:[{
+            name:'香港'
+        }]
     },
     {
         name:'澳门',
-        city:[]
+        city:[{
+            name:'澳门'
+        }]
     },
     {
         name:'台湾',
-        city:[]
+        city:[{
+            name:'台湾'
+        }]
     }
 ]

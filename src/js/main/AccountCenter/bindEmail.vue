@@ -113,7 +113,8 @@ export default {
           if(!this.code){
               this.codeErrorMessage='请输入验证码！';
               return false;
-          }else if(this.code.length<6){
+          }
+          else if(this.code.length<6){
               this.codeErrorMessage='验证码长度不够！'||'验证码不正确！';
               return false;
           } else{
@@ -124,7 +125,7 @@ export default {
         blurEmail(){
             var reg=/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
             if(!reg.test(this.newEmail)){
-               this.emailErrorMessage= '该邮箱将作为租赁服务的重要联系工具，请务必正确输入！';
+               this.emailErrorMessage= '该邮箱是重要的联系工具，请务必正确输入！';
                return false
             }else{
                 this.emailErrorMessage='';
@@ -148,7 +149,7 @@ export default {
                     AppUtil.setCurrentUserInfo(this.form);
                     this.initData();
                 }else{
-                    this.codeErrorMessage='验证码不正确！';
+                    this.codeErrorMessage=res.message;
                 }
             })
         },

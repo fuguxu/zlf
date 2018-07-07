@@ -38,7 +38,7 @@
                                 {{data.recommNum}}
                                 <div class="circle_img"></div>
                             </div>
-                            <div class="open_text color6">截至当前，租立方已已将您推荐给<span class="number">{{data.recommNum}}</span>名客户。</div>
+                            <div class="open_text color6">截至当前，租立方已将您推荐给<span class="number">{{data.recommNum}}</span>名客户。</div>
                         </div>
                     </div>
                     <div class="rise_up">

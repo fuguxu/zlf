@@ -2,7 +2,7 @@
     <div class="inviteCode">
         <div class="title">请输入邀请码，关联订单</div>
         <div class="input_code_box">
-            <el-input @blur="valiateCode" :maxlength="6" v-model="inviteCode" placeholder="请输入您的专属邀请码"></el-input>
+            <el-input @blur="valiateCode" :maxlength="8" v-model="inviteCode" placeholder="请输入您的专属邀请码"></el-input>
             <div class="error_message" v-if="errorMessage">
                 <i class="icon el-icon-error"></i>
                 <span>{{errorMessage}}</span>
@@ -27,7 +27,11 @@ export default {
             if(!this.inviteCode){
                 this.errorMessage='请输入您的专属邀请码！';
                 return false;
-            }else{
+            }else if(this.inviteCode.length<8){
+                this.errorMessage='邀请码长度不够！';
+                return false;
+            }
+            else{
                 this.errorMessage='';
                 return true;
             }

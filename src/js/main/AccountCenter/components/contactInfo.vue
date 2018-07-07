@@ -24,11 +24,15 @@
         <div class="form_item">
             <div class="label label_input">手机号</div>
             <div class="item_content">
-                <el-input :disabled="!isEdit" v-model="form.phone" placeholder=""></el-input>
+                <el-input :maxlength="11" :disabled="!isEdit" @blur="blurPhone" v-model="form.phone" placeholder=""></el-input>
+                <div class="error_message" v-if="phoneErrorMessage">
+                    <i class="icon el-icon-error"></i>
+                    <span>{{phoneErrorMessage}}</span>
+                </div>
             </div>
         </div>
         <div class="form_item">
-            <div class="label">邮箱</div>
+            <div class="label">联系人邮箱</div>
             <div class="item_content">{{form.email}}</div>
         </div>
         <div class="form_item foot_item">
@@ -49,6 +53,7 @@ export default {
                 sex:'',
                 email:'',
             },
+            phoneErrorMessage:'',
             isEdit:false
         }
     },
@@ -58,8 +63,27 @@ export default {
         },
         cancel(){
             this.isEdit=false;
+            this.initData();
+        },
+        blurPhone(){
+            if(!this.form.phone){
+               this.phoneErrorMessage= '请输入联系人常用手机号码！';
+               return false
+            }else if(''+(+this.form.phone)=='NaN'){
+                this.phoneErrorMessage='您输入的手机号码格式不正确！';
+                return false;
+            }else if(this.form.phone.length<11){
+                this.phoneErrorMessage='您输入的手机号码长度不够！';
+                return false;
+            }else{
+                this.phoneErrorMessage='';
+                return true
+            }
         },
          save(){//点击保存
+            if(!this.blurPhone()){
+                return;
+            }
             if(localStorage.getItem('role')=='client'){
                 this.perfectUser();
             }else{
@@ -82,11 +106,14 @@ export default {
                 }
             })
         },
+        initData(){
+            AppUtil.getCurrentUserInfo(user=>{
+                this.form=user;
+            });
+        }
     },
     created(){
-        AppUtil.getCurrentUserInfo(user=>{
-            this.form=user;
-        });
+        this.initData();
     }
 }
 </script>
@@ -94,6 +121,7 @@ export default {
     @import '../../../../css/formItem.scss';
     .form_item .item_content{
         margin-bottom: 10px;
+        position: relative;
         .el-input{
             width:186px;
         }
@@ -107,5 +135,14 @@ export default {
     .foot_item{
         margin-top:10px;
         margin-bottom: 70px;
+    }
+    .error_message{
+        position: absolute;
+        left:100%;
+        width: 150%;
+        height: 100%;
+        display: flex;
+        top:0px;
+        align-items: center;
     }
 </style>

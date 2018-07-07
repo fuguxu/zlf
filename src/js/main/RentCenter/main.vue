@@ -42,6 +42,7 @@
             </div>
         </div>
         <rentNameDialog  @updateItem="updateItem" :visible.sync="visible"></rentNameDialog>
+        <qqWexiBackTop></qqWexiBackTop>
     </div>
 </template>
 <script>
@@ -52,6 +53,7 @@ import rentMoney from './components/rentMoney';
 import saleService from './components/saleService';
 import rentNameDialog from './components/rentNameDialog';
 import {customerModule} from '../../api/main';
+import qqWexiBackTop from '../../components/qqWexiBackTop';
 export default {
     data(){
         return {
@@ -169,7 +171,8 @@ export default {
         contractDetail,
         rentMoney,
         saleService,
-        rentNameDialog
+        rentNameDialog,
+        qqWexiBackTop
     }
 }
 </script>

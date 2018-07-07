@@ -9,6 +9,7 @@
                     <input ref="fileInput" @change="changeFile" id="fileId"  type="file" />
                 </form>
             </label>
+            <i v-if="loading" class="icon-loading color8 font18 el-icon-loading"></i>
             <div class="error_message" v-if="tipMessage">
                 <i class="error-icon el-icon-error"></i>
                 <span>{{tipMessage}}</span>
@@ -25,7 +26,8 @@ export default {
             user:{},
             formData:{},
             saveType:'headerimg',
-            tipMessage:''
+            tipMessage:'',
+            loading:false
         }
     },
     methods:{
@@ -48,8 +50,10 @@ export default {
             this.formData=form;
        },
       upload(){
+          this.loading=true;
           customerModule.upload(this.formData).then(res=>{
               if(res.error==0){
+                  this.loading=false;
                   if(localStorage.getItem('role')=='client'){
                       this.perfectUser(res.url);
                   }else{
@@ -155,6 +159,12 @@ export default {
     }
     .file_box{
         position: relative;
+    }
+    .icon-loading{
+        position: absolute;
+        left: 153px;
+        top:50%;
+        margin-top:-29px;
     }
     .error_message{
         position: absolute;

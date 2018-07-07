@@ -98,9 +98,10 @@ export default {
         background: #fff;
         border-radius: 5px;
         position: absolute;
-        left:-100%;
+        top:-100%;
+        // left:-100%;
         &.show{
-            left: 0px;
+            top: 0px;
             transition: all 0.8s;
             transition-delay: 0.1s;
         }

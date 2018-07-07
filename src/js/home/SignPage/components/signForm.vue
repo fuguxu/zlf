@@ -126,7 +126,7 @@ export default {
           par[key]=this.form[key];
           return  customerModule.checkInfo(par);
       },
-      bluruserName(){
+      bluruserName(value){
           this.activeUserName=false;
           if(!this.form.loginName){
               this.userNameErrorMessage='请输入常用手机号！';
@@ -138,17 +138,30 @@ export default {
               this.userNameErrorMessage='您输入的手机号码长度不够！';
               return false;
           }else{
-              this.userNameErrorMessage='';
-              return true
+              if(value){//区分失去焦点和点击注册 点击获取验证码
+                  AppUtil.checkUserLoginName(this.form.mobile,(data=>{
+                        if(data){
+                            this.userNameErrorMessage='该手机号已注册，请直接登陆!';
+                        }else{
+                            this.userNameErrorMessage='';
+                        }
+                    }))
+              }else{
+                  this.userNameErrorMessage='';
+                  return true
+              }
           }
       },
       blurIdentifyCode(){
           this.activeIdentifyCode=false;
           if(!this.form.code){
-              this.identifyCodeErrorMessage='请输入验证码！';
+              this.identifyCodeErrorMessage='请输入验证码!';
               return false;
           }else if(this.form.code.length<6){
-              this.identifyCodeErrorMessage='验证码长度不够！'||'验证码不正确！';
+              this.identifyCodeErrorMessage='验证码长度不够!'||'验证码不正确！';
+              return false;
+          }else if(''+(+this.form.code)=='NaN'){
+              this.identifyCodeErrorMessage='验证码格式不正确!';
               return false;
           }
           else{
@@ -172,7 +185,7 @@ export default {
                             }
                         },1000)
                     }else{
-
+                        this.userNameErrorMessage=res.message;
                     }
                 })
             }

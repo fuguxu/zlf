@@ -152,7 +152,7 @@ export default {
                 }
                 &:hover,&.router-link-active{
                     .link_box{
-                        border-left:4px solid rgb(242, 159, 51);
+                        
                     }
                     .icon_img_active{
                         display: block;
@@ -165,6 +165,7 @@ export default {
                 &.router-link-active{
                     .link_box{
                         background:rgba(244,244,244,1);
+                        border-left:4px solid rgb(242, 159, 51);
                     }
                 }
                 .icon_img{
