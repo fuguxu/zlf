@@ -53,7 +53,7 @@ export default {
         },
         changeRoute(flag){//点击新建项目 
             AppUtil.getLicenseStatus(status=>{
-                if(status=='1'){//审核通过
+                if(status=='1'){//营业执照审核通过
                     this.getOrderInfoList(flag);
                 }else{
                     Bus.$emit('sendLicenseStatus',status);

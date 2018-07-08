@@ -130,6 +130,9 @@ export default {
           .pagination_box{
             width:100%;
             padding:82px 0px 62px 0px;
+            /deep/ button.disabled{
+                  display: none;
+            }
           }
         }
     }

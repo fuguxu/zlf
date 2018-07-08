@@ -70,7 +70,6 @@ export default {
                 color: #666;
                 &.disabled{
                     cursor: pointer;
-                    display: none;
                 }
                 &:hover{
                     color:rgba(255, 166, 50, 1);

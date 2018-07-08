@@ -20,7 +20,7 @@
             <div class="item_box" >
                 <div v-if="childenOptions.length>0"   :class="{show:showSelect}" class="item" v-left>
                     <span class="label_sub colorYellow">请进一步选择：</span>
-                    <el-checkbox-group v-model="checkList" :max="max">
+                    <el-checkbox-group v-model="checkList">
                         <el-checkbox v-for="(it,i) in childenOptions" :label="it.id" :key="i">{{it.catName}}</el-checkbox>
                     </el-checkbox-group>
                 </div> 
@@ -144,8 +144,11 @@ export default {
     },
     watch:{
         checkList(n,o){
+            if(n.length>1&&this.max==1){//机电只能选一个
+                this.checkList=[n.pop()];
+            }
            let checklist= (this.childenOptions.length>0?this.childenOptions:this.options).filter(item=>{
-                return n.indexOf(item.id)>-1;
+                return this.checkList.indexOf(item.id)>-1;
             })
             this.$emit('updateType',checklist.map(item=>{
                 return {

@@ -166,7 +166,7 @@ export default {
           }
           else{
               if(value){//区分失去焦点和点击注册
-                  AppUtil.checkVerificationCode(this.form.loginName,this.form.code,data=>{
+                  AppUtil.checkVerificationCode(this.form.loginName,this.form.code,'verification',data=>{
                         if(data.statusCode=='-1'){
                             this.identifyCodeErrorMessage=data.message;
                         }else{
@@ -253,7 +253,7 @@ export default {
             }
         })
         // if(flag){
-            AppUtil.checkVerificationCode(this.form.loginName,this.form.code,data=>{//校验验证码
+            AppUtil.checkVerificationCode(this.form.loginName,this.form.code,'verification',data=>{//校验验证码
                 if(data.statusCode=='-1'){
                     this.identifyCodeErrorMessage=data.message;
                 }else{

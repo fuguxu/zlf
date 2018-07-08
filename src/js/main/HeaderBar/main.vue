@@ -59,7 +59,6 @@
                         window.location.href='/home.html';
                     }
                 })
-                
             }
         },
         components:{

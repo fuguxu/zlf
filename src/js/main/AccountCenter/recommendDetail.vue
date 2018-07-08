@@ -258,7 +258,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .recommend_detail,.recommend_detail *{
+    .recommend_detail,.recommend_detail *,.recommend_detail /deep/ *{
         letter-spacing:0px !important;
     }
     .recommend_detail{

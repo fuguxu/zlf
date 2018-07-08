@@ -119,7 +119,7 @@ export default {
               return false;
           } else{
               if(value){//区分失去焦点和点击绑定
-                  AppUtil.checkVerificationCode(this.form.loginName,this.code,data=>{
+                  AppUtil.checkVerificationCode(this.form.loginName,this.code,'mailVerification',data=>{
                         if(data.statusCode=='-1'){
                             this.codeErrorMessage=data.message;
                         }else{
@@ -144,7 +144,7 @@ export default {
         },
         sureBind(){//确认绑定
             if(this.blurIdentifyCode()&&this.blurEmail()){
-                AppUtil.checkVerificationCode(this.form.loginName,this.code,data=>{
+                AppUtil.checkVerificationCode(this.form.loginName,this.code,'mailVerification',data=>{
                     if(data.statusCode=='-1'){
                         this.codeErrorMessage=data.message;
                     }else{

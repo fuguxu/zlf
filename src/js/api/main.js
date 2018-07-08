@@ -157,6 +157,8 @@ export const customerModule={
     getLicenseStatus:params => { return customerAxios.get('/getLicenseStatus', {params:params}).then(res => res.data); },
     //检验验证码的状态
     checkVerificationCode:params => { return customerAxios.get('/checkVerificationCode', {params:params}).then(res => res.data); },
+    //获取验厂的状态
+    factoryInspection:params => { return customerAxios.get('/factoryInspection').then(res => res.data); },
 }
 
 export const multipleAxios=(postArray,cb)=>{

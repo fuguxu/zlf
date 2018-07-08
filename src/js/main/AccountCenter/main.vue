@@ -18,7 +18,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="account_right">
+            <div class="account_right" :class="{high:role=='supplier'}">
                 <div v-if="title" class="title">{{title}}</div>
                 <router-view></router-view>
             </div>
@@ -183,10 +183,13 @@ export default {
         }
         .account_right{
             flex: 1;
-            min-height: 300px;
+            min-height: 500px;
             background: #fff;
             border-radius:6px;
             border: 1px solid rgba(237, 237, 237, 1);
+            &.high{
+                min-height:650px;
+            }
             .title{
                 line-height: 64px;
                 font-size: 18px;

@@ -3,8 +3,8 @@
         <ul>
             <li v-for="(item,index) in data" :key="index" class="item">
                 <span class="content">{{item.content}}</span>
-                <span class="statusValue">{{item.statusValue}}</span>
-                <span class="record" v-for="(it,i) in item.record||[]" :key="i">{{i+1+'条'}}</span>
+                <span v-if="item.status==1" class="statusValue">{{item.statusValue}}</span>
+                <span class="record" v-if="item.record&&item.record.length>0">{{item.record.length+'条'}}</span>
             </li>
         </ul>
     </div>

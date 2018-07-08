@@ -67,7 +67,13 @@ s.setCurrentUserInfo=function(data){
         }
     })
  }
-
+s.getFactoryInspection=function(cb){//获取供应商验厂状态 0：待审核 1：审核通过 2: 审核不通过
+    customerModule.factoryInspection().then(res=>{
+        if(res.statusCode=='1'){
+            cb(res.data)
+        }
+    })
+}
  s.checkUserLoginName=function(loginName,cb){
     customerModule.checkInfo({loginName:loginName}).then(res=>{
         if(res.statusCode=='1'){
@@ -75,8 +81,8 @@ s.setCurrentUserInfo=function(data){
         }
     })
  }
- s.checkVerificationCode=function(phone,code,cb){
-    customerModule.checkVerificationCode({phone:phone,code:code}).then(res=>{
+ s.checkVerificationCode=function(phone,code,type,cb){
+    customerModule.checkVerificationCode({phone:phone,code:code,type:type}).then(res=>{
         cb(res)
     })
  }
