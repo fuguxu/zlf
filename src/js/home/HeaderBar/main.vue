@@ -6,7 +6,7 @@
            </div>
            <div class="router_container">
                <router-link v-for="(item,index) in menus" :key="index" :class="{hoverClass:item.hoverClass}" 
-               :to="{path:item.path,query:{id:item.id}}">
+               :to="renderHerf(item)">
                    <span>{{item.name}}</span>
                    <span v-if="item.showChildren" class="icon el-icon-caret-bottom"></span>
                    <div v-if="item.showChildren" class="drop_menus" :class="{'drop_menu_out':item.dropMenu}">
@@ -40,6 +40,18 @@
         methods:{
             scroll(event){
                 this.scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+            },
+            renderHerf(item){
+                if(item.id){
+                    return {
+                        path:item.path,
+                        query:{id:item.id}
+                    }
+                }else{
+                    return {
+                        path:item.path,
+                    }
+                }
             }
         },
         mounted(){

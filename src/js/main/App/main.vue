@@ -13,8 +13,9 @@
         height: 100%;
     }
     .main-container{
-        min-height:600px;
+        // min-height:600px;
         margin-top:51px;
+        min-height:100%;
         // background:rgba(244, 244, 244, 1);
     }
 </style>

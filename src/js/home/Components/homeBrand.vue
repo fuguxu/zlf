@@ -30,7 +30,7 @@
                 <div class="pic_img" :class="{showPic:showPic2}">
                     <p class="text text1">雄厚的资金来源</p>
                     <p class="text text2">中国建设银行、招商银行、兴业银行、宝生村镇银行</p>
-                    <p class="text text3">招商金融租赁、广发金融租赁、平安金融租赁</p>
+                    <p class="text text3">招商金融租赁、广发租赁、平安租赁</p>
                 </div>
             </div>
         </div>

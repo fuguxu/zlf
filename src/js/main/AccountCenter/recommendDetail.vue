@@ -3,8 +3,8 @@
         <div class="title_box">
             <span class="title font18">推荐详情</span>
             <span class="desc color6 font12">以下信息在把您推荐给客户的同时呈现给客户，是您与客户的首次接触，展现产品实力的机会，祝您脱颖而出。</span>
-            <span class="button edit" @click="clickEdit">编辑</span>
-            <a class="button preview" :href="`#/case?id=${user.userNo}`" target="_blank" v-if="this.form.isEdit=='1'" >推荐预览</a>
+            <span class="button edit" v-if="!isEdit" @click="clickEdit">编辑</span>
+            <a class="button preview" :href="`#/case?id=${user.userNo}`" target="_blank" v-if="this.form.isEdit=='1'&&!isEdit" >推荐预览</a>
         </div>
         <div class="company_info item_info">
             <div class="title_item">
@@ -258,6 +258,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+    .recommend_detail,.recommend_detail *{
+        letter-spacing:0px !important;
+    }
     .recommend_detail{
         padding-bottom: 40px;
         .preview_box{

@@ -42,7 +42,7 @@
             </div>
         </div>
         <rentNameDialog  @updateItem="updateItem" :visible.sync="visible"></rentNameDialog>
-        <qqWexiBackTop></qqWexiBackTop>
+        <qqWexiBackTop :hideWeiXin="true"></qqWexiBackTop>
     </div>
 </template>
 <script>
@@ -149,13 +149,15 @@ export default {
             })
         },
         updateItem(){//新增项目之后
+            this.$router.push('/rent?id=0-0');
             this.getOrderInfoList();
         }
     },
     mounted(){
         this.getOrderInfoList();
         Bus.$on('updateRentId',()=>{
-            this.selectMenu('',[this.$route.query.id.split('-')[0],this.$route.query.id]);
+            // this.selectMenu('',[this.$route.query.id.split('-')[0],this.$route.query.id]);
+            this.getOrderInfoList();
         })
     },
     watch:{

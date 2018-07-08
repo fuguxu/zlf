@@ -96,8 +96,8 @@ export default {
               height:83px;
             }
             .back{
-              width:60px;
-              height: 60px;
+              width:45px;
+              height: 45px;
               // cursor: pointer;
               // transition: all 1s;
               &:hover{

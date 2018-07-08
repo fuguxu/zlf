@@ -36,15 +36,11 @@ export default {
     methods:{
         goRent(id){
             if(id){
-                // let rid='';
-                // if(this.$route.path=='/rent'){
-                //     rid=this.$route.query.id.split('-')[0]
-                // }
                 this.$router.push('/rent?id='+'0'+'-'+id);
-                Bus.$emit('updateRentId');
             }else{
-                this.$router.push('/rent');
+                this.$router.push('/rent?id=0-0');
             }
+            Bus.$emit('updateRentId');
         },
         setProject(){
             this.rentNameFlag=true;
@@ -68,14 +64,14 @@ export default {
             customerModule.getOrderInfoList().then(res=>{
                 if(res.statusCode=='1'){
                     this.isHasProject=res.data.length>0;
-                    if(this.isHasProject){
-                        if(flag){//此情况是点击租赁中心
+                    if(flag){//此情况是点击租赁中心
+                        if(this.isHasProject){
                             this.goRent(flag);
-                        }else{//此情况是点击新建项目
-                            this.rentNameFlag=true;
+                        }else{
+                            this.unSetFlag=true;
                         }
-                    }else{
-                        this.unSetFlag=true;
+                    }else{//此情况是点击新建项目
+                        this.rentNameFlag=true;
                     }
                 }
             })

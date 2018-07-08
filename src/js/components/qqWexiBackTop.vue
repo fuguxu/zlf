@@ -6,7 +6,7 @@
         <div class="qq square">
             <div @click="openQQ" class="text">在线<br />客服</div>
         </div>
-        <div class="wexin square">
+        <div class="wexin square" v-if="!hideWeiXin">
             <div class="text" @mouseenter="mouseenter" @mouseleave="mouseleave">关注<br />微信</div>
             <div class="erWeiMa_box" :class="{show:showErWeiMa,hiden:!showErWeiMa}">
                 <div class="erWeiMa_border" :class="{show:showErWeiMa}">
@@ -19,6 +19,11 @@
 </template>
 <script>
 export default {
+    props:{
+        hideWeiXin:{
+            default:false
+        }
+    },
     data(){
         return {
             showBackTop:false,

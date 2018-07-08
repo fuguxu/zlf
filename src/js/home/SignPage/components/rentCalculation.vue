@@ -70,14 +70,14 @@
                     <div class="content">
                         <div class="title">按照银行现行标准，租赁前期费用如下：</div>
                         <div class="item">
-                            保证金：<span class="number">{{data.quarterlyRent||0.0}}</span>元
+                            保证金：<span class="number">{{data.marginAmount||0.0}}</span>元
                         </div>
                         <div class="item">
                             平台服务费：<span class="number">{{data.financingServiceFee||0.0}}</span>元
                         </div>
                         <div class="title before">《购销合同》签署后，您须缴付租金，按月份预付：</div>
                         <div class="item">
-                            每月租金：<span class="number">{{data.marginAmount||0.0}}</span>元
+                            每月租金：<span class="number">{{data.quarterlyRent||0.0}}</span>元
                         </div>
                         <div class="footer">
                             <span @click="cancelResult" class="button agin">再算一次</span>
