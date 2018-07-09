@@ -62,7 +62,7 @@
         </div>
         <div class="no_content" v-if="list.length==0&&ajaxDone">
             <i class="icon colorYellow font18 el-icon-warning"></i>
-            <span>当前没有交易消息</span>
+            <span>当前没有交易信息</span>
         </div>
     </div>
 </template>

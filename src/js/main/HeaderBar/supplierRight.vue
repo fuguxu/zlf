@@ -48,13 +48,15 @@ export default {
             this.switchValue=!value;
             AppUtil.getLicenseStatus(status=>{
                 if(status=='1'){//营业执照通过
-                    AppUtil.getFactoryInspection((data)=>{//验厂是否通过
+                    AppUtil.getFactoryInspection(data=>{//验厂是否通过
                         if(data=='1'){
                             this.switchValue=value;
                         }else{
-                            Bus.$emit('sendLicenseStatus',status);
+                            Bus.$emit('sendLicenseStatus',data);
                         }
+                        
                     })
+                    
                 }else{
                     Bus.$emit('sendLicenseStatus',status);
                 }
@@ -64,10 +66,11 @@ export default {
             AppUtil.getLicenseStatus(status=>{
                 if(status=='1'){//营业执照通过
                     AppUtil.getFactoryInspection((data)=>{//验厂是否通过
+                    console.log(data)
                         if(data=='1'){
                             this.$router.push(path);
                         }else{
-                            Bus.$emit('sendLicenseStatus',status);
+                            Bus.$emit('sendLicenseStatus',data);
                         }
                     })
                 }else{

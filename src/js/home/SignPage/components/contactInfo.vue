@@ -204,6 +204,7 @@ export default {
         },
         submitedAfter(){//接口提交成功之后
             localStorage.setItem('role',this.role);
+            localStorage.removeItem('zlfuserInfo');//删除这个存储 以免之前的留下来
             if(this.role=='client'){
                 window.location.href="main.html#/sign/client?cp=startUse";
             }else if(this.role=='supplier'){
