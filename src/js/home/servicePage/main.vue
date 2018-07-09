@@ -7,7 +7,7 @@
             <div class="title_sub">八大家具风格&nbsp;&nbsp;&nbsp;&nbsp;满足多样需求</div>
             <div class="img_box">
                 <div class="img_left">
-                    <div class="item_img" v-for="(item,index) in leftImg" :key="index" @mouseenter="mouseenter(item)" @mouseleave="mouseleave(item)" >
+                    <div class="item_img" v-for="(item,index) in leftImg" :key="index" @mouseenter="mouseenter($event,item)" @mouseleave="mouseleave($event,item)" >
                         <img :src="item.url" alt="">
                         <div class="footer_title" :class="{show:item.showTitle,hidden:!item.showTitle}">{{item.styleTitle}}</div>
                         <div class="img_desc" >
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="img_right">
-                    <div class="item_img" v-for="(item,index) in rightImg" :key="index" @mouseenter="mouseenter(item)" @mouseleave="mouseleave(item)" >
+                    <div class="item_img" v-for="(item,index) in rightImg" :key="index" @mouseenter="mouseenter($event,item)" @mouseleave="mouseleave($event,item)" >
                         <img :src="item.url" alt="">
                         <div class="footer_title" :class="{show:item.showTitle,hidden:!item.showTitle}">{{item.styleTitle}}</div>
                         <div class="img_desc" >
@@ -221,11 +221,17 @@ export default {
       }
   },
    methods:{
-      mouseleave(item){
+      mouseleave(event,item){
         item.showTitle=true;
+        var clientHeight=event.target.clientHeight;
+        var imgTop=event.target.getElementsByClassName('img_desc')[0].offsetTop;
+          var footer=event.target.getElementsByClassName('footer_title')[0]
+           footer.style.transitionDelay=(clientHeight-imgTop)/clientHeight+'s';
       },
-      mouseenter(item){
+      mouseenter(event,item){
         item.showTitle=false;
+        var footer=event.target.getElementsByClassName('footer_title')[0]
+        footer.style.transitionDelay='0s';
       }
     },
 }
@@ -286,7 +292,7 @@ export default {
                 &.show{
                   opacity: 1;
                   transition: all 0.5s;
-                  transition-delay: 1s;
+                  // transition-delay: 1s;
                 }
                 
                }
