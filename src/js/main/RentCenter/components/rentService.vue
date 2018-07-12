@@ -78,11 +78,11 @@
                         </ul>
                     </div>
                     <div class="step font16"><span class="line"></span><span>a.开始选择您的租赁物以及对应的供应商来源</span></div>
-                    <choiceRent @updateRecommend="updateRecommend" :orderNo="orderNo"></choiceRent>
-                    <div class="recommend_supplier">
+                    <choiceRent @updateRecommend="updateRecommend" :isRecommend="isRecommend" :orderNo="orderNo"></choiceRent>
+                    <div class="recommend_supplier" v-if="isRecommend">
                         <div class="step font16"><span class="line"></span><span>b.与供应商产品沟通进展</span></div>
                         <div class="detail">
-                            <div class="detail_item">
+                            <div class="detail_item" v-if="appointSupplier.length>0">
                                 <div class="detail_title"><span class="dot"></span><span>指定合作供应商</span></div>
                                 <p class="color6 desc">请将以下租赁物对应的进驻邀请码，发送给您所指定合作的供应商；供应商只有进驻到租立方平台，您后面的租赁服务，包括租赁物生产、运输、验收、售后等才能得到更好的保障</p>
                                 <table>
@@ -98,7 +98,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="detail_item">
+                            <div class="detail_item" v-if="recommendSupplier.length>0">
                                 <div class="detail_title"><span class="dot"></span><span>推荐供应商</span></div>
                                 <p class="color6 desc">租立方根据您的租赁需求，推荐以下优质供应商，优先次序排列如下。</p>
                                 <div class="recommend_supplier_item" v-for="(item,index) in recommendSupplier" :key="index">
@@ -115,7 +115,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="detail_item">
+                            <div class="detail_item" v-if="appointProgress.length>0">
                                 <div class="detail_title"><span class="dot"></span><span>指定合作供应商产品清单沟通进展</span></div>
                                 <ul class="progress" v-for="(item,index) in appointProgress" :key="index">
                                     <li class="title">{{item.name}}产品清单沟通进展</li>
@@ -125,7 +125,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="detail_item">
+                            <div class="detail_item" v-if="recommendProgress.length>0">
                                 <div class="detail_title"><span class="dot"></span><span>推荐供应商产品清单沟通进展</span></div>
                                 <ul class="progress" v-for="(item,index) in recommendProgress" :key="index">
                                     <li class="title">{{item.name}}产品清单沟通进展</li>
@@ -289,6 +289,11 @@ export default {
         uploadLicence,
         rentMoneyInfo,
         choiceRent
+    },
+    computed:{
+        isRecommend(){//是否推荐过
+            return this.appointSupplier.length>0||this.recommendSupplier.length>0||this.appointProgress.length>0||this.recommendProgress.length>0
+        }
     },
     watch:{
         data(n,o){

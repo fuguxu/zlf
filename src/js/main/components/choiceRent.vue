@@ -73,16 +73,16 @@
 import {customerModule} from '../../api/main';
 import confirmRentDialog from './confirmRentDialog';
 export default {
-    props:['orderNo'],
+    props:['orderNo','isRecommend'],
     data(){
         return {
             data:[],
             furniture:[],
             selectData:[],
             visible:false,
-            buttonText:'提交你的选择',
+            // buttonText:'提交你的选择',
             loading:false,
-            disabled:false
+            disabled:this.isRecommend
         }
     },
     methods:{
@@ -243,7 +243,7 @@ export default {
                     this.loading=false;
                     this.visible=false;
                     this.disabled=true;
-                    this.buttonText='提交成功，推荐结果请见下方';
+                    // this.buttonText='提交成功，推荐结果请见下方';
                     this.$emit('updateRecommend');
                 }
             })
@@ -251,6 +251,16 @@ export default {
     },
     mounted(){
         this.getRoot();
+    },
+    computed:{
+        buttonText(){
+            return this.disabled?'提交成功，推荐结果请见下方':'提交你的选择'
+        }
+    },
+    watch:{
+        isRecommend(n,o){
+            this.disabled=n;
+        }
     },
     components:{
         confirmRentDialog
@@ -302,7 +312,7 @@ export default {
                 }
             }
             /deep/ .el-checkbox__inner{
-                border-color: rgba(244,244,244,1);
+                border-color: #d4d4d4;
             }
             /deep/ .el-checkbox__label{
                 color:rgba(102,102,102,1);
@@ -319,7 +329,7 @@ export default {
                     color:rgba(102,102,102,1);
                 }
                /deep/ .el-radio__inner{
-                   border-color: rgba(244,244,244,1);
+                   border-color: #d4d4d4;
                     background: #fff;
                    &:after{
                         background-color: rgba(255,166,50,1);
