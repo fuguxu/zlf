@@ -126,6 +126,7 @@ export default {
             if(this.leaseNo){
                 this.isCp=contractList;
                 this.leaseNo='';
+                this.thirdTitle='';
             }
         },
         getRentService(item){//获取租赁服务

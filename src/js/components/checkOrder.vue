@@ -114,8 +114,9 @@ export default {
             visible:false,
             activeUrl:'',
             isEdit:'',
-            publishName:'中租借科技',
-            visibleTip:false
+            publishName:'',
+            visibleTip:false,
+            user:{}
         }
     },
     mounted(){
@@ -135,6 +136,10 @@ export default {
             }
             
         }
+        AppUtil.getCurrentUserInfo((user=>{
+            this.user=user;
+            this.publishName=this.user.userAbbr;
+        }))
     },
     methods:{
         previewImg(item){

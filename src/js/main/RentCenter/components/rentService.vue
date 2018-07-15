@@ -123,6 +123,10 @@
                                         <span>{{i+1}}. {{it.progressDesc}}</span>
                                         <span>{{it.createTime}}</span>
                                     </li>
+                                    <li class="icon" v-if="appointProgress.status==1||appointProgress.status==-1">
+                                        <img v-if="appointProgress.status==1" src="../../../../img/pass_icon_big.png" alt="">
+                                        <img v-if="appointProgress.status==-1" src="../../../../img/trade_close.png" alt="">
+                                    </li>
                                 </ul>
                             </div>
                             <div class="detail_item" v-if="recommendProgress.length>0">
@@ -132,6 +136,10 @@
                                     <li v-for="(it,i) in item.list" :key="i">
                                         <span>{{i+1}}. {{it.progressDesc}}</span>
                                         <span>{{it.createTime}}</span>
+                                    </li>
+                                    <li class="icon" v-if="appointProgress.status==1||appointProgress.status==-1">
+                                        <img v-if="appointProgress.status==1" src="../../../../img/pass_icon_big.png" alt="">
+                                        <img v-if="appointProgress.status==-1" src="../../../../img/trade_close.png" alt="">
                                     </li>
                                 </ul>
                             </div>
@@ -497,6 +505,11 @@ export default {
                     }
                     .progress{
                         margin-bottom: 20px;
+                        position: relative;
+                        .icon{
+                            position: absolute;
+                            left:50%;
+                        }
                     }
                     ul{
                         border:1px solid rgba(244,244,244,1);

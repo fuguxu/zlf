@@ -70,6 +70,9 @@
                     <span>{{index+1+'.'+item.remark+item.progressDesc}}</span>
                     <span>{{item.createTime}}</span>
                 </li>
+                <li class="icon" v-if="tradeListDetail.status==-1">
+                    <img  src="../../../img/trade_close.png" alt="">
+                </li>
             </ul>
         </div>
     </div>
@@ -83,7 +86,8 @@ export default {
             proCommNo:this.$route.query.listNo,
             contactData:{},
             bigCustorm:{},
-            tradeList:[]
+            tradeList:[],
+            tradeListDetail:{}
         }
     },
     methods:{
@@ -111,12 +115,15 @@ export default {
                 proCommNo:this.proCommNo
             }).then(res=>{
                 if(res.statusCode=='1'){
-                    this.tradeList=res.data.map(item=>{
-                        return {
-                            ...item,
-                            createTime:AppUtil.transferTimeToString(item.createTime,'/',true)
-                        }
-                    });
+                    this.tradeListDetail=res.data;
+                    if(res.data.list){
+                        this.tradeList=res.data.list.map(item=>{
+                            return {
+                                ...item,
+                                createTime:AppUtil.transferTimeToString(item.createTime,'/',true)
+                            }
+                        });
+                    }
                 }
             })
         }
@@ -166,11 +173,18 @@ export default {
             padding-left:15px;
             padding-right: 15px;
             margin-top:20px;
+            position: relative;
             li{
                 line-height: 38px;
                 color:rgba(102, 102, 102, 1);
                 display: flex;
                 justify-content: space-between;
+            }
+            .icon{
+                position: absolute;
+                left:50%;
+                top: 50%;
+                margin-top: -22px;
             }
         }
     }

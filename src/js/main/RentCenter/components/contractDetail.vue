@@ -15,7 +15,7 @@
         </div>
         <div class="item">
             <div class="item_sub">
-                <div class="circel">6</div>
+                <div class="circel">{{data.length+1}}</div>
                 <span>验收完成</span>
                 <i class="icon" :class="{'el-icon-caret-bottom':!check,'el-icon-caret-top':check}"  @click="check=!check"></i>
             </div>

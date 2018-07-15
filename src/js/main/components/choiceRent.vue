@@ -17,11 +17,11 @@
                         <ul class="children_item" v-if="item.children2.length>0">
                             <li  v-for="(it,i) in item.children2" :key="i">
                                 <el-checkbox @change="selectItem(it)" v-model="it.checked">{{it.catName}}</el-checkbox>
-                                <el-radio-group v-if="it.checked&&it.needDetail===false" v-model="it.supplierSource">
+                                <el-radio-group v-if="it.checked" v-model="it.supplierSource">
                                     <el-radio :label="1">我已有{{it.catName}}指定的供应商</el-radio><br />
                                     <el-radio :label="0">我需要租立方推荐优质供应商</el-radio>
                                 </el-radio-group>
-                                <div class="need-spread" v-if="it.checked&&it.remark=='1'&&!it.click">
+                                <!-- <div class="need-spread" v-if="it.checked&&it.remark=='1'&&!it.click">
                                     <span>您还需要进一步细分活动家具吗？</span>
                                     <span class="button need" @click="clickNeed(it,true);" >需要</span>
                                     <span class="button no" @click="clickNeed(it,false);">不需要</span>
@@ -34,7 +34,7 @@
                                             <el-radio :label="0">我需要租立方推荐优质供应商</el-radio>
                                         </el-radio-group>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                             
                         </ul>
@@ -153,16 +153,41 @@ export default {
                 parentId:id
             }).then(res=>{
                 if(res.statusCode=='1'){
-                    this.furniture[0].children2=res.data.map(item=>{
-                        return {
-                                ...item,
-                                checked:false,
-                                supplierSource:'',
-                                needDetail:item.remark=='1'?'':false,
-                                click:item.remark=='1'?false:true,
-                                children:[]
-                            }
-                    });
+                    // this.furniture[0].children2=res.data.map(item=>{
+                    //     return {
+                    //             ...item,
+                    //             checked:false,
+                    //             supplierSource:'',
+                    //             // needDetail:item.remark=='1'?'':false,
+                    //             // click:item.remark=='1'?false:true,
+                    //             children:[]
+                    //         }
+                    // });
+                    // this.furniture[0].children2.push({
+                    //     ...res.data[0],
+                    //     checked:false,
+                    //     supplierSource:'',
+                    // })
+                    customerModule.getLease({
+                        parentId:res.data[1].id
+                    }).then(r=>{
+                        if(r.statusCode=='1'){
+                            let data=r.data.map(it=>{
+                                return{
+                                    ...it,
+                                    catName:'活动'+it.catName
+                                }
+                            })
+                           this.furniture[0].children2= [...[res.data[0]],...data].map(item=>{
+                                return {
+                                     ...item,
+                                    checked:false,
+                                    supplierSource:'',
+                                    children:[]
+                                }
+                            })
+                        }
+                    })
                 }
             })
         },
@@ -173,8 +198,8 @@ export default {
         selectItem(item){
             item.supplierSource='';
             if(item.remark=='1'){//固装家具
-                item.click=false;
-                item.needDetail='';
+                // item.click=false;
+                // item.needDetail='';
                 if(item.children){
                     for(var v of item.children){
                         v.checked=false;
@@ -183,27 +208,27 @@ export default {
                 }
             }
         },
-        clickNeed(item,flag){//点击需要还是不需要
-            item.needDetail=flag;
-            item.click=true;
-            if(flag){
-                customerModule.getLease({
-                    parentId:item.id
-                }).then(res=>{
-                    if(res.statusCode=='1'){
-                        item.children=res.data.map(item=>{
-                            return {
-                                ...item,
-                                checked:false,
-                                supplierSource:'',
-                                optionValue:'',
-                                children:false
-                            }
-                        })
-                    }
-                })
-            }
-        },
+        // clickNeed(item,flag){//点击需要还是不需要
+        //     // item.needDetail=flag;
+        //     // item.click=true;
+        //     if(flag){
+        //         customerModule.getLease({
+        //             parentId:item.id
+        //         }).then(res=>{
+        //             if(res.statusCode=='1'){
+        //                 item.children=res.data.map(item=>{
+        //                     return {
+        //                         ...item,
+        //                         checked:false,
+        //                         supplierSource:'',
+        //                         optionValue:'',
+        //                         children:false
+        //                     }
+        //                 })
+        //             }
+        //         })
+        //     }
+        // },
         confirm(){//对数据处理 选到最后一步传给后端
             this.saveProductComm();
         },
@@ -352,8 +377,9 @@ export default {
                 }
                 li{
                     margin-top:0px;
+                    margin-bottom: 30px;
                     &:first-child{
-                         margin-bottom: 30px;
+                        //  margin-bottom: 30px;
                     }
                 }
                  .children_item_detail{

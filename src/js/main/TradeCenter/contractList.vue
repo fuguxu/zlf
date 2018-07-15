@@ -11,6 +11,11 @@
                 </div>
             </router-link>  
         </ul>
+        <div class="no_content font16" v-if="list.length==0&&ajaxDone">
+            <img src="../../../img/no_step.png" alt="">
+            <div class="text">温馨提示：</div>
+            <div class="text">交易还未进行到这一步，请耐心等候～</div>
+        </div>
     </div>
 </template>
 <script>
@@ -19,14 +24,17 @@ export default {
     data(){
         return {
             list:[],
+            ajaxDone:false
         }
     },
     methods:{
         getMainLease(){
+            this.ajaxDone=false;
             customerModule.getMainLease({
                 orderNo:this.$route.query.id
             }).then(res=>{
                 if(res.statusCode=="1"){
+                    this.ajaxDone=true;
                     this.list=res.data;
                 }
             })
@@ -87,6 +95,14 @@ export default {
                 width:16px;
                 height:16px;
                 
+            }
+        }
+        .no_content{
+            display:inline-block;
+            text-align: center;
+            padding:30px 0px;
+            .text{
+                line-height: 40px;
             }
         }
     }
