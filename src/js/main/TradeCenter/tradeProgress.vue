@@ -67,7 +67,7 @@
             </div>
             <ul class="progress_content">                                                                                                                                                                                               
                 <li v-for="(item,index) in tradeList" :key="index">
-                    <span>{{index+1+'.'+item.remark+item.progressDesc}}</span>
+                    <span>{{index+1+'.'+(item.type==2?'':item.remark)+(item.type==1?'被淘汰':item.progressDesc)}}</span>
                     <span>{{item.createTime}}</span>
                 </li>
                 <li class="icon" v-if="tradeListDetail.status==-1">

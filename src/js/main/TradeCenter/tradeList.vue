@@ -15,20 +15,25 @@
                 <span class="time">{{item.createTime.substr(11)}}</span>
                 <span class="order_number">订单号：{{item.proListCommNo}}</span>
             </div>
-            <div class="content">
+            <div class="content clearfloat">
                 <div class="td custorm">
-                    <div>{{item.userAbbr}}</div>
+                    <div>
+                        {{item.userAbbr}}
+                    </div>
                 </div>
+                <div class="tdLine"></div>
                 <div class="td name">
-                    <div>{{item.projectName}}</div>
+                    <div>
+                        {{item.projectName}}
+                    </div>
                 </div>
+                <div class="tdLine"></div>
                 <div class="td product">
                     <div>
                         <p v-for="(it,i) in item.leaseTypeName" :key="i">{{it}}</p>
-                        <!-- <p>办公场所活动板木家具</p>
-                        <p>公寓活动板式家具</p> -->
                     </div>
                 </div>
+                <div class="tdLine"></div>
                 <div class="td perInfo">
                     <div>
                         <p>{{item.productJoinMan}}</p>
@@ -36,7 +41,9 @@
                         <p>{{item.mobile}}</p>
                     </div>
                 </div>
+                <div class="tdLine"></div>
                 <div class="td status">{{renderStatus(item)}}</div>
+                <div class="tdLine"></div>
                 <div class="td detail">
                     <div>
                         <div class="line_item">
@@ -168,11 +175,17 @@ export default {
             display: flex;
             align-items: center;
             box-sizing: border-box;
+            padding:14px 0px;
             .td:not(:last-child){
-                border-right: 1px solid rgba(230, 230, 230, 1);
+                // border-right: 1px solid rgba(230, 230, 230, 1);
+            }
+            .tdLine{
+                width:1px;
+                min-height: 82px;
+                background: rgba(230, 230, 230, 1);
             }
             .td{
-                height:82px;
+                min-height:82px;
                 display: flex;
                 align-items: center;
                 text-align: center;

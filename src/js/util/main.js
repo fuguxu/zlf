@@ -86,3 +86,10 @@ s.getFactoryInspection=function(cb){//获取供应商验厂状态 0：待审核 
         cb(res)
     })
  }
+ s.checkInvitation=function(inviteCode,cb){//校验邀请码
+    customerModule.checkInvitation({
+        code:inviteCode
+    }).then(res=>{
+        cb(res);
+    })
+ }

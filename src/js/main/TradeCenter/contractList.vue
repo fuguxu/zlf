@@ -31,7 +31,7 @@ export default {
         getMainLease(){
             this.ajaxDone=false;
             customerModule.getMainLease({
-                orderNo:this.$route.query.id
+                orderNo:this.$route.query.listNo
             }).then(res=>{
                 if(res.statusCode=="1"){
                     this.ajaxDone=true;

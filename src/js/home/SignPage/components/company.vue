@@ -124,8 +124,26 @@ export default {
                 if(res.data){
                     this.companyErrorMessage='该公司已注册，请直接登录！';
                 }else{
-                     this.companyErrorMessage='';
-                     this.goNext();
+                    if(this.role=='client'){
+                        this.companyErrorMessage='';
+                        this.goNext();
+                    }else{
+                        if(this.inviteCode){
+                            AppUtil.checkInvitation(this.inviteCode,res=>{
+                                if(res.statusCode=='1'){
+                                    this.inviteCodeErrorMessage='';
+                                    this.goNext();
+                                }else{
+                                    this.inviteCodeErrorMessage=res.message;
+                                }
+                            })
+                        }else{
+                            this.companyErrorMessage='';
+                            this.goNext();
+                        }
+                        
+                    }
+                     
                 }
             })
         },

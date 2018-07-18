@@ -120,12 +120,12 @@
                                 <ul class="progress" v-for="(item,index) in appointProgress" :key="index">
                                     <li class="title">{{item.name}}产品清单沟通进展</li>
                                     <li v-for="(it,i) in item.list" :key="i">
-                                        <span>{{i+1}}. {{it.progressDesc}}</span>
+                                        <span>{{i+1}}. {{it.type==1?`${it.ext1}被淘汰`:it.progressDesc}}</span>
                                         <span>{{it.createTime}}</span>
                                     </li>
-                                    <li class="icon" v-if="appointProgress.status==1||appointProgress.status==-1">
-                                        <img v-if="appointProgress.status==1" src="../../../../img/pass_icon_big.png" alt="">
-                                        <img v-if="appointProgress.status==-1" src="../../../../img/trade_close.png" alt="">
+                                    <li class="icon" v-if="item.status==1||item.status==-1">
+                                        <img v-if="item.status==1" src="../../../../img/pass_icon_big.png" alt="">
+                                        <img v-if="item.status==-1" src="../../../../img/trade_close.png" alt="">
                                     </li>
                                 </ul>
                             </div>
@@ -134,12 +134,12 @@
                                 <ul class="progress" v-for="(item,index) in recommendProgress" :key="index">
                                     <li class="title">{{item.name}}产品清单沟通进展</li>
                                     <li v-for="(it,i) in item.list" :key="i">
-                                        <span>{{i+1}}. {{it.progressDesc}}</span>
+                                        <span>{{i+1}}. {{it.type==1?`${it.ext1}被淘汰`:it.progressDesc}}</span>
                                         <span>{{it.createTime}}</span>
                                     </li>
-                                    <li class="icon" v-if="appointProgress.status==1||appointProgress.status==-1">
-                                        <img v-if="appointProgress.status==1" src="../../../../img/pass_icon_big.png" alt="">
-                                        <img v-if="appointProgress.status==-1" src="../../../../img/trade_close.png" alt="">
+                                    <li class="icon" v-if="item.status==1||item.status==-1">
+                                        <img v-if="item.status==1" src="../../../../img/pass_icon_big.png" alt="">
+                                        <img v-if="item.status==-1" src="../../../../img/trade_close.png" alt="">
                                     </li>
                                 </ul>
                             </div>
@@ -212,13 +212,13 @@ export default {
         clickExtend(index,flag){
             if(this.data[index].isOperation=='1'){
                 this[flag]=!this[flag];
-                if(this.transfer){
+                if(this.transfer&&flag=='transfer'){
                     this.getProjectInfo();
                     this.getAppointSupplier();
                     this.getRecommendSupplier();
                     this.getAppointProgress();
                     this.getRecommendProgress();
-                }else if(this.logistics){
+                }else if(this.logistics&&flag=='logistics'){
                     this.getContractAndPay();
                 }
 
@@ -509,6 +509,7 @@ export default {
                         .icon{
                             position: absolute;
                             left:50%;
+                            z-index: 100;
                         }
                     }
                     ul{
