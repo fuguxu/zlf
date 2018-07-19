@@ -108,6 +108,7 @@ export default {
             }).then(res=>{
                 if(res.statusCode==1){
                     let data =res.data;
+                    localStorage.removeItem('zlfuserInfo');
                     AppUtil.getLicenseStatus(status=>{
                         if(data.type==0){
                             localStorage.setItem('role','client');
