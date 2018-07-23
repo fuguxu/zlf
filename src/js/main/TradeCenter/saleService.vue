@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form_item">
-                <el-input :readonly="!isEdit" v-model="form.supplierAftersaleTel" @blur="valiteFixedNumber" placeholder="请输入贵机座机或400号码">
+                <el-input :readonly="!isEdit" v-model="form.supplierAftersaleTel" @blur="valiteFixedNumber" placeholder="请输入贵司座机或400号码">
                     <i slot="suffix" class="iconfont icon-close" @click="form.supplierAftersaleTel=''" v-if="form.supplierAftersaleTel&&isEdit"></i>
                 </el-input>
                  <div class="error_message" v-if="fixedNumberErrorMessage">

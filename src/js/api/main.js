@@ -20,7 +20,7 @@ var TIME_OUT=50000;
 var zlf_base_prefix
 
 if(__DEV__){
-    zlf_base_prefix = 1?'https://api.zulifangs.com':'http://hjj1.tunnel.echomod.cn/api-zlf';//'http://redliam.51vip.biz:20095/api-zlf';
+    zlf_base_prefix = 1?'https://api.zulifangs.com':'http://redliam.51vip.biz:20095/api-zlf';//'http://hjj1.tunnel.echomod.cn/api-zlf';
 }else if(__PROD__){
     zlf_base_prefix='https://api.zucube.cn';
 }

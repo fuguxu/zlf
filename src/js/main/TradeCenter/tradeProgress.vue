@@ -19,7 +19,7 @@
             </div>
             <div class="item_content">
                 <div class="label">性&nbsp;&nbsp;&nbsp;&nbsp;别</div>
-                <div class="content">{{contactData.sex=='1'?'男':'女'}}</div>
+                <div class="content">{{contactData.sex=='1'?'男':(contactData.sex=='2'?'女':'')}}</div>
             </div>
             <div class="item_content">
                 <div class="label">职&nbsp;&nbsp;&nbsp;&nbsp;位</div>
@@ -133,7 +133,7 @@ export default {
         this.getCustomerContact();
         this.getPlatformContact();
         this.getProductListComm();
-    }
+    },
 }
 </script>
 <style lang="scss" scoped>

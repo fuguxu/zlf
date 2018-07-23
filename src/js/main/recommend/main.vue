@@ -16,7 +16,7 @@
                     <div class="recommend_value">
                         <div class="value">
                             <p class="title_sub"><span class="line"></span><span>当前推荐值：</span><span class="time font14">更新于{{data.lastUpdateTime}}</span> </p>
-                            <p class="number">{{data.recommValue}}<span class="union">分</span></p>
+                            <p class="number" v-if="data.recommValue">{{(+data.recommValue).toFixed(2)}}<span class="union">分</span></p>
                         </div>
                         <div class="rate">
                             <div class="circle">{{data.recommPercent}}</div>
