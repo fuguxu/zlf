@@ -53,10 +53,10 @@
                 </div>
             </div>
             <div class="sign_button">
-                <div class="button" @click="submitSign">立即注册</div>
+                <div class="button" @click="submitSign">下一步</div>
             </div>
         </div>
-        <!-- <stepDialog :role="role" :visible.sync="visible" @nextStep="nextStep" :stepComponent="stepComponent"></stepDialog> -->
+        <!-- <stepDialog  :role="role" :visible.sync="visible" @nextStep="nextStep" :stepComponent="stepComponent"></stepDialog> -->
     </div>
 </template>
 <script>
@@ -234,7 +234,7 @@ export default {
               return true;
           }
       },
-      submitSign(){//点击注册
+      submitSign(){//点击下一步
     //   this.nextStep();
         if(this.blurmemberName()&&this.bluruserName()&&this.blurIdentifyCode()&&this.blurpassWord()&&this.blurpassWord2()){
                this.checkInfo(this.postData);
@@ -259,42 +259,43 @@ export default {
                 }else{
                     this.identifyCodeErrorMessage='';
                     if(flag){
-                        if(this.role=='client'){
-                            this.registerCustorm({...this.companyInfo,...this.form});
-                        }else{
-                            this.registerSupplier({...this.companyInfo,...this.form});
-                        }
+                        this.nextStep();
+                        // if(this.role=='client'){
+                        //     this.registerCustorm({...this.companyInfo,...this.form});
+                        // }else{
+                        //     this.registerSupplier({...this.companyInfo,...this.form});
+                        // }
                     }
                 }
             })
         // }
         
       },
-      registerCustorm(parmars){//客户注册
-         customerModule.registerCustorm(parmars).then(res=>{
-             if(res.statusCode=='1'){
-                 localStorage.setItem('role',this.role);
-                 this.nextStep();
-             }else{
-                 AppUtil.message(this,res.message,'warning');
-             }
-         })   
-      },
-      registerSupplier(parmars){//供应商注册
-         customerModule.registerSupplier(parmars).then(res=>{
-             if(res.statusCode=='1'){
-                 localStorage.setItem('role',this.role);
-                 this.nextStep();
-             }else{
-                 AppUtil.message(this,res.message,'warning');
-             }
-         })  
-      },
+    //   registerCustorm(parmars){//客户注册
+    //      customerModule.registerCustorm(parmars).then(res=>{
+    //          if(res.statusCode=='1'){
+    //              localStorage.setItem('role',this.role);
+    //              this.nextStep();
+    //          }else{
+    //              AppUtil.message(this,res.message,'warning');
+    //          }
+    //      })   
+    //   },
+    //   registerSupplier(parmars){//供应商注册
+    //      customerModule.registerSupplier(parmars).then(res=>{
+    //          if(res.statusCode=='1'){
+    //              localStorage.setItem('role',this.role);
+    //              this.nextStep();
+    //          }else{
+    //              AppUtil.message(this,res.message,'warning');
+    //          }
+    //      })  
+    //   },
       nextStep(){//到完善联系人信息一步
         if(this.role=='client'){
-            this.$emit('updateStep',this.stepComponent);
+            this.$emit('updateStep',this.stepComponent,{...this.companyInfo,...this.form});
         }else if(this.role=='supplier'){//供应商还有一个选择供应商类型的一步 再到联系人信息一步
-            this.$emit('updateStep','kindSupplier');
+            this.$emit('updateStep','kindSupplier',{...this.companyInfo,...this.form});
         }
         
       }

@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="footer">
-                <span class="button" @click="updateStep">提交</span>
+                <span class="button" @click="updateStep">立即注册</span>
             </div>
         </div>
     </div>
@@ -73,6 +73,11 @@ export default {
         },
         kindTypeInfo:{//供应商有这个数据
 
+        },
+        signFormInfo:{
+            default(){
+                return {}
+            }
         }
     },
     data(){
@@ -175,30 +180,40 @@ export default {
                 return true
             }
         },
-        saveOrderCustomerInfo(){//保存客户联系人信息
-            customerModule.saveOrderCustomerInfo(this.form).then(res=>{
-                if(res.statusCode==1){
-                    this.submitedAfter();
-                }
-            })
-        },
-        changeSupplierUser(){//保存供应商联系人
-            customerModule.changeSupplierUser({
-                ...this.form,
-                ...this.kindTypeInfo
-            }).then(res=>{
-                if(res.statusCode==1){
-                    this.submitedAfter();
-                }
-            })
-        },
+        // saveOrderCustomerInfo(){//保存客户联系人信息
+        //     customerModule.saveOrderCustomerInfo(this.form).then(res=>{
+        //         if(res.statusCode==1){
+        //             this.submitedAfter();
+        //         }
+        //     })
+        // },
+        // changeSupplierUser(){//保存供应商联系人
+        //     customerModule.changeSupplierUser({
+        //         ...this.form,
+        //         ...this.kindTypeInfo
+        //     }).then(res=>{
+        //         if(res.statusCode==1){
+        //             this.submitedAfter();
+        //         }
+        //     })
+        // },
         updateStep(){//注册到此处 需要判断是什么角色注册的
             // this.submitedAfter()
             if(this.blurContactName()&&this.blurPositionJob()&&this.blurSex()&&this.blurPhone()&&this.blurEmail()){
                 if(this.role=='client'){
-                    this.saveOrderCustomerInfo();
+                    // this.saveOrderCustomerInfo();
+                    this.registerCustorm({
+                        ...this.form,
+                        ...this.signFormInfo
+                    })
                 }else{
-                    this.changeSupplierUser();
+                    // this.changeSupplierUser();
+                    this.registerSupplier({
+                        ...this.form,
+                        ...this.kindTypeInfo,
+                        ...this.signFormInfo
+                    })
+
                 }
             }
         },
@@ -210,13 +225,30 @@ export default {
             }else if(this.role=='supplier'){
                 window.location.href="main.html#/sign/supplier?cp=startUse";
             }
-        }
+        },
+        registerCustorm(parmars){//客户注册
+         customerModule.registerCustorm(parmars).then(res=>{
+             if(res.statusCode=='1'){
+                 this.submitedAfter();
+             }else{
+                 AppUtil.message(this,res.message,'warning');
+             }
+         })   
+      },
+      registerSupplier(parmars){//供应商注册
+         customerModule.registerSupplier(parmars).then(res=>{
+             if(res.statusCode=='1'){
+                 this.submitedAfter();
+             }else{
+                 AppUtil.message(this,res.message,'warning');
+             }
+         })  
+      },
     },
     created(){
         
     },
     mounted(){
-        // console.log(this.kindTypeInfo)
     },
     components:{
         stepBar
@@ -268,6 +300,7 @@ export default {
             }
             &.sex_error_message{
                 margin-left: 202px;
+                width: 120%;
             }
         }
     }
