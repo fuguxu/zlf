@@ -105,7 +105,7 @@ export default {
             if(!this.companyName){
                 this.companyErrorMessage='请输入公司名！';
                 return false;
-            }else if(!/^[\u4e00-\u9fa5]*(\({1}[\u4e00-\u9fa5]+\){1})*[\u4e00-\u9fa5]*$/.test(this.companyName)){
+            }else if(!/^[\u4e00-\u9fa5]*((\(|（){1}[\u4e00-\u9fa5]+(\)|）){1})*[\u4e00-\u9fa5]*$/.test(this.companyName)){
                  this.companyErrorMessage='请输入正确的公司名称！';
                 return false;
             }
