@@ -10,7 +10,7 @@
             <div class="text" @mouseenter="mouseenter" @mouseleave="mouseleave">关注<br />微信</div>
             <div class="erWeiMa_box" :class="{show:showErWeiMa,hiden:!showErWeiMa}">
                 <div class="erWeiMa_border" :class="{show:showErWeiMa}">
-                   <img class="erWeiMa_icon" src="../../img/u225.png"  alt="">
+                   <img class="erWeiMa_icon" src="../../img/u225.jpg"  alt="">
                    <div class="jangle"></div> 
                 </div>
             </div>
@@ -162,7 +162,7 @@ export default {
             .erWeiMa_icon{
                 border:10px solid rgba(41,43,44,1);
                 border-radius:8px;
-                
+                width:120px;
             }
         }
     }
