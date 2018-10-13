@@ -6,7 +6,7 @@
             <div class="content content2">扩张至北京、上海、广州、杭州、苏州、南京、重庆、武汉、合肥、厦门、三亚......</div>
         </div>
         <div class="home_city_pic_list">
-            <img class="img" src="../../../img/map_pic.png" alt="">
+            <img class="img" src="../../../img/map_pic.jpg" alt="">
         </div>
     </div>
 </template>
@@ -31,12 +31,12 @@ export default {
         position: relative;
         .title{
             top:0px;
-            position: absolute;
+            // position: absolute;
             padding-top:95px;
             text-align: center;
             font-size: 30px;
             left:50%;
-            margin-left:-600px;
+            // margin-left:-600px;
             color:rgba(51, 51, 51, 1);
             z-index: 1000;
         }
@@ -51,10 +51,11 @@ export default {
         }
         .home_city_pic_list,.title{
             width:1200px;
+            margin:0 auto;
         }
         .img{
             position: relative;
-            left:-180px;
+            // left:-180px;
         }
     }
 </style>
